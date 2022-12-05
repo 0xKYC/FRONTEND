@@ -1,0 +1,13 @@
+{
+  "title": "Compliant Zero Knowledge Implementation-free KYC for Web3",
+  "text": "We know KYC checks in Web3 are broken, we create a ZK solution with banking level KYC",
+  "button": [
+    {
+      "title": "Try It!"
+    },
+    {
+      "title": "Learn more",
+      "color": "#fff"
+    }
+  ]
+}
