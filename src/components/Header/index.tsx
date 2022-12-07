@@ -15,9 +15,12 @@ import {
   Outline,
   Span,
 } from "./styles";
+import connectToMetamask, { connectMetamask } from "../../service/web3.service";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+  const [walletBalance, setWalletBalance] = useState("");
 
   const showDrawer = () => {
     setVisibility(!visible);
@@ -48,7 +51,7 @@ const Header = ({ t }: any) => {
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+          onClick={connectToMetamask}
         >
           <Span>
             <Button>{t("Connect Wallet")}</Button>
