@@ -2,9 +2,6 @@
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 
-const [account, setAccount] = useState("");
-const [balance, setBalance] = useState("");
-
 export function connectMetamask() {
   if (window.ethereum) {
     window.ethereum
