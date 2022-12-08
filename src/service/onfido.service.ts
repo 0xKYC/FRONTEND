@@ -13,3 +13,9 @@ export async function onfidoRedirect() {
   console.log(res.data);
   window.location.replace(res.data);
 }
+
+export async function onfidoCheckForApplicant() {}
+
+export async function onfidoCreateApplicant() {}
+
+export async function createUserInDB() {}

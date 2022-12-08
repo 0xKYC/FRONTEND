@@ -5,6 +5,7 @@ import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
 import { ethers } from "ethers";
+import { onfidoCheckForApplicant, onfidoCreateApplicant, createUserInDB } from "../../service/onfido.service";
 import {
   HeaderSection,
   LogoContainer,
@@ -29,8 +30,19 @@ const Header = ({ t }: any) => {
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then((accounts: any[]) => {
-          accountChangedHandler(accounts[0]);
-          setConnectButtonText("Connected");
+          if(connectButtonText === "Connect Wallet"){
+            accountChangedHandler(accounts[0]);
+            setConnectButtonText("Disconnect");
+          }
+          if (connectButtonText === "Disconnect"){
+            accountChangedHandler('')
+            setConnectButtonText("Connect Wallet");
+            window.ethereum.request({
+              method: "eth_requestAccounts",
+              params: [{eth_accounts: {}}]
+          })
+          }
+
         })
         .catch((err: any) => {
           console.log(err);
@@ -39,9 +51,9 @@ const Header = ({ t }: any) => {
       console.log("Please install MetaMask!");
     }
   }
-  const accountChangedHandler = (account: any) => {
+  const accountChangedHandler = (account: string) => {
     setDefaultAccount(account);
-    getUserBalance(account.toString());
+    //getUserBalance(account.toString());
   }
   
   const getUserBalance = (address:any) => {
@@ -58,27 +70,29 @@ const Header = ({ t }: any) => {
       .catch((err: any) => {
         console.log(err);
       });
+    }
+    
+    window.ethereum.on("chainChanged", (chainId: string) => {  
+      window.location.reload();
+    });
+  
+    window.ethereum.on("accountsChanged", (accountsChanged: any) => {
+      if (defaultAccount === '' && accountsChanged[0] === '') {
+       window.location.reload();
+    }});
+    
+  const resolveWalletBackend = async () => {
+    
   }
-
-  window.ethereum.on("accountsChanged", accountChangedHandler);
-
-  window.ethereum.on("chainChanged", (chainId: any) => {  
-    window.location.reload();
-  });
-
-  window.ethereum.on("disconnect", (error: { code: number; message: string; }) => {
-    console.log(error);
-    window.location.reload();
-  });
-
+  
   const showDrawer = () => {
     setVisibility(!visible);
   };
-
+  
   const onClose = () => {
     setVisibility(!visible);
   };
-
+  
   const MenuItem = () => {
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
@@ -87,6 +101,8 @@ const Header = ({ t }: any) => {
       });
       setVisibility(false);
     };
+
+
     return (
       <>
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
@@ -103,7 +119,9 @@ const Header = ({ t }: any) => {
           onClick={connectMetamask}
         >
           <Span>
-            <Button>{connectButtonText}</Button>
+            <Button
+            color={ connectButtonText === 'Disconnect'? "#FFFFFFff": "" }
+            >{connectButtonText}</Button>
           </Span>
         </CustomNavLinkSmall>
           <Span>{`${defaultAccount? `...${defaultAccount.slice(-6)}` : ''}`}</Span>
