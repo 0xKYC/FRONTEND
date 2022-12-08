@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
+import { ethers } from "ethers";
 import {
   HeaderSection,
   LogoContainer,
@@ -15,12 +16,60 @@ import {
   Outline,
   Span,
 } from "./styles";
-import { connectMetamask } from "../../service/web3.service";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
-  const [walletAddress, setWalletAddress] = useState("");
-  const [walletBalance, setWalletBalance] = useState("");
+  const [defaultAccount, setDefaultAccount] = useState("");
+  const [userBalance, setUserBalance] = useState(null);
+  const [connectButtonText, setConnectButtonText] = useState("Connect Wallet");
+
+
+  const connectMetamask = () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((accounts: any[]) => {
+          accountChangedHandler(accounts[0]);
+          setConnectButtonText("Connected");
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Please install MetaMask!");
+    }
+  }
+  const accountChangedHandler = (account: any) => {
+    setDefaultAccount(account);
+    getUserBalance(account.toString());
+  }
+  
+  const getUserBalance = (address:any) => {
+    window.ethereum
+      .request({
+        method: "eth_getBalance",
+        params: [address, "latest"],
+      })
+      .then((balance: any) => {
+        balance = ethers.utils.formatEther(balance);
+        setUserBalance(balance);
+        console.log(balance);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }
+
+  window.ethereum.on("accountsChanged", accountChangedHandler);
+
+  window.ethereum.on("chainChanged", (chainId: any) => {  
+    window.location.reload();
+  });
+
+  window.ethereum.on("disconnect", (error: { code: number; message: string; }) => {
+    console.log(error);
+    window.location.reload();
+  });
 
   const showDrawer = () => {
     setVisibility(!visible);
@@ -54,9 +103,10 @@ const Header = ({ t }: any) => {
           onClick={connectMetamask}
         >
           <Span>
-            <Button>{t("Connect Wallet")}</Button>
+            <Button>{connectButtonText}</Button>
           </Span>
         </CustomNavLinkSmall>
+          <Span>{`${defaultAccount? `...${defaultAccount.slice(-6)}` : ''}`}</Span>
       </>
     );
   };
