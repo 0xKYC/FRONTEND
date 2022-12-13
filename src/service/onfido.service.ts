@@ -10,12 +10,17 @@ export async function getSDKToken() {
 
 export async function onfidoRedirect() {
   const res = await axios.post("http://localhost:3001/onfido/redirect", {});
-  console.log(res.data);
   window.location.replace(res.data);
 }
 
 export async function onfidoCheckForApplicant() {}
 
-export async function onfidoCreateApplicant() {}
+export async function onfidoCreateApplicant() {
+  const res = await axios.post(
+    "http://localhost:3001/onfido/createApplicant",
+    {}
+  );
+  return res.data;
+}
 
 export async function createUserInDB() {}
