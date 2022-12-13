@@ -1,22 +1,24 @@
-import { useState } from "react";
-import { Row, Col, Drawer } from "antd";
-import { withTranslation } from "react-i18next";
-import Container from "../../common/Container";
-import { SvgIcon } from "../../common/SvgIcon";
-import { Button } from "../../common/Button";
-import { ethers } from "ethers";
-import { onfidoCheckForApplicant, onfidoCreateApplicant, createUserInDB } from "../../service/onfido.service";
 import {
-  HeaderSection,
-  LogoContainer,
   Burger,
-  NotHidden,
-  Menu,
   CustomNavLinkSmall,
+  HeaderSection,
   Label,
+  LogoContainer,
+  Menu,
+  NotHidden,
   Outline,
   Span,
 } from "./styles";
+import { Col, Drawer, Row } from "antd";
+import { createUserInDB, onfidoCheckForApplicant, onfidoCreateApplicant } from "../../service/onfido.service";
+import {findUserInDB, initUserInDB, updateUserInDB} from "../../service/user.service";
+
+import { Button } from "../../common/Button";
+import Container from "../../common/Container";
+import { SvgIcon } from "../../common/SvgIcon";
+import { ethers } from "ethers";
+import { useState } from "react";
+import { withTranslation } from "react-i18next";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
@@ -29,9 +31,26 @@ const Header = ({ t }: any) => {
     if (window.ethereum) {
       window.ethereum
         .request({ method: "eth_requestAccounts" })
-        .then((accounts: any[]) => {
+        .then(async (accounts: any[]) => {
           if(connectButtonText === "Connect Wallet"){
-            accountChangedHandler(accounts[0]);
+            const account = accounts[0];
+            const changeAccount = accountChangedHandler(account);
+            let user = await findUserInDB(account);
+            if (user === "noUserError") {
+            const initUser = await initUserInDB(account);
+          }
+            const userProfile = await findUserInDB(account);
+            console.log('userProfile', userProfile)
+
+            if(userProfile.onfidoApplicantId !== null){
+              console.log('onfidoApplicantId is not null', userProfile.onfidoApplicantId) 
+            } 
+
+            if(userProfile.onfidoApplicantId === null) { 
+              const newApplicant = await onfidoCreateApplicant();
+              const uploadNewApplicant = await updateUserInDB(account, newApplicant.id);
+            }
+
             setConnectButtonText("Disconnect");
           }
           if (connectButtonText === "Disconnect"){
@@ -81,9 +100,6 @@ const Header = ({ t }: any) => {
        window.location.reload();
     }});
     
-  const resolveWalletBackend = async () => {
-    
-  }
   
   const showDrawer = () => {
     setVisibility(!visible);
@@ -101,7 +117,6 @@ const Header = ({ t }: any) => {
       });
       setVisibility(false);
     };
-
 
     return (
       <>
