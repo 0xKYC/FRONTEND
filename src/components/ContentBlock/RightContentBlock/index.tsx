@@ -12,6 +12,8 @@ import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { onfidoRedirect } from "../../../service/onfido.service";
 import { withTranslation } from "react-i18next";
+import { useAppSelector } from "../../../redux/hooks";
+import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
 
 const RightBlock = ({
   title,
@@ -21,6 +23,8 @@ const RightBlock = ({
   t,
   id,
 }: ContentBlockProps) => {
+  const walletAddress = useAppSelector(selectWalletAddress);
+  console.log(walletAddress);
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
@@ -35,6 +39,7 @@ const RightBlock = ({
             <ContentWrapper>
               <h6>{t(title)}</h6>
               <Content>{t(content)}</Content>
+              {walletAddress}
               <ButtonWrapper>
                 {typeof button === "object" &&
                   button.map((item: any, id: number) => {
@@ -43,7 +48,7 @@ const RightBlock = ({
                         key={id}
                         color={item.color}
                         fixedWidth={true}
-                        onClick={() => onfidoRedirect('','')}
+                        onClick={() => onfidoRedirect("", "")}
                       >
                         {t(item.title)}
                       </Button>

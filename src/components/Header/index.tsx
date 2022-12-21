@@ -10,57 +10,70 @@ import {
   Span,
 } from "./styles";
 import { Col, Drawer, Row } from "antd";
-import {onfidoCreateApplicant } from "../../service/onfido.service";
-import {findUserInDB, initUserInDB, updateUserInDB} from "../../service/user.service";
+import { onfidoCreateApplicant } from "../../service/onfido.service";
+import {
+  findUserInDB,
+  initUserInDB,
+  updateUserInDB,
+} from "../../service/user.service";
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
+import { useAppDispatch } from "../../redux/hooks";
+import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
 
-export const Header = ({ t }: any) => {
+const Header = ({ t }: any) => {
+  const dispatch = useAppDispatch();
   const [visible, setVisibility] = useState(false);
   const [defaultAccount, setDefaultAccount] = useState("");
   const [userBalance, setUserBalance] = useState(null);
   const [connectButtonText, setConnectButtonText] = useState("Connect Wallet");
 
-
   const connectMetamask = () => {
     if (window.ethereum) {
       window.ethereum
         .request({ method: "eth_requestAccounts" })
-        .then(async (accounts: any[]) => {
-          if(connectButtonText === "Connect Wallet"){
+        .then(async (accounts: string[]) => {
+          if (connectButtonText === "Connect Wallet") {
             const account = accounts[0];
             const changeAccount = accountChangedHandler(account);
+            dispatch(addWalletAddress(account));
             let user = await findUserInDB(account);
+
             if (user === "noUserError") {
-            const initUser = await initUserInDB(account);
-          }
+              const initUser = await initUserInDB(account);
+            }
             const userProfile = await findUserInDB(account);
-            console.log('userProfile', userProfile)
+            console.log("userProfile", userProfile);
 
-            if(userProfile.onfidoApplicantId !== null){
-              console.log('onfidoApplicantId is not null', userProfile.onfidoApplicantId) 
-            } 
+            if (userProfile.onfidoApplicantId !== null) {
+              console.log(
+                "onfidoApplicantId is not null",
+                userProfile.onfidoApplicantId
+              );
+            }
 
-            if(userProfile.onfidoApplicantId === null) { 
+            if (userProfile.onfidoApplicantId === null) {
               const newApplicant = await onfidoCreateApplicant();
-              const uploadNewApplicant = await updateUserInDB(account, newApplicant.id);
+              const uploadNewApplicant = await updateUserInDB(
+                account,
+                newApplicant.id
+              );
             }
 
             setConnectButtonText("Disconnect");
           }
-          if (connectButtonText === "Disconnect"){
-            accountChangedHandler('')
+          if (connectButtonText === "Disconnect") {
+            accountChangedHandler("");
             setConnectButtonText("Connect Wallet");
             window.ethereum.request({
               method: "eth_requestAccounts",
-              params: [{eth_accounts: {}}]
-          })
+              params: [{ eth_accounts: {} }],
+            });
           }
-
         })
         .catch((err: any) => {
           console.log(err);
@@ -68,13 +81,13 @@ export const Header = ({ t }: any) => {
     } else {
       console.log("Please install MetaMask!");
     }
-  }
+  };
   const accountChangedHandler = (account: string) => {
     setDefaultAccount(account);
     //getUserBalance(account.toString());
-  }
-  
-  const getUserBalance = (address:any) => {
+  };
+
+  const getUserBalance = (address: any) => {
     window.ethereum
       .request({
         method: "eth_getBalance",
@@ -88,26 +101,26 @@ export const Header = ({ t }: any) => {
       .catch((err: any) => {
         console.log(err);
       });
-    }
-    
-    window.ethereum.on("chainChanged", (chainId: string) => {  
+  };
+
+  window.ethereum.on("chainChanged", (chainId: string) => {
+    window.location.reload();
+  });
+
+  window.ethereum.on("accountsChanged", (accountsChanged: any) => {
+    if (defaultAccount === "" && accountsChanged[0] === "") {
       window.location.reload();
-    });
-  
-    window.ethereum.on("accountsChanged", (accountsChanged: any) => {
-      if (defaultAccount === '' && accountsChanged[0] === '') {
-       window.location.reload();
-    }});
-    
-  
+    }
+  });
+
   const showDrawer = () => {
     setVisibility(!visible);
   };
-  
+
   const onClose = () => {
     setVisibility(!visible);
   };
-  
+
   const MenuItem = () => {
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
@@ -134,11 +147,15 @@ export const Header = ({ t }: any) => {
         >
           <Span>
             <Button
-            color={ connectButtonText === 'Disconnect'? "#FFFFFFff": "" }
-            >{connectButtonText}</Button>
+              color={connectButtonText === "Disconnect" ? "#FFFFFFff" : ""}
+            >
+              {connectButtonText}
+            </Button>
           </Span>
         </CustomNavLinkSmall>
-          <Span>{`${defaultAccount? `...${defaultAccount.slice(-6)}` : ''}`}</Span>
+        <Span>{`${
+          defaultAccount ? `...${defaultAccount.slice(-6)}` : ""
+        }`}</Span>
       </>
     );
   };
