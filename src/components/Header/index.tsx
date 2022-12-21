@@ -10,20 +10,22 @@ import {
   Span,
 } from "./styles";
 import { Col, Drawer, Row } from "antd";
-import { onfidoCreateApplicant } from "../../service/onfido.service";
 import {
   findUserInDB,
   initUserInDB,
   updateUserInDB,
 } from "../../service/user.service";
+
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
+import { addWalletAddress } from "../../redux/features/user/walletSlice";
 import { ethers } from "ethers";
+import { onfidoCreateApplicant } from "../../service/onfido.service";
+import { useAppDispatch } from "../../redux/hooks";
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { useAppDispatch } from "../../redux/hooks";
-import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
+import { addApplicantId } from "../../redux/features/user/onfidoSlice";
 
 const Header = ({ t }: any) => {
   const dispatch = useAppDispatch();
@@ -43,6 +45,7 @@ const Header = ({ t }: any) => {
             dispatch(addWalletAddress(account));
             let user = await findUserInDB(account);
 
+
             if (user === "noUserError") {
               const initUser = await initUserInDB(account);
             }
@@ -54,6 +57,7 @@ const Header = ({ t }: any) => {
                 "onfidoApplicantId is not null",
                 userProfile.onfidoApplicantId
               );
+              dispatch(addApplicantId(userProfile.onfidoApplicantId))
             }
 
             if (userProfile.onfidoApplicantId === null) {
