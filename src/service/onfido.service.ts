@@ -8,12 +8,16 @@ export async function getSDKToken() {
   return generateSdkToken;
 }
 
-export async function onfidoRedirect() {
-  const res = await axios.post("http://localhost:3001/onfido/redirect", {});
+export async function onfidoRedirect(
+  applicantId?: string,
+  walletAddress?: string
+) {
+  const res = await axios.post("http://localhost:3001/onfido/redirect", {
+    applicantId: applicantId ? applicantId : "",
+    walletAddress: walletAddress ? walletAddress : "",
+  });
   window.location.replace(res.data);
 }
-
-export async function onfidoCheckForApplicant() {}
 
 export async function onfidoCreateApplicant() {
   const res = await axios.post(
@@ -22,5 +26,3 @@ export async function onfidoCreateApplicant() {
   );
   return res.data;
 }
-
-export async function createUserInDB() {}

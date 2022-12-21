@@ -10,9 +10,8 @@ import {
   Span,
 } from "./styles";
 import { Col, Drawer, Row } from "antd";
-import { createUserInDB, onfidoCheckForApplicant, onfidoCreateApplicant } from "../../service/onfido.service";
+import {onfidoCreateApplicant } from "../../service/onfido.service";
 import {findUserInDB, initUserInDB, updateUserInDB} from "../../service/user.service";
-
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -20,7 +19,7 @@ import { ethers } from "ethers";
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
 
-const Header = ({ t }: any) => {
+export const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
   const [defaultAccount, setDefaultAccount] = useState("");
   const [userBalance, setUserBalance] = useState(null);
