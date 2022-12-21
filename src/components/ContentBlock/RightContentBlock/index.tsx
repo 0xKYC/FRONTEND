@@ -1,16 +1,17 @@
-import { Row, Col } from "antd";
-import { withTranslation } from "react-i18next";
-import { SvgIcon } from "../../../common/SvgIcon";
+import {
+  ButtonWrapper,
+  Content,
+  ContentWrapper,
+  RightBlockContainer,
+} from "./styles";
+import { Col, Row } from "antd";
+
 import { Button } from "../../../common/Button";
 import { ContentBlockProps } from "../types";
 import { Fade } from "react-awesome-reveal";
-import {
-  RightBlockContainer,
-  Content,
-  ContentWrapper,
-  ButtonWrapper,
-} from "./styles";
+import { SvgIcon } from "../../../common/SvgIcon";
 import { onfidoRedirect } from "../../../service/onfido.service";
+import { withTranslation } from "react-i18next";
 
 const RightBlock = ({
   title,
@@ -42,7 +43,7 @@ const RightBlock = ({
                         key={id}
                         color={item.color}
                         fixedWidth={true}
-                        onClick={onfidoRedirect}
+                        onClick={() => onfidoRedirect('','')}
                       >
                         {t(item.title)}
                       </Button>
