@@ -4,7 +4,7 @@ import {
   ContentWrapper,
   RightBlockContainer,
 } from "./styles";
-import { Col, Row } from "antd";
+import { Col, Modal, Row } from "antd";
 
 import { Button } from "../../../common/Button";
 import { ContentBlockProps } from "../types";
@@ -32,6 +32,22 @@ const RightBlock = ({
       behavior: "smooth",
     });
   };
+
+  const error = () => {
+    Modal.error({
+      centered: true,
+      closable: true,
+      maskClosable: true,
+      title: "Connect wallet first!",
+    });
+  };
+  const handleOnfidoRedirect = () => {
+    if (walletAddress && onfidoApplicantId) {
+      onfidoRedirect(onfidoApplicantId, walletAddress);
+    } else {
+      error();
+    }
+  };
   return (
     <RightBlockContainer>
       <Fade direction="right">
@@ -51,7 +67,7 @@ const RightBlock = ({
                         key={id}
                         color={item.color}
                         fixedWidth={true}
-                        onClick={() => onfidoRedirect(onfidoApplicantId, walletAddress)}
+                        onClick={handleOnfidoRedirect}
                       >
                         {t(item.title)}
                       </Button>
