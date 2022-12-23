@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import onfidoApplicantIdReducer from "./features/user/onfidoSlice";
-import walletReducer from "./features/user/walletSlice";
+import walletReducer from "./features/wallet/walletSlice";
+import onfidoApplicantIdReducer from "./features/wallet/onfidoSlice";
 
 export const store = configureStore({
   reducer: {
