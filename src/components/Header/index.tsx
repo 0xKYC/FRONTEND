@@ -25,14 +25,8 @@ import { onfidoCreateApplicant } from "../../service/onfido.service";
 import { useAppDispatch } from "../../redux/hooks";
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-<<<<<<< HEAD
-import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
-=======
-import { useAppDispatch } from "../../redux/hooks";
-import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
 import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
->>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
 
 const Header = ({ t }: any) => {
   const dispatch = useAppDispatch();
@@ -50,9 +44,9 @@ const Header = ({ t }: any) => {
             const account = accounts[0];
             const changeAccount = accountChangedHandler(account);
             dispatch(addWalletAddress(account));
+            
             let user = await findUserInDB(account);
-
-
+            
             if (user === "noUserError") {
               const initUser = await initUserInDB(account);
             }
@@ -60,10 +54,6 @@ const Header = ({ t }: any) => {
             console.log("userProfile", userProfile);
 
             if (userProfile.onfidoApplicantId !== null) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
               dispatch(addApplicantId(userProfile.onfidoApplicantId))
             }
 
@@ -73,11 +63,7 @@ const Header = ({ t }: any) => {
                 account,
                 newApplicant.id
               );
-<<<<<<< HEAD
-              dispatch(addApplicantId(newApplicant.id))
-=======
               dispatch(addApplicantId(newApplicant.id));
->>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
             }
 
             setConnectButtonText("Disconnect");

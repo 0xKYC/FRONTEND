@@ -11,11 +11,6 @@ import { ContentBlockProps } from "../types";
 import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { onfidoRedirect } from "../../../service/onfido.service";
-<<<<<<< HEAD
-import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
-import { selectApplicantId } from "../../../redux/features/wallet/onfidoSlice";
-=======
->>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
 import { useAppSelector } from "../../../redux/hooks";
 import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
 import { selectApplicantId } from "../../../redux/features/wallet/onfidoSlice";
@@ -49,6 +44,7 @@ const RightBlock = ({
       title: "Connect wallet first!",
     });
   };
+
   const handleOnfidoRedirect = () => {
     if (walletAddress && onfidoApplicantId) {
       onfidoRedirect(onfidoApplicantId, walletAddress);
@@ -72,7 +68,7 @@ const RightBlock = ({
                         key={id}
                         color={item.color}
                         fixedWidth={true}
-                        onClick={() => onfidoRedirect(onfidoApplicantId, walletAddress)}
+                        onClick={handleOnfidoRedirect}
 
                       >
                         {t(item.title)}
