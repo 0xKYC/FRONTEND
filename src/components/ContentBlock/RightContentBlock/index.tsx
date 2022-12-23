@@ -11,10 +11,17 @@ import { ContentBlockProps } from "../types";
 import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { onfidoRedirect } from "../../../service/onfido.service";
-import { selectWalletAddress } from "../../../redux/features/user/walletSlice";
-import { selectApplicantId } from "../../../redux/features/user/onfidoSlice";
+<<<<<<< HEAD
+import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
+import { selectApplicantId } from "../../../redux/features/wallet/onfidoSlice";
+=======
+>>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
 import { useAppSelector } from "../../../redux/hooks";
+import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
+import { selectApplicantId } from "../../../redux/features/wallet/onfidoSlice";
+import { useState } from "react";
 import { withTranslation } from "react-i18next";
+
 
 const RightBlock = ({
   title,
@@ -26,6 +33,7 @@ const RightBlock = ({
 }: ContentBlockProps) => {
   const walletAddress = useAppSelector(selectWalletAddress);
   const onfidoApplicantId = useAppSelector(selectApplicantId);
+
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
@@ -56,9 +64,6 @@ const RightBlock = ({
             <ContentWrapper>
               <h6>{t(title)}</h6>
               <Content>{t(content)}</Content>
-              {walletAddress}
-              <br />
-              {onfidoApplicantId}
               <ButtonWrapper>
                 {typeof button === "object" &&
                   button.map((item: any, id: number) => {
@@ -67,7 +72,8 @@ const RightBlock = ({
                         key={id}
                         color={item.color}
                         fixedWidth={true}
-                        onClick={handleOnfidoRedirect}
+                        onClick={() => onfidoRedirect(onfidoApplicantId, walletAddress)}
+
                       >
                         {t(item.title)}
                       </Button>

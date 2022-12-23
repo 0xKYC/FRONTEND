@@ -19,13 +19,20 @@ import {
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
-import { addWalletAddress } from "../../redux/features/user/walletSlice";
+import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
 import { ethers } from "ethers";
 import { onfidoCreateApplicant } from "../../service/onfido.service";
 import { useAppDispatch } from "../../redux/hooks";
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { addApplicantId } from "../../redux/features/user/onfidoSlice";
+<<<<<<< HEAD
+import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
+=======
+import { useAppDispatch } from "../../redux/hooks";
+import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
+import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
+
+>>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
 
 const Header = ({ t }: any) => {
   const dispatch = useAppDispatch();
@@ -53,10 +60,10 @@ const Header = ({ t }: any) => {
             console.log("userProfile", userProfile);
 
             if (userProfile.onfidoApplicantId !== null) {
-              console.log(
-                "onfidoApplicantId is not null",
-                userProfile.onfidoApplicantId
-              );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
               dispatch(addApplicantId(userProfile.onfidoApplicantId))
             }
 
@@ -66,6 +73,11 @@ const Header = ({ t }: any) => {
                 account,
                 newApplicant.id
               );
+<<<<<<< HEAD
+              dispatch(addApplicantId(newApplicant.id))
+=======
+              dispatch(addApplicantId(newApplicant.id));
+>>>>>>> 7f3eb3a62f7b8a71347d353dd1d669dd1cb80da3
             }
 
             setConnectButtonText("Disconnect");
