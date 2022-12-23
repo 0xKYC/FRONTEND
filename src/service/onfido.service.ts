@@ -9,12 +9,12 @@ export async function getSDKToken() {
 }
 
 export async function onfidoRedirect(
-  applicantId?: string,
-  walletAddress?: string
+  applicantId: string | null,
+  walletAddress: string | null
 ) {
   const res = await axios.post("http://localhost:3001/onfido/redirect", {
-    applicantId: applicantId ? applicantId : "",
-    walletAddress: walletAddress ? walletAddress : "",
+    applicantId: applicantId,
+    walletAddress: walletAddress,
   });
   window.location.replace(res.data);
 }
