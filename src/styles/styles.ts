@@ -109,4 +109,12 @@ export const Styles = createGlobalStyle`
     .ant-drawer-content-wrapper {
         width: 300px !important;
     }
+
+    .ant-modal-body .ant-btn{
+        background-color: #fb7324;
+        border:none
+    }
+    .ant-modal-body .ant-btn{
+        background-color: #fb7324;
+    }
 `;

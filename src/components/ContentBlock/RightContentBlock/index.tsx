@@ -4,18 +4,19 @@ import {
   ContentWrapper,
   RightBlockContainer,
 } from "./styles";
-import { Col, Row } from "antd";
+import { Col, Modal, Row } from "antd";
 
 import { Button } from "../../../common/Button";
 import { ContentBlockProps } from "../types";
 import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { onfidoRedirect } from "../../../service/onfido.service";
-import { withTranslation } from "react-i18next";
 import { useAppSelector } from "../../../redux/hooks";
 import { selectWalletAddress } from "../../../redux/features/wallet/walletSlice";
 import { selectApplicantId } from "../../../redux/features/wallet/onfidoSlice";
 import { useState } from "react";
+import { withTranslation } from "react-i18next";
+
 
 const RightBlock = ({
   title,
@@ -27,12 +28,28 @@ const RightBlock = ({
 }: ContentBlockProps) => {
   const walletAddress = useAppSelector(selectWalletAddress);
   const onfidoApplicantId = useAppSelector(selectApplicantId);
-  
+
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
       behavior: "smooth",
     });
+  };
+
+  const error = () => {
+    Modal.error({
+      centered: true,
+      closable: true,
+      maskClosable: true,
+      title: "Connect wallet first!",
+    });
+  };
+  const handleOnfidoRedirect = () => {
+    if (walletAddress && onfidoApplicantId) {
+      onfidoRedirect(onfidoApplicantId, walletAddress);
+    } else {
+      error();
+    }
   };
   return (
     <RightBlockContainer>
@@ -51,6 +68,7 @@ const RightBlock = ({
                         color={item.color}
                         fixedWidth={true}
                         onClick={() => onfidoRedirect(onfidoApplicantId, walletAddress)}
+
                       >
                         {t(item.title)}
                       </Button>
