@@ -80,13 +80,6 @@ const Footer = ({ t }: any) => {
             </Col>
           </Row>
           <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Empty />
-              <Language>{t("Address")}</Language>
-              <Para>0xKYC</Para>
-              <Para>2810 N Church St</Para>
-              <Para>Wilmington, DE</Para>
-            </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{t("Company")}</Title>
               <Large left="true" to="/">
@@ -152,22 +145,10 @@ const Footer = ({ t }: any) => {
               </LogoContainer>
             </NavLink>
             <FooterContainer>
-              <SocialLink
-                href="https://github.com/"
-                src="github.svg"
-              />
-              <SocialLink
-                href="https://twitter.com/"
-                src="twitter.svg"
-              />
-              <SocialLink
-                href="https://www.linkedin.com/"
-                src="linkedin.svg"
-              />
-              <SocialLink
-                href="https://medium.com/"
-                src="medium.svg"
-              />
+              <SocialLink href="https://github.com/" src="github.svg" />
+              <SocialLink href="https://twitter.com/" src="twitter.svg" />
+              <SocialLink href="https://www.linkedin.com/" src="linkedin.svg" />
+              <SocialLink href="https://medium.com/" src="medium.svg" />
             </FooterContainer>
           </Row>
         </Container>

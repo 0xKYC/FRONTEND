@@ -1,13 +1,12 @@
 {
-  "title": "Compliant Zero Knowledge Implementation-free KYC for Web3",
-  "text": "We know KYC checks in Web3 are broken, we create a ZK solution with banking level KYC",
-  "button": [
-    {
-      "title": "Try It!"
+  "title": "Prove you're not OFAC sanctioned without showing your name on-chain",
+  "text": "We scan your ID to create a proof on-chain that you are not sanctioned (a soulbound token). This allows you to access DAOs etc.",
+  "button": {
+    "disabled": {
+      "title": "Connect Wallet"
     },
-    {
-      "title": "Learn more",
-      "color": "#fff"
+    "enabled": {
+      "title": "Verify Yourself"
     }
-  ]
+  }
 }

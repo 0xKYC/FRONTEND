@@ -1,62 +1,38 @@
 import { lazy } from "react";
 import IntroContent from "../../content/IntroContent.json";
-import MiddleBlockContent from "../../content/MiddleBlockContent.json";
-import AboutContent from "../../content/AboutContent.json";
-import MissionContent from "../../content/MissionContent.json";
-import ProductContent from "../../content/ProductContent.json";
-import ContactContent from "../../content/ContactContent.json";
 
-const Contact = lazy(() => import("../../components/ContactForm"));
-const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 
 const Home = () => {
   return (
-    <Container>
-      <ScrollToTop />
-      <ContentBlock
-        type="right"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="developer.svg"
-        id="intro"
-      />
-      <MiddleBlock
-        title={MiddleBlockContent.title}
-        content={MiddleBlockContent.text}
-        button={MiddleBlockContent.button}
-      />
-      <ContentBlock
-        type="left"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
-        icon="graphs.svg"
-        id="about"
-      />
-      <ContentBlock
-        type="right"
-        title={MissionContent.title}
-        content={MissionContent.text}
-        icon="product-launch.svg"
-        id="mission"
-      />
-      <ContentBlock
-        type="left"
-        title={ProductContent.title}
-        content={ProductContent.text}
-        icon="waving.svg"
-        id="product"
-      />
-      <Contact
-        title={ContactContent.title}
-        content={ContactContent.text}
-        id="contact"
-      />
-    </Container>
+    <div className="wave_container">
+      <Container>
+        <ScrollToTop />
+        <ContentBlock
+          type="right"
+          title={IntroContent.title}
+          content={IntroContent.text}
+          button={IntroContent.button}
+          icon="developer.svg"
+          id="intro"
+        />
+      </Container>
+      <div className="wave">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+            className="shape-fill"
+          ></path>
+        </svg>
+      </div>
+    </div>
   );
 };
 
