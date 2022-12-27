@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import { useState } from "react";
 import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
 import {
@@ -16,6 +17,24 @@ export const useConnectMetamask = () => {
   const dispatch = useAppDispatch();
   const walletAddress = useAppSelector(selectWalletAddress);
 
+  const disconnectWallet = () => {
+    dispatch(addWalletAddress(null));
+
+    window.ethereum.request({
+      method: "eth_requestAccounts",
+      params: [{ eth_accounts: {} }],
+    });
+  };
+  const confirmDisconnect = () => {
+    Modal.confirm({
+      centered: true,
+      closable: true,
+      content: "Are you sure you want to disconnect?",
+      okText: "Disconnect",
+      onOk: disconnectWallet,
+      cancelText: "Cancel",
+    });
+  };
   const connectMetamask = () => {
     if (window.ethereum) {
       window.ethereum
@@ -48,12 +67,7 @@ export const useConnectMetamask = () => {
             }
           }
           if (walletAddress) {
-            dispatch(addWalletAddress(null));
-
-            window.ethereum.request({
-              method: "eth_requestAccounts",
-              params: [{ eth_accounts: {} }],
-            });
+            confirmDisconnect();
           }
         })
         .catch((err: any) => {

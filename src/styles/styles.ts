@@ -118,6 +118,12 @@ export const Styles = createGlobalStyle`
         background-color: #fb7324;
     }
 
+    .ant-modal-body .ant-btn-default{
+        background-color: #F1F2F3;
+    }
+    .ant-modal-body .ant-btn-default:hover {
+        color:#000000
+    }
 .wave {
     position: absolute;
     bottom: 0;

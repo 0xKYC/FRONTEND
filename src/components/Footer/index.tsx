@@ -136,12 +136,7 @@ const Footer = ({ t }: any) => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <SvgIcon
-                  src="logo.svg"
-                  aria-label="homepage"
-                  width="101px"
-                  height="64px"
-                />
+                <img src="/img/icons/new-logo.png" alt="logo" height="44px" />
               </LogoContainer>
             </NavLink>
             <FooterContainer>

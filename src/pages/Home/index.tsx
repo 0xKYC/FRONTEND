@@ -1,9 +1,10 @@
 import { lazy } from "react";
+
 import IntroContent from "../../content/IntroContent.json";
 
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
-const ContentBlock = lazy(() => import("../../components/ContentBlock"));
+const ContentBlock = lazy(() => import("../../components/Content"));
 
 const Home = () => {
   return (
@@ -13,6 +14,8 @@ const Home = () => {
         <ContentBlock
           type="right"
           title={IntroContent.title}
+          verifyTitle={IntroContent.verifyTitle}
+          verifyText={IntroContent.verifyText}
           content={IntroContent.text}
           button={IntroContent.button}
           icon="developer.svg"
