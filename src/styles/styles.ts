@@ -59,7 +59,7 @@ export const Styles = createGlobalStyle`
     h6 {
         font-family: 'Motiva Sans Bold', serif;
         color: #18216d;
-        font-size: 56px;
+        font-size: 46px;
         line-height: 1.18;
 
         @media only screen and (max-width: 890px) {
@@ -117,4 +117,34 @@ export const Styles = createGlobalStyle`
     .ant-modal-body .ant-btn{
         background-color: #fb7324;
     }
+
+    .ant-modal-body .ant-btn-default{
+        background-color: #F1F2F3;
+    }
+    .ant-modal-body .ant-btn-default:hover {
+        color:#000000
+    }
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 108px;
+}
+
+.wave .shape-fill {
+    fill: #F1F2F3;
+}
+
+.wave_container{
+    position:relative;
+}
 `;

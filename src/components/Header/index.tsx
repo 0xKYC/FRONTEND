@@ -10,84 +10,20 @@ import {
   Span,
 } from "./styles";
 import { Col, Drawer, Row } from "antd";
-import {
-  findUserInDB,
-  initUserInDB,
-  updateUserInDB,
-} from "../../service/user.service";
 
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
-import { SvgIcon } from "../../common/SvgIcon";
-import { addWalletAddress } from "../../redux/features/wallet/walletSlice";
+
 import { ethers } from "ethers";
-import { onfidoCreateApplicant } from "../../service/onfido.service";
-import { useAppDispatch } from "../../redux/hooks";
+
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
-
+import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
 
 const Header = ({ t }: any) => {
-  const dispatch = useAppDispatch();
   const [visible, setVisibility] = useState(false);
-  const [defaultAccount, setDefaultAccount] = useState("");
+  const { connectMetamask, walletAddress } = useConnectMetamask();
   const [userBalance, setUserBalance] = useState(null);
-  const [connectButtonText, setConnectButtonText] = useState("Connect Wallet");
-
-  const connectMetamask = () => {
-    if (window.ethereum) {
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then(async (accounts: string[]) => {
-          if (connectButtonText === "Connect Wallet") {
-            const account = accounts[0];
-            const changeAccount = accountChangedHandler(account);
-            dispatch(addWalletAddress(account));
-            
-            let user = await findUserInDB(account);
-            
-            if (user === "noUserError") {
-              const initUser = await initUserInDB(account);
-            }
-            const userProfile = await findUserInDB(account);
-            console.log("userProfile", userProfile);
-
-            if (userProfile.onfidoApplicantId !== null) {
-              dispatch(addApplicantId(userProfile.onfidoApplicantId))
-            }
-
-            if (userProfile.onfidoApplicantId === null) {
-              const newApplicant = await onfidoCreateApplicant();
-              const uploadNewApplicant = await updateUserInDB(
-                account,
-                newApplicant.id
-              );
-              dispatch(addApplicantId(newApplicant.id));
-            }
-
-            setConnectButtonText("Disconnect");
-          }
-          if (connectButtonText === "Disconnect") {
-            accountChangedHandler("");
-            setConnectButtonText("Connect Wallet");
-            window.ethereum.request({
-              method: "eth_requestAccounts",
-              params: [{ eth_accounts: {} }],
-            });
-          }
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
-    } else {
-      console.log("Please install MetaMask!");
-    }
-  };
-  const accountChangedHandler = (account: string) => {
-    setDefaultAccount(account);
-    //getUserBalance(account.toString());
-  };
 
   const getUserBalance = (address: any) => {
     window.ethereum
@@ -104,16 +40,6 @@ const Header = ({ t }: any) => {
         console.log(err);
       });
   };
-
-  window.ethereum.on("chainChanged", (chainId: string) => {
-    window.location.reload();
-  });
-
-  window.ethereum.on("accountsChanged", (accountsChanged: any) => {
-    if (defaultAccount === "" && accountsChanged[0] === "") {
-      window.location.reload();
-    }
-  });
 
   const showDrawer = () => {
     setVisibility(!visible);
@@ -134,30 +60,17 @@ const Header = ({ t }: any) => {
 
     return (
       <>
-        <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("About")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("Mission")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Product")}</Span>
-        </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={connectMetamask}
         >
           <Span>
-            <Button
-              color={connectButtonText === "Disconnect" ? "#FFFFFFff" : ""}
-            >
-              {connectButtonText}
+            <Button color={walletAddress ? "#FFFFFFff" : ""}>
+              {walletAddress ? "Disconnect" : "Connect Wallet"}
             </Button>
           </Span>
         </CustomNavLinkSmall>
-        <Span>{`${
-          defaultAccount ? `...${defaultAccount.slice(-6)}` : ""
-        }`}</Span>
+        <Span>{`${walletAddress ? `...${walletAddress.slice(-6)}` : ""}`}</Span>
       </>
     );
   };
@@ -167,7 +80,12 @@ const Header = ({ t }: any) => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="101px" height="64px" />
+            <img
+              src="/img/icons/new-logo.png"
+              alt="logo"
+              width="180px"
+              height="54px"
+            />
           </LogoContainer>
           <NotHidden>
             <MenuItem />
@@ -176,7 +94,7 @@ const Header = ({ t }: any) => {
             <Outline />
           </Burger>
         </Row>
-        <Drawer closable={false} visible={visible} onClose={onClose}>
+        <Drawer closable={false} open={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>
             <Label onClick={onClose}>
               <Col span={12}>
