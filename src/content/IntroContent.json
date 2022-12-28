@@ -1,8 +1,6 @@
 {
   "title": "Prove you're not OFAC sanctioned without showing your name on-chain",
   "text": "We scan your ID to create a proof on-chain that you are not sanctioned (a soulbound token). This allows you to access DAOs etc.",
-  "verifyTitle": "Verify yourself by clicking the button !",
-  "verifyText": "We will now guide you to our partner Onfido for a safe KYC check that will confirm your age (over 18 y.o.) and OFAC status",
   "button": {
     "disabled": {
       "title": "Connect Wallet"

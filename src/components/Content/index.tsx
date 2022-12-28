@@ -1,10 +1,12 @@
 import {
   ButtonWrapper,
+  Container,
   Content,
   ContentWrapper,
   RightBlockContainer,
+  StyledText,
 } from "./styles";
-import { Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 
 import { Button } from "../../common/Button";
 import { ContentBlockProps } from "./types";
@@ -17,6 +19,7 @@ import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
 import { withTranslation } from "react-i18next";
 import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
+import { ReactEventHandler } from "react";
 
 const ContentBlock = ({
   title,
@@ -24,6 +27,8 @@ const ContentBlock = ({
   verifyTitle,
   content,
   button,
+  cardInfo,
+  cardContact,
   icon,
   t,
   id,
@@ -41,35 +46,57 @@ const ContentBlock = ({
     });
   };
 
-  const handleOnfidoRedirect = () => {
+  const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isAuth) {
       onfidoRedirect(onfidoApplicantId, walletAddress);
     } else {
       connectMetamask();
+      event.currentTarget.blur();
     }
   };
+
   const buttonText = isAuth ? button?.enabled.title : button?.disabled.title;
 
   const header = isAuth ? verifyTitle : title;
-
-  const text = isAuth ? verifyText : content;
+  const contentText = isAuth ? verifyText : content;
 
   return (
     <RightBlockContainer>
       <Fade direction="right">
         <Row justify="space-between" align="middle" id={id}>
-          <Col lg={11} md={11} sm={11} xs={24}>
+          <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <h6>{t(header)}</h6>
-              <Content>{t(text)}</Content>
+              <Content>{t(contentText)}</Content>
 
               <ButtonWrapper>
                 <Button onClick={handleOnfidoRedirect}>{t(buttonText)}</Button>
               </ButtonWrapper>
             </ContentWrapper>
           </Col>
-          <Col lg={11} md={11} sm={12} xs={24}>
-            <SvgIcon src={icon} width="100%" height="100%" />
+          <Col lg={11} md={11} sm={24} xs={24}>
+            {isAuth ? (
+              <Container>
+                <Card
+                  style={{ maxWidth: "540px" }}
+                  title="Information"
+                  bordered={false}
+                  headStyle={{ backgroundColor: "#f1f2f3" }}
+                  bodyStyle={{
+                    backgroundColor: "#f1f2f3",
+                    borderRadius: "0 0 40px",
+                  }}
+                >
+                  <p>{t(cardInfo)}</p>
+
+                  <StyledText>{t(cardContact)}</StyledText>
+                </Card>
+              </Container>
+            ) : (
+              <Container>
+                <SvgIcon src={icon} width="100%" height="100%" />
+              </Container>
+            )}
           </Col>
         </Row>
       </Fade>

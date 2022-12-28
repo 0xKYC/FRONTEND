@@ -41,16 +41,6 @@ const Header = ({ t }: any) => {
       });
   };
 
-  window.ethereum.on("chainChanged", (chainId: string) => {
-    window.location.reload();
-  });
-
-  window.ethereum.on("accountsChanged", (accountsChanged: any) => {
-    if (walletAddress === "" && accountsChanged[0] === "") {
-      window.location.reload();
-    }
-  });
-
   const showDrawer = () => {
     setVisibility(!visible);
   };

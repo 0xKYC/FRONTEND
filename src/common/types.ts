@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ContainerProps {
   border?: boolean;
   children: React.ReactNode;
@@ -8,7 +10,7 @@ export interface ButtonProps {
   fixedWidth?: boolean;
   name?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface SvgIconProps {

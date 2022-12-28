@@ -1,5 +1,4 @@
 import { Modal } from "antd";
-import { useState } from "react";
 import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
 import {
   addWalletAddress,
@@ -33,6 +32,15 @@ export const useConnectMetamask = () => {
       okText: "Disconnect",
       onOk: disconnectWallet,
       cancelText: "Cancel",
+    });
+  };
+
+  const installWalletAlert = () => {
+    Modal.info({
+      title: "Please install Metamask!",
+      centered: true,
+      closable: true,
+      maskClosable: true,
     });
   };
   const connectMetamask = () => {
@@ -74,9 +82,22 @@ export const useConnectMetamask = () => {
           console.log(err);
         });
     } else {
+      installWalletAlert();
       console.log("Please install MetaMask!");
     }
   };
+
+  if (window.ethereum) {
+    window.ethereum.on("chainChanged", (chainId: string) => {
+      window.location.reload();
+    });
+
+    window.ethereum.on("accountsChanged", (accountsChanged: any) => {
+      if (walletAddress === "" && accountsChanged[0] === "") {
+        window.location.reload();
+      }
+    });
+  }
 
   return { walletAddress, connectMetamask };
 };
