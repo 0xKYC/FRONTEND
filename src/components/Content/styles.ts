@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const RightBlockContainer = styled("section")`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   min-height: 90vh;
-  padding: 6rem 0 4rem;
   margin: 0 auto;
 
   @media only screen and (max-width: 1024px) {
@@ -21,7 +24,7 @@ export const Content = styled("p")`
 
 export const ContentWrapper = styled("div")`
   position: relative;
-  max-width: 540px;
+
   padding-bottom: 10rem;
   @media only screen and (max-width: 575px) {
     padding-bottom: 4rem;
@@ -29,6 +32,7 @@ export const ContentWrapper = styled("div")`
   @media only screen and (max-width: 768px) {
     padding: 4rem 0 10rem;
     margin: 0 auto;
+    max-width: 540px;
   }
 `;
 

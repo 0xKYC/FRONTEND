@@ -19,7 +19,6 @@ import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
 import { withTranslation } from "react-i18next";
 import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
-import { ReactEventHandler } from "react";
 
 const ContentBlock = ({
   title,
