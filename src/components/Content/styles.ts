@@ -36,10 +36,6 @@ export const ContentWrapper = styled("div")`
   }
 `;
 
-export const StyledText = styled("p")`
-  font-size: 1rem;
-`;
-
 export const ButtonWrapper = styled("div")`
   max-width: 100%;
 `;

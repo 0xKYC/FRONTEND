@@ -4,10 +4,8 @@ import {
   Content,
   ContentWrapper,
   RightBlockContainer,
-  StyledText,
 } from "./styles";
-import { Card, Col, Row } from "antd";
-
+import { Col, Row } from "antd";
 import { Button } from "../../common/Button";
 import { ContentBlockProps } from "./types";
 import { Fade } from "react-awesome-reveal";
@@ -19,6 +17,7 @@ import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
 import { withTranslation } from "react-i18next";
 import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
+import { CardInfo } from "../CardInfo";
 
 const ContentBlock = ({
   title,
@@ -26,8 +25,6 @@ const ContentBlock = ({
   verifyTitle,
   content,
   button,
-  cardInfo,
-  cardContact,
   icon,
   t,
   id,
@@ -76,20 +73,7 @@ const ContentBlock = ({
           <Col lg={11} md={11} sm={24} xs={24}>
             {isAuth ? (
               <Container>
-                <Card
-                  style={{ maxWidth: "540px" }}
-                  title="Information"
-                  bordered={false}
-                  headStyle={{ backgroundColor: "#f1f2f3" }}
-                  bodyStyle={{
-                    backgroundColor: "#f1f2f3",
-                    borderRadius: "0 0 40px",
-                  }}
-                >
-                  <p>{t(cardInfo)}</p>
-
-                  <StyledText>{t(cardContact)}</StyledText>
-                </Card>
+                <CardInfo />
               </Container>
             ) : (
               <Container>
