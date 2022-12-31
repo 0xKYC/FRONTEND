@@ -6,8 +6,6 @@ export interface ContentBlockProps {
   verifyTitle: string;
   verifyText: string;
   content: string;
-  cardInfo: string;
-  cardContact: string;
   section?: any;
   button?: typeof button;
   t?: any;

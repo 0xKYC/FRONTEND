@@ -1,0 +1,22 @@
+{
+  "title": "You are verified!",
+  "info": [
+    {
+      "id": 1,
+      "text": "You are over 18"
+    },
+    {
+      "id": 2,
+      "text": "You are not OFAC sanctioned*"
+    },
+    {
+      "id": 3,
+      "text": "*what does it mean? (link)",
+      "href": "https://home.treasury.gov/policy-issues/financial-sanctions/faqs/topic/1501"
+    },
+    {
+      "id": 4,
+      "text": "Here are our partner websites where you can verify yourself with 0xKYC SBT token."
+    }
+  ]
+}
