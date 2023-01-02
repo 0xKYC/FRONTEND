@@ -12,11 +12,11 @@ import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../common/SvgIcon";
 import { onfidoRedirect } from "../../service/onfido.service";
 import { useAppSelector } from "../../redux/hooks";
-
+import { useAccount } from "wagmi";
 import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
 import { withTranslation } from "react-i18next";
-import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
+import { useConnectWallet } from "../../common/hooks/useConnectWallet";
 import { CardInfo } from "../CardInfo";
 
 const ContentBlock = ({
@@ -30,10 +30,9 @@ const ContentBlock = ({
   id,
 }: ContentBlockProps) => {
   const onfidoApplicantId = useAppSelector(selectApplicantId);
-
-  const { connectMetamask, walletAddress } = useConnectMetamask();
-
-  const isAuth = Boolean(walletAddress);
+  const { address } = useAccount();
+  const isAuth = Boolean(address);
+  const { open } = useConnectWallet();
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
@@ -43,10 +42,10 @@ const ContentBlock = ({
   };
 
   const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (isAuth) {
-      onfidoRedirect(onfidoApplicantId, walletAddress);
+    if (address) {
+      onfidoRedirect(onfidoApplicantId, address);
     } else {
-      connectMetamask();
+      open({ route: "ConnectWallet" });
       event.currentTarget.blur();
     }
   };

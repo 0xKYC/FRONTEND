@@ -13,17 +13,20 @@ import { Col, Drawer, Row } from "antd";
 
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
-
+import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { useConnectMetamask } from "../../common/hooks/useConnectMetamask";
+import { useConnectWallet } from "../../common/hooks/useConnectWallet";
 
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
-  const { connectMetamask, walletAddress } = useConnectMetamask();
+
   const [userBalance, setUserBalance] = useState(null);
+  const { open } = useConnectWallet();
+
+  const { address, isConnected } = useAccount();
 
   const getUserBalance = (address: any) => {
     window.ethereum
@@ -58,19 +61,24 @@ const Header = ({ t }: any) => {
       setVisibility(false);
     };
 
+    const handleOpen = () => {
+      if (isConnected) {
+        open({ route: "Account" });
+      } else {
+        open({ route: "ConnectWallet" });
+      }
+    };
     return (
       <>
-        <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={connectMetamask}
-        >
+        <CustomNavLinkSmall style={{ width: "220px" }} onClick={handleOpen}>
           <Span>
-            <Button color={walletAddress ? "#FFFFFFff" : ""}>
-              {walletAddress ? "Disconnect" : "Connect Wallet"}
+            <Button color={address ? "#FFFFFFff" : ""}>
+              {address
+                ? `Disconnect ...${address.slice(-6)}`
+                : "Connect Wallet"}
             </Button>
           </Span>
         </CustomNavLinkSmall>
-        <Span>{`${walletAddress ? `...${walletAddress.slice(-6)}` : ""}`}</Span>
       </>
     );
   };
@@ -94,7 +102,7 @@ const Header = ({ t }: any) => {
             <Outline />
           </Burger>
         </Row>
-        <Drawer closable={false} open={visible} onClose={onClose}>
+        <Drawer closable={false} open={visible} onClose={onClose} zIndex={50}>
           <Col style={{ marginBottom: "2.5rem" }}>
             <Label onClick={onClose}>
               <Col span={12}>
