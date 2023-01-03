@@ -10,9 +10,13 @@ import Router from "./router";
 import i18n from "./translation";
 import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
 import { Web3Modal } from "@web3modal/react";
+import { ScrollToTop } from "./common/Scroll";
+
 const App = () => (
   <BrowserRouter>
     <I18nextProvider i18n={i18n}>
+      <ScrollToTop />
+
       <Router />
     </I18nextProvider>
   </BrowserRouter>
