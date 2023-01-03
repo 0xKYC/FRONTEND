@@ -13,12 +13,8 @@ import {
   Para,
   Large,
   Chat,
-  Empty,
   FooterContainer,
   Language,
-  Label,
-  LanguageSwitch,
-  LanguageSwitchContainer,
 } from "./styles";
 
 interface SocialLinkProps {
@@ -48,81 +44,35 @@ const Footer = ({ t }: any) => {
   return (
     <>
       <FooterSection>
-        <Container>
-          <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
+        <Container padding={true}>
+          <Row justify="end">
+            <Col lg={7} md={7} sm={24} xs={24}>
               <Language>{t("Contact")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
-              <Para>
-                {t(`Do you have any question? Feel free to reach out.`)}
-              </Para>
+              <Para>{t(`Do you have any questions?`)}</Para>
+
               <a href="mailto:@gmail.com">
-                <Chat>{t(`Let's Chat`)}</Chat>
+                <Chat>{t(`Send Us an Email`)}</Chat>
               </a>
             </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Policy")}</Title>
-              <Large to="/" left="true">
-                {t("Application Security")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Software Principles")}
-              </Large>
-            </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Empty />
-              <Large left="true" to="/">
-                {t("Support Center")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Customer Support")}
-              </Large>
-            </Col>
-          </Row>
-          <Row justify="space-between">
-            <Col lg={8} md={8} sm={12} xs={12}>
+            <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Company")}</Title>
               <Large left="true" to="/">
-                {t("About")}
+                {t("About Us")}
               </Large>
+
               <Large left="true" to="/">
-                {t("Blog")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Press")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Careers & Culture")}
+                {t("Documentation")}
               </Large>
             </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Label htmlFor="select-lang">{t("Language")}</Label>
-              <LanguageSwitchContainer>
-                <LanguageSwitch onClick={() => handleChange("en")}>
-                  <SvgIcon
-                    src="united-states.svg"
-                    aria-label="homepage"
-                    width="30px"
-                    height="30px"
-                  />
-                </LanguageSwitch>
-                <LanguageSwitch onClick={() => handleChange("es")}>
-                  <SvgIcon
-                    src="spain.svg"
-                    aria-label="homepage"
-                    width="30px"
-                    height="30px"
-                  />
-                </LanguageSwitch>
-                <LanguageSwitch onClick={() => handleChange("pl")}>
-                  <SvgIcon
-                    src="poland.svg"
-                    aria-label="homepage"
-                    width="30px"
-                    height="30px"
-                  />
-                </LanguageSwitch>
-              </LanguageSwitchContainer>
+            <Col lg={7} md={7} sm={24} xs={24}>
+              <Title>{t("Legal")}</Title>
+
+              <Large left="true" to="/">
+                {t("Privacy Policy")}
+              </Large>
+              <Large left="true" to="/">
+                {t("Terms of Service")}
+              </Large>
             </Col>
           </Row>
         </Container>
@@ -143,7 +93,7 @@ const Footer = ({ t }: any) => {
               <SocialLink href="https://github.com/" src="github.svg" />
               <SocialLink href="https://twitter.com/" src="twitter.svg" />
               <SocialLink href="https://www.linkedin.com/" src="linkedin.svg" />
-              <SocialLink href="https://medium.com/" src="medium.svg" />
+              {/* crunchbase icon */}
             </FooterContainer>
           </Row>
         </Container>
