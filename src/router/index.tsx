@@ -10,7 +10,6 @@ import {
   About,
   Home,
   Profile,
-  Documentation,
   PrivacyPolicy,
   TermsOfService,
   Wave,
@@ -55,7 +54,6 @@ const Router = () => {
               path="/profile"
             />
             <Route element={<About />} path="/about" />
-            <Route element={<Documentation />} path="/documentation" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
           </Routes>
