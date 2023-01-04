@@ -9,6 +9,7 @@ import {
 } from "../../service/user.service";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
+
 export const useConnectWallet = () => {
   const dispatch = useAppDispatch();
   const { open } = useWeb3Modal();
@@ -45,6 +46,9 @@ export const useConnectWallet = () => {
   useAccount({
     onConnect({ address }) {
       handleOnfidoAuth(address);
+    },
+    onDisconnect() {
+      window.location.reload();
     },
   });
 
