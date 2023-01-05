@@ -2,6 +2,7 @@ import React from "react";
 
 export interface ContainerProps {
   border?: boolean;
+  padding?: boolean;
   children: React.ReactNode;
 }
 
