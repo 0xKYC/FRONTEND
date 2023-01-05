@@ -15,6 +15,7 @@ import {
   Chat,
   FooterContainer,
   Language,
+  StyledLink,
 } from "./styles";
 
 interface SocialLinkProps {
@@ -56,21 +57,24 @@ const Footer = ({ t }: any) => {
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Company")}</Title>
-              <Large left="true" to="/">
+              <Large left="true" to="/about">
                 {t("About Us")}
               </Large>
 
-              <Large left="true" to="/">
+              <StyledLink
+                href="https://0xkyc.notion.site/0xKYC-Public-Documentation-f7db271a06e840f7862a929fb9f42299"
+                target="_blank"
+                rel="noopener"
+              >
                 {t("Documentation")}
-              </Large>
+              </StyledLink>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Legal")}</Title>
-
-              <Large left="true" to="/">
+              <Large left="true" to="/privacy-policy">
                 {t("Privacy Policy")}
               </Large>
-              <Large left="true" to="/">
+              <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
               </Large>
             </Col>
