@@ -10,7 +10,6 @@ import i18n from "./translation";
 import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
 import { Web3Modal } from "@web3modal/react";
 
-import { goerli } from "wagmi/chains";
 const App = () => (
   <I18nextProvider i18n={i18n}>
     <Router />
@@ -24,7 +23,6 @@ ReactDOM.render(
     </WagmiConfig>
 
     <Web3Modal
-      defaultChain={goerli}
       themeColor="orange"
       projectId={connectWalletId}
       ethereumClient={ethereumClient}

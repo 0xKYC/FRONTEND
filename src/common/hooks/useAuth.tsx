@@ -1,13 +1,6 @@
-import ABI from "../../abi/MockedNFT.json";
 import { useProvider, useAccount } from "wagmi";
-import { Contract } from "ethers";
-import { contractAddress } from "../../common/consts";
 import { useEffect, useState } from "react";
-
-interface Results {
-  _hex: string;
-  _isBigNumber: boolean;
-}
+import { checkForSBT } from "../../service/user.service";
 
 export const useAuth = () => {
   const provider = useProvider();
@@ -17,27 +10,23 @@ export const useAuth = () => {
 
   useEffect(() => {
     const checkSBT = async () => {
-      const contract = new Contract(contractAddress, ABI, provider);
+      try {
+        if (address) {
+          const isVerified = await checkForSBT(address);
 
-      if (address) {
-        try {
-          const results: Results = await contract.balanceOf(address);
-
-          console.log("RESULTS:", results);
-
-          if (results._hex !== "0x01") {
-            console.log("NOT authenticated");
-            setIsAuth(false);
-          } else {
-            console.log("authenticated");
+          if (isVerified) {
             setIsAuth(true);
+          } else {
+            setIsAuth(false);
           }
-        } catch (err) {
-          console.error(err);
         }
+      } catch (err) {
+        console.error(err);
       }
     };
-    checkSBT();
+    if (address) {
+      checkSBT();
+    }
   }, [address, provider]);
 
   return { isAuth };

@@ -23,3 +23,11 @@ export async function findUserInDB(walletAddress: string) {
   });
   return res.data;
 }
+
+export async function checkForSBT(walletAddress: string) {
+  const res = await axios.get<boolean>(
+    `http://localhost:3001/soulbound/wallet/${walletAddress}`
+  );
+
+  return res.data;
+}
