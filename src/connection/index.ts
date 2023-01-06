@@ -6,10 +6,10 @@ import {
 
 import { configureChains, createClient } from "wagmi";
 
-import { mainnet, goerli } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 
 export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
-const chains = [mainnet, goerli];
+const chains = [goerli];
 
 const { provider } = configureChains(chains, [
   walletConnectProvider({
