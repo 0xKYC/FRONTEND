@@ -50,7 +50,7 @@ export const MintContent = () => {
       {error ? (
         <Result
           status="warning"
-          title="Something went wrong"
+          title="Please go back and refresh the page, we've encountered an issue."
           extra={
             <Link to="/">
               <ArrowLeftOutlined style={{ marginRight: ".4rem" }} />
@@ -61,7 +61,7 @@ export const MintContent = () => {
       ) : (
         <StyledBox>
           <Spin
-            tip="Minting your Souldbound Token... It might take a while"
+            tip="Minting your Souldbound Token... Please wait a few moments, you will be automatically redirected."
             size="large"
             style={{
               width: "300px",

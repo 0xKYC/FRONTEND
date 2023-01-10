@@ -16,9 +16,7 @@ export const CardInfo = () => {
         borderRadius: "0 0 40px",
       }}
     >
-      <p>{t(content.info)}</p>
-
-      <StyledText>{t(content.contact)}</StyledText>
+      <StyledText>{t(content.info)}</StyledText>
     </Card>
   );
 };

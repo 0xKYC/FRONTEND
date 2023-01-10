@@ -1,8 +1,8 @@
 import TextContainer from "../../common/TextContainer";
-import lorem from "../../content/LoremIpsum.json";
+import content from "../../content/AboutContent.json";
 
 const About = () => {
-  const { text } = lorem;
+  const { text } = content;
 
   return <TextContainer text={text} title="About us" />;
 };
