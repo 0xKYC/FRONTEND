@@ -11,6 +11,7 @@ import { Content, Box } from "./styles";
 
 export const VerifiedContent = () => {
   const { t } = useTranslation();
+
   return (
     <RightBlockContainer>
       <Fade direction="right">
