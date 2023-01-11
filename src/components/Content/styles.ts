@@ -24,7 +24,7 @@ export const Content = styled("p")`
 
 export const ContentWrapper = styled("div")`
   position: relative;
-
+  margin-right: 2rem;
   padding-bottom: 10rem;
   @media only screen and (max-width: 575px) {
     padding-bottom: 4rem;

@@ -1,6 +1,6 @@
 {
   "title": "Prove you're not OFAC sanctioned without showing your name on-chain",
-  "text": "We scan your ID to create a proof on-chain that you are not sanctioned which allows you to access multiple protocols via IdentDeFi and soon OKX Web3.",
+  "text": "We scan your ID to create a proof on-chain that you are not sanctioned which allows you to access multiple protocols via OKX Web3, IdentDeFi and Cryptum.",
   "button": {
     "disabled": {
       "title": "Connect Wallet"

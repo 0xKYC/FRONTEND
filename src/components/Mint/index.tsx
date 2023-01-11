@@ -61,7 +61,7 @@ export const MintContent = () => {
       ) : (
         <StyledBox>
           <Spin
-            tip="Minting your Souldbound Token... Please wait a few moments, you will be automatically redirected."
+            tip="Please wait a few moments, you will be automatically redirected."
             size="large"
             style={{
               width: "300px",

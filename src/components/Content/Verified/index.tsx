@@ -34,9 +34,7 @@ export const VerifiedContent = () => {
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            <Container>
-              <CardInfo />
-            </Container>
+            <CardInfo />
           </Col>
         </Row>
       </Fade>
