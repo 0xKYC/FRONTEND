@@ -1,4 +1,7 @@
-import { addApplicantId } from "../../redux/features/wallet/onfidoSlice";
+import {
+  addApplicantId,
+  addTxHash,
+} from "../../redux/features/wallet/onfidoSlice";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { onfidoCreateApplicant } from "../../service/onfido.service";
@@ -27,6 +30,7 @@ export const useConnectWallet = () => {
 
         if (userProfile.onfidoApplicantId !== null) {
           dispatch(addApplicantId(userProfile.onfidoApplicantId));
+          dispatch(addTxHash(userProfile.txHash));
         }
 
         if (userProfile.onfidoApplicantId === null) {
@@ -36,6 +40,7 @@ export const useConnectWallet = () => {
             newApplicant.id
           );
           dispatch(addApplicantId(newApplicant.id));
+          dispatch(addTxHash(newApplicant.txHash));
         }
       }
     } catch (err) {

@@ -3,14 +3,17 @@ import { Row, Col } from "antd";
 import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
 import vContent from "../../../content/VerifiedContent.json";
+import { selectTxHash } from "../../../redux/features/wallet/onfidoSlice";
+import { useAppSelector } from "../../../redux/hooks";
 import { CardInfo } from "../../CardInfo";
-import { RightBlockContainer, ContentWrapper, Container } from "../styles";
+import { RightBlockContainer, ContentWrapper } from "../styles";
 import { Checkmark } from "./Checkmark";
 
 import { Content, Box } from "./styles";
 
 export const VerifiedContent = () => {
   const { t } = useTranslation();
+  const txHash = useAppSelector(selectTxHash);
 
   return (
     <RightBlockContainer>
@@ -24,7 +27,12 @@ export const VerifiedContent = () => {
               </Box>
               {vContent.info.map(({ text, id, href }) => {
                 return href ? (
-                  <a key={id} href={href} target="_blank" rel="noreferrer">
+                  <a
+                    key={id}
+                    href={href + txHash}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {t(text)}
                   </a>
                 ) : (

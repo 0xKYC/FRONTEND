@@ -2,12 +2,16 @@ import { Result, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "wagmi";
-import { checkIfVerified } from "../../redux/features/wallet/onfidoSlice";
+import {
+  addTxHash,
+  checkIfVerified,
+} from "../../redux/features/wallet/onfidoSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { checkForSBT } from "../../service/user.service";
+import { checkForSBT, findUserInDB } from "../../service/user.service";
 import { Container, StyledBox } from "./styled";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+
 export const MintContent = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -32,8 +36,11 @@ export const MintContent = () => {
             setError(true);
           }
           if (isVerified) {
+            const { txHash } = await findUserInDB(address);
+
             console.log("verified");
             dispatch(checkIfVerified(isVerified));
+            dispatch(addTxHash(txHash));
             navigate("/profile");
           }
         } catch (err) {

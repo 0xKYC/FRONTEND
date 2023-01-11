@@ -1,8 +1,9 @@
 import { useProvider, useAccount } from "wagmi";
 import { useEffect } from "react";
-import { checkForSBT } from "../../service/user.service";
+import { checkForSBT, findUserInDB } from "../../service/user.service";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
+  addTxHash,
   checkIfVerified,
   selectVerifiedUser,
 } from "../../redux/features/wallet/onfidoSlice";
@@ -21,7 +22,9 @@ export const useAuth = () => {
           const isVerified = await checkForSBT(address);
 
           if (isVerified) {
+            const { txHash } = await findUserInDB(address);
             dispatch(checkIfVerified(isVerified));
+            dispatch(addTxHash(txHash));
           } else {
             dispatch(checkIfVerified(false));
           }
