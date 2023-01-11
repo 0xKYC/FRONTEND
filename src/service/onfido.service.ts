@@ -17,6 +17,9 @@ export async function onfidoRedirect(
     walletAddress: walletAddress,
   });
   window.location.replace(res.data);
+  if (walletAddress) {
+    sessionStorage.setItem("walletAddress", walletAddress);
+  }
 }
 
 export async function onfidoCreateApplicant() {

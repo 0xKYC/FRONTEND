@@ -3,7 +3,6 @@ import { withTranslation } from "react-i18next";
 import { SvgIcon } from "../../common/SvgIcon";
 import Container from "../../common/Container";
 
-import i18n from "i18next";
 import {
   FooterSection,
   Title,
@@ -24,10 +23,6 @@ interface SocialLinkProps {
 }
 
 const Footer = ({ t }: any) => {
-  const handleChange = (language: string) => {
-    i18n.changeLanguage(language);
-  };
-
   const SocialLink = ({ href, src }: SocialLinkProps) => {
     return (
       <a
@@ -94,9 +89,15 @@ const Footer = ({ t }: any) => {
               </LogoContainer>
             </NavLink>
             <FooterContainer>
-              <SocialLink href="https://github.com/" src="github.svg" />
-              <SocialLink href="https://twitter.com/" src="twitter.svg" />
-              <SocialLink href="https://www.linkedin.com/" src="linkedin.svg" />
+              <SocialLink href="https://github.com/0xKYC" src="github.svg" />
+              <SocialLink
+                href="https://twitter.com/0xkycinc"
+                src="twitter.svg"
+              />
+              <SocialLink
+                href="https://www.linkedin.com/company/0xkyc/"
+                src="linkedin.svg"
+              />
               {/* crunchbase icon */}
             </FooterContainer>
           </Row>

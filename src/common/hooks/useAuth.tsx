@@ -1,12 +1,18 @@
 import { useProvider, useAccount } from "wagmi";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { checkForSBT } from "../../service/user.service";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  checkIfVerified,
+  selectVerifiedUser,
+} from "../../redux/features/wallet/onfidoSlice";
 
 export const useAuth = () => {
   const provider = useProvider();
+  const verified = useAppSelector(selectVerifiedUser);
 
+  const dispatch = useAppDispatch();
   const { address } = useAccount();
-  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     const checkSBT = async () => {
@@ -15,9 +21,9 @@ export const useAuth = () => {
           const isVerified = await checkForSBT(address);
 
           if (isVerified) {
-            setIsAuth(true);
+            dispatch(checkIfVerified(isVerified));
           } else {
-            setIsAuth(false);
+            dispatch(checkIfVerified(false));
           }
         }
       } catch (err) {
@@ -27,7 +33,7 @@ export const useAuth = () => {
     if (address) {
       checkSBT();
     }
-  }, [address, provider]);
+  }, [address, provider, dispatch, verified]);
 
-  return { isAuth };
+  return { verified };
 };

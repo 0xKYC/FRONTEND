@@ -1,14 +1,8 @@
-import { Card } from "antd";
-import { StyledText } from "./styles";
-import content from "../../content/VerifyContent.json";
-import { useTranslation } from "react-i18next";
+import { StyledCard, StyledText } from "./styles";
 
 export const CardInfo = () => {
-  const { t } = useTranslation();
   return (
-    <Card
-      style={{ maxWidth: "540px" }}
-      title="Information"
+    <StyledCard
       bordered={false}
       headStyle={{ backgroundColor: "#f1f2f3" }}
       bodyStyle={{
@@ -16,9 +10,11 @@ export const CardInfo = () => {
         borderRadius: "0 0 40px",
       }}
     >
-      <p>{t(content.info)}</p>
-
-      <StyledText>{t(content.contact)}</StyledText>
-    </Card>
+      <StyledText>
+        This is a demo product only, please contact us{" "}
+        <a href="mailto:@gmail.com">here </a>
+        when you see any bugs, issues or improvements.
+      </StyledText>
+    </StyledCard>
   );
 };

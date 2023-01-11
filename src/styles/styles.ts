@@ -124,6 +124,9 @@ export const Styles = createGlobalStyle`
     .ant-modal-body .ant-btn-default:hover {
         color:#000000
     }
+    .ant-spin-dot-item {
+        background-color: #fb7324
+    }
 .wave {
     position: absolute;
     bottom: 0;
