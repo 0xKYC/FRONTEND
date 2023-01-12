@@ -1,4 +1,4 @@
-import { StyledCard, StyledText } from "./styles";
+import { StyledCard, StyledLink, StyledText } from "./styles";
 
 export const CardInfo = () => {
   return (
@@ -12,7 +12,7 @@ export const CardInfo = () => {
     >
       <StyledText>
         This is a demo product only, please contact us{" "}
-        <a href="mailto:@gmail.com">here </a>
+        <StyledLink href="mailto:@gmail.com">here </StyledLink>
         when you see any bugs, issues or improvements.
       </StyledText>
     </StyledCard>

@@ -10,11 +10,6 @@
       "text": "You are not OFAC sanctioned ✅"
     },
     {
-      "id": 3,
-      "text": "Link to the Etherscan",
-      "href": "https://goerli.etherscan.io/tx/"
-    },
-    {
       "id": 4,
       "text": "You can verify yourself using 0xKYC token with OKX Web3, IdentDeFi and Cryptum"
     }
