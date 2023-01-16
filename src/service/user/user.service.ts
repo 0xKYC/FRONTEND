@@ -1,8 +1,8 @@
-import axios from "axios";
+import { api } from "../config";
 import { User, WalletAddress } from "./types";
 
 export async function initUserInDB(walletAddress: WalletAddress) {
-  await axios.post("http://localhost:3001/user/upload", {
+  await api.post("user/upload", {
     walletAddress: walletAddress,
   });
 }
@@ -11,7 +11,7 @@ export async function updateUserInDB(
   walletAddress: string,
   onfidoApplicantId: string
 ) {
-  const res = await axios.post("http://localhost:3001/user/upload", {
+  const res = await api.post("user/upload", {
     walletAddress: walletAddress,
     onfidoApplicantId: onfidoApplicantId,
   });
@@ -19,19 +19,14 @@ export async function updateUserInDB(
 }
 
 export async function findUserInDB(walletAddress: WalletAddress) {
-  const res = await axios.post<User | "noUserError">(
-    "http://localhost:3001/user/fetch",
-    {
-      walletAddress: walletAddress,
-    }
-  );
+  const res = await api.post<User | "noUserError">("user/fetch", {
+    walletAddress: walletAddress,
+  });
   return res.data;
 }
 
 export async function checkForSBT(walletAddress: WalletAddress) {
-  const res = await axios.get<boolean>(
-    `http://localhost:3001/soulbound/wallet/${walletAddress}`
-  );
+  const res = await api.get<boolean>(`/soulbound/wallet/${walletAddress}`);
 
   return res.data;
 }
