@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Applicant } from "./types";
 
 export async function getSDKToken() {
   const generateSdkToken = await axios.post(
@@ -12,18 +13,18 @@ export async function onfidoRedirect(
   applicantId: string | null,
   walletAddress: string | null
 ) {
-  const res = await axios.post("http://localhost:3001/onfido/redirect", {
-    applicantId: applicantId,
-    walletAddress: walletAddress,
-  });
+  const res = await axios.post<string>(
+    "http://localhost:3001/onfido/redirect",
+    {
+      applicantId: applicantId,
+      walletAddress: walletAddress,
+    }
+  );
   window.location.replace(res.data);
-  if (walletAddress) {
-    sessionStorage.setItem("walletAddress", walletAddress);
-  }
 }
 
 export async function onfidoCreateApplicant() {
-  const res = await axios.post(
+  const res = await axios.post<Applicant>(
     "http://localhost:3001/onfido/createApplicant",
     {}
   );
