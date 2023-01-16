@@ -22,7 +22,7 @@ export const useConnectWallet = () => {
     try {
       if (account) {
         const user = await findUserInDB(account);
-        console.log("userProfile", user);
+
         if (user === "noUserError") {
           await initUserInDB(account);
         }
@@ -34,8 +34,6 @@ export const useConnectWallet = () => {
           dispatch(addApplicantId(user.onfidoApplicantId));
           dispatch(addTxHash(user.txHash));
         }
-
-        console.log("userProfile", user);
       }
     } catch (err) {
       console.error(err);
