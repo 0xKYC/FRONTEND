@@ -35,3 +35,10 @@ export async function checkForSBT(walletAddress: WalletAddress) {
 
   return res.data;
 }
+export async function checkSanctionedWallet(walletAddress: WalletAddress) {
+  const res = await axios.get<boolean>(
+    `http://localhost:3001/soulbound/sanctioned/${walletAddress}`
+  );
+
+  return res.data;
+}

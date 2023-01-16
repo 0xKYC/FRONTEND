@@ -18,25 +18,23 @@ export const useConnectWallet = () => {
   const dispatch = useAppDispatch();
   const { open } = useWeb3Modal();
   const navigate = useNavigate();
-  const handleOnfidoAuth = async (account: string | undefined) => {
+  const handleOnfidoAuth = async (account: string) => {
     try {
-      if (account) {
-        const user = await findUserInDB(account);
-        console.log("userProfile", user);
-        if (user === "noUserError") {
-          await initUserInDB(account);
-        }
-        if (user !== "noUserError" && user.onfidoApplicantId === null) {
-          const newApplicant = await onfidoCreateApplicant();
-          await updateUserInDB(account, newApplicant.id);
-          dispatch(addApplicantId(newApplicant.id));
-        } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
-          dispatch(addApplicantId(user.onfidoApplicantId));
-          dispatch(addTxHash(user.txHash));
-        }
-
-        console.log("userProfile", user);
+      const user = await findUserInDB(account);
+      console.log("userProfile", user);
+      if (user === "noUserError") {
+        await initUserInDB(account);
       }
+      if (user !== "noUserError" && user.onfidoApplicantId === null) {
+        const newApplicant = await onfidoCreateApplicant();
+        await updateUserInDB(account, newApplicant.id);
+        dispatch(addApplicantId(newApplicant.id));
+      } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
+        dispatch(addApplicantId(user.onfidoApplicantId));
+        dispatch(addTxHash(user.txHash));
+      }
+
+      console.log("userProfile", user);
     } catch (err) {
       console.error(err);
     }
@@ -44,8 +42,10 @@ export const useConnectWallet = () => {
 
   useAccount({
     onConnect({ address }) {
-      navigate("/");
-      handleOnfidoAuth(address);
+      if (address) {
+        navigate("/");
+        handleOnfidoAuth(address);
+      }
     },
     onDisconnect() {
       window.location.reload();

@@ -6,4 +6,5 @@ export const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy"));
 export const TermsOfService = lazy(() => import("../pages/TermsOfService"));
 export const About = lazy(() => import("../pages/About"));
 export const Mint = lazy(() => import("../pages/Mint"));
+export const Error = lazy(() => import("../pages/Error"));
 export const Wave = lazy(() => import("../components/Wave/index"));
