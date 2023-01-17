@@ -14,7 +14,6 @@ import { Col, Drawer, Row } from "antd";
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
 import { useAccount } from "wagmi";
-import { ethers } from "ethers";
 
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
@@ -23,26 +22,9 @@ import { useConnectWallet } from "../../common/hooks/useConnectWallet";
 const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
 
-  const [userBalance, setUserBalance] = useState(null);
   const { open } = useConnectWallet();
 
   const { address, isConnected } = useAccount();
-
-  const getUserBalance = (address: any) => {
-    window.ethereum
-      .request({
-        method: "eth_getBalance",
-        params: [address, "latest"],
-      })
-      .then((balance: any) => {
-        balance = ethers.utils.formatEther(balance);
-        setUserBalance(balance);
-        console.log(balance);
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
-  };
 
   const showDrawer = () => {
     setVisibility(!visible);
