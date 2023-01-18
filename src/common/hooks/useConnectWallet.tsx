@@ -4,43 +4,35 @@ import {
 } from "../../redux/features/wallet/onfidoSlice";
 
 import { useAppDispatch } from "../../redux/hooks";
-import { onfidoCreateApplicant } from "../../service/onfido.service";
+import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 import {
   findUserInDB,
   initUserInDB,
   updateUserInDB,
-} from "../../service/user.service";
+} from "../../service/user/user.service";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
+import { useNavigate } from "react-router-dom";
 
 export const useConnectWallet = () => {
   const dispatch = useAppDispatch();
   const { open } = useWeb3Modal();
-
+  const navigate = useNavigate();
   const handleOnfidoAuth = async (account: string | undefined) => {
     try {
       if (account) {
         const user = await findUserInDB(account);
 
         if (user === "noUserError") {
-          const initUser = await initUserInDB(account);
+          await initUserInDB(account);
         }
-        const userProfile = await findUserInDB(account);
-        console.log("userProfile", userProfile);
-
-        if (userProfile.onfidoApplicantId !== null) {
-          dispatch(addApplicantId(userProfile.onfidoApplicantId));
-          dispatch(addTxHash(userProfile.txHash));
-        }
-
-        if (userProfile.onfidoApplicantId === null) {
+        if (user !== "noUserError" && user.onfidoApplicantId === null) {
           const newApplicant = await onfidoCreateApplicant();
-          const uploadNewApplicant = await updateUserInDB(
-            account,
-            newApplicant.id
-          );
+          await updateUserInDB(account, newApplicant.id);
           dispatch(addApplicantId(newApplicant.id));
-          dispatch(addTxHash(newApplicant.txHash));
+        } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
+          dispatch(addApplicantId(user.onfidoApplicantId));
+          dispatch(addTxHash(user.txHash));
         }
       }
     } catch (err) {
@@ -50,6 +42,7 @@ export const useConnectWallet = () => {
 
   useAccount({
     onConnect({ address }) {
+      navigate("/");
       handleOnfidoAuth(address);
     },
     onDisconnect() {

@@ -10,7 +10,7 @@ import { Button } from "../../common/Button";
 import { ContentBlockProps } from "./types";
 import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../common/SvgIcon";
-import { onfidoRedirect } from "../../service/onfido.service";
+import { onfidoRedirect } from "../../service/onfido/onfido.service";
 import { useAppSelector } from "../../redux/hooks";
 import { useAccount } from "wagmi";
 import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
@@ -34,15 +34,8 @@ const ContentBlock = ({
   const isAuth = Boolean(address);
   const { open } = useConnectWallet();
 
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id) as HTMLDivElement;
-    element.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
   const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (address) {
+    if (address && onfidoApplicantId) {
       onfidoRedirect(onfidoApplicantId, address);
     } else {
       open({ route: "ConnectWallet" });

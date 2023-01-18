@@ -20,7 +20,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 
 const Router = () => {
-  const { verified } = useAuth();
+  const { verified, isLoading } = useAuth();
 
   return (
     <BrowserRouter>
@@ -33,7 +33,7 @@ const Router = () => {
             <Route
               element={
                 <RedirectRoute verified={verified}>
-                  <Home />
+                  <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
               path="/"
@@ -41,7 +41,7 @@ const Router = () => {
             <Route
               element={
                 <RedirectRoute verified={verified}>
-                  <Home />
+                  <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
               path="*"

@@ -1,56 +1,13 @@
-import { Result, Spin } from "antd";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAccount } from "wagmi";
-import {
-  addTxHash,
-  checkIfVerified,
-} from "../../redux/features/wallet/onfidoSlice";
-import { useAppDispatch } from "../../redux/hooks";
-import { checkForSBT, findUserInDB } from "../../service/user.service";
+import { Result } from "antd";
+
 import { Container, StyledBox } from "./styled";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useMint } from "./useMint";
+import { LoadingSpinner } from "../../common/LoadingSpinner";
 
 export const MintContent = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { address } = useAccount();
-
-  const [apiCall, setApiCall] = useState(0);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    if (!address) return;
-
-    if (apiCall < 11) {
-      const interval = setInterval(async () => {
-        try {
-          setApiCall((currentApiCall) => currentApiCall + 1);
-          const isVerified = await checkForSBT(address);
-
-          console.log(isVerified);
-
-          if (apiCall === 10) {
-            clearInterval(interval);
-            setError(true);
-          }
-          if (isVerified) {
-            const { txHash } = await findUserInDB(address);
-
-            console.log("verified");
-            dispatch(checkIfVerified(isVerified));
-            dispatch(addTxHash(txHash));
-            navigate("/profile");
-          }
-        } catch (err) {
-          console.error(err);
-          setError(true);
-        }
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [apiCall, navigate, address, dispatch]);
+  const { error } = useMint();
 
   return (
     <Container>
@@ -67,17 +24,10 @@ export const MintContent = () => {
         />
       ) : (
         <StyledBox>
-          <Spin
+          <LoadingSpinner
             tip="Please wait a few moments, you will be automatically redirected."
-            size="large"
-            style={{
-              width: "300px",
-              color: "#fb7324",
-              fontSize: "1.2rem",
-            }}
-          >
-            <div></div>
-          </Spin>
+            width="300px"
+          />
         </StyledBox>
       )}
     </Container>

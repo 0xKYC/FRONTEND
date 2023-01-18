@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import { WagmiConfig } from "wagmi";
 import Router from "./router";
 import i18n from "./translation";
