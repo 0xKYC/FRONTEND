@@ -12,29 +12,30 @@ import {
 } from "../../service/user/user.service";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useConnectWallet = () => {
   const dispatch = useAppDispatch();
   const { open } = useWeb3Modal();
   const navigate = useNavigate();
-  const handleOnfidoAuth = async (account: string) => {
+  const location = useLocation();
+  const handleOnfidoAuth = async (account: string | undefined) => {
     try {
-      const user = await findUserInDB(account);
-      console.log("userProfile", user);
-      if (user === "noUserError") {
-        await initUserInDB(account);
-      }
-      if (user !== "noUserError" && user.onfidoApplicantId === null) {
-        const newApplicant = await onfidoCreateApplicant();
-        await updateUserInDB(account, newApplicant.id);
-        dispatch(addApplicantId(newApplicant.id));
-      } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
-        dispatch(addApplicantId(user.onfidoApplicantId));
-        dispatch(addTxHash(user.txHash));
-      }
+      if (account) {
+        const user = await findUserInDB(account);
 
-      console.log("userProfile", user);
+        if (user === "noUserError") {
+          await initUserInDB(account);
+        }
+        if (user !== "noUserError" && user.onfidoApplicantId === null) {
+          const newApplicant = await onfidoCreateApplicant();
+          await updateUserInDB(account, newApplicant.id);
+          dispatch(addApplicantId(newApplicant.id));
+        } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
+          dispatch(addApplicantId(user.onfidoApplicantId));
+          dispatch(addTxHash(user.txHash));
+        }
+      }
     } catch (err) {
       console.error(err);
     }
@@ -42,10 +43,10 @@ export const useConnectWallet = () => {
 
   useAccount({
     onConnect({ address }) {
-      if (address) {
+      if (location.pathname !== "/mint") {
         navigate("/");
-        handleOnfidoAuth(address);
       }
+      handleOnfidoAuth(address);
     },
     onDisconnect() {
       window.location.reload();
