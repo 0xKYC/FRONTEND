@@ -57,3 +57,11 @@ export const StyledCard = styled(Card)`
     padding: 0 1rem;
   }
 `;
+
+export const ImageWrapper = styled.div`
+  width: 100px;
+`;
+
+export const StyledImg = styled.img`
+  width: 100%;
+`;

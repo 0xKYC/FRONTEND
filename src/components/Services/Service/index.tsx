@@ -6,6 +6,8 @@ import {
   Heading,
   Text,
   StyledLink,
+  ImageWrapper,
+  StyledImg,
 } from "./styles";
 
 interface Props {
@@ -25,9 +27,9 @@ export const Service = ({
   return (
     <StyledCard>
       <Heading>
-        <div>
-          <img src={img} alt={title} />
-        </div>{" "}
+        <ImageWrapper>
+          <StyledImg src={img} alt={title} />
+        </ImageWrapper>
         <p>{title}</p>
       </Heading>
       <StyledText>{description}</StyledText>
