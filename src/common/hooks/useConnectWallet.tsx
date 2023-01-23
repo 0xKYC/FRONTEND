@@ -12,12 +12,13 @@ import {
 } from "../../service/user/user.service";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useConnectWallet = () => {
   const dispatch = useAppDispatch();
   const { open } = useWeb3Modal();
   const navigate = useNavigate();
+  const location = useLocation();
   const handleOnfidoAuth = async (account: string | undefined) => {
     try {
       if (account) {
@@ -42,7 +43,9 @@ export const useConnectWallet = () => {
 
   useAccount({
     onConnect({ address }) {
-      navigate("/");
+      if (location.pathname !== "/mint") {
+        navigate("/");
+      }
       handleOnfidoAuth(address);
     },
     onDisconnect() {

@@ -7,18 +7,25 @@ import vContent from "../../../content/VerifiedContent.json";
 import { selectTxHash } from "../../../redux/features/wallet/onfidoSlice";
 import { useAppSelector } from "../../../redux/hooks";
 import { CardInfo } from "../../CardInfo";
-import { RightBlockContainer, ContentWrapper } from "../styles";
+
 import { Checkmark } from "./Checkmark";
 
-import { Content, Box, StyledLink, StyledCard } from "./styles";
+import {
+  Content,
+  Box,
+  StyledLink,
+  StyledCard,
+  BlockWrapper,
+  ContentWrapper,
+} from "./styles";
 
-export const VerifiedContent = () => {
+const VerifiedContent = () => {
   const { t } = useTranslation();
   const txHash = useAppSelector(selectTxHash);
 
   return (
-    <RightBlockContainer>
-      <Fade direction="right">
+    <BlockWrapper>
+      <Fade triggerOnce direction="right">
         <Row justify="space-between" align="middle">
           <Col lg={12} md={12} sm={24} xs={24}>
             <ContentWrapper>
@@ -47,7 +54,7 @@ export const VerifiedContent = () => {
           </Col>
         </Row>
       </Fade>
-    </RightBlockContainer>
+    </BlockWrapper>
   );
 };
 
