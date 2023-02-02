@@ -8,7 +8,7 @@ const Error = () => {
         status="error"
         title="Verification failed"
         subTitle="For more information, please contact support."
-        extra={[<a href="mailto:@gmail.com">support@support.com</a>]}
+        extra={[<a href="mailto:support@0xkyc.id">support@0xkyc.id</a>]}
       />
     </Container>
   );
