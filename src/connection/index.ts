@@ -5,17 +5,17 @@ import {
 } from "@web3modal/ethereum";
 
 import { configureChains, createClient } from "wagmi";
-
-import { goerli } from "wagmi/chains";
+import { goerli, polygonMumbai } from "wagmi/chains";
 
 export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
-const chains = [goerli];
+export const chains = [goerli, polygonMumbai];
 
 const { provider } = configureChains(chains, [
   walletConnectProvider({
     projectId: connectWalletId,
   }),
 ]);
+
 export const wagmiClient = createClient({
   autoConnect: true,
   connectors: modalConnectors({ appName: "0xKYC", chains }),
@@ -23,3 +23,5 @@ export const wagmiClient = createClient({
 });
 
 export const ethereumClient = new EthereumClient(wagmiClient, chains);
+
+ethereumClient.getDefaultChain();

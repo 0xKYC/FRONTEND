@@ -17,7 +17,8 @@ export const useAuth = () => {
   const verified = useAppSelector(selectVerifiedUser);
 
   const dispatch = useAppDispatch();
-  const { address } = useAccount();
+  const { address, connector } = useAccount();
+  console.log(connector);
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 

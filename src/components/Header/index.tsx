@@ -1,13 +1,12 @@
 import {
+  Box,
   Burger,
-  CustomNavLinkSmall,
   HeaderSection,
   Label,
   LogoContainer,
   Menu,
   NotHidden,
   Outline,
-  Span,
 } from "./styles";
 import { Col, Drawer, Row } from "antd";
 
@@ -19,7 +18,9 @@ import { useState } from "react";
 import { withTranslation } from "react-i18next";
 import { useConnectWallet } from "../../common/hooks/useConnectWallet";
 
-const Header = ({ t }: any) => {
+import { ChainSelectionMenu } from "./ChainSelection/Menu";
+
+const Header = () => {
   const [visible, setVisibility] = useState(false);
 
   const { open } = useConnectWallet();
@@ -35,14 +36,6 @@ const Header = ({ t }: any) => {
   };
 
   const MenuItem = () => {
-    const scrollTo = (id: string) => {
-      const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
-    };
-
     const handleOpen = () => {
       if (isConnected) {
         open({ route: "Account" });
@@ -50,18 +43,15 @@ const Header = ({ t }: any) => {
         open({ route: "ConnectWallet" });
       }
     };
+
     return (
-      <>
-        <CustomNavLinkSmall style={{ width: "220px" }} onClick={handleOpen}>
-          <Span>
-            <Button color={address ? "#FFFFFFff" : ""}>
-              {address
-                ? `Disconnect ...${address.slice(-6)}`
-                : "Connect Wallet"}
-            </Button>
-          </Span>
-        </CustomNavLinkSmall>
-      </>
+      <Box>
+        <Button onClick={handleOpen} color={address ? "#FFFFFFff" : ""}>
+          {address ? `Disconnect ...${address.slice(-6)}` : "Connect Wallet"}
+        </Button>
+
+        <ChainSelectionMenu />
+      </Box>
     );
   };
 
