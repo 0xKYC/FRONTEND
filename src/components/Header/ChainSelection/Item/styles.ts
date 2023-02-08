@@ -31,7 +31,6 @@ export const Status = styled.div`
 `;
 
 export const ApproveText = styled.div`
-  color: ${({ theme }) => theme.textSecondary};
   font-size: 12px;
   grid-column: 2;
   grid-row: 2;
