@@ -37,7 +37,7 @@ export const Service = ({
       <TagContainer>
         {tags.map((tag) => {
           return (
-            <StyledTag>
+            <StyledTag key={tag}>
               <Text>{tag}</Text>
             </StyledTag>
           );

@@ -14,13 +14,14 @@ import {
   TermsOfService,
   Wave,
   Mint,
+  Error,
 } from "./pages";
 import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 
 const Router = () => {
-  const { verified, isLoading } = useAuth();
+  const { verified, isLoading, isSanctioned } = useAuth();
 
   return (
     <BrowserRouter>
@@ -32,7 +33,7 @@ const Router = () => {
           <Routes>
             <Route
               element={
-                <RedirectRoute verified={verified}>
+                <RedirectRoute verified={verified} sanctioned={isSanctioned}>
                   <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
@@ -40,7 +41,7 @@ const Router = () => {
             />
             <Route
               element={
-                <RedirectRoute verified={verified}>
+                <RedirectRoute verified={verified} sanctioned={isSanctioned}>
                   <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
@@ -65,6 +66,7 @@ const Router = () => {
             <Route element={<About />} path="/about" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<Error />} path="/error" />
           </Routes>
           <Wave />
         </div>

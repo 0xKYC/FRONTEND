@@ -2,6 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
 
+export const Box = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @media screen and (max-width: 890px) {
+    flex-direction: column;
+  }
+`;
 export const HeaderSection = styled("header")`
   padding: 1rem 0.5rem;
 

@@ -30,3 +30,8 @@ export async function checkForSBT(walletAddress: WalletAddress) {
 
   return res.data;
 }
+export async function checkSanctionedWallet(walletAddress: WalletAddress) {
+  const res = await api.get<boolean>(`/soulbound/sanctioned/${walletAddress}`);
+
+  return res.data;
+}

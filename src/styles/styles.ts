@@ -59,22 +59,14 @@ export const Styles = createGlobalStyle`
     h6 {
         font-family: 'Motiva Sans Bold', serif;
         color: #18216d;
-        font-size: 46px;
         line-height: 1.18;
 
-        @media only screen and (max-width: 890px) {
-          font-size: 47px;
-        }
-      
-        @media only screen and (max-width: 414px) {
-          font-size: 32px;
-        }
     }
 
     p {
-        color: #18216d;
-        font-size: 21px;        
+        color: #18216d;  
         line-height: 1.41;
+        font-weight: 200
     }
 
     h1 {
@@ -126,6 +118,10 @@ export const Styles = createGlobalStyle`
     }
     .ant-spin-dot-item {
         background-color: #fb7324
+    }
+
+    .ant-dropdown {
+    z-index: 9999;
     }
 .wave {
     position: absolute;

@@ -18,9 +18,11 @@ export const StyledContainer = styled("div")`
 `;
 export const StyledTitle = styled("h6")`
   margin-bottom: 3rem;
+  font-size: 2.3rem;
   text-align: center;
 `;
 
 export const StyledText = styled("p")`
   line-height: 2.1rem;
+  font-size: 1.1rem;
 `;

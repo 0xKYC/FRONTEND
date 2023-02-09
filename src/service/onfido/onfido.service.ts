@@ -1,3 +1,4 @@
+import { ChainId } from "../../constans/chains";
 import { api } from "../config";
 import { Applicant } from "./types";
 
@@ -8,11 +9,13 @@ export async function getSDKToken() {
 
 export async function onfidoRedirect(
   applicantId: string | null,
-  walletAddress: string | null
+  walletAddress: string | null,
+  chainId: ChainId
 ) {
   const res = await api.post<string>("onfido/redirect", {
     applicantId: applicantId,
     walletAddress: walletAddress,
+    chainId: chainId,
   });
   window.location.replace(res.data);
 }

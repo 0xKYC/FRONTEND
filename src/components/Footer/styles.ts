@@ -45,7 +45,7 @@ export const LogoContainer = styled("div")`
 
 export const Para = styled("div")`
   color: #18216d;
-  font-size: 14px;
+  font-size: 1rem;
   width: 70%;
 `;
 
@@ -92,7 +92,7 @@ export const Chat = styled("p")`
   cursor: pointer;
   margin-top: 1rem;
   transition: all 0.3s ease-in-out;
-
+  font-size: 1.3rem;
   &:hover {
     border-bottom: 1px solid rgb(255, 130, 92);
     color: rgb(255, 130, 92);
