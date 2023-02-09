@@ -1,10 +1,7 @@
 import {
   StyledCard,
-  StyledTag,
   StyledText,
-  TagContainer,
   Heading,
-  StyledLink,
   ImageWrapper,
   StyledImg,
   StyledTitle,
