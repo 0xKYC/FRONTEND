@@ -64,9 +64,9 @@ const ContentBlock = ({
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
             {isAuth ? (
-              <Container>
+              <ContentWrapper>
                 <CardInfo />
-              </Container>
+              </ContentWrapper>
             ) : (
               <Container>
                 <SvgIcon src={icon} width="100%" height="100%" />
