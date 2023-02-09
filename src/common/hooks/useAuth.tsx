@@ -18,6 +18,7 @@ export const useAuth = () => {
 
   const dispatch = useAppDispatch();
   const { address } = useAccount();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 

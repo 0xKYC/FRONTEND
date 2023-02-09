@@ -3,6 +3,7 @@ import {
   Container,
   Content,
   ContentWrapper,
+  Heading,
   RightBlockContainer,
 } from "./styles";
 import { Col, Row } from "antd";
@@ -12,7 +13,7 @@ import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../common/SvgIcon";
 import { onfidoRedirect } from "../../service/onfido/onfido.service";
 import { useAppSelector } from "../../redux/hooks";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
 
 import { withTranslation } from "react-i18next";
@@ -33,10 +34,10 @@ const ContentBlock = ({
   const { address } = useAccount();
   const isAuth = Boolean(address);
   const { open } = useConnectWallet();
-
+  const { chain } = useNetwork();
   const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (address && onfidoApplicantId) {
-      onfidoRedirect(onfidoApplicantId, address);
+    if (address && onfidoApplicantId && chain) {
+      onfidoRedirect(onfidoApplicantId, address, chain.id);
     } else {
       open({ route: "ConnectWallet" });
       event.currentTarget.blur();
@@ -54,7 +55,7 @@ const ContentBlock = ({
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <h6>{t(header)}</h6>
+              <Heading>{t(header)}</Heading>
               <Content>{t(contentText)}</Content>
 
               <ButtonWrapper>

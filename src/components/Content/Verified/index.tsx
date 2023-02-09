@@ -7,6 +7,7 @@ import vContent from "../../../content/VerifiedContent.json";
 import { selectTxHash } from "../../../redux/features/wallet/onfidoSlice";
 import { useAppSelector } from "../../../redux/hooks";
 import { CardInfo } from "../../CardInfo";
+import { Heading } from "../styles";
 
 import { Checkmark } from "./Checkmark";
 
@@ -31,7 +32,7 @@ const VerifiedContent = () => {
             <ContentWrapper>
               <StyledCard>
                 <Box>
-                  <h6>{t(vContent.title)}</h6>
+                  <Heading>{t(vContent.title)}</Heading>
                   <Checkmark />
                 </Box>
                 {vContent.info.map(({ text, id }) => {
