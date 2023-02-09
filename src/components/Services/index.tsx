@@ -7,14 +7,12 @@ import { Heading, Wrapper } from "./styles";
 const Services = () => {
   return (
     <Wrapper>
-      <Heading>
-        Services you can use to verify yourself with 0xKYC token
-      </Heading>
+      <Heading>Our system will soon work with:</Heading>
 
       <Row>
         {servicesData.map((service) => {
           return (
-            <Col lg={8} md={12} xs={24} key={service.title}>
+            <Col lg={6} md={12} xs={24} key={service.title}>
               <Service
                 tags={service.tags}
                 title={service.title}

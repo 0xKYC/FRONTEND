@@ -4,10 +4,10 @@ import {
   StyledText,
   TagContainer,
   Heading,
-  Text,
   StyledLink,
   ImageWrapper,
   StyledImg,
+  StyledTitle,
 } from "./styles";
 
 interface Props {
@@ -25,16 +25,17 @@ export const Service = ({
   href,
 }: Props) => {
   return (
-    <StyledCard>
-      <Heading>
-        <ImageWrapper>
-          <StyledImg src={img} alt={title} />
-        </ImageWrapper>
-        <p>{title}</p>
-      </Heading>
-      <StyledText>{description}</StyledText>
+    <a href={href} target="_blank" rel="noreferrer">
+      <StyledCard>
+        <Heading>
+          <ImageWrapper>
+            <StyledImg src={img} alt={title} />
+          </ImageWrapper>
+          <StyledTitle>{title}</StyledTitle>
+        </Heading>
+        <StyledText>{description}</StyledText>
 
-      <TagContainer>
+        {/* <TagContainer>
         {tags.map((tag) => {
           return (
             <StyledTag key={tag}>
@@ -45,7 +46,8 @@ export const Service = ({
         <StyledLink href={href} target="_blank" rel="noreferrer">
           Read more
         </StyledLink>
-      </TagContainer>
-    </StyledCard>
+      </TagContainer> */}
+      </StyledCard>
+    </a>
   );
 };

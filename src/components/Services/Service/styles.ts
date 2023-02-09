@@ -12,9 +12,13 @@ export const TagContainer = styled("div")`
   padding-top: 1rem;
 `;
 
-export const StyledText = styled("p")`
-  height: 120px;
+export const StyledTitle = styled("p")`
   font-size: 1rem;
+  font-weight: 400;
+`;
+export const StyledText = styled("p")`
+  font-size: 0.85rem;
+  line-height: 1.51;
 `;
 export const StyledTag = styled("div")`
   color: #f3f2f1;
@@ -26,7 +30,6 @@ export const StyledTag = styled("div")`
 export const Text = styled("p")`
   font-size: 0.7rem;
   color: white;
-  margin: 0;
 `;
 
 export const StyledLink = styled("a")`
@@ -43,23 +46,27 @@ export const StyledLink = styled("a")`
   }
 `;
 export const StyledCard = styled(Card)`
-  overflow-x: hidden;
-  margin: 1rem;
-  height: 300px;
-  cursor: default;
+  margin: 0.8rem;
+
+  height: 150px;
+  cursor: pointer;
   transition: all 0.2s ease;
   &:hover {
     background-color: #f8f8f8;
     transform: scale(0.95);
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 0 1rem;
+  @media screen and (min-width: 990px) {
+    padding: 0;
+    height: 250px;
+  }
+  @media screen and (min-width: 1224px) {
+    height: 190px;
   }
 `;
 
 export const ImageWrapper = styled.div`
-  width: 100px;
+  width: 80px;
 `;
 
 export const StyledImg = styled.img`
