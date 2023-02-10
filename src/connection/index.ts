@@ -18,7 +18,12 @@ const { provider } = configureChains(chains, [
 
 export const wagmiClient = createClient({
   autoConnect: true,
-  connectors: modalConnectors({ appName: "0xKYC", chains }),
+  connectors: modalConnectors({
+    appName: "0xKYC",
+    chains,
+    projectId: connectWalletId,
+    version: "2",
+  }),
   provider,
 });
 
