@@ -58,5 +58,11 @@ export const useAuth = () => {
     }
   }, [address, provider, dispatch, verified]);
 
+  useAccount({
+    onDisconnect() {
+      window.location.reload();
+    },
+  });
+
   return { verified, isLoading, isSanctioned };
 };
