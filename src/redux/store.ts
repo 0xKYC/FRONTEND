@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import onfidoApplicantIdReducer from "./features/wallet/onfidoSlice";
+import userReducer from "./features/user/userSlice";
+import { loadState } from "./localStorage";
 
 export const store = configureStore({
   reducer: {
-    user: onfidoApplicantIdReducer,
+    user: userReducer,
   },
+  preloadedState: loadState(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

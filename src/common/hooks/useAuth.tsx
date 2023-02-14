@@ -9,19 +9,21 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addTxHash,
   checkIfVerified,
+  selectIsMinting,
   selectVerifiedUser,
-} from "../../redux/features/wallet/onfidoSlice";
+} from "../../redux/features/user/userSlice";
 
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
-
+  const minting = useAppSelector(selectIsMinting);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
-
+  const isMinting = Boolean(address && minting);
+  const isVerified = Boolean(address && verified);
   useEffect(() => {
     const handleWalletCheck = async (address: string) => {
       const isSanctioned = await checkSanctionedWallet(address);
@@ -60,9 +62,10 @@ export const useAuth = () => {
 
   useAccount({
     onDisconnect() {
+      dispatch(checkIfVerified(false));
       window.location.reload();
     },
   });
 
-  return { verified, isLoading, isSanctioned };
+  return { isVerified, isLoading, isSanctioned, isMinting };
 };

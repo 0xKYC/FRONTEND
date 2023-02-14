@@ -4,7 +4,7 @@ import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
 
 import vContent from "../../../content/VerifiedContent.json";
-import { selectTxHash } from "../../../redux/features/wallet/onfidoSlice";
+import { selectTxHash } from "../../../redux/features/user/userSlice";
 import { useAppSelector } from "../../../redux/hooks";
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";

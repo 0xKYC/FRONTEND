@@ -12,7 +12,7 @@ const Services = () => {
       <Row>
         {servicesData.map((service) => {
           return (
-            <Col lg={6} md={12} xs={24} key={service.title}>
+            <Col lg={8} md={12} xs={24} key={service.title}>
               <Service
                 tags={service.tags}
                 title={service.title}

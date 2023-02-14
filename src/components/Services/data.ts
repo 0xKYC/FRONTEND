@@ -1,11 +1,11 @@
 export const servicesData = [
   {
-    title: "IdentDefi",
+    title: "Blue",
     description:
       "A secure way to access DeFi protocols powered by 0xKYC (amongst other services).",
     tags: ["DeFi"],
-    href: "https://identdefi.xyz/",
-    img: "/img/identdefi-new.png",
+    href: "https://www.blue.fi",
+    img: "/img/blue.svg",
   },
 
   {
@@ -31,5 +31,13 @@ export const servicesData = [
     tags: ["DeFi"],
     href: "https://www.lomads.xyz/",
     img: "/img/lomads.png",
+  },
+  {
+    title: "Motherboard",
+    description:
+      "An easy to use, all-in-one platform that helps you run your DAO. Easily manage contributors, track your finances, and engage with your community.",
+    tags: ["DeFi"],
+    href: "https://www.motherboard.fi",
+    img: "/img/mthrbrd.webp",
   },
 ];

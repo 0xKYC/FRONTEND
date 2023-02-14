@@ -6,12 +6,14 @@ export interface User {
   applicantId: string | null;
   verified: boolean;
   txHash: string | null;
+  isMinting: boolean;
 }
 
 const initialState: User = {
   applicantId: "",
   verified: false,
   txHash: null,
+  isMinting: false,
 };
 
 export const userSlice = createSlice({
@@ -27,13 +29,18 @@ export const userSlice = createSlice({
     addTxHash: (state, action: PayloadAction<string>) => {
       state.txHash = action.payload;
     },
+    setMinting: (state, action: PayloadAction<boolean>) => {
+      state.isMinting = action.payload;
+    },
   },
 });
 
-export const { addApplicantId, checkIfVerified, addTxHash } = userSlice.actions;
+export const { addApplicantId, checkIfVerified, addTxHash, setMinting } =
+  userSlice.actions;
 
 export default userSlice.reducer;
 
 export const selectApplicantId = (state: RootState) => state.user.applicantId;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
+export const selectIsMinting = (state: RootState) => state.user.isMinting;

@@ -49,7 +49,6 @@ const Header = () => {
         <Button onClick={handleOpen} color={address ? "#FFFFFFff" : ""}>
           {address ? `Disconnect ...${address.slice(-6)}` : "Connect Wallet"}
         </Button>
-
         <ChainSelectionMenu />
       </Box>
     );

@@ -4,7 +4,8 @@ import { useAccount } from "wagmi";
 import {
   addTxHash,
   checkIfVerified,
-} from "../../redux/features/wallet/onfidoSlice";
+  setMinting,
+} from "../../redux/features/user/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
 
@@ -22,6 +23,8 @@ export const useMint = () => {
     }
 
     if (apiCalls < 11) {
+      console.log("starts minting");
+      dispatch(setMinting(true));
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
@@ -31,10 +34,13 @@ export const useMint = () => {
 
           if (apiCalls === 10) {
             clearInterval(interval);
+            dispatch(setMinting(false));
             setError(true);
           }
           if (isVerified) {
             const user = await findUserInDB(address);
+            dispatch(setMinting(false));
+
             if (user !== "noUserError") {
               console.log("verified");
               dispatch(checkIfVerified(isVerified));

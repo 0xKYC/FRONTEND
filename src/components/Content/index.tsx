@@ -14,7 +14,7 @@ import { SvgIcon } from "../../common/SvgIcon";
 import { onfidoRedirect } from "../../service/onfido/onfido.service";
 import { useAppSelector } from "../../redux/hooks";
 import { useAccount, useNetwork } from "wagmi";
-import { selectApplicantId } from "../../redux/features/wallet/onfidoSlice";
+import { selectApplicantId } from "../../redux/features/user/userSlice";
 
 import { withTranslation } from "react-i18next";
 import { useConnectWallet } from "../../common/hooks/useConnectWallet";
