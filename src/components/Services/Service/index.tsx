@@ -5,6 +5,7 @@ import {
   ImageWrapper,
   StyledImg,
   StyledTitle,
+  Box,
 } from "./styles";
 
 interface Props {
@@ -30,7 +31,9 @@ export const Service = ({
           </ImageWrapper>
           <StyledTitle>{title}</StyledTitle>
         </Heading>
-        <StyledText>{description}</StyledText>
+        <Box>
+          <StyledText>{description}</StyledText>
+        </Box>
 
         {/* <TagContainer>
         {tags.map((tag) => {

@@ -1,7 +1,4 @@
-import {
-  addApplicantId,
-  addTxHash,
-} from "../../redux/features/wallet/onfidoSlice";
+import { addApplicantId, addTxHash } from "../../redux/features/user/userSlice";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";

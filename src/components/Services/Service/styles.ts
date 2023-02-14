@@ -45,23 +45,26 @@ export const StyledLink = styled("a")`
     font-size: 1.1rem;
   }
 `;
+export const Box = styled("div")`
+  height: 120px;
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 990px) {
+    padding: 0;
+    height: 170px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 100px;
+  }
+`;
 export const StyledCard = styled(Card)`
   margin: 0.8rem;
 
-  height: 150px;
   cursor: pointer;
   transition: all 0.2s ease;
   &:hover {
     background-color: #f8f8f8;
     transform: scale(0.95);
-  }
-
-  @media screen and (min-width: 990px) {
-    padding: 0;
-    height: 250px;
-  }
-  @media screen and (min-width: 1224px) {
-    height: 190px;
   }
 `;
 

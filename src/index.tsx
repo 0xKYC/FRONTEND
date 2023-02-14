@@ -10,6 +10,17 @@ import i18n from "./translation";
 import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
 import { Web3Modal } from "@web3modal/react";
 import { ConfigProvider } from "antd";
+import { saveState } from "./redux/localStorage";
+import throttle from "lodash/throttle";
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      user: store.getState().user,
+    });
+  }, 1000)
+);
+
 const App = () => (
   <I18nextProvider i18n={i18n}>
     <Router />
