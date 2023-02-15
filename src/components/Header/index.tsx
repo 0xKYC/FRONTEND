@@ -16,14 +16,14 @@ import { useAccount } from "wagmi";
 
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { useConnectWallet } from "../../common/hooks/useConnectWallet";
 
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
+import { useWeb3Modal } from "@web3modal/react";
 
 const Header = () => {
   const [visible, setVisibility] = useState(false);
 
-  const { open } = useConnectWallet();
+  const { open } = useWeb3Modal();
 
   const { address, isConnected } = useAccount();
 

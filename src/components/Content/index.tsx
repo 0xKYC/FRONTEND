@@ -17,8 +17,10 @@ import { useAccount, useNetwork } from "wagmi";
 import { selectApplicantId } from "../../redux/features/user/userSlice";
 
 import { withTranslation } from "react-i18next";
-import { useConnectWallet } from "../../common/hooks/useConnectWallet";
+
 import { CardInfo } from "../CardInfo";
+
+import { useWeb3Modal } from "@web3modal/react";
 
 const ContentBlock = ({
   title,
@@ -33,8 +35,9 @@ const ContentBlock = ({
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const { address } = useAccount();
   const isAuth = Boolean(address);
-  const { open } = useConnectWallet();
+  const { open } = useWeb3Modal();
   const { chain } = useNetwork();
+
   const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (address && onfidoApplicantId && chain) {
       onfidoRedirect(onfidoApplicantId, address, chain.id);
