@@ -8,16 +8,16 @@ export async function getSDKToken() {
 }
 
 export async function onfidoRedirect(
-  applicantId: string | null,
-  walletAddress: string | null,
-  chainId?: ChainId | null,
-  redirectUrl?: string | null,
+  applicantId: string,
+  walletAddress: string,
+  chainId?: ChainId,
+  redirectUrl?: string | null
 ) {
   const res = await api.post<string>("onfido/redirect", {
     applicantId: applicantId,
     walletAddress: walletAddress,
     chainId: chainId,
-    redirectUrl: redirectUrl? redirectUrl : window.location.href,
+    redirectUrl: redirectUrl ? redirectUrl : window.location.href,
   });
   window.location.replace(res.data);
 }

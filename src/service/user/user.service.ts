@@ -2,9 +2,10 @@ import { api } from "../config";
 import { User, WalletAddress } from "./types";
 
 export async function initUserInDB(walletAddress: WalletAddress) {
-  await api.post("user/upload", {
+  const res = await api.post("user/upload", {
     walletAddress: walletAddress,
   });
+  return res.data;
 }
 
 export async function updateUserInDB(
