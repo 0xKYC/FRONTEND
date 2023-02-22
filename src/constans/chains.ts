@@ -25,7 +25,7 @@ export const CHAIN_INFO = {
   [SupportedChainId.GOERLI]: {
     explorer: "https://goerli.etherscan.io/",
     infoLink: "https://info.uniswap.org/#/",
-    label: "Goerli",
+    label: "Ethereum Goerli",
     logoUrl: "/img/ethereum-logo.png",
     nativeCurrency: { name: "Görli Ether", symbol: "görETH", decimals: 18 },
   },

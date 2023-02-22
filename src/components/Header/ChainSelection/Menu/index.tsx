@@ -66,7 +66,7 @@ export const ChainSelectionMenu = () => {
           isOpen={isOpen}
           icon={<img width={20} height={20} src={logoUrl} alt={label} />}
         >
-          {chainName}
+          {label}
           {isOpen ? <UpOutlined /> : <DownOutlined />}
         </StyledButton>
       </Dropdown>

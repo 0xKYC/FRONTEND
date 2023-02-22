@@ -21,6 +21,8 @@ import { withTranslation } from "react-i18next";
 import { CardInfo } from "../CardInfo";
 
 import { useWeb3Modal } from "@web3modal/react";
+import { useState } from "react";
+import { EmailForm } from "../EmailForm";
 
 const ContentBlock = ({
   title,
@@ -37,10 +39,20 @@ const ContentBlock = ({
   const isAuth = Boolean(address);
   const { open } = useWeb3Modal();
   const { chain } = useNetwork();
+  const [verifyClicked, setVerifyClicked] = useState(false);
 
-  const handleOnfidoRedirect = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOnfidoRedirect = async () => {
     if (address && onfidoApplicantId && chain) {
-      onfidoRedirect(onfidoApplicantId, address, chain.id);
+      try {
+        await onfidoRedirect(onfidoApplicantId, address, chain.id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  const handleVerify = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (address) {
+      setVerifyClicked(true);
     } else {
       open({ route: "ConnectWallet" });
       event.currentTarget.blur();
@@ -58,12 +70,24 @@ const ContentBlock = ({
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <Heading>{t(header)}</Heading>
-              <Content>{t(contentText)}</Content>
-
-              <ButtonWrapper>
-                <Button onClick={handleOnfidoRedirect}>{t(buttonText)}</Button>
-              </ButtonWrapper>
+              {verifyClicked ? (
+                <Fade>
+                  <Heading>Please provide your email address</Heading>
+                  <Content>
+                    We collect your email address to contact you regarding
+                    processing and transactions
+                  </Content>
+                  <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
+                </Fade>
+              ) : (
+                <>
+                  <Heading>{t(header)}</Heading>
+                  <Content>{t(contentText)}</Content>
+                  <ButtonWrapper>
+                    <Button onClick={handleVerify}>{t(buttonText)}</Button>
+                  </ButtonWrapper>
+                </>
+              )}
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
