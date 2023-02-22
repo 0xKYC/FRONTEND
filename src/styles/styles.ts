@@ -106,8 +106,9 @@ export const Styles = createGlobalStyle`
         background-color: #fb7324;
         border:none
     }
-    .ant-modal-body .ant-btn{
+    .ant-modal-body .ant-btn:hover,:focus {
         background-color: #fb7324;
+        opacity: .9;
     }
 
     .ant-modal-body .ant-btn-default{

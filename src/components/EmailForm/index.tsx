@@ -1,6 +1,7 @@
 import { MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useState } from "react";
+import { useConfirmModal } from "../../common/ConfirmModal";
 
 import { isCompanyEmail } from "../../common/utils/email-validator/validateEmail";
 import { subscribeNewsletter } from "../../service/user/user.service";
@@ -14,6 +15,7 @@ interface Props {
 }
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
+  const { showConfirm } = useConfirmModal();
   const handleSubmit = async (values: FormValues) => {
     try {
       if (values.newsletterChecked) {
@@ -25,7 +27,15 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       setError(true);
     }
   };
-
+  const showModal = () => {
+    showConfirm({
+      title: "Are you sure you want to skip?",
+      content: "We will not be able to contact you",
+      onCancel: () => {},
+      onOk: handleOnfidoRedirect,
+      okText: "Skip",
+    });
+  };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
@@ -88,7 +98,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-        <Button style={{ marginLeft: "1rem" }} type="ghost">
+        <Button style={{ marginLeft: "1rem" }} type="ghost" onClick={showModal}>
           Skip
         </Button>
       </Form.Item>
