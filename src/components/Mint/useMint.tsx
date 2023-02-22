@@ -8,7 +8,7 @@ import {
 } from "../../redux/features/user/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
-
+const apiRequestsToCall = 20;
 export const useMint = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -23,14 +23,14 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (apiCalls < 20) {
+    if (apiCalls < apiRequestsToCall) {
       dispatch(setMinting(true));
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
           const isVerified = await checkForSBT(address, chain.id);
 
-          if (apiCalls === 10) {
+          if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
             dispatch(setMinting(false));
             setError(true);
