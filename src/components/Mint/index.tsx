@@ -14,13 +14,13 @@ export const MintContent = () => {
       {error ? (
         <Result
           status="warning"
-          title="Please go back and refresh the page, we've encountered an issue."
-          extra={
-            <Link to="/">
-              <ArrowLeftOutlined style={{ marginRight: ".4rem" }} />
-              Go back
-            </Link>
-          }
+          title="It took longer than expected. Please come back again later."
+          // extra={
+          //   <Link to="/">
+          //     <ArrowLeftOutlined style={{ marginRight: ".4rem" }} />
+          //     Go back
+          //   </Link>
+          // }
         />
       ) : (
         <StyledBox>

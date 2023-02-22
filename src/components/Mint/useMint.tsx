@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import {
   addTxHash,
   checkIfVerified,
@@ -13,24 +13,22 @@ export const useMint = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { address } = useAccount();
+  const { chain } = useNetwork();
 
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
   useEffect(() => {
-    if (!address) {
+    if (!address || !chain) {
       return navigate("/");
     }
 
-    if (apiCalls < 11) {
-      console.log("starts minting");
+    if (apiCalls < 20) {
       dispatch(setMinting(true));
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          const isVerified = await checkForSBT(address);
-
-          console.log(isVerified);
+          const isVerified = await checkForSBT(address, chain.id);
 
           if (apiCalls === 10) {
             clearInterval(interval);
@@ -42,7 +40,6 @@ export const useMint = () => {
             dispatch(setMinting(false));
 
             if (user !== "noUserError") {
-              console.log("verified");
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHash(user.txHash));
               navigate("/profile");
@@ -55,7 +52,7 @@ export const useMint = () => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch]);
+  }, [apiCalls, navigate, address, dispatch, chain]);
 
   return { error };
 };
