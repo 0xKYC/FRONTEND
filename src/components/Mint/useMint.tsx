@@ -24,7 +24,7 @@ export const useMint = () => {
     }
 
     if (apiCalls < apiRequestsToCall) {
-      dispatch(setMinting(true));
+      dispatch(setMinting({ minting: true, chainId: chain.id }));
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
@@ -32,12 +32,12 @@ export const useMint = () => {
 
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
-            dispatch(setMinting(false));
+            dispatch(setMinting({ minting: false, chainId: null }));
             setError(true);
           }
           if (isVerified) {
             const user = await findUserInDB(address);
-            dispatch(setMinting(false));
+            dispatch(setMinting({ minting: false, chainId: null }));
 
             if (user !== "noUserError") {
               dispatch(checkIfVerified(isVerified));

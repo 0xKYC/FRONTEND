@@ -13,6 +13,7 @@ import {
   addTxHash,
   checkIfVerified,
   selectIsMinting,
+  selectMintingChain,
   selectVerifiedUser,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
@@ -21,14 +22,17 @@ export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
-
+  const mintingChain = useAppSelector(selectMintingChain);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
   const { chain } = useNetwork();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
-  const isMinting = Boolean(address && minting);
+  console.log(mintingChain);
+  console.log(chain?.id);
+  console.log(mintingChain === chain?.id);
+  const isMinting = Boolean(address && minting && mintingChain === chain?.id);
   const isVerified = Boolean(address && verified);
 
   useEffect(() => {
