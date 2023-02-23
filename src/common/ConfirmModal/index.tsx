@@ -18,7 +18,7 @@ export const useConfirmModal = () => {
       content: content,
       centered: true,
       okText: okText,
-
+      closable: true,
       async onOk() {
         await onOk();
       },

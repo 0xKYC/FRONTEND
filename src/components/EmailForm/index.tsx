@@ -36,9 +36,11 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       okText: "Skip",
     });
   };
+
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
   if (error)
     return (
       <p style={{ color: "red" }}>

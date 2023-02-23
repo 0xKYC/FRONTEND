@@ -25,7 +25,7 @@ export const ChainSelectionMenu = () => {
   const { switchNetwork, error, pendingChainId } = useSwitchNetwork();
   const { chain } = useNetwork();
   const { contextHolder } = useErrorMessage(error);
-  const chainName = chain?.name ?? chains[0].name;
+
   const onSelectChain = (targetChain: ChainId) => {
     switchNetwork?.(targetChain);
   };
