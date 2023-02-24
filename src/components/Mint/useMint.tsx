@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import {
   addTxHash,
   checkIfVerified,
@@ -8,41 +8,38 @@ import {
 } from "../../redux/features/user/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
-
+const apiRequestsToCall = 20;
 export const useMint = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { address } = useAccount();
+  const { chain } = useNetwork();
 
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
   useEffect(() => {
-    if (!address) {
+    if (!address || !chain) {
       return navigate("/");
     }
 
-    if (apiCalls < 11) {
-      console.log("starts minting");
-      dispatch(setMinting(true));
+    if (apiCalls < apiRequestsToCall) {
+      dispatch(setMinting({ minting: true, chainId: chain.id }));
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          const isVerified = await checkForSBT(address);
+          const isVerified = await checkForSBT(address, chain.id);
 
-          console.log(isVerified);
-
-          if (apiCalls === 10) {
+          if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
-            dispatch(setMinting(false));
+            dispatch(setMinting({ minting: false, chainId: null }));
             setError(true);
           }
           if (isVerified) {
             const user = await findUserInDB(address);
-            dispatch(setMinting(false));
+            dispatch(setMinting({ minting: false, chainId: null }));
 
             if (user !== "noUserError") {
-              console.log("verified");
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHash(user.txHash));
               navigate("/profile");
@@ -55,7 +52,7 @@ export const useMint = () => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch]);
+  }, [apiCalls, navigate, address, dispatch, chain]);
 
   return { error };
 };
