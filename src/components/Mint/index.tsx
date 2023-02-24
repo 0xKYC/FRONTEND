@@ -1,8 +1,7 @@
 import { Result } from "antd";
 
 import { Container, StyledBox } from "./styled";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+
 import { useMint } from "./useMint";
 import { LoadingSpinner } from "../../common/LoadingSpinner";
 
@@ -14,13 +13,7 @@ export const MintContent = () => {
       {error ? (
         <Result
           status="warning"
-          title="Please go back and refresh the page, we've encountered an issue."
-          extra={
-            <Link to="/">
-              <ArrowLeftOutlined style={{ marginRight: ".4rem" }} />
-              Go back
-            </Link>
-          }
+          title="It took longer than expected. Please refresh the page or come back again later."
         />
       ) : (
         <StyledBox>

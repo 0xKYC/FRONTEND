@@ -10,7 +10,7 @@ export async function getSDKToken() {
 export async function onfidoRedirect(
   applicantId: string,
   walletAddress: string,
-  chainId?: ChainId,
+  chainId: ChainId,
   redirectUrl?: string | null
 ) {
   const res = await api.post<string>("onfido/redirect", {

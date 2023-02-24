@@ -1,12 +1,14 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { createSlice } from "@reduxjs/toolkit";
+import { ChainId } from "../../../constans/chains";
 
 export interface User {
   applicantId: string | null;
   verified: boolean;
   txHash: string | null;
   isMinting: boolean;
+  mintingChain: ChainId | null;
 }
 
 const initialState: User = {
@@ -14,6 +16,7 @@ const initialState: User = {
   verified: false,
   txHash: null,
   isMinting: false,
+  mintingChain: null,
 };
 
 export const userSlice = createSlice({
@@ -29,8 +32,12 @@ export const userSlice = createSlice({
     addTxHash: (state, action: PayloadAction<string>) => {
       state.txHash = action.payload;
     },
-    setMinting: (state, action: PayloadAction<boolean>) => {
-      state.isMinting = action.payload;
+    setMinting: (
+      state,
+      action: PayloadAction<{ minting: boolean; chainId: ChainId | null }>
+    ) => {
+      state.isMinting = action.payload.minting;
+      state.mintingChain = action.payload.chainId;
     },
   },
 });
@@ -44,3 +51,4 @@ export const selectApplicantId = (state: RootState) => state.user.applicantId;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
+export const selectMintingChain = (state: RootState) => state.user.mintingChain;
