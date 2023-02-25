@@ -1,4 +1,4 @@
-import { useProvider, useAccount } from "wagmi";
+import { useProvider, useAccount, useNetwork } from "wagmi";
 import { useEffect, useState } from "react";
 import {
   checkForSBT,
@@ -13,6 +13,7 @@ import {
   addTxHash,
   checkIfVerified,
   selectIsMinting,
+  selectMintingChain,
   selectVerifiedUser,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
@@ -21,13 +22,17 @@ export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
-
+  const mintingChain = useAppSelector(selectMintingChain);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
+  const { chain } = useNetwork();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
-  const isMinting = Boolean(address && minting);
+  console.log(mintingChain);
+  console.log(chain?.id);
+  console.log(mintingChain === chain?.id);
+  const isMinting = Boolean(address && minting && mintingChain === chain?.id);
   const isVerified = Boolean(address && verified);
 
   useEffect(() => {
@@ -64,9 +69,9 @@ export const useAuth = () => {
         setIsSanctioned(true);
       }
     };
-    const checkSBT = async (address: string) => {
+    const checkSBT = async (address: string, chainId: number) => {
       try {
-        const isVerified = await checkForSBT(address);
+        const isVerified = await checkForSBT(address, chainId);
 
         if (isVerified) {
           const user = await findUserInDB(address);
@@ -84,11 +89,11 @@ export const useAuth = () => {
     };
     const auth = async () => {
       try {
-        if (address) {
+        if (address && chain) {
           setIsLoading(true);
           await Promise.allSettled([
             handleWalletCheck(address),
-            checkSBT(address),
+            checkSBT(address, chain.id),
             handleOnfidoAuth(address),
           ]);
           setIsLoading(false);
@@ -100,7 +105,7 @@ export const useAuth = () => {
     };
 
     auth();
-  }, [address, dispatch, provider]);
+  }, [address, dispatch, provider, chain]);
 
   useAccount({
     onDisconnect() {
