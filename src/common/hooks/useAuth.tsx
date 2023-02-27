@@ -14,6 +14,7 @@ import {
   checkIfVerified,
   selectIsMinting,
   selectMintingChain,
+  selectMintingWallet,
   selectVerifiedUser,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
@@ -23,16 +24,21 @@ export const useAuth = () => {
   const verified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
   const mintingChain = useAppSelector(selectMintingChain);
+  const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
   const { chain } = useNetwork();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
-  console.log(mintingChain);
-  console.log(chain?.id);
-  console.log(mintingChain === chain?.id);
-  const isMinting = Boolean(address && minting && mintingChain === chain?.id);
+
+  const isMinting = Boolean(
+    address &&
+      minting &&
+      mintingChain === chain?.id &&
+      address === mintingWalletAddress
+  );
+
   const isVerified = Boolean(address && verified);
 
   useEffect(() => {
@@ -54,6 +60,7 @@ export const useAuth = () => {
           dispatch(addApplicantId(newApplicant.id));
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
           dispatch(addApplicantId(user.onfidoApplicantId));
+
           dispatch(addTxHash(user.txHash));
         }
       } catch (err) {

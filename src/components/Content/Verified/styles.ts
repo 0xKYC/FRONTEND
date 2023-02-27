@@ -1,5 +1,6 @@
 import { Card } from "antd";
 import styled from "styled-components";
+import { ChainId, SupportedChainId } from "../../../constans/chains";
 
 export const Content = styled("p")`
   margin: 1rem 0;
@@ -9,10 +10,11 @@ export const Box = styled("div")`
   display: flex;
 `;
 
-export const StyledLink = styled("a")`
+export const StyledLink = styled("a")<{ chainId: ChainId }>`
   display: block;
   text-align: center;
-  background: #0077be;
+  background: ${(props) =>
+    props.chainId === SupportedChainId.GOERLI ? "#0077be" : "#8247e5"};
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -29,7 +31,8 @@ export const StyledLink = styled("a")`
   &:active {
     color: #fff;
     border: 1px solid #0077be;
-    background-color: #0077be;
+    background: ${(props) =>
+      props.chainId === SupportedChainId.GOERLI ? "#0077be" : "#8247e5"};
   }
 `;
 export const StyledCard = styled(Card)`
@@ -37,7 +40,7 @@ export const StyledCard = styled(Card)`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   @media screen and (min-width: 1100px) {
-    width: 540px;
+    width: 570px;
     padding: 2rem 1.4rem;
   }
 `;
@@ -71,4 +74,9 @@ export const BlockWrapper = styled("section")`
   @media only screen and (max-width: 768px) {
     padding: 4rem 0 10rem;
   }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  gap: 10px;
 `;

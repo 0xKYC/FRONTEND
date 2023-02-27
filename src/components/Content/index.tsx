@@ -34,7 +34,7 @@ const ContentBlock = ({
 }: ContentBlockProps) => {
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const { address } = useAccount();
-  const isAuth = Boolean(address);
+
   const { open } = useWeb3Modal();
   const { chain } = useNetwork();
 
@@ -47,10 +47,10 @@ const ContentBlock = ({
     }
   };
 
-  const buttonText = isAuth ? button?.enabled.title : button?.disabled.title;
+  const buttonText = address ? button?.enabled.title : button?.disabled.title;
 
-  const header = isAuth ? verifyTitle : title;
-  const contentText = isAuth ? verifyText : content;
+  const header = address ? verifyTitle : title;
+  const contentText = address ? verifyText : content;
 
   return (
     <RightBlockContainer>
@@ -66,7 +66,7 @@ const ContentBlock = ({
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            {isAuth ? (
+            {address ? (
               <ContentWrapper>
                 <CardInfo />
               </ContentWrapper>
