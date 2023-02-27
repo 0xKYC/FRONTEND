@@ -89,11 +89,17 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         wrapperCol={{ offset: 3 }}
       >
         <Checkbox style={{ marginLeft: "-6px" }}>
-          I want to receive special offers and product updates
+          I want to receive product updates
         </Checkbox>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+        <Button style={{ marginLeft: "1rem" }} type="ghost" onClick={showModal}>
+          Skip
+        </Button>
       </Form.Item>
 
-      <Form.Item
+      {/* <Form.Item
         wrapperCol={{ offset: 3, span: 16 }}
         style={{ marginLeft: "-6px" }}
       >
@@ -103,7 +109,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         <Button style={{ marginLeft: "1rem" }} type="ghost" onClick={showModal}>
           Skip
         </Button>
-      </Form.Item>
+      </Form.Item> */}
     </Form>
   );
 };

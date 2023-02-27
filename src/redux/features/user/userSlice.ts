@@ -9,6 +9,7 @@ export interface User {
   txHash: string | null;
   isMinting: boolean;
   mintingChain: ChainId | null;
+  mintingWalletAddress: string | null;
 }
 
 const initialState: User = {
@@ -17,6 +18,7 @@ const initialState: User = {
   txHash: null,
   isMinting: false,
   mintingChain: null,
+  mintingWalletAddress: null,
 };
 
 export const userSlice = createSlice({
@@ -34,10 +36,15 @@ export const userSlice = createSlice({
     },
     setMinting: (
       state,
-      action: PayloadAction<{ minting: boolean; chainId: ChainId | null }>
+      action: PayloadAction<{
+        minting: boolean;
+        chainId: ChainId | null;
+        walletAddress: string;
+      }>
     ) => {
       state.isMinting = action.payload.minting;
       state.mintingChain = action.payload.chainId;
+      state.mintingWalletAddress = action.payload.walletAddress;
     },
   },
 });
@@ -52,3 +59,5 @@ export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
+export const selectMintingWallet = (state: RootState) =>
+  state.user.mintingWalletAddress;
