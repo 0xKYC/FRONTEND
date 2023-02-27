@@ -60,7 +60,6 @@ const ContentBlock = ({
             <ContentWrapper>
               <Heading>{t(header)}</Heading>
               <Content>{t(contentText)}</Content>
-
               <ButtonWrapper>
                 <Button onClick={handleOnfidoRedirect}>{t(buttonText)}</Button>
               </ButtonWrapper>
