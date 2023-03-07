@@ -57,6 +57,7 @@ export const useAuth = () => {
         if (user !== "noUserError" && user.onfidoApplicantId === null) {
           const newApplicant = await onfidoCreateApplicant();
           await updateUserInDB(account, newApplicant.id);
+
           dispatch(addApplicantId(newApplicant.id));
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
           dispatch(addApplicantId(user.onfidoApplicantId));
