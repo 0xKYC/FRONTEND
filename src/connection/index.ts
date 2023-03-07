@@ -6,11 +6,18 @@ import {
 
 import { configureChains, createClient } from "wagmi";
 import { goerli, polygonMumbai } from "wagmi/chains";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { scrollAlpha } from "../constans/chains";
 
 export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
-export const chains = [goerli, polygonMumbai];
+export const chains = [goerli, polygonMumbai, scrollAlpha];
 
 const { provider } = configureChains(chains, [
+  // jsonRpcProvider({
+  //   rpc: (chain) => ({
+  //     http: "https://alpha-rpc.scroll.io/l2",
+  //   }),
+  // }),
   walletConnectProvider({
     projectId: connectWalletId,
   }),
@@ -24,6 +31,7 @@ export const wagmiClient = createClient({
     projectId: connectWalletId,
     version: "2",
   }),
+
   provider,
 });
 
