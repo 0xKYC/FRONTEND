@@ -45,23 +45,23 @@ export const useAuth = () => {
     const handleOnfidoAuth = async (account: string) => {
       try {
         const user = await findUserInDB(account);
-        console.log(user);
+
         if (user === "noUserError") {
           await initUserInDB(account);
           const newApplicant = await onfidoCreateApplicant();
           await updateUserInDB(account, newApplicant.id);
-          console.log(newApplicant);
+
           dispatch(addApplicantId(newApplicant.id));
         }
 
         if (user !== "noUserError" && user.onfidoApplicantId === null) {
           const newApplicant = await onfidoCreateApplicant();
           await updateUserInDB(account, newApplicant.id);
-          console.log(newApplicant);
+
           dispatch(addApplicantId(newApplicant.id));
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
           dispatch(addApplicantId(user.onfidoApplicantId));
-          console.log(user.onfidoApplicantId);
+
           dispatch(addTxHash(user.txHash));
         }
       } catch (err) {
