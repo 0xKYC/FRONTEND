@@ -14,7 +14,11 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
   display: block;
   text-align: center;
   background: ${(props) =>
-    props.chainId === SupportedChainId.GOERLI ? "#0077be" : "#8247e5"};
+    props.chainId === SupportedChainId.GOERLI
+      ? "#0077be"
+      : props.chainId === SupportedChainId.POLYGON_MUMBAI
+      ? "#8247e5"
+      : "#3B226A"};
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -32,7 +36,11 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
     color: #fff;
     border: 1px solid #0077be;
     background: ${(props) =>
-      props.chainId === SupportedChainId.GOERLI ? "#0077be" : "#8247e5"};
+      props.chainId === SupportedChainId.GOERLI
+        ? "#0077be"
+        : props.chainId === SupportedChainId.POLYGON_MUMBAI
+        ? "#8247e5"
+        : "#3B226A"};
   }
 `;
 export const StyledCard = styled(Card)`

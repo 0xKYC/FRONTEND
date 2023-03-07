@@ -20,7 +20,6 @@ import {
   ContentWrapper,
   Flex,
 } from "./styles";
-import { getButtonText, getTransactionUrl } from "./utils";
 
 const VerifiedContent = () => {
   const { t } = useTranslation();
@@ -28,9 +27,8 @@ const VerifiedContent = () => {
   const { chain } = useNetwork();
   if (!chain) return <p>Error with fetching the network</p>;
 
-  const { logoUrl, label } = getChainInfo(chain.id);
-  const linkToTransaction = getTransactionUrl(chain.id);
-  const buttonText = getButtonText(chain.id);
+  const { logoUrl, label, explorer, explorerName } = getChainInfo(chain.id);
+
   return (
     <BlockWrapper>
       <Fade triggerOnce direction="right">
@@ -56,11 +54,11 @@ const VerifiedContent = () => {
                 })}
                 <StyledLink
                   chainId={chain.id}
-                  href={linkToTransaction + txHash}
+                  href={explorer + txHash}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Link to {buttonText}
+                  Link to {explorerName}
                 </StyledLink>
               </StyledCard>
             </ContentWrapper>
