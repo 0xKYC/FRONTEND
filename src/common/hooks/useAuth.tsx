@@ -115,12 +115,11 @@ export const useAuth = () => {
     auth();
   }, [address, dispatch, provider, chain]);
 
-  useAccount({
-    onDisconnect() {
+  useEffect(() => {
+    if (!address) {
       dispatch(checkIfVerified(false));
-      window.location.reload();
-    },
-  });
+    }
+  }, [dispatch, address]);
 
   return {
     isVerified,
