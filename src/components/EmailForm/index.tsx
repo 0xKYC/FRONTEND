@@ -16,6 +16,7 @@ interface Props {
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
+
   const handleSubmit = async (values: FormValues) => {
     try {
       if (values.newsletterChecked) {
@@ -27,34 +28,32 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       setError(true);
     }
   };
+
   const showModal = () => {
     showConfirm({
       title: "Are you sure you want to skip?",
-      content: "We will not be able to contact you",
+      content: "You won’t be informed about important updates in your account",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",
+      cancelText: "Go back",
     });
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
-  if (error)
+  if (error) {
     return (
       <p style={{ color: "red" }}>
         An error has occured. Please, refresh the page and try again.
       </p>
     );
+  }
+
   return (
     <Form
       name="basic"
-      //   labelCol={{ span: 8 }}
-      //   wrapperCol={{ span: 16 }}
-      style={{ width: "100%" }}
+      layout="vertical"
+      style={{ width: "90%" }}
       onFinish={handleSubmit}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
@@ -83,33 +82,29 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         />
       </Form.Item>
 
-      <Form.Item
-        name="newsletterChecked"
-        valuePropName="checked"
-        wrapperCol={{ offset: 3 }}
-      >
-        <Checkbox style={{ marginLeft: "-6px" }}>
-          I want to receive product updates
-        </Checkbox>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-        <Button style={{ marginLeft: "1rem" }} type="ghost" onClick={showModal}>
-          Skip
-        </Button>
+      <Form.Item name="newsletterChecked" valuePropName="checked">
+        <Checkbox>I want to receive product updates</Checkbox>
       </Form.Item>
-
-      {/* <Form.Item
-        wrapperCol={{ offset: 3, span: 16 }}
-        style={{ marginLeft: "-6px" }}
-      >
-        <Button type="primary" htmlType="submit">
+      <div style={{ display: "flex", width: "100%" }}>
+        <Button
+          type="primary"
+          size="large"
+          htmlType="submit"
+          style={{
+            width: "50%",
+          }}
+        >
           Submit
         </Button>
-        <Button style={{ marginLeft: "1rem" }} type="ghost" onClick={showModal}>
+        <Button
+          size="large"
+          style={{ width: "50%" }}
+          type="ghost"
+          onClick={showModal}
+        >
           Skip
         </Button>
-      </Form.Item> */}
+      </div>
     </Form>
   );
 };

@@ -113,6 +113,20 @@ export const Styles = createGlobalStyle`
 
     .ant-modal-body .ant-btn-default{
         background-color: #F1F2F3;
+        width: 100%;
+    }
+    .ant-modal-body .ant-btn-primary{
+        width: 100%;
+    }
+    .ant-modal-confirm-btns{
+        display:flex;
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 1rem;
+     
+    }
+    .ant-modal-confirm-content{
+        padding-right: .5rem
     }
     .ant-modal-body .ant-btn-default:hover {
         color:#000000

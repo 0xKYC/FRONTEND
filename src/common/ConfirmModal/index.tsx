@@ -9,9 +9,17 @@ interface Props {
   onOk: () => Promise<void>;
   onCancel: () => void;
   okText: string;
+  cancelText: string;
 }
 export const useConfirmModal = () => {
-  const showConfirm = ({ title, content, onOk, onCancel, okText }: Props) => {
+  const showConfirm = ({
+    title,
+    content,
+    onOk,
+    onCancel,
+    okText,
+    cancelText,
+  }: Props) => {
     confirm({
       title: title,
       icon: <ExclamationCircleFilled />,
@@ -19,6 +27,8 @@ export const useConfirmModal = () => {
       centered: true,
       okText: okText,
       closable: true,
+      cancelText: cancelText,
+      // cancelButtonProps:{icon:},
       async onOk() {
         await onOk();
       },
