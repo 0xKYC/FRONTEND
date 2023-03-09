@@ -42,3 +42,11 @@ export async function checkSanctionedWallet(walletAddress: WalletAddress) {
 
   return res.data;
 }
+
+export async function subscribeNewsletter(email: string) {
+  const res = await api.post<string>("user/newsletter/signup", {
+    email,
+  });
+
+  return res.data;
+}

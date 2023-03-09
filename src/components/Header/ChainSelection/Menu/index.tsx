@@ -25,7 +25,7 @@ export const ChainSelectionMenu = () => {
   const { switchNetwork, error, pendingChainId } = useSwitchNetwork();
   const { chain } = useNetwork();
   const { contextHolder } = useErrorMessage(error);
-  const chainName = chain?.name ?? chains[0].name;
+
   const onSelectChain = (targetChain: ChainId) => {
     switchNetwork?.(targetChain);
   };
@@ -66,7 +66,7 @@ export const ChainSelectionMenu = () => {
           isOpen={isOpen}
           icon={<img width={20} height={20} src={logoUrl} alt={label} />}
         >
-          {chainName}
+          {label}
           {isOpen ? <UpOutlined /> : <DownOutlined />}
         </StyledButton>
       </Dropdown>

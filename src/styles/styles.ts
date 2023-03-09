@@ -106,12 +106,42 @@ export const Styles = createGlobalStyle`
         background-color: #fb7324;
         border:none
     }
-    .ant-modal-body .ant-btn{
-        background-color: #fb7324;
+    .ant-modal-body .ant-btn:hover{
+        opacity: .9;
     }
 
     .ant-modal-body .ant-btn-default{
+        width: 100%;
+        color:white
+    }
+    .ant-modal-body .ant-btn-default:hover{
+
+        background-color: #fb7324;
+        color:white !important
+    }
+
+    .ant-modal-body .ant-btn-primary{
+        width: 100%;
         background-color: #F1F2F3;
+        color:black;
+    }
+    .ant-modal-body .ant-btn-primary:hover{
+        background-color: #F1F2F3;
+        color:black;
+    }
+
+
+    .ant-modal-confirm-btns{
+        display:flex;
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 1rem;
+        padding-left: .4rem;
+     
+    }
+    .ant-modal-confirm-content{
+        padding-right: .5rem;
+        padding-top: .5rem
     }
     .ant-modal-body .ant-btn-default:hover {
         color:#000000
