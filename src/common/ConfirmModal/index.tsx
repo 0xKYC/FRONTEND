@@ -1,4 +1,4 @@
-import { ExclamationCircleFilled } from "@ant-design/icons";
+import { ExclamationCircleFilled, ArrowLeftOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 
 const { confirm } = Modal;
@@ -28,7 +28,7 @@ export const useConfirmModal = () => {
       okText: okText,
       closable: true,
       cancelText: cancelText,
-      // cancelButtonProps:{icon:},
+      cancelButtonProps: { icon: <ArrowLeftOutlined /> },
       async onOk() {
         await onOk();
       },

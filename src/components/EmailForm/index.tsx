@@ -5,6 +5,7 @@ import { useConfirmModal } from "../../common/ConfirmModal";
 
 import { isCompanyEmail } from "../../common/utils/email-validator/validateEmail";
 import { subscribeNewsletter } from "../../service/user/user.service";
+import { ErrorText, Flex } from "./styles";
 
 interface FormValues {
   email: string;
@@ -42,9 +43,9 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
 
   if (error) {
     return (
-      <p style={{ color: "red" }}>
+      <ErrorText>
         An error has occured. Please, refresh the page and try again.
-      </p>
+      </ErrorText>
     );
   }
 
@@ -85,7 +86,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       <Form.Item name="newsletterChecked" valuePropName="checked">
         <Checkbox>I want to receive product updates</Checkbox>
       </Form.Item>
-      <div style={{ display: "flex", width: "100%" }}>
+      <Flex>
         <Button
           type="primary"
           size="large"
@@ -104,7 +105,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         >
           Skip
         </Button>
-      </div>
+      </Flex>
     </Form>
   );
 };
