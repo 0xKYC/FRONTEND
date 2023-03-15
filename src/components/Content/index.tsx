@@ -70,7 +70,7 @@ const ContentBlock = ({
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              {verifyClicked ? (
+              {verifyClicked && address ? (
                 <Fade>
                   <Heading>Please provide your email address</Heading>
                   <Content>
