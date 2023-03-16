@@ -75,8 +75,8 @@ const ContentBlock = ({
                   <Heading>Please provide your email address</Heading>
                   <Content>
                     We collect your email address to contact you regarding
-                    critical transactional features of your user profile, it is
-                    recommended, but optional
+                    critical transactional features of your user profile, it is optional, 
+                    but recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
