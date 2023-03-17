@@ -11,7 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
-const apiRequestsToCall = 10;
+const apiRequestsToCall = 20;
 
 export const useMint = () => {
   const navigate = useNavigate();
