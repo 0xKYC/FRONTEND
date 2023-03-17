@@ -12,34 +12,36 @@ import {
   addApplicantId,
   addTxHash,
   checkIfVerified,
+  reset,
   selectIsMinting,
+  selectIsMintingActive,
   selectMintingChain,
   selectMintingWallet,
   selectVerifiedUser,
+  setMintingActive,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 
 export const useAuth = () => {
   const provider = useProvider();
-  const verified = useAppSelector(selectVerifiedUser);
+  const isVerified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
+  const isMintingActive = useAppSelector(selectIsMintingActive);
   const mintingChain = useAppSelector(selectMintingChain);
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
+
   const { address } = useAccount();
   const { chain } = useNetwork();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
-  const isMinting = Boolean(
-    address &&
-      minting &&
-      mintingChain === chain?.id &&
-      address === mintingWalletAddress
-  );
+  useEffect(() => {
+    if (!chain) return;
 
-  const isVerified = Boolean(address && verified);
+    dispatch(reset());
+  }, [chain, dispatch]);
 
   useEffect(() => {
     const handleOnfidoAuth = async (account: string) => {
@@ -116,15 +118,28 @@ export const useAuth = () => {
   }, [address, dispatch, provider, chain]);
 
   useEffect(() => {
-    if (!address) {
-      dispatch(checkIfVerified(false));
+    if (
+      minting &&
+      mintingChain === chain?.id &&
+      address === mintingWalletAddress
+    ) {
+      dispatch(setMintingActive(true));
+    } else {
+      dispatch(setMintingActive(false));
     }
-  }, [dispatch, address]);
+  }, [
+    address,
+    chain?.id,
+    minting,
+    mintingChain,
+    mintingWalletAddress,
+    dispatch,
+  ]);
 
   return {
     isVerified,
     isLoading,
     isSanctioned,
-    isMinting,
+    isMintingActive,
   };
 };

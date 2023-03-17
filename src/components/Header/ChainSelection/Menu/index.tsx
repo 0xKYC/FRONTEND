@@ -2,6 +2,7 @@ import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown } from "antd";
 import { useEffect, useState } from "react";
+
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { useErrorMessage } from "../../../../common/hooks/useErrorMessage";
 import { chains } from "../../../../connection";
@@ -11,6 +12,7 @@ import {
   NETWORK_SELECTOR_CHAINS,
   SupportedChainId,
 } from "../../../../constans/chains";
+
 import { ChainSelectorItem } from "../Item";
 import { StyledButton } from "./styles";
 

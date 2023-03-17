@@ -4,9 +4,21 @@ import { Container, StyledBox } from "./styled";
 
 import { useMint } from "./useMint";
 import { LoadingSpinner } from "../../common/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppSelector } from "../../redux/hooks";
+import { selectIsMintingActive } from "../../redux/features/user/userSlice";
 
 export const MintContent = () => {
   const { error } = useMint();
+  const navigate = useNavigate();
+  const isMintingActive = useAppSelector(selectIsMintingActive);
+
+  useEffect(() => {
+    if (!isMintingActive) {
+      navigate("/");
+    }
+  }, [isMintingActive, navigate]);
 
   return (
     <Container>

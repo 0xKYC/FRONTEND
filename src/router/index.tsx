@@ -25,9 +25,8 @@ const Router = () => {
     isVerified: verified,
     isLoading,
     isSanctioned,
-    isMinting,
+    isMintingActive,
   } = useAuth();
-
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
@@ -41,7 +40,7 @@ const Router = () => {
                 <RedirectRoute
                   verified={verified}
                   sanctioned={isSanctioned}
-                  minting={isMinting}
+                  minting={isMintingActive}
                 >
                   <Home isLoading={isLoading} />
                 </RedirectRoute>
@@ -53,7 +52,7 @@ const Router = () => {
                 <RedirectRoute
                   verified={verified}
                   sanctioned={isSanctioned}
-                  minting={isMinting}
+                  minting={isMintingActive}
                 >
                   <Home isLoading={isLoading} />
                 </RedirectRoute>

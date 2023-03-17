@@ -23,6 +23,7 @@ import { CardInfo } from "../CardInfo";
 import { useWeb3Modal } from "@web3modal/react";
 import { useState } from "react";
 import { EmailForm } from "../EmailForm";
+import { updateUserInDB } from "../../service/user/user.service";
 
 const ContentBlock = ({
   title,
@@ -41,10 +42,11 @@ const ContentBlock = ({
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
 
-  const handleOnfidoRedirect = async () => {
+  const handleOnfidoRedirect = async (email?: string) => {
     if (address && onfidoApplicantId && chain) {
       try {
         await onfidoRedirect(onfidoApplicantId, address, chain.id);
+        await updateUserInDB(address, onfidoApplicantId, email);
       } catch (error) {
         console.error(error);
       }
