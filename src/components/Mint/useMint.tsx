@@ -30,14 +30,17 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    dispatch(
-      setMinting({
-        minting: error ? false : true,
-        chainId: mintingChain ? mintingChain : chain.id,
-        walletAddress: address,
-      })
-    );
-  }, [address, chain, chain?.id, dispatch, mintingChain, navigate, error]);
+    if (error) {
+      dispatch(
+        setMinting({
+          minting: false,
+          chainId: null,
+          walletAddress: address,
+          error: error,
+        })
+      );
+    }
+  }, [address, chain, dispatch, error, navigate]);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -46,6 +49,17 @@ export const useMint = () => {
 
     if (data === "noUserError" || data?.onfidoStatus === "error") {
       return setError(true);
+    }
+
+    if (!error) {
+      dispatch(
+        setMinting({
+          minting: true,
+          chainId: mintingChain ? mintingChain : chain.id,
+          walletAddress: address,
+          error: error,
+        })
+      );
     }
 
     if (apiCalls < apiRequestsToCall) {
@@ -61,6 +75,7 @@ export const useMint = () => {
                 minting: false,
                 chainId: null,
                 walletAddress: address,
+                error: true,
               })
             );
             setError(true);
@@ -72,6 +87,7 @@ export const useMint = () => {
                 minting: false,
                 chainId: null,
                 walletAddress: address,
+                error: false,
               })
             );
 
@@ -88,7 +104,7 @@ export const useMint = () => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch, chain, data]);
+  }, [apiCalls, navigate, address, dispatch, chain, data, error, mintingChain]);
 
   return { error };
 };
