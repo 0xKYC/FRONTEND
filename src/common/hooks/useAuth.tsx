@@ -51,10 +51,8 @@ export const useAuth = () => {
       mintingChain === chain?.id &&
       address === mintingWalletAddress
     ) {
-      console.log("true");
       dispatch(setMintingActive(true));
     } else {
-      console.log("fal;se");
       dispatch(
         setMinting({
           chainId: null,
@@ -130,7 +128,6 @@ export const useAuth = () => {
       }
     };
     const auth = async () => {
-      console.log("2");
       try {
         if (address && chain) {
           setIsLoading(true);
