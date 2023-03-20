@@ -51,7 +51,6 @@ export const userSlice = createSlice({
         error: boolean;
       }>
     ) => {
-      console.log(action.payload);
       state.isMinting = action.payload.minting;
       state.mintingChain = action.payload.chainId;
       state.mintingWalletAddress = action.payload.walletAddress;

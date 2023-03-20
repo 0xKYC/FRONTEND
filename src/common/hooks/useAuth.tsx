@@ -18,6 +18,7 @@ import {
   selectMintingChain,
   selectMintingWallet,
   selectVerifiedUser,
+  setMinting,
   setMintingActive,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
@@ -42,6 +43,37 @@ export const useAuth = () => {
 
     dispatch(reset());
   }, [chain, dispatch]);
+
+  useEffect(() => {
+    if (
+      minting &&
+      !isVerified &&
+      mintingChain === chain?.id &&
+      address === mintingWalletAddress
+    ) {
+      console.log("true");
+      dispatch(setMintingActive(true));
+    } else {
+      console.log("fal;se");
+      dispatch(
+        setMinting({
+          chainId: null,
+          error: false,
+          minting: false,
+          walletAddress: "",
+        })
+      );
+      dispatch(setMintingActive(false));
+    }
+  }, [
+    address,
+    chain?.id,
+    minting,
+    mintingChain,
+    mintingWalletAddress,
+    dispatch,
+    isVerified,
+  ]);
 
   useEffect(() => {
     const handleOnfidoAuth = async (account: string) => {
@@ -98,6 +130,7 @@ export const useAuth = () => {
       }
     };
     const auth = async () => {
+      console.log("2");
       try {
         if (address && chain) {
           setIsLoading(true);
@@ -116,25 +149,6 @@ export const useAuth = () => {
 
     auth();
   }, [address, dispatch, provider, chain]);
-
-  useEffect(() => {
-    if (
-      minting &&
-      mintingChain === chain?.id &&
-      address === mintingWalletAddress
-    ) {
-      dispatch(setMintingActive(true));
-    } else {
-      dispatch(setMintingActive(false));
-    }
-  }, [
-    address,
-    chain?.id,
-    minting,
-    mintingChain,
-    mintingWalletAddress,
-    dispatch,
-  ]);
 
   return {
     isVerified,
