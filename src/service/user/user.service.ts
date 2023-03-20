@@ -11,13 +11,11 @@ export async function initUserInDB(walletAddress: WalletAddress) {
 
 export async function updateUserInDB(
   walletAddress: string,
-  onfidoApplicantId?: string,
-  email?: string | null
+  onfidoApplicantId?: string
 ) {
   const res = await api.post("user/upload", {
     walletAddress: walletAddress,
     onfidoApplicantId: onfidoApplicantId,
-    email: email,
   });
   return res.data;
 }
