@@ -21,7 +21,6 @@ import { ChainSelectionMenu } from "./ChainSelection/Menu";
 import { useWeb3Modal } from "@web3modal/react";
 
 const Header = () => {
-  console.log("renders");
   const [visible, setVisibility] = useState(false);
 
   const { open } = useWeb3Modal();
