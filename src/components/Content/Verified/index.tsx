@@ -25,6 +25,7 @@ const VerifiedContent = () => {
   const { t } = useTranslation();
   const txHash = useAppSelector(selectTxHash);
   const { chain } = useNetwork();
+
   if (!chain) return <p>Error with fetching the network</p>;
 
   const { logoUrl, label, explorer, explorerName } = getChainInfo(chain.id);
