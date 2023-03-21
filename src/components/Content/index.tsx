@@ -59,8 +59,6 @@ const ContentBlock = ({
   const handleVerify = async (event: React.MouseEvent<HTMLButtonElement>) => {
     if (address && tosAccepted) {
       setVerifyClicked(true);
-    } else if (address && !tosAccepted) {
-      alert("sign");
     } else {
       open({ route: "ConnectWallet" });
       event.currentTarget.blur();
@@ -84,8 +82,8 @@ const ContentBlock = ({
                   <Heading>Please provide your email address</Heading>
                   <Content>
                     We collect your email address to contact you regarding
-                    critical transactional features of your user profile, it is optional, 
-                    but recommended
+                    critical transactional features of your user profile, it is
+                    optional, but recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
