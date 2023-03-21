@@ -6,7 +6,7 @@ const { confirm } = Modal;
 interface Props {
   title: string;
   content: string;
-  onOk: () => Promise<void>;
+  onOk: () => void | Promise<void>;
   onCancel: () => void;
   okText: string;
   cancelText: string;

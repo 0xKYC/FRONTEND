@@ -12,6 +12,7 @@ export interface User {
   mintingChain: ChainId | null;
   mintingWalletAddress: string | null;
   isMintingActive: boolean;
+  tosAcceptedWalletAddress: string | null;
 }
 
 const initialState: User = {
@@ -22,6 +23,7 @@ const initialState: User = {
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,
+  tosAcceptedWalletAddress: null,
 };
 
 export const userSlice = createSlice({
@@ -52,7 +54,9 @@ export const userSlice = createSlice({
       state.mintingChain = action.payload.chainId;
       state.mintingWalletAddress = action.payload.walletAddress;
     },
-
+    signTos: (state, action: PayloadAction<string | null>) => {
+      state.tosAcceptedWalletAddress = action.payload;
+    },
     setMintingActive: (state, action: PayloadAction<boolean>) => {
       state.isMintingActive = action.payload;
     },
@@ -66,6 +70,7 @@ export const {
   setMinting,
   reset,
   setMintingActive,
+  signTos,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -77,5 +82,7 @@ export const selectIsMinting = (state: RootState) => state.user.isMinting;
 export const selectIsMintingActive = (state: RootState) =>
   state.user.isMintingActive;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
+export const selectTosAcceptedWallet = (state: RootState) =>
+  state.user.tosAcceptedWalletAddress;
 export const selectMintingWallet = (state: RootState) =>
   state.user.mintingWalletAddress;
