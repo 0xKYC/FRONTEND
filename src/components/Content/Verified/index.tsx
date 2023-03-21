@@ -2,7 +2,7 @@ import { Row, Col } from "antd";
 
 import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
-import { useNetwork, useSwitchNetwork } from "wagmi";
+import { useNetwork } from "wagmi";
 import { getChainInfo } from "../../../constans/chains";
 import vContent from "../../../content/VerifiedContent.json";
 import { selectTxHash } from "../../../redux/features/user/userSlice";

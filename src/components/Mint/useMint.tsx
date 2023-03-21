@@ -19,7 +19,7 @@ export const useMint = () => {
   const { address } = useAccount();
   const { chain } = useNetwork();
   const mintingChain = useAppSelector(selectMintingChain);
-
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
@@ -29,15 +29,34 @@ export const useMint = () => {
     if (!address || !chain) {
       return navigate("/");
     }
+    if (success) {
+      dispatch(
+        setMinting({
+          minting: false,
+          chainId: null,
+          walletAddress: address,
+          error: false,
+        })
+      );
+    }
+  }, [address, chain, dispatch, navigate, success]);
 
-    dispatch(
-      setMinting({
-        minting: error ? false : true,
-        chainId: mintingChain ? mintingChain : chain.id,
-        walletAddress: address,
-      })
-    );
-  }, [address, chain, chain?.id, dispatch, mintingChain, navigate, error]);
+  useEffect(() => {
+    if (!address || !chain) {
+      return navigate("/");
+    }
+
+    if (error || success) {
+      dispatch(
+        setMinting({
+          minting: false,
+          chainId: null,
+          walletAddress: address,
+          error: error,
+        })
+      );
+    }
+  }, [address, chain, dispatch, error, navigate, success]);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -46,6 +65,17 @@ export const useMint = () => {
 
     if (data === "noUserError" || data?.onfidoStatus === "error") {
       return setError(true);
+    }
+
+    if (!error) {
+      dispatch(
+        setMinting({
+          minting: true,
+          chainId: mintingChain ? mintingChain : chain.id,
+          walletAddress: address,
+          error: error,
+        })
+      );
     }
 
     if (apiCalls < apiRequestsToCall) {
@@ -61,9 +91,11 @@ export const useMint = () => {
                 minting: false,
                 chainId: null,
                 walletAddress: address,
+                error: true,
               })
             );
             setError(true);
+            setSuccess(false);
           }
           if (isVerified) {
             const user = await findUserInDB(address);
@@ -72,10 +104,12 @@ export const useMint = () => {
                 minting: false,
                 chainId: null,
                 walletAddress: address,
+                error: false,
               })
             );
 
             if (user !== "noUserError") {
+              setSuccess(true);
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHash(user.txHash));
               navigate("/profile");
@@ -88,7 +122,7 @@ export const useMint = () => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch, chain, data]);
+  }, [apiCalls, navigate, address, dispatch, chain, data, error, mintingChain]);
 
   return { error };
 };

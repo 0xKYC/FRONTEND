@@ -19,6 +19,7 @@ import {
 import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
+import { LoadingSpinner } from "../common/LoadingSpinner";
 
 const Router = () => {
   const {
@@ -29,10 +30,10 @@ const Router = () => {
   } = useAuth();
   return (
     <BrowserRouter>
-      <Suspense fallback={null}>
-        <Styles />
-        <Header />
-        <ScrollToTop />
+      <Styles />
+      <Header />
+      <ScrollToTop />
+      <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
         <div className="wave_container">
           <Routes>
             <Route

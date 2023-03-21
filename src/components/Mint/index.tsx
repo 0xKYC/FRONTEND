@@ -7,18 +7,24 @@ import { LoadingSpinner } from "../../common/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppSelector } from "../../redux/hooks";
-import { selectIsMintingActive } from "../../redux/features/user/userSlice";
+import {
+  selectIsMintingError,
+  selectMintingChain,
+} from "../../redux/features/user/userSlice";
+import { useNetwork } from "wagmi";
 
 export const MintContent = () => {
   const { error } = useMint();
   const navigate = useNavigate();
-  const isMintingActive = useAppSelector(selectIsMintingActive);
+  const mintingChain = useAppSelector(selectMintingChain);
+  const { chain } = useNetwork();
+  const isMintingError = useAppSelector(selectIsMintingError);
 
   useEffect(() => {
-    if (!isMintingActive) {
+    if (!isMintingError && mintingChain !== chain?.id) {
       navigate("/");
     }
-  }, [isMintingActive, navigate]);
+  }, [navigate, chain?.id, mintingChain, isMintingError]);
 
   return (
     <Container>
