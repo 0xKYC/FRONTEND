@@ -25,16 +25,17 @@ import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 
 export const useAuth = () => {
   const provider = useProvider();
-  const isVerified = useAppSelector(selectVerifiedUser);
+  const verified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
   const isMintingActive = useAppSelector(selectIsMintingActive);
   const mintingChain = useAppSelector(selectMintingChain);
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
 
-  const { address, isDisconnected } = useAccount();
+  const { address, isDisconnected, isConnected } = useAccount();
   const { chain } = useNetwork();
 
+  const isVerified = isConnected && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
