@@ -14,7 +14,10 @@ import { SvgIcon } from "../../common/SvgIcon";
 import { onfidoRedirect } from "../../service/onfido/onfido.service";
 import { useAppSelector } from "../../redux/hooks";
 import { useAccount, useNetwork } from "wagmi";
-import { selectApplicantId } from "../../redux/features/user/userSlice";
+import {
+  selectApplicantId,
+  selectTosAcceptedWallet,
+} from "../../redux/features/user/userSlice";
 
 import { withTranslation } from "react-i18next";
 
@@ -24,6 +27,7 @@ import { useWeb3Modal } from "@web3modal/react";
 import { useState } from "react";
 import { EmailForm } from "../EmailForm";
 import { updateUserInDB } from "../../service/user/user.service";
+import { TosModal } from "../TosModal";
 
 const ContentBlock = ({
   title,
@@ -37,7 +41,7 @@ const ContentBlock = ({
 }: ContentBlockProps) => {
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const { address } = useAccount();
-
+  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const { open } = useWeb3Modal();
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
@@ -53,7 +57,7 @@ const ContentBlock = ({
     }
   };
   const handleVerify = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (address) {
+    if (address && tosAccepted) {
       setVerifyClicked(true);
     } else {
       open({ route: "ConnectWallet" });
@@ -68,6 +72,7 @@ const ContentBlock = ({
 
   return (
     <RightBlockContainer>
+      <TosModal />
       <Fade direction="right">
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={24} xs={24}>
@@ -77,8 +82,8 @@ const ContentBlock = ({
                   <Heading>Please provide your email address</Heading>
                   <Content>
                     We collect your email address to contact you regarding
-                    critical transactional features of your user profile, it is optional, 
-                    but recommended
+                    critical transactional features of your user profile, it is
+                    optional, but recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>

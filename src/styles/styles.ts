@@ -176,4 +176,8 @@ export const Styles = createGlobalStyle`
 .wave_container{
     position:relative;
 }
+
+.ant-modal-footer .ant-btn {
+    width:8rem
+}
 `;
