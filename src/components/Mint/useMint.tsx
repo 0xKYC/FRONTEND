@@ -19,7 +19,7 @@ export const useMint = () => {
   const { address } = useAccount();
   const { chain } = useNetwork();
   const mintingChain = useAppSelector(selectMintingChain);
-
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
@@ -29,8 +29,24 @@ export const useMint = () => {
     if (!address || !chain) {
       return navigate("/");
     }
+    if (success) {
+      dispatch(
+        setMinting({
+          minting: false,
+          chainId: null,
+          walletAddress: address,
+          error: false,
+        })
+      );
+    }
+  }, [address, chain, dispatch, navigate, success]);
 
-    if (error) {
+  useEffect(() => {
+    if (!address || !chain) {
+      return navigate("/");
+    }
+
+    if (error || success) {
       dispatch(
         setMinting({
           minting: false,
@@ -40,7 +56,7 @@ export const useMint = () => {
         })
       );
     }
-  }, [address, chain, dispatch, error, navigate]);
+  }, [address, chain, dispatch, error, navigate, success]);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -79,6 +95,7 @@ export const useMint = () => {
               })
             );
             setError(true);
+            setSuccess(false);
           }
           if (isVerified) {
             const user = await findUserInDB(address);
@@ -92,6 +109,7 @@ export const useMint = () => {
             );
 
             if (user !== "noUserError") {
+              setSuccess(true);
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHash(user.txHash));
               navigate("/profile");

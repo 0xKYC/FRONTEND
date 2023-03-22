@@ -33,7 +33,8 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const showModal = () => {
     showConfirm({
       title: "Are you sure you want to skip?",
-      content: "You won’t be informed about important updates in your account",
+      content:
+        "You won’t be informed about important updates in your account, including verification expiration",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",
