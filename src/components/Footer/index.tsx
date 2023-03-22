@@ -46,7 +46,7 @@ const Footer = ({ t }: any) => {
               <Language>{t("Contact")}</Language>
               <Para>{t(`Do you have any questions?`)}</Para>
 
-              <a href="mailto:@gmail.com">
+              <a href="mailto:support@0xkyc.id">
                 <Chat>{t(`Send Us an Email`)}</Chat>
               </a>
             </Col>

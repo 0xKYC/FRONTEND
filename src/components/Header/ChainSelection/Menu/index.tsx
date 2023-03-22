@@ -28,8 +28,8 @@ export const ChainSelectionMenu = () => {
   const { chain } = useNetwork();
   const { contextHolder } = useErrorMessage(error);
 
-  const onSelectChain = (targetChain: ChainId) => {
-    switchNetwork?.(targetChain);
+  const onSelectChain = (targetChain: ChainId, active: boolean) => {
+    if (!active) switchNetwork?.(targetChain);
   };
 
   useEffect(() => {

@@ -26,9 +26,12 @@ export const useSignTerms = () => {
   };
 
   useEffect(() => {
-    fetch("terms-of-service.md")
-      .then((res) => res.text())
-      .then((text) => setMessageContent(text));
+    import("../../terms-of-service.md").then((res) =>
+      fetch(res.default)
+        .then((response) => response.text())
+        .then((response) => setMessageContent(response))
+        .catch((err) => console.log(err))
+    );
   }, []);
 
   const { signMessage, isLoading } = useSignMessage({
