@@ -32,17 +32,15 @@ export const useAuth = () => {
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
 
-  const { address } = useAccount();
+  const { address, isDisconnected } = useAccount();
   const { chain } = useNetwork();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
   useEffect(() => {
-    if (!chain) return;
-
-    dispatch(reset());
-  }, [chain, dispatch]);
+    if (isDisconnected) dispatch(reset());
+  }, [isDisconnected, dispatch]);
 
   useEffect(() => {
     if (
