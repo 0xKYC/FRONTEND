@@ -6,7 +6,7 @@ import { ApproveText, Container, Label, Logo, Status } from "./styles";
 
 interface Props {
   targetChain: SupportedChainId;
-  onSelectChain: (targetChain: SupportedChainId) => void;
+  onSelectChain: (targetChain: SupportedChainId, active: boolean) => void;
   isPending: boolean;
 }
 export const ChainSelectorItem = ({
@@ -20,7 +20,7 @@ export const ChainSelectorItem = ({
   const { label, logoUrl } = getChainInfo(targetChain);
 
   return (
-    <Container onClick={() => onSelectChain(targetChain)}>
+    <Container onClick={() => onSelectChain(targetChain, active)}>
       <Logo src={logoUrl} alt={label} />
       <Label>{label}</Label>
       {isPending && <ApproveText>Approve in wallet</ApproveText>}
