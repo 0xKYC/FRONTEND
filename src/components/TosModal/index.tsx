@@ -1,6 +1,6 @@
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useSignTerms } from "../../common/hooks/useSignTerms";
+import { useSignTerms } from "./useSignTerms";
 import { Box, StyledInfo, StyledModal, StyledP, Title } from "./styles";
 
 export const TosModal = () => {
