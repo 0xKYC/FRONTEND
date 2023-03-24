@@ -12,7 +12,7 @@ interface FormValues {
   newsletterChecked: boolean;
 }
 interface Props {
-  handleOnfidoRedirect: () => Promise<void>;
+  handleOnfidoRedirect: (email?: string) => Promise<void>;
 }
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
@@ -23,7 +23,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       if (values.newsletterChecked) {
         await subscribeNewsletter(values.email);
       }
-      await handleOnfidoRedirect();
+      await handleOnfidoRedirect(values.email);
     } catch (error) {
       console.error(error);
       setError(true);
@@ -33,7 +33,8 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const showModal = () => {
     showConfirm({
       title: "Are you sure you want to skip?",
-      content: "You won’t be informed about important updates in your account",
+      content:
+        "You won’t be informed about important updates in your account, including verification expiration",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",

@@ -2,7 +2,7 @@ import { Spin } from "antd";
 
 interface Props {
   tip: string;
-  size?: "large" | "small" | "default" | undefined;
+  size?: "large" | "small" | "default";
   height?: string;
   width?: string;
 }

@@ -11,13 +11,15 @@ export async function onfidoRedirect(
   applicantId: string,
   walletAddress: string,
   chainId: ChainId,
-  redirectUrl?: string | null
+  redirectUrl?: string | null,
+  email?: string
 ) {
   const res = await api.post<string>("onfido/redirect", {
     applicantId: applicantId,
     walletAddress: walletAddress,
     chainId: chainId,
     redirectUrl: redirectUrl ? redirectUrl : window.location.href,
+    email: email,
   });
   window.location.replace(res.data);
 }

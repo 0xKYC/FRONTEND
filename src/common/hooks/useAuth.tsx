@@ -12,10 +12,14 @@ import {
   addApplicantId,
   addTxHash,
   checkIfVerified,
+  reset,
   selectIsMinting,
+  selectIsMintingActive,
   selectMintingChain,
   selectMintingWallet,
   selectVerifiedUser,
+  setMinting,
+  setMintingActive,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 
@@ -23,23 +27,50 @@ export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
   const minting = useAppSelector(selectIsMinting);
+  const isMintingActive = useAppSelector(selectIsMintingActive);
   const mintingChain = useAppSelector(selectMintingChain);
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
-  const { address } = useAccount();
+
+  const { address, isDisconnected, isConnected } = useAccount();
   const { chain } = useNetwork();
 
+  const isVerified = isConnected && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
-  const isMinting = Boolean(
-    address &&
+  useEffect(() => {
+    if (isDisconnected) dispatch(reset());
+  }, [isDisconnected, dispatch]);
+
+  useEffect(() => {
+    if (
       minting &&
+      !isVerified &&
       mintingChain === chain?.id &&
       address === mintingWalletAddress
-  );
-
-  const isVerified = Boolean(address && verified);
+    ) {
+      dispatch(setMintingActive(true));
+    } else {
+      dispatch(
+        setMinting({
+          chainId: null,
+          error: false,
+          minting: false,
+          walletAddress: "",
+        })
+      );
+      dispatch(setMintingActive(false));
+    }
+  }, [
+    address,
+    chain?.id,
+    minting,
+    mintingChain,
+    mintingWalletAddress,
+    dispatch,
+    isVerified,
+  ]);
 
   useEffect(() => {
     const handleOnfidoAuth = async (account: string) => {
@@ -115,16 +146,10 @@ export const useAuth = () => {
     auth();
   }, [address, dispatch, provider, chain]);
 
-  useEffect(() => {
-    if (!address) {
-      dispatch(checkIfVerified(false));
-    }
-  }, [dispatch, address]);
-
   return {
     isVerified,
     isLoading,
     isSanctioned,
-    isMinting,
+    isMintingActive,
   };
 };

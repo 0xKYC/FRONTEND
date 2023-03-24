@@ -38,6 +38,6 @@ export const servicesData = [
       "An easy to use, all-in-one platform that helps you run your DAO. Easily manage contributors, track your finances, and engage with your community.",
     tags: ["DeFi"],
     href: "https://www.motherboard.fi",
-    img: "/img/mthrbrd.webp",
+    img: "/img/mthrbrd-logo.png",
   },
 ];
