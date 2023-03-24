@@ -5,12 +5,13 @@ import {
   checkSanctionedWallet,
   findUserInDB,
   initUserInDB,
-  updateUserInDB,
+  createUserInDB,
+  editUserInDB,
 } from "../../service/user/user.service";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addApplicantId,
-  addTxHash,
+  addTxHashes,
   checkIfVerified,
   reset,
   selectIsMinting,
@@ -20,9 +21,10 @@ import {
   selectVerifiedUser,
   setMinting,
   setMintingActive,
+  signTos,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
-
+import tos from "../../content/TermsOfService.json";
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
@@ -80,20 +82,31 @@ export const useAuth = () => {
         if (user === "noUserError") {
           await initUserInDB(account);
           const newApplicant = await onfidoCreateApplicant();
-          await updateUserInDB(account, newApplicant.id);
-
+          await createUserInDB({
+            walletAddress: account,
+            onfidoApplicantId: newApplicant.id,
+          });
           dispatch(addApplicantId(newApplicant.id));
         }
 
         if (user !== "noUserError" && user.onfidoApplicantId === null) {
+          console.log(user);
           const newApplicant = await onfidoCreateApplicant();
-          await updateUserInDB(account, newApplicant.id);
-
+          await editUserInDB({
+            walletAddress: account,
+            onfidoApplicantId: newApplicant.id,
+          });
           dispatch(addApplicantId(newApplicant.id));
+          if (user.tosVersion !== tos.version) {
+            dispatch(signTos(null));
+          }
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
-          dispatch(addApplicantId(user.onfidoApplicantId));
+          if (user.tosVersion !== tos.version) {
+            dispatch(signTos(null));
+          }
 
-          dispatch(addTxHash(user.txHash));
+          dispatch(addApplicantId(user.onfidoApplicantId));
+          dispatch(addTxHashes(user.txHashes));
         }
       } catch (err) {
         setIsLoading(false);
@@ -116,7 +129,7 @@ export const useAuth = () => {
           const user = await findUserInDB(address);
           if (user !== "noUserError") {
             dispatch(checkIfVerified(isVerified));
-            dispatch(addTxHash(user.txHash));
+            dispatch(addTxHashes(user.txHashes));
           }
         } else {
           dispatch(checkIfVerified(false));

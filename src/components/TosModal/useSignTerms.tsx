@@ -7,12 +7,13 @@ import {
 } from "../../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import tos from "../../content/TermsOfService.json";
+import { editUserInDB } from "../../service/user/user.service";
 
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
   const acceptedWallet = useAppSelector(selectTosAcceptedWallet);
-  const { termsOfService } = tos;
+  const { termsOfService, version } = tos;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
@@ -26,20 +27,32 @@ export const useSignTerms = () => {
     dispatch(reset());
   };
 
-  const { signMessage, isLoading } = useSignMessage({
+  const { isLoading, signMessageAsync } = useSignMessage({
     message: termsOfService,
-    onSuccess() {
+    async onSuccess(data) {
       setIsModalOpen(false);
       dispatch(signTos(address || null));
+
+      const user = {
+        walletAddress: address || "",
+        signature: data,
+        tosVersion: version,
+        time_stamp: new Date().toISOString(),
+      };
+      try {
+        await editUserInDB(user);
+      } catch (err) {
+        closeModal();
+      }
     },
     onError() {
       closeModal();
     },
   });
 
-  const sign = useCallback(() => {
-    signMessage();
-  }, [signMessage]);
+  const sign = useCallback(async () => {
+    await signMessageAsync();
+  }, [signMessageAsync]);
 
   useEffect(() => {
     if (isConnected && acceptedWallet !== address) {

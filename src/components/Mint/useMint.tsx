@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
 import { useFetchUser } from "../../common/hooks/useFetchUser";
 import {
-  addTxHash,
+  addTxHashes,
   checkIfVerified,
   selectMintingChain,
   setMinting,
@@ -111,7 +111,7 @@ export const useMint = () => {
             if (user !== "noUserError") {
               setSuccess(true);
               dispatch(checkIfVerified(isVerified));
-              dispatch(addTxHash(user.txHash));
+              dispatch(addTxHashes(user.txHashes));
               navigate("/profile");
             }
           }

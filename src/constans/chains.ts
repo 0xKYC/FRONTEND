@@ -22,13 +22,6 @@ export enum SupportedChainId {
 }
 
 export const CHAIN_INFO = {
-  [SupportedChainId.GOERLI]: {
-    explorer: "https://goerli.etherscan.io/tx/",
-    explorerName: "Etherscan",
-    label: "Ethereum Goerli",
-    logoUrl: "/img/ethereum-logo.png",
-    nativeCurrency: { name: "Görli Ether", symbol: "görETH", decimals: 18 },
-  },
   [SupportedChainId.POLYGON_MUMBAI]: {
     bridge: "https://wallet.polygon.technology/bridge",
     docs: "https://polygon.io/",
@@ -42,6 +35,14 @@ export const CHAIN_INFO = {
       decimals: 18,
     },
   },
+  [SupportedChainId.GOERLI]: {
+    explorer: "https://goerli.etherscan.io/tx/",
+    explorerName: "Etherscan",
+    label: "Ethereum Goerli",
+    logoUrl: "/img/ethereum-logo.png",
+    nativeCurrency: { name: "Görli Ether", symbol: "görETH", decimals: 18 },
+  },
+
   [SupportedChainId.SCROLL_ALPHA]: {
     explorer: "https://blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
@@ -63,8 +64,8 @@ export function getChainInfo(chainId: ChainId): BaseChainInfo {
   return CHAIN_INFO[chainId] ?? undefined;
 }
 export const NETWORK_SELECTOR_CHAINS = [
-  SupportedChainId.GOERLI,
   SupportedChainId.POLYGON_MUMBAI,
+  SupportedChainId.GOERLI,
   SupportedChainId.SCROLL_ALPHA,
 ];
 
