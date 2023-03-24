@@ -5,7 +5,7 @@ import { useTranslation, withTranslation } from "react-i18next";
 import { useNetwork } from "wagmi";
 import { getChainInfo } from "../../../constans/chains";
 import vContent from "../../../content/VerifiedContent.json";
-import { selectTxHash } from "../../../redux/features/user/userSlice";
+import { selectTxHashes } from "../../../redux/features/user/userSlice";
 import { useAppSelector } from "../../../redux/hooks";
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";
@@ -20,13 +20,16 @@ import {
   ContentWrapper,
   Flex,
 } from "./styles";
+import { getHash } from "./utils";
 
 const VerifiedContent = () => {
   const { t } = useTranslation();
-  const txHash = useAppSelector(selectTxHash);
+  const txHashes = useAppSelector(selectTxHashes);
   const { chain } = useNetwork();
 
   if (!chain) return <p>Error with fetching the network</p>;
+
+  const hash = getHash(txHashes, chain.id);
 
   const { logoUrl, label, explorer, explorerName } = getChainInfo(chain.id);
 
@@ -55,7 +58,7 @@ const VerifiedContent = () => {
                 })}
                 <StyledLink
                   chainId={chain.id}
-                  href={explorer + txHash}
+                  href={explorer + hash}
                   target="_blank"
                   rel="noreferrer"
                 >
