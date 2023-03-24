@@ -90,7 +90,6 @@ export const useAuth = () => {
         }
 
         if (user !== "noUserError" && user.onfidoApplicantId === null) {
-          console.log(user);
           const newApplicant = await onfidoCreateApplicant();
           await editUserInDB({
             walletAddress: account,
