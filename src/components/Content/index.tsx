@@ -67,10 +67,10 @@ const ContentBlock = ({
 
   const header = address ? verifyTitle : title;
   const contentText = address ? verifyText : content;
-
   return (
     <RightBlockContainer>
-      <TosModal />
+      {tosAccepted !== address && <TosModal />}
+
       <Fade direction="right">
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={24} xs={24}>

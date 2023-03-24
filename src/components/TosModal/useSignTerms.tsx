@@ -6,12 +6,13 @@ import {
   signTos,
 } from "../../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import tos from "../../content/TermsOfService.json";
 
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
   const acceptedWallet = useAppSelector(selectTosAcceptedWallet);
-  const [messageContent, setMessageContent] = useState("");
+  const { termsOfService } = tos;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
@@ -25,17 +26,8 @@ export const useSignTerms = () => {
     dispatch(reset());
   };
 
-  useEffect(() => {
-    import("../../terms-of-service.md").then((res) =>
-      fetch(res.default)
-        .then((response) => response.text())
-        .then((response) => setMessageContent(response))
-        .catch((err) => console.log(err))
-    );
-  }, []);
-
   const { signMessage, isLoading } = useSignMessage({
-    message: messageContent,
+    message: termsOfService,
     onSuccess() {
       setIsModalOpen(false);
       dispatch(signTos(address || null));
@@ -57,5 +49,5 @@ export const useSignTerms = () => {
     }
   }, [isConnected, acceptedWallet, address]);
 
-  return { showModal, closeModal, sign, isModalOpen, isLoading };
+  return { closeModal, sign, isModalOpen, isLoading };
 };
