@@ -15,9 +15,7 @@ export interface User {
 export type txHash = {
   [k in ChainId]?: string;
 };
-const hs: txHash = {
-  "5": "123",
-};
+
 export type OnfidoStatus = "error" | "abandoned" | "approved";
 interface Proof {
   scheme: string;
