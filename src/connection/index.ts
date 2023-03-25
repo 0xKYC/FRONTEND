@@ -9,7 +9,7 @@ import { goerli, polygonMumbai } from "wagmi/chains";
 import { scrollAlpha } from "../constans/chains";
 
 export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
-export const chains = [goerli, polygonMumbai, scrollAlpha];
+export const chains = [polygonMumbai, goerli, scrollAlpha];
 
 const { provider } = configureChains(chains, [
   walletConnectProvider({

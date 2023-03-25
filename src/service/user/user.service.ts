@@ -9,14 +9,19 @@ export async function initUserInDB(walletAddress: WalletAddress) {
   return res.data;
 }
 
-export async function updateUserInDB(
-  walletAddress: string,
-  onfidoApplicantId?: string
-) {
-  const res = await api.post("user/upload", {
-    walletAddress: walletAddress,
-    onfidoApplicantId: onfidoApplicantId,
-  });
+type UserUpdate = {
+  walletAddress: WalletAddress;
+  onfidoApplicantId?: string;
+  signature?: string;
+  tosVersion?: string;
+  time_stamp?: string;
+};
+export async function createUserInDB(user: UserUpdate) {
+  const res = await api.post<User>("user/upload", user);
+  return res.data;
+}
+export async function editUserInDB(user: UserUpdate) {
+  const res = await api.post<User | "User not found">("user/update", user);
   return res.data;
 }
 

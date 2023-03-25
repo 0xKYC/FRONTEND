@@ -1,11 +1,21 @@
+import { ChainId } from "../../constans/chains";
+
 export interface User {
   walletAddress: string;
   onfidoApplicantId: string;
   onfidoResponse: null;
   onfidoStatus: OnfidoStatus;
   proof: Proof;
-  txHash: string;
+  txHashes: txHash;
+  signature?: string;
+  tosVersion?: string;
+  time_stamp?: string;
 }
+
+export type txHash = {
+  [k in ChainId]?: string;
+};
+
 export type OnfidoStatus = "error" | "abandoned" | "approved";
 interface Proof {
   scheme: string;

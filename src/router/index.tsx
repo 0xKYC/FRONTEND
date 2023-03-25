@@ -28,6 +28,7 @@ const Router = () => {
     isSanctioned,
     isMintingActive,
   } = useAuth();
+
   return (
     <BrowserRouter>
       <Styles />

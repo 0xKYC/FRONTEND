@@ -2,12 +2,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { ChainId } from "../../../constans/chains";
+import { txHash } from "../../../service/user/types";
 
 // isMinting indicate if user's token is minting, isMintingActive indicate if user is on the network of his minting token
 export interface User {
   applicantId: string | null;
   verified: boolean;
-  txHash: string | null;
+  txHashes: txHash;
   isMinting: boolean;
   mintingChain: ChainId | null;
   mintingWalletAddress: string | null;
@@ -19,7 +20,7 @@ export interface User {
 const initialState: User = {
   applicantId: "",
   verified: false,
-  txHash: null,
+  txHashes: {},
   isMinting: false,
   mintingChain: null,
   mintingWalletAddress: null,
@@ -41,8 +42,8 @@ export const userSlice = createSlice({
     checkIfVerified: (state, action: PayloadAction<boolean>) => {
       state.verified = action.payload;
     },
-    addTxHash: (state, action: PayloadAction<string | null>) => {
-      state.txHash = action.payload;
+    addTxHashes: (state, action: PayloadAction<txHash>) => {
+      state.txHashes = action.payload;
     },
     setMinting: (
       state,
@@ -70,7 +71,7 @@ export const userSlice = createSlice({
 export const {
   addApplicantId,
   checkIfVerified,
-  addTxHash,
+  addTxHashes,
   setMinting,
   reset,
   setMintingActive,
@@ -81,7 +82,7 @@ export default userSlice.reducer;
 
 export const selectApplicantId = (state: RootState) => state.user.applicantId;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
-export const selectTxHash = (state: RootState) => state.user.txHash;
+export const selectTxHashes = (state: RootState) => state.user.txHashes;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
 export const selectIsMintingError = (state: RootState) =>
   state.user.isMintingError;
