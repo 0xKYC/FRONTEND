@@ -66,12 +66,18 @@ const Footer = ({ t }: any) => {
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Legal")}</Title>
-              <Large left="true" to="/privacy-policy">
-                {t("Privacy Policy")}
-              </Large>
+
               <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
               </Large>
+
+              <StyledLink
+                href="https://0xkyc.id/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("Privacy Policy")}
+              </StyledLink>
             </Col>
           </Row>
         </Container>

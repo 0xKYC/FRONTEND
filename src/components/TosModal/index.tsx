@@ -18,14 +18,18 @@ export const TosModal = () => {
         <Title>Welcome to 0xKYC </Title>
 
         <StyledP>
-          By connecting your wallet and using 0xKYC, you agree to our{" "}
+          By connecting your wallet and using 0xKYC, you consent to our{" "}
           <Link to="terms-of-service" target="_blank" rel="noopener noreferrer">
             Terms of Service{" "}
           </Link>
           and{" "}
-          <Link to="privacy-policy" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://0xkyc.id/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Privacy Policy
-          </Link>
+          </a>
           .
         </StyledP>
 
