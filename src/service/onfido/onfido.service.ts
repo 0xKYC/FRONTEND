@@ -21,6 +21,7 @@ export async function onfidoRedirect(
     redirectUrl: redirectUrl ? redirectUrl : window.location.href,
     email: email || "",
   });
+
   window.location.replace(res.data);
 }
 
