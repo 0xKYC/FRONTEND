@@ -87,6 +87,12 @@ export const useAuth = () => {
             onfidoApplicantId: newApplicant.id,
           });
           dispatch(addApplicantId(newApplicant.id));
+        } else {
+          if (user.tosVersion !== tos.version) {
+            dispatch(signTos(false));
+          } else {
+            dispatch(signTos(true));
+          }
         }
 
         if (user !== "noUserError" && user.onfidoApplicantId === null) {
@@ -96,14 +102,7 @@ export const useAuth = () => {
             onfidoApplicantId: newApplicant.id,
           });
           dispatch(addApplicantId(newApplicant.id));
-          if (user.tosVersion !== tos.version) {
-            dispatch(signTos(null));
-          }
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
-          if (user.tosVersion !== tos.version) {
-            dispatch(signTos(null));
-          }
-
           dispatch(addApplicantId(user.onfidoApplicantId));
           dispatch(addTxHashes(user.txHashes));
         }

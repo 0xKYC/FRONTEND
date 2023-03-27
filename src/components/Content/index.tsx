@@ -48,7 +48,13 @@ const ContentBlock = ({
   const handleOnfidoRedirect = async (email?: string) => {
     if (address && onfidoApplicantId && chain) {
       try {
-        await onfidoRedirect(onfidoApplicantId, address, chain.id, window.location.href, email);
+        await onfidoRedirect(
+          onfidoApplicantId,
+          address,
+          chain.id,
+          window.location.href,
+          email
+        );
       } catch (error) {
         console.error(error);
       }
@@ -69,7 +75,7 @@ const ContentBlock = ({
   const contentText = address ? verifyText : content;
   return (
     <RightBlockContainer>
-      {tosAccepted !== address && <TosModal />}
+      {!tosAccepted && <TosModal />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle" id={id}>
