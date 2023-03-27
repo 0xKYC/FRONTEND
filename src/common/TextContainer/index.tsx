@@ -8,7 +8,7 @@ const TextContainer = ({ text, title }: Props) => {
   return (
     <StyledContainer>
       <StyledTitle>{title}</StyledTitle>
-      <StyledText>&emsp; &emsp; &emsp; &emsp;{text}</StyledText>
+      <StyledText> &emsp; &emsp; &emsp;{text}</StyledText>
     </StyledContainer>
   );
 };

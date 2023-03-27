@@ -13,7 +13,7 @@ export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
   const acceptedWallet = useAppSelector(selectTosAcceptedWallet);
-  const { termsOfService, version } = tos;
+  const { version, walletContent } = tos;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
@@ -28,7 +28,7 @@ export const useSignTerms = () => {
   };
 
   const { isLoading, signMessageAsync } = useSignMessage({
-    message: termsOfService,
+    message: walletContent,
     async onSuccess(data) {
       setIsModalOpen(false);
       dispatch(signTos(address || null));
