@@ -19,7 +19,7 @@ export async function onfidoRedirect(
     walletAddress: walletAddress,
     chainId: chainId,
     redirectUrl: redirectUrl ? redirectUrl : window.location.href,
-    email: email,
+    email: email || "",
   });
   window.location.replace(res.data);
 }

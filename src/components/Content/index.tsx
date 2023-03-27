@@ -48,7 +48,7 @@ const ContentBlock = ({
   const handleOnfidoRedirect = async (email?: string) => {
     if (address && onfidoApplicantId && chain) {
       try {
-        await onfidoRedirect(onfidoApplicantId, address, chain.id, email);
+        await onfidoRedirect(onfidoApplicantId, address, chain.id, window.location.href, email);
       } catch (error) {
         console.error(error);
       }
