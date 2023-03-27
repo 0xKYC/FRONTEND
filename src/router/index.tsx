@@ -10,7 +10,6 @@ import {
   About,
   Home,
   Profile,
-  PrivacyPolicy,
   TermsOfService,
   Wave,
   Mint,
@@ -78,7 +77,6 @@ const Router = () => {
               path="/mint"
             />
             <Route element={<About />} path="/about" />
-            <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<Error />} path="/error" />
           </Routes>

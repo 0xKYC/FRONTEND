@@ -1,8 +1,8 @@
 import TextContainer from "../../common/TextContainer";
-import lorem from "../../content/LoremIpsum.json";
+import tos from "../../content/TermsOfService.json";
 
 const TermsOfService = () => {
-  const { text } = lorem;
-  return <TextContainer text={text} title="0xKYC Terms Of Service" />;
+  const { termsOfService } = tos;
+  return <TextContainer text={termsOfService} title="0xKYC Terms Of Service" />;
 };
 export default TermsOfService;
