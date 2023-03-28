@@ -61,7 +61,7 @@ const Footer = ({ t }: any) => {
                 target="_blank"
                 rel="noopener"
               >
-                {t("Documentation")}
+                {t("Documentation")} &#8618;
               </StyledLink>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
@@ -76,7 +76,7 @@ const Footer = ({ t }: any) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t("Privacy Policy")}
+                {t("Privacy Policy")} &#8618;
               </StyledLink>
             </Col>
           </Row>
@@ -95,6 +95,7 @@ const Footer = ({ t }: any) => {
               </LogoContainer>
             </NavLink>
             <FooterContainer>
+              <SocialLink href="https://0xkyc.id" src="internet.svg" />
               <SocialLink href="https://github.com/0xKYC" src="github.svg" />
               <SocialLink
                 href="https://twitter.com/0xkycinc"
