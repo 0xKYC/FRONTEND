@@ -12,7 +12,7 @@ import { editUserInDB } from "../../service/user/user.service";
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
-  const acceptedWallet = useAppSelector(selectTosAcceptedWallet);
+  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const { version, walletContent } = tos;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
@@ -23,7 +23,7 @@ export const useSignTerms = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     disconnect();
-    dispatch(signTos(null));
+    dispatch(signTos(false));
     dispatch(reset());
   };
 
@@ -31,7 +31,7 @@ export const useSignTerms = () => {
     message: walletContent,
     async onSuccess(data) {
       setIsModalOpen(false);
-      dispatch(signTos(address || null));
+      dispatch(signTos(true));
 
       const user = {
         walletAddress: address || "",
@@ -55,12 +55,12 @@ export const useSignTerms = () => {
   }, [signMessageAsync]);
 
   useEffect(() => {
-    if (isConnected && acceptedWallet !== address) {
+    if (isConnected && !tosAccepted) {
       showModal();
     } else {
       setIsModalOpen(false);
     }
-  }, [isConnected, acceptedWallet, address]);
+  }, [isConnected, address, tosAccepted]);
 
   return { closeModal, sign, isModalOpen, isLoading };
 };
