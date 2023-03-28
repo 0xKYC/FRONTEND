@@ -64,7 +64,17 @@ export const useMint = () => {
     }
 
     if (data === "noUserError" || data?.onfidoStatus === "error") {
-      return setError(true);
+      navigate("/error");
+      setError(true);
+      dispatch(
+        setMinting({
+          minting: false,
+          chainId: null,
+          walletAddress: address,
+          error: true,
+        })
+      );
+      return;
     }
 
     if (!error) {
