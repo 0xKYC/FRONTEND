@@ -19,7 +19,6 @@ import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import { LoadingSpinner } from "../common/LoadingSpinner";
-import { WalletConnectionModal } from "../components/WalletModal";
 
 const Router = () => {
   const {
@@ -84,7 +83,6 @@ const Router = () => {
           <Wave />
         </div>
         <Footer />
-        <WalletConnectionModal />
       </Suspense>
     </BrowserRouter>
   );
