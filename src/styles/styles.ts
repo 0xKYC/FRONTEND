@@ -111,7 +111,12 @@ export const Styles = createGlobalStyle`
     .ant-modal-body .ant-btn:hover{
         opacity: .9;
     }
-
+    .ant-modal {
+        padding-bottom:0
+    }
+    .ant-modal-close-x{
+        font-size: 24px !important;
+    }
     .ant-modal-body .ant-btn-default{
         width: 100%;
         color:white
@@ -181,5 +186,9 @@ export const Styles = createGlobalStyle`
 
 .ant-modal-footer .ant-btn {
     width:8rem
+}
+
+.ant-modal-content { 
+    height: 100%;
 }
 `;
