@@ -60,8 +60,16 @@ export const CHAIN_IDS = [
 
 export type ChainId = typeof CHAIN_IDS[number];
 
-export function getChainInfo(chainId: ChainId): BaseChainInfo {
-  return CHAIN_INFO[chainId] ?? undefined;
+export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
+  if (typeof chainId === "undefined") {
+    return CHAIN_INFO[SupportedChainId.POLYGON_MUMBAI];
+  }
+
+  if (CHAIN_IDS.includes(chainId)) {
+    return CHAIN_INFO[chainId];
+  } else {
+    return CHAIN_INFO[SupportedChainId.POLYGON_MUMBAI];
+  }
 }
 export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON_MUMBAI,

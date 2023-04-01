@@ -1,7 +1,7 @@
 import {
   selectIsModalOpen,
   toggleModal,
-} from "../../../redux/features/wallet-modal/walletSlice";
+} from "../../../redux/features/network/networkSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Options } from "../Options";
 import { StyledModal, Text } from "./styles";

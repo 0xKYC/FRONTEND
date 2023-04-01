@@ -20,7 +20,7 @@ import { withTranslation } from "react-i18next";
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
 
 import { useAppDispatch } from "../../redux/hooks";
-import { toggleModal } from "../../redux/features/wallet-modal/walletSlice";
+import { toggleModal } from "../../redux/features/network/networkSlice";
 
 const Header = () => {
   const [visible, setVisibility] = useState(false);

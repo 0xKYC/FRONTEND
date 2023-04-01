@@ -26,7 +26,7 @@ import { CardInfo } from "../CardInfo";
 import { useState } from "react";
 import { EmailForm } from "../EmailForm";
 import { TosModal } from "../TosModal";
-import { toggleModal } from "../../redux/features/wallet-modal/walletSlice";
+import { toggleModal } from "../../redux/features/network/networkSlice";
 
 const ContentBlock = ({
   title,
