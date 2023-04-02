@@ -1,4 +1,4 @@
-import { useProvider, useAccount, useNetwork } from "wagmi";
+import { useProvider, useAccount, useNetwork, useDisconnect } from "wagmi";
 import { useEffect, useState } from "react";
 import {
   checkForSBT,
@@ -25,6 +25,7 @@ import {
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 import tos from "../../content/TermsOfService.json";
+import { CHAIN_IDS } from "../../constans/chains";
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
@@ -36,10 +37,19 @@ export const useAuth = () => {
 
   const { address, isDisconnected, isConnected } = useAccount();
   const { chain } = useNetwork();
-
+  const { disconnect } = useDisconnect();
   const isVerified = isConnected && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
+
+  useEffect(() => {
+    if (!chain) return;
+
+    if (!CHAIN_IDS.includes(chain.id)) {
+      dispatch(reset());
+      disconnect();
+    }
+  }, [chain, disconnect, dispatch]);
 
   useEffect(() => {
     if (isDisconnected) dispatch(reset());

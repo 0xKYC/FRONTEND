@@ -1,6 +1,9 @@
 import { Connector, useConnect } from "wagmi";
-import { toggleModal } from "../../../../redux/features/wallet-modal/walletSlice";
-import { useAppDispatch } from "../../../../redux/hooks";
+import {
+  selectCurrentChain,
+  toggleModal,
+} from "../../../../redux/features/network/networkSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { getIcon } from "./getIcon";
 import { InstallMetamaskOption } from "./InstallMetamask";
 import { StyledOptionBtn } from "./styles";
@@ -12,7 +15,7 @@ interface Props {
 export const Option = ({ connector }: Props) => {
   const dispatch = useAppDispatch();
   const { connect } = useConnect();
-
+  const chainId = useAppSelector(selectCurrentChain);
   const iconUrl = getIcon(connector.id);
   return (
     <>
@@ -20,7 +23,7 @@ export const Option = ({ connector }: Props) => {
         <StyledOptionBtn
           key={connector.id}
           onClick={() => {
-            connect({ connector });
+            connect({ connector, chainId });
             dispatch(toggleModal());
           }}
         >

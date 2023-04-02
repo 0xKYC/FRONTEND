@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/user/userSlice";
-import walletReducer from "./features/wallet-modal/walletSlice";
+import networkReducer from "./features/network/networkSlice";
 import { loadState } from "./localStorage";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    walletModal: walletReducer,
+    network: networkReducer,
   },
   preloadedState: loadState(),
 });

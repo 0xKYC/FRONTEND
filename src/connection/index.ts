@@ -1,11 +1,6 @@
-import {
-  EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
-} from "@web3modal/ethereum";
+import { EthereumClient, walletConnectProvider } from "@web3modal/ethereum";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
-import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { configureChains, createClient } from "wagmi";
 import { goerli, polygonMumbai } from "wagmi/chains";
