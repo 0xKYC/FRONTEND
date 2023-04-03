@@ -48,7 +48,7 @@ export const ChainSelectionMenu = () => {
     }
   }, [error, dispatch, chain]);
 
-  const { label, logoUrl } = getChainInfo(chainId);
+  const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
   const items: MenuProps["items"] = NETWORK_SELECTOR_CHAINS.map(
     (chainId: SupportedChainId, index) => ({
