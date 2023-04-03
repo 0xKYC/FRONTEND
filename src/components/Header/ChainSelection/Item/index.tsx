@@ -1,4 +1,5 @@
 import { CheckOutlined, LoadingOutlined } from "@ant-design/icons";
+import { useNetwork } from "wagmi";
 
 import { getChainInfo, SupportedChainId } from "../../../../constans/chains";
 import {
@@ -19,8 +20,11 @@ export const ChainSelectorItem = ({
   targetChain,
 }: Props) => {
   const dispatch = useAppDispatch();
+  const { chain } = useNetwork();
   const chainId = useAppSelector(selectCurrentChain);
-  const active = chainId === targetChain && !isPending;
+  const active = chain?.id
+    ? chain.id === targetChain
+    : chainId === targetChain && !isPending;
   const { label, logoUrl } = getChainInfo(targetChain);
 
   const handleSelectChain = () => {
