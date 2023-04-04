@@ -2,6 +2,7 @@ import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { useErrorMessage } from "../../../../common/hooks/useErrorMessage";
@@ -25,13 +26,18 @@ export const ChainSelectionMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { chain } = useNetwork();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const chainId = useAppSelector(selectCurrentChain);
   const onOpenChange = (open: boolean) => {
     setIsOpen(open);
   };
 
   const handleMenuClick = () => {};
-  const { switchNetwork, error, pendingChainId } = useSwitchNetwork();
+  const { switchNetwork, error, pendingChainId } = useSwitchNetwork({
+    onSuccess() {
+      navigate("/");
+    },
+  });
 
   const { contextHolder } = useErrorMessage(error);
 

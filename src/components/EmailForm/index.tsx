@@ -1,5 +1,5 @@
-import { MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input, Spin } from "antd";
 import { useState } from "react";
 import { useConfirmModal } from "../../common/ConfirmModal";
 
@@ -14,12 +14,17 @@ interface FormValues {
 interface Props {
   handleOnfidoRedirect: (email?: string) => Promise<void>;
 }
+
+const Spinner = (
+  <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />
+);
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (values: FormValues) => {
     try {
+      setIsLoading(true);
       if (values.newsletterChecked) {
         await subscribeNewsletter(values.email);
       }
@@ -27,6 +32,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
     } catch (error) {
       console.error(error);
       setError(true);
+      setIsLoading(false);
     }
   };
 
@@ -97,7 +103,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
             width: "50%",
           }}
         >
-          Submit
+          {isLoading ? <Spin indicator={Spinner} /> : "Submit"}
         </Button>
         <Button
           size="large"

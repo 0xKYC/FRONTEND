@@ -63,8 +63,10 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (data === "noUserError" || data?.onfidoStatus === "error") {
-      navigate("/error");
+    if (data === "noUserError" || typeof data === "undefined") {
+      return;
+    }
+    if (data.onfidoStatus !== "approved") {
       setError(true);
       dispatch(
         setMinting({
@@ -74,7 +76,7 @@ export const useMint = () => {
           error: true,
         })
       );
-      return;
+      return navigate("/error");
     }
 
     if (!error) {
