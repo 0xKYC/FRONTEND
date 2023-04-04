@@ -6,7 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { getIcon } from "./getIcon";
 import { InstallMetamaskOption } from "./InstallMetamask";
-import { StyledOptionBtn } from "./styles";
+import { ImageBox, StyledOptionBtn, TextBox } from "./styles";
 
 interface Props {
   connector: Connector<any, any, any>;
@@ -27,14 +27,16 @@ export const Option = ({ connector }: Props) => {
             dispatch(toggleModal());
           }}
         >
-          <img
-            src={iconUrl}
-            height="36"
-            width="36"
-            alt="icon"
-            style={{ marginRight: "1rem" }}
-          />
-          {connector.name}
+          <ImageBox>
+            <img
+              src={iconUrl}
+              height="36"
+              width="36"
+              alt="icon"
+              style={{ marginLeft: "2.5rem" }}
+            />
+          </ImageBox>
+          <TextBox>{connector.name}</TextBox>
         </StyledOptionBtn>
       ) : (
         <InstallMetamaskOption />

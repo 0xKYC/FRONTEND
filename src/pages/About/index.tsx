@@ -21,12 +21,12 @@ const About = () => {
       <StyledText>
         &emsp; &emsp; &emsp;Our solution is used for anonymous verification in
         various use cases, such as DAO governance, NFT mints and access to DeFi
-        products. We have the support of Outlier Ventures and New Order, and our
-        team includes co-founders Adam and Dylan, a frontend engineer Sebastian,
-        a backend engineer MG, an analyst Alicja and a group of advisors who
-        provide valuable contributions and support for our company. We are
-        excited to bring our vision to our partners, including OKX Web3, Blue,
-        Cryptum and more...
+        protocols. We have the support of Outlier Ventures and New Order, and
+        our team includes co-founders Adam and Dylan, a frontend engineer
+        Sebastian, a backend engineer MG, an analyst Alicja and a group of
+        advisors who provide valuable contributions and support for our company.
+        We are excited to bring our vision to our partners, including OKX Web3,
+        Blue, Cryptum and more...
       </StyledText>
     </StyledContainer>
   );
