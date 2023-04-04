@@ -1,7 +1,12 @@
 import { CheckOutlined, LoadingOutlined } from "@ant-design/icons";
-
 import { useNetwork } from "wagmi";
+
 import { getChainInfo, SupportedChainId } from "../../../../constans/chains";
+import {
+  selectCurrentChain,
+  setChain,
+} from "../../../../redux/features/network/networkSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { ApproveText, Container, Label, Logo, Status } from "./styles";
 
 interface Props {
@@ -14,13 +19,21 @@ export const ChainSelectorItem = ({
   isPending,
   targetChain,
 }: Props) => {
+  const dispatch = useAppDispatch();
   const { chain } = useNetwork();
-
-  const active = chain?.id === targetChain;
+  const chainId = useAppSelector(selectCurrentChain);
+  const active = chain?.id
+    ? chain.id === targetChain
+    : chainId === targetChain && !isPending;
   const { label, logoUrl } = getChainInfo(targetChain);
 
+  const handleSelectChain = () => {
+    dispatch(setChain(targetChain));
+
+    onSelectChain(targetChain, active);
+  };
   return (
-    <Container onClick={() => onSelectChain(targetChain, active)}>
+    <Container onClick={handleSelectChain}>
       <Logo src={logoUrl} alt={label} />
       <Label>{label}</Label>
       {isPending && <ApproveText>Approve in wallet</ApproveText>}

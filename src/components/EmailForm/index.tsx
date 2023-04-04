@@ -78,6 +78,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         ]}
       >
         <Input
+          autoComplete="email"
           size="large"
           placeholder="Enter your email"
           suffix={<MailOutlined style={{ margin: "0 .2rem" }} />}

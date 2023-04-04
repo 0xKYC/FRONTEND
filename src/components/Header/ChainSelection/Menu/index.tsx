@@ -5,27 +5,34 @@ import { useEffect, useState } from "react";
 
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import { useErrorMessage } from "../../../../common/hooks/useErrorMessage";
-import { chains } from "../../../../connection";
+
 import {
   ChainId,
   getChainInfo,
   NETWORK_SELECTOR_CHAINS,
   SupportedChainId,
 } from "../../../../constans/chains";
+import {
+  selectCurrentChain,
+  setChain,
+} from "../../../../redux/features/network/networkSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import { ChainSelectorItem } from "../Item";
 import { StyledButton } from "./styles";
 
 export const ChainSelectionMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { chain } = useNetwork();
+  const dispatch = useAppDispatch();
+  const chainId = useAppSelector(selectCurrentChain);
   const onOpenChange = (open: boolean) => {
     setIsOpen(open);
   };
 
   const handleMenuClick = () => {};
   const { switchNetwork, error, pendingChainId } = useSwitchNetwork();
-  const { chain } = useNetwork();
+
   const { contextHolder } = useErrorMessage(error);
 
   const onSelectChain = (targetChain: ChainId, active: boolean) => {
@@ -35,9 +42,13 @@ export const ChainSelectionMenu = () => {
   useEffect(() => {
     if (error) {
       setIsOpen(false);
+      if (chain) {
+        dispatch(setChain(chain.id));
+      }
     }
-  }, [error]);
-  const { label, logoUrl } = getChainInfo(chain?.id || chains[0].id);
+  }, [error, dispatch, chain]);
+
+  const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
   const items: MenuProps["items"] = NETWORK_SELECTOR_CHAINS.map(
     (chainId: SupportedChainId, index) => ({

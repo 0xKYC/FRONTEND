@@ -12,7 +12,7 @@ import { ContentBlockProps } from "./types";
 import { Fade } from "react-awesome-reveal";
 import { SvgIcon } from "../../common/SvgIcon";
 import { onfidoRedirect } from "../../service/onfido/onfido.service";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useAccount, useNetwork } from "wagmi";
 import {
   selectApplicantId,
@@ -23,10 +23,10 @@ import { withTranslation } from "react-i18next";
 
 import { CardInfo } from "../CardInfo";
 
-import { useWeb3Modal } from "@web3modal/react";
 import { useState } from "react";
 import { EmailForm } from "../EmailForm";
 import { TosModal } from "../TosModal";
+import { toggleModal } from "../../redux/features/network/networkSlice";
 
 const ContentBlock = ({
   title,
@@ -38,17 +38,23 @@ const ContentBlock = ({
   t,
   id,
 }: ContentBlockProps) => {
+  const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const { address } = useAccount();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
-  const { open } = useWeb3Modal();
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
 
   const handleOnfidoRedirect = async (email?: string) => {
     if (address && onfidoApplicantId && chain) {
       try {
-        await onfidoRedirect(onfidoApplicantId, address, chain.id, window.location.href, email);
+        await onfidoRedirect(
+          onfidoApplicantId,
+          address,
+          chain.id,
+          window.location.href,
+          email
+        );
       } catch (error) {
         console.error(error);
       }
@@ -58,7 +64,7 @@ const ContentBlock = ({
     if (address && tosAccepted) {
       setVerifyClicked(true);
     } else {
-      open({ route: "ConnectWallet" });
+      dispatch(toggleModal());
       event.currentTarget.blur();
     }
   };
@@ -69,7 +75,7 @@ const ContentBlock = ({
   const contentText = address ? verifyText : content;
   return (
     <RightBlockContainer>
-      {tosAccepted !== address && <TosModal />}
+      {!tosAccepted && <TosModal />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle" id={id}>

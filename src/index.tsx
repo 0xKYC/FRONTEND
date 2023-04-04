@@ -12,6 +12,7 @@ import { Web3Modal } from "@web3modal/react";
 import { ConfigProvider } from "antd";
 import { saveState } from "./redux/localStorage";
 import throttle from "lodash/throttle";
+import { WalletConnectionModal } from "./components/WalletModal";
 
 store.subscribe(
   throttle(() => {
@@ -38,6 +39,7 @@ ReactDOM.render(
         }}
       >
         <App />
+        <WalletConnectionModal />
       </ConfigProvider>
     </WagmiConfig>
     <Web3Modal

@@ -1,9 +1,7 @@
-import {
-  EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
-} from "@web3modal/ethereum";
-
+import { EthereumClient, walletConnectProvider } from "@web3modal/ethereum";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { configureChains, createClient } from "wagmi";
 import { goerli, polygonMumbai } from "wagmi/chains";
 import { scrollAlpha } from "../constans/chains";
@@ -19,12 +17,23 @@ const { provider } = configureChains(chains, [
 
 export const wagmiClient = createClient({
   autoConnect: true,
-  connectors: modalConnectors({
-    appName: "0xKYC",
-    chains,
-    projectId: connectWalletId,
-    version: "2",
-  }),
+  connectors: [
+    new MetaMaskConnector({ chains }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        name: "0xKYC",
+        projectId: connectWalletId,
+        version: "2",
+      },
+    }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: "0xKYC",
+      },
+    }),
+  ],
 
   provider,
 });

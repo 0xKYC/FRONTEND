@@ -12,21 +12,22 @@ import { Col, Drawer, Row } from "antd";
 
 import { Button } from "../../common/Button";
 import Container from "../../common/Container";
-import { useAccount } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 
 import { useState } from "react";
 import { withTranslation } from "react-i18next";
 
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
-import { useWeb3Modal } from "@web3modal/react";
+
+import { useAppDispatch } from "../../redux/hooks";
+import { toggleModal } from "../../redux/features/network/networkSlice";
 
 const Header = () => {
   const [visible, setVisibility] = useState(false);
-
-  const { open } = useWeb3Modal();
+  const dispatch = useAppDispatch();
 
   const { address, isConnected } = useAccount();
-
+  const { disconnect } = useDisconnect();
   const showDrawer = () => {
     setVisibility(!visible);
   };
@@ -36,11 +37,12 @@ const Header = () => {
   };
 
   const MenuItem = () => {
-    const handleOpen = () => {
+    const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
       if (isConnected) {
-        open({ route: "Account" });
+        disconnect();
       } else {
-        open({ route: "ConnectWallet" });
+        dispatch(toggleModal());
+        event.currentTarget.blur();
       }
     };
 
