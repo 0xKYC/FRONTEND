@@ -19,6 +19,7 @@ import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import { LoadingSpinner } from "../common/LoadingSpinner";
+// import { Status } from "../components/Mint/test";
 
 const Router = () => {
   const {
@@ -76,6 +77,16 @@ const Router = () => {
               }
               path="/mint"
             />
+
+            {/* route for testing */}
+            {/* <Route
+              element={
+                <ProtectedRoute verified={verified}>
+                  <Status />
+                </ProtectedRoute>
+              }
+              path="/status"
+            /> */}
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<Error />} path="/error" />

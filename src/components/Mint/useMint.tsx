@@ -11,6 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
+
 const apiRequestsToCall = 20;
 
 export const useMint = () => {
@@ -23,7 +24,7 @@ export const useMint = () => {
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
-  const { data } = useFetchUser(address);
+  const { data, loading } = useFetchUser(address);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -63,23 +64,33 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (data === "noUserError" || typeof data === "undefined") {
-      return;
+    if (
+      data !== "noUserError" &&
+      typeof data !== "undefined" &&
+      !loading &&
+      data.onfidoStatus.length !== 0
+    ) {
+      if (data.onfidoStatus !== "approved") {
+        setError(true);
+        dispatch(
+          setMinting({
+            minting: false,
+            chainId: null,
+            walletAddress: address,
+            error: true,
+          })
+        );
+        return navigate("/error");
+      }
     }
-    if (data.onfidoStatus !== "approved") {
-      setError(true);
-      dispatch(
-        setMinting({
-          minting: false,
-          chainId: null,
-          walletAddress: address,
-          error: true,
-        })
-      );
-      return navigate("/error");
+  }, [address, chain, data, dispatch, navigate, loading]);
+
+  useEffect(() => {
+    if (!address || !chain) {
+      return navigate("/");
     }
 
-    if (!error) {
+    if (!error && !success) {
       dispatch(
         setMinting({
           minting: true,
@@ -134,7 +145,17 @@ export const useMint = () => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch, chain, data, error, mintingChain]);
+  }, [
+    apiCalls,
+    navigate,
+    address,
+    dispatch,
+    chain,
+    data,
+    error,
+    mintingChain,
+    success,
+  ]);
 
   return { error };
 };
