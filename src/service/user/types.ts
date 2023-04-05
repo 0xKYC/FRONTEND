@@ -16,7 +16,15 @@ export type txHash = {
   [k in ChainId]?: string;
 };
 
-export type OnfidoStatus = "error" | "abandoned" | "approved";
+export type OnfidoStatus =
+  | "error"
+  | "abandoned"
+  | "approved"
+  | "declined"
+  | "review"
+  | "awaiting_input"
+  | "processing";
+
 interface Proof {
   scheme: string;
   curve: string;
