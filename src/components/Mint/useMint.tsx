@@ -11,7 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
-import { getMockVerified } from "./test/utils";
+
 const apiRequestsToCall = 20;
 
 export const useMint = () => {
@@ -64,8 +64,7 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (data !== "noUserError" && typeof data !== "undefined") {
-      console.log(data.onfidoStatus);
+    if (data !== "noUserError" && typeof data !== "undefined" && !loading) {
       if (data.onfidoStatus !== "approved") {
         setError(true);
         dispatch(
@@ -101,9 +100,8 @@ export const useMint = () => {
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          // const isVerified = await checkForSBT(address, chain.id);
-          const isVerified = await getMockVerified(2000, apiCalls);
-          console.log(isVerified);
+          const isVerified = await checkForSBT(address, chain.id);
+
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
             dispatch(
@@ -132,14 +130,14 @@ export const useMint = () => {
               setSuccess(true);
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHashes(user.txHashes));
-              navigate("/status");
+              navigate("/profile");
             }
           }
         } catch (err) {
           console.error(err);
           setError(true);
         }
-      }, 1000);
+      }, 5000);
       return () => clearInterval(interval);
     }
   }, [

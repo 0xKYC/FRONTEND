@@ -17,6 +17,7 @@ import {
   selectCurrentChain,
   setChain,
 } from "../../../../redux/features/network/networkSlice";
+import { reset } from "../../../../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import { ChainSelectorItem } from "../Item";
@@ -35,6 +36,7 @@ export const ChainSelectionMenu = () => {
   const handleMenuClick = () => {};
   const { switchNetwork, error, pendingChainId } = useSwitchNetwork({
     onSuccess() {
+      dispatch(reset());
       navigate("/");
     },
   });

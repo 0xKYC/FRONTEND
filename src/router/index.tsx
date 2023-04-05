@@ -77,14 +77,16 @@ const Router = () => {
               }
               path="/mint"
             />
-            <Route
+
+            {/* route for testing */}
+            {/* <Route
               element={
                 <ProtectedRoute verified={verified}>
                   <Status />
                 </ProtectedRoute>
               }
               path="/status"
-            />
+            /> */}
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<Error />} path="/error" />
