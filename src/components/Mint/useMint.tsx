@@ -11,6 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { checkForSBT, findUserInDB } from "../../service/user/user.service";
+import { getMockVerified } from "./test/utils";
 const apiRequestsToCall = 20;
 
 export const useMint = () => {
@@ -23,7 +24,7 @@ export const useMint = () => {
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
-  const { data } = useFetchUser(address);
+  const { data, loading } = useFetchUser(address);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -63,23 +64,29 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (data === "noUserError" || typeof data === "undefined") {
-      return;
+    if (data !== "noUserError" && typeof data !== "undefined") {
+      console.log(data.onfidoStatus);
+      if (data.onfidoStatus !== "approved") {
+        setError(true);
+        dispatch(
+          setMinting({
+            minting: false,
+            chainId: null,
+            walletAddress: address,
+            error: true,
+          })
+        );
+        return navigate("/error");
+      }
     }
-    if (data.onfidoStatus !== "approved") {
-      setError(true);
-      dispatch(
-        setMinting({
-          minting: false,
-          chainId: null,
-          walletAddress: address,
-          error: true,
-        })
-      );
-      return navigate("/error");
+  }, [address, chain, data, dispatch, navigate, loading]);
+
+  useEffect(() => {
+    if (!address || !chain) {
+      return navigate("/");
     }
 
-    if (!error) {
+    if (!error && !success) {
       dispatch(
         setMinting({
           minting: true,
@@ -94,8 +101,9 @@ export const useMint = () => {
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          const isVerified = await checkForSBT(address, chain.id);
-
+          // const isVerified = await checkForSBT(address, chain.id);
+          const isVerified = await getMockVerified(2000, apiCalls);
+          console.log(isVerified);
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
             dispatch(
@@ -124,17 +132,27 @@ export const useMint = () => {
               setSuccess(true);
               dispatch(checkIfVerified(isVerified));
               dispatch(addTxHashes(user.txHashes));
-              navigate("/profile");
+              navigate("/status");
             }
           }
         } catch (err) {
           console.error(err);
           setError(true);
         }
-      }, 5000);
+      }, 1000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch, chain, data, error, mintingChain]);
+  }, [
+    apiCalls,
+    navigate,
+    address,
+    dispatch,
+    chain,
+    data,
+    error,
+    mintingChain,
+    success,
+  ]);
 
   return { error };
 };
