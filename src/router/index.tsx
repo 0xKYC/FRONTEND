@@ -19,7 +19,7 @@ import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import { LoadingSpinner } from "../common/LoadingSpinner";
-import { Status } from "../components/Mint/test";
+// import { Status } from "../components/Mint/test";
 
 const Router = () => {
   const {
