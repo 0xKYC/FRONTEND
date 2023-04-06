@@ -17,10 +17,13 @@ export const Option = ({ connector }: Props) => {
   const { connect } = useConnect();
   const chainId = useAppSelector(selectCurrentChain);
   const iconUrl = getIcon(connector.id);
+
+  const isMetamaskConnector = connector.name === "MetaMask";
   return (
     <>
       {connector.ready ? (
         <StyledOptionBtn
+          isMetamask={isMetamaskConnector}
           key={connector.id}
           onClick={() => {
             connect({ connector, chainId });
@@ -39,7 +42,7 @@ export const Option = ({ connector }: Props) => {
           <TextBox>{connector.name}</TextBox>
         </StyledOptionBtn>
       ) : (
-        <InstallMetamaskOption />
+        <InstallMetamaskOption isMetamaskConnector={isMetamaskConnector} />
       )}
     </>
   );

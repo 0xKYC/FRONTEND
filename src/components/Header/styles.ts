@@ -2,6 +2,19 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
 
+export const Image = styled.img`
+  display: none;
+  @media screen and (min-width: 480px) {
+    display: block;
+  }
+`;
+
+export const MobileImage = styled.img`
+  display: block;
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
+`;
 export const Box = styled.div`
   display: flex;
   align-items: center;
@@ -50,6 +63,13 @@ export const ContactWrapper = styled("div")<any>`
   display: inline-block;
 `;
 
+export const MobileConnectBtn = styled("div")`
+  @media only screen and (max-width: 890px) {
+    display: block;
+  }
+
+  display: none;
+`;
 export const Burger = styled("div")`
   @media only screen and (max-width: 890px) {
     display: block;
