@@ -8,7 +8,7 @@ interface State {
 }
 const initialState: State = {
   isModalOpen: false,
-  selectedChain: SupportedChainId.POLYGON_MUMBAI,
+  selectedChain: SupportedChainId.GOERLI,
 };
 export const networkSlice = createSlice({
   name: "network",
