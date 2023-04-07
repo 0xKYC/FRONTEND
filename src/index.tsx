@@ -13,6 +13,7 @@ import { ConfigProvider } from "antd";
 import { saveState } from "./redux/localStorage";
 import throttle from "lodash/throttle";
 import { WalletConnectionModal } from "./components/WalletModal";
+import CookieConsent from "react-cookie-consent";
 
 store.subscribe(
   throttle(() => {
@@ -47,6 +48,23 @@ ReactDOM.render(
       projectId={connectWalletId}
       ethereumClient={ethereumClient}
     />
+    <CookieConsent
+      style={{
+        position: "sticky",
+        width: "96%",
+        margin: "auto",
+        bottom: "20px",
+        borderRadius: "0.5rem",
+        fontSize: "1rem",
+      }}
+      buttonStyle={{
+        background: "#fb7324",
+        color: "white",
+        fontSize: "1rem",
+      }}
+    >
+      This website uses cookies to improve your experience
+    </CookieConsent>
   </Provider>,
   document.getElementById("root")
 );
