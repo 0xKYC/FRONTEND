@@ -24,7 +24,7 @@ export const wagmiClient = createClient({
       options: {
         name: "0xKYC",
         projectId: connectWalletId,
-        version: "2",
+        qrcode: true,
       },
     }),
     new CoinbaseWalletConnector({

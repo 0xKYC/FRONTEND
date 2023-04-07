@@ -1,8 +1,13 @@
 import { ImageBox, StyledOptionLink, TextBox } from "./styles";
 import METAMASK_ICON_URL from "../../assets/metamask-icon.svg";
-export const InstallMetamaskOption = () => {
+export const InstallMetamaskOption = ({
+  isMetamaskConnector,
+}: {
+  isMetamaskConnector: boolean;
+}) => {
   return (
     <StyledOptionLink
+      isMetamask={isMetamaskConnector}
       href="https://metamask.io/"
       target="_blank"
       rel="noopener"

@@ -19,19 +19,26 @@ const StyledOption = css`
     background-color: #e6e7e8;
   }
   @media screen and (max-width: 420px) {
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     width: 100%;
   }
 `;
 
-export const StyledOptionBtn = styled.button`
+export const StyledOptionBtn = styled.button<{ isMetamask: boolean }>`
   ${StyledOption};
   font-weight: normal;
+
+  @media screen and (max-width: 1024px) {
+    display: ${(props) => (props.isMetamask ? "none" : "flex")};
+  }
 `;
 
-export const StyledOptionLink = styled.a`
+export const StyledOptionLink = styled.a<{ isMetamask: boolean }>`
   ${StyledOption};
   font-weight: 800;
+  @media screen and (max-width: 1024px) {
+    display: ${(props) => (props.isMetamask ? "none" : "flex")};
+  }
 `;
 
 export const ImageBox = styled.div`

@@ -10,17 +10,17 @@ const About = () => {
       <StyledTitle>About us</StyledTitle>
       <StyledText>
         {" "}
-        &emsp; &emsp; &emsp;We are a team of experienced blockchain developers
-        and KYC experts who came together during ETHWarsaw September hackathon.
+        &emsp; &emsp; We are a team of experienced blockchain developers and KYC
+        experts who came together during ETHWarsaw September hackathon.
       </StyledText>
       <StyledText>
-        &emsp; &emsp; &emsp;Our decentralized app (dApp) allows users to obtain
+        &emsp; &emsp; Our decentralized app (dApp) allows users to obtain
         unique, soulbound tokens on the Ethereum, Polygon and Scroll networks
         and soon on others.
       </StyledText>
       <StyledText>
-        &emsp; &emsp; &emsp;Our solution is used for anonymous verification in
-        various use cases, such as DAO governance, NFT mints and access to DeFi
+        &emsp; &emsp; Our solution is used for anonymous verification in various
+        use cases, such as DAO governance, NFT mints and access to DeFi
         protocols. We have the support of Outlier Ventures and New Order, and
         our team includes co-founders Adam and Dylan, a frontend engineer
         Sebastian, a backend engineer MG, an analyst Alicja and a group of
