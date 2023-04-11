@@ -1,4 +1,4 @@
-import METAMASK_ICON_URL from "../../assets/metamask.png";
+import METAMASK_ICON_URL from "../../assets/metamask-icon.svg";
 import COINBASE_ICON_URL from "../../assets/coinbase-wallet.svg";
 import WALLET_CONNECT_ICON_URL from "../../assets/walletconnect.svg";
 

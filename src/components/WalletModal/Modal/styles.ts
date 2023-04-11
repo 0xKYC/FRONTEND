@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import styled from "styled-components";
 
 export const StyledModal = styled(Modal)`
-  height: 24rem;
+  margin-top: 3rem;
 `;
 
 export const Text = styled("p")`

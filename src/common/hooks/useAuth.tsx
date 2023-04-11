@@ -14,33 +14,32 @@ import {
   addTxHashes,
   checkIfVerified,
   reset,
-  selectIsMinting,
   selectIsMintingActive,
-  selectMintingChain,
-  selectMintingWallet,
   selectVerifiedUser,
-  setMinting,
-  setMintingActive,
   signTos,
 } from "../../redux/features/user/userSlice";
 import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
 import tos from "../../content/TermsOfService.json";
 import { CHAIN_IDS } from "../../constans/chains";
+import { useCheckMinting } from "./useCheckMinting";
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
-  const minting = useAppSelector(selectIsMinting);
   const isMintingActive = useAppSelector(selectIsMintingActive);
-  const mintingChain = useAppSelector(selectMintingChain);
-  const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const dispatch = useAppDispatch();
 
-  const { address, isDisconnected, isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
-  const { disconnect } = useDisconnect();
+  const { disconnect } = useDisconnect({
+    onSuccess() {
+      dispatch(reset());
+    },
+  });
   const isVerified = isConnected && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
+
+  useCheckMinting(isVerified);
 
   useEffect(() => {
     if (!chain) return;
@@ -50,39 +49,6 @@ export const useAuth = () => {
       disconnect();
     }
   }, [chain, disconnect, dispatch]);
-
-  useEffect(() => {
-    if (isDisconnected) dispatch(reset());
-  }, [isDisconnected, dispatch]);
-
-  useEffect(() => {
-    if (
-      minting &&
-      !isVerified &&
-      mintingChain === chain?.id &&
-      address === mintingWalletAddress
-    ) {
-      dispatch(setMintingActive(true));
-    } else {
-      dispatch(
-        setMinting({
-          chainId: null,
-          error: false,
-          minting: false,
-          walletAddress: "",
-        })
-      );
-      dispatch(setMintingActive(false));
-    }
-  }, [
-    address,
-    chain?.id,
-    minting,
-    mintingChain,
-    mintingWalletAddress,
-    dispatch,
-    isVerified,
-  ]);
 
   useEffect(() => {
     const handleOnfidoAuth = async (account: string) => {
