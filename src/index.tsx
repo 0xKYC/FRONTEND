@@ -59,11 +59,13 @@ ReactDOM.render(
         marginBottom: "1rem",
         transform: "translateX(-50%)",
       }}
+      buttonText="Okay"
       buttonStyle={{
         background: "#fb7324",
         color: "white",
         fontSize: "1rem",
         borderRadius: "0.4rem",
+        fontWeight: "bold",
         fontFamily: "Motiva Sans Light",
       }}
     >
