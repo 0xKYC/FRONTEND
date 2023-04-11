@@ -50,17 +50,21 @@ ReactDOM.render(
     />
     <CookieConsent
       style={{
-        position: "sticky",
+        position: "fixed",
         width: "96%",
         margin: "auto",
         bottom: "20px",
         borderRadius: "0.5rem",
-        fontSize: "1rem",
+        left: "50%",
+        marginBottom: "1rem",
+        transform: "translateX(-50%)",
       }}
       buttonStyle={{
         background: "#fb7324",
         color: "white",
         fontSize: "1rem",
+        borderRadius: "0.4rem",
+        fontFamily: "Motiva Sans Light",
       }}
     >
       This website uses cookies to improve your experience
