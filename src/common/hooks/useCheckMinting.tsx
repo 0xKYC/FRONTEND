@@ -5,8 +5,8 @@ import {
   selectMintingChain,
   selectMintingWallet,
   setMintingActive,
-} from "../../redux/features/user/userSlice";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+} from "redux/features/user/userSlice";
+import { useAppSelector, useAppDispatch } from "redux/hooks";
 
 export const useCheckMinting = (isVerified: boolean) => {
   const minting = useAppSelector(selectIsMinting);

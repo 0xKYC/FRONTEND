@@ -4,10 +4,10 @@ import {
   reset,
   selectTosAcceptedWallet,
   signTos,
-} from "../../redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import tos from "../../content/TermsOfService.json";
-import { editUserInDB } from "../../service/user/user.service";
+} from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import tos from "content/TermsOfService.json";
+import { editUserInDB } from "service/user/user.service";
 
 export const useSignTerms = () => {
   const { isConnected } = useAccount();

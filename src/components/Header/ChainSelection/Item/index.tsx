@@ -1,12 +1,12 @@
 import { CheckOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useNetwork } from "wagmi";
 
-import { getChainInfo, SupportedChainId } from "../../../../constans/chains";
+import { getChainInfo, SupportedChainId } from "constans/chains";
 import {
   selectCurrentChain,
   setChain,
-} from "../../../../redux/features/network/networkSlice";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+} from "redux/features/network/networkSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { ApproveText, Container, Label, Logo, Status } from "./styles";
 
 interface Props {

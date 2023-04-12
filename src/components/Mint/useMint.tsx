@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
-import { useFetchUser } from "../../common/hooks/useFetchUser";
+import { useFetchUser } from "common/hooks/useFetchUser";
 import {
   addTxHashes,
   checkIfVerified,
   selectMintingChain,
   setMinting,
-} from "../../redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+} from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
-import { checkForSBT, findUserInDB } from "../../service/user/user.service";
+import { checkForSBT, findUserInDB } from "service/user/user.service";
 
 const apiRequestsToCall = 20;
 

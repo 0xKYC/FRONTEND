@@ -2,8 +2,8 @@ import { Connector, useConnect } from "wagmi";
 import {
   selectCurrentChain,
   toggleModal,
-} from "../../../../redux/features/network/networkSlice";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+} from "redux/features/network/networkSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { getIcon } from "./getIcon";
 import { InstallMetamaskOption } from "./InstallMetamask";
 import { ImageBox, StyledOptionBtn, TextBox } from "./styles";

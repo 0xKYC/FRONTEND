@@ -1,8 +1,8 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { createSlice } from "@reduxjs/toolkit";
-import { ChainId } from "../../../constans/chains";
-import { txHash } from "../../../service/user/types";
+import { ChainId } from "constans/chains";
+import { txHash } from "service/user/types";
 
 // isMinting indicate if user's token is minting, isMintingActive indicate if user is on the network of his minting token
 export interface User {

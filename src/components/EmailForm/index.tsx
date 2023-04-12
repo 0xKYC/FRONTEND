@@ -1,10 +1,10 @@
 import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Spin } from "antd";
 import { useState } from "react";
-import { useConfirmModal } from "../../common/ConfirmModal";
+import { useConfirmModal } from "common/ConfirmModal";
 
-import { isCompanyEmail } from "../../common/utils/email-validator/validateEmail";
-import { subscribeNewsletter } from "../../service/user/user.service";
+import { isCompanyEmail } from "common/utils/email-validator/validateEmail";
+import { subscribeNewsletter } from "service/user/user.service";
 import { ErrorText, Flex } from "./styles";
 
 interface FormValues {

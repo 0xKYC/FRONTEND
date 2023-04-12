@@ -7,17 +7,17 @@ import {
   RightBlockContainer,
 } from "./styles";
 import { Col, Row } from "antd";
-import { Button } from "../../common/Button";
+import { Button } from "common/Button";
 import { ContentBlockProps } from "./types";
 import { Fade } from "react-awesome-reveal";
-import { SvgIcon } from "../../common/SvgIcon";
-import { onfidoRedirect } from "../../service/onfido/onfido.service";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { SvgIcon } from "common/SvgIcon";
+import { onfidoRedirect } from "service/onfido/onfido.service";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { useAccount, useNetwork } from "wagmi";
 import {
   selectApplicantId,
   selectTosAcceptedWallet,
-} from "../../redux/features/user/userSlice";
+} from "redux/features/user/userSlice";
 
 import { withTranslation } from "react-i18next";
 
@@ -26,7 +26,7 @@ import { CardInfo } from "../CardInfo";
 import { useState } from "react";
 import { EmailForm } from "../EmailForm";
 import { TosModal } from "../TosModal";
-import { toggleModal } from "../../redux/features/network/networkSlice";
+import { toggleModal } from "redux/features/network/networkSlice";
 
 const ContentBlock = ({
   title,

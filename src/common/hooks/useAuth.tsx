@@ -7,8 +7,8 @@ import {
   initUserInDB,
   createUserInDB,
   editUserInDB,
-} from "../../service/user/user.service";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+} from "service/user/user.service";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
   addApplicantId,
   addTxHashes,
@@ -17,10 +17,10 @@ import {
   selectIsMintingActive,
   selectVerifiedUser,
   signTos,
-} from "../../redux/features/user/userSlice";
-import { onfidoCreateApplicant } from "../../service/onfido/onfido.service";
-import tos from "../../content/TermsOfService.json";
-import { CHAIN_IDS } from "../../constans/chains";
+} from "redux/features/user/userSlice";
+import { onfidoCreateApplicant } from "service/onfido/onfido.service";
+import tos from "content/TermsOfService.json";
+import { CHAIN_IDS } from "constans/chains";
 import { useCheckMinting } from "./useCheckMinting";
 export const useAuth = () => {
   const provider = useProvider();

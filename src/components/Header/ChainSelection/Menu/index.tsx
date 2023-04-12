@@ -5,20 +5,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useNetwork, useSwitchNetwork } from "wagmi";
-import { useErrorMessage } from "../../../../common/hooks/useErrorMessage";
+import { useErrorMessage } from "common/hooks/useErrorMessage";
 
 import {
   ChainId,
   getChainInfo,
   NETWORK_SELECTOR_CHAINS,
   SupportedChainId,
-} from "../../../../constans/chains";
+} from "constans/chains";
 import {
   selectCurrentChain,
   setChain,
-} from "../../../../redux/features/network/networkSlice";
-import { reset } from "../../../../redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+} from "redux/features/network/networkSlice";
+import { reset } from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ChainSelectorItem } from "../Item";
 import { StyledButton } from "./styles";

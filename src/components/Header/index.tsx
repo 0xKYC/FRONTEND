@@ -9,15 +9,15 @@ import {
 } from "./styles";
 import { Row } from "antd";
 
-import { Button } from "../../common/Button";
-import Container from "../../common/Container";
+import { Button } from "common/Button";
+import Container from "common/Container";
 import { useAccount, useDisconnect } from "wagmi";
 import { withTranslation } from "react-i18next";
 
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
 
-import { useAppDispatch } from "../../redux/hooks";
-import { toggleModal } from "../../redux/features/network/networkSlice";
+import { useAppDispatch } from "redux/hooks";
+import { toggleModal } from "redux/features/network/networkSlice";
 
 const Header = () => {
   const dispatch = useAppDispatch();
