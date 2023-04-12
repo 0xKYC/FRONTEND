@@ -1,9 +1,9 @@
 import { Result } from "antd";
 
-import { Container, StyledBox } from "./styled";
-
-import { useMint } from "./useMint";
 import { LoadingSpinner } from "common/LoadingSpinner";
+
+import { Container, StyledBox } from "./styled";
+import { useMint } from "./useMint";
 
 export const MintContent = () => {
   const { error } = useMint();

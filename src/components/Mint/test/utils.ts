@@ -1,7 +1,4 @@
-export const getMockVerified = (
-  seconds: number,
-  apiCalls: number
-): Promise<boolean> => {
+export const getMockVerified = (seconds: number, apiCalls: number): Promise<boolean> => {
   return new Promise((resolve) => {
     const interval = setInterval(() => {
       if (apiCalls === 3) {

@@ -1,4 +1,5 @@
 import { useConnect } from "wagmi";
+
 import { Option } from "./Option";
 import { Box } from "./styles";
 

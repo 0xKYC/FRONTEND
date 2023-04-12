@@ -1,22 +1,14 @@
-import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Dropdown } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import type { MenuProps } from "antd";
+import { Dropdown } from "antd";
 import { useNetwork, useSwitchNetwork } from "wagmi";
-import { useErrorMessage } from "common/hooks/useErrorMessage";
 
-import {
-  ChainId,
-  getChainInfo,
-  NETWORK_SELECTOR_CHAINS,
-  SupportedChainId,
-} from "constans/chains";
-import {
-  selectCurrentChain,
-  setChain,
-} from "redux/features/network/networkSlice";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import { useErrorMessage } from "common/hooks/useErrorMessage";
+import { ChainId, NETWORK_SELECTOR_CHAINS, SupportedChainId, getChainInfo } from "constans/chains";
+import { selectCurrentChain, setChain } from "redux/features/network/networkSlice";
 import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
@@ -69,7 +61,7 @@ export const ChainSelectionMenu = () => {
           isPending={chainId === pendingChainId && !error}
         />
       ),
-    })
+    }),
   );
 
   return (

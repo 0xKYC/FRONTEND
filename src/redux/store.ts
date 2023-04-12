@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./features/user/userSlice";
+
 import networkReducer from "./features/network/networkSlice";
+import userReducer from "./features/user/userSlice";
 import { loadState } from "./localStorage";
 
 export const store = configureStore({

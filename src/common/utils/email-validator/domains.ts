@@ -16207,6 +16207,4 @@ zzom.co.uksina.com
 zzz.com
 zzz.pl`;
 
-export const free_email_provider_set = new Set(
-  free_email_provider_domains.split("\n")
-);
+export const free_email_provider_set = new Set(free_email_provider_domains.split("\n"));

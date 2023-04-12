@@ -1,8 +1,7 @@
 export const servicesData = [
   {
     title: "Blue",
-    description:
-      "A secure way to access DeFi protocols powered by 0xKYC (amongst other services).",
+    description: "A secure way to access DeFi protocols powered by 0xKYC (amongst other services).",
     tags: ["DeFi"],
     href: "https://www.blue.fi",
     img: "/img/blue.svg",

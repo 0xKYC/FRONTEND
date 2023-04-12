@@ -1,4 +1,5 @@
 import { validate } from "email-validator";
+
 import { free_email_provider_set } from "./domains";
 
 export const isCompanyEmail = (email: string) => {

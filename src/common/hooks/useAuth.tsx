@@ -1,14 +1,9 @@
-import { useProvider, useAccount, useNetwork, useDisconnect } from "wagmi";
 import { useEffect, useState } from "react";
-import {
-  checkForSBT,
-  checkSanctionedWallet,
-  findUserInDB,
-  initUserInDB,
-  createUserInDB,
-  editUserInDB,
-} from "service/user/user.service";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+
+import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
+
+import { CHAIN_IDS } from "constans/chains";
+import tos from "content/TermsOfService.json";
 import {
   addApplicantId,
   addTxHashes,
@@ -18,10 +13,19 @@ import {
   selectVerifiedUser,
   signTos,
 } from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { onfidoCreateApplicant } from "service/onfido/onfido.service";
-import tos from "content/TermsOfService.json";
-import { CHAIN_IDS } from "constans/chains";
+import {
+  checkForSBT,
+  checkSanctionedWallet,
+  createUserInDB,
+  editUserInDB,
+  findUserInDB,
+  initUserInDB,
+} from "service/user/user.service";
+
 import { useCheckMinting } from "./useCheckMinting";
+
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);

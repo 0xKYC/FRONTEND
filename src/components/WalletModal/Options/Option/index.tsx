@@ -1,11 +1,10 @@
 import { Connector, useConnect } from "wagmi";
-import {
-  selectCurrentChain,
-  toggleModal,
-} from "redux/features/network/networkSlice";
+
+import { selectCurrentChain, toggleModal } from "redux/features/network/networkSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { getIcon } from "./getIcon";
+
 import { InstallMetamaskOption } from "./InstallMetamask";
+import { getIcon } from "./getIcon";
 import { ImageBox, StyledOptionBtn, TextBox } from "./styles";
 
 interface Props {
@@ -31,13 +30,7 @@ export const Option = ({ connector }: Props) => {
           }}
         >
           <ImageBox>
-            <img
-              src={iconUrl}
-              height="36"
-              width="36"
-              alt="icon"
-              style={{ marginLeft: "2.5rem" }}
-            />
+            <img src={iconUrl} height="36" width="36" alt="icon" style={{ marginLeft: "2.5rem" }} />
           </ImageBox>
           <TextBox>{connector.name}</TextBox>
         </StyledOptionBtn>

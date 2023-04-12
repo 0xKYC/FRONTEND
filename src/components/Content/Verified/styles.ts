@@ -1,5 +1,7 @@
 import { Card } from "antd";
+
 import styled from "styled-components";
+
 import { ChainId, SupportedChainId } from "../../../constans/chains";
 
 export const Content = styled("p")`
@@ -45,8 +47,7 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
 `;
 export const StyledCard = styled(Card)`
   min-width: 340px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   @media screen and (min-width: 1100px) {
     width: 570px;
     padding: 2rem 1.4rem;

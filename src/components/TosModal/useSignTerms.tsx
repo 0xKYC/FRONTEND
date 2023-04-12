@@ -1,12 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import { useAccount, useDisconnect, useSignMessage } from "wagmi";
-import {
-  reset,
-  selectTosAcceptedWallet,
-  signTos,
-} from "redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+
 import tos from "content/TermsOfService.json";
+import { reset, selectTosAcceptedWallet, signTos } from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { editUserInDB } from "service/user/user.service";
 
 export const useSignTerms = () => {

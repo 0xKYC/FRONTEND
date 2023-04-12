@@ -2,10 +2,7 @@ export function isWindow(obj: any) {
   return obj !== null && obj !== undefined && obj === obj.window;
 }
 
-export const getScroll = (
-  target: HTMLElement | Window | Document | null,
-  top: boolean
-): number => {
+export const getScroll = (target: HTMLElement | Window | Document | null, top: boolean): number => {
   if (typeof window === "undefined") {
     return 0;
   }
@@ -19,8 +16,9 @@ export const getScroll = (
     result = (target as HTMLElement)[method];
   }
   if (target && !isWindow(target) && typeof result !== "number") {
-    result = ((target as HTMLElement).ownerDocument || (target as Document))
-      .documentElement?.[method];
+    result = ((target as HTMLElement).ownerDocument || (target as Document)).documentElement?.[
+      method
+    ];
   }
   return result;
 };

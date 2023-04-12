@@ -1,6 +1,6 @@
 import { lazy } from "react";
-import { LoadingSpinner } from "../../common/LoadingSpinner";
 
+import { LoadingSpinner } from "../../common/LoadingSpinner";
 import IntroContent from "../../content/IntroContent.json";
 import VerifyContent from "../../content/VerifyContent.json";
 

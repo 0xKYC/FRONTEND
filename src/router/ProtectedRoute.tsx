@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+
 import { RouteProps } from "./RedirectRoute";
 
 const ProtectedRoute = ({ verified, children }: RouteProps) => {

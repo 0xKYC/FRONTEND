@@ -1,10 +1,12 @@
-import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Spin } from "antd";
 import { useState } from "react";
-import { useConfirmModal } from "common/ConfirmModal";
 
+import { Button, Checkbox, Form, Input, Spin } from "antd";
+
+import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
+import { useConfirmModal } from "common/ConfirmModal";
 import { isCompanyEmail } from "common/utils/email-validator/validateEmail";
 import { subscribeNewsletter } from "service/user/user.service";
+
 import { ErrorText, Flex } from "./styles";
 
 interface FormValues {
@@ -15,9 +17,7 @@ interface Props {
   handleOnfidoRedirect: (email?: string) => Promise<void>;
 }
 
-const Spinner = (
-  <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />
-);
+const Spinner = <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />;
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
@@ -49,11 +49,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   };
 
   if (error) {
-    return (
-      <ErrorText>
-        An error has occured. Please, refresh the page and try again.
-      </ErrorText>
-    );
+    return <ErrorText>An error has occured. Please, refresh the page and try again.</ErrorText>;
   }
 
   return (
@@ -105,12 +101,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         >
           {isLoading ? <Spin indicator={Spinner} /> : "Submit"}
         </Button>
-        <Button
-          size="large"
-          style={{ width: "50%" }}
-          type="ghost"
-          onClick={showModal}
-        >
+        <Button size="large" style={{ width: "50%" }} type="ghost" onClick={showModal}>
           Skip
         </Button>
       </Flex>

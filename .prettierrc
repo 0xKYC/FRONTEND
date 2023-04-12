@@ -1,0 +1,16 @@
+{
+  "tabWidth": 2,
+  "printWidth": 100,
+  "trailingComma": "all",
+  "semi": true,
+  "importOrder": [
+    "react",
+    "^(?!react)\\w+$",
+    "<THIRD_PARTY_MODULES>",
+    "^@common/(.*)$",
+    "^@components/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

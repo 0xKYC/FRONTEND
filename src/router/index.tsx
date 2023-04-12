@@ -1,33 +1,20 @@
 import { Suspense } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { LoadingSpinner } from "../common/LoadingSpinner";
+import { ScrollToTop } from "../common/Scroll";
+import { useAuth } from "../common/hooks/useAuth";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
 import { Styles } from "../styles/styles";
-import { ScrollToTop } from "../common/Scroll";
-
-import {
-  About,
-  Home,
-  Profile,
-  TermsOfService,
-  Wave,
-  Mint,
-  Error,
-} from "./pages";
-import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
-import { LoadingSpinner } from "../common/LoadingSpinner";
+import { About, Error, Home, Mint, Profile, TermsOfService, Wave } from "./pages";
+
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
-  const {
-    isVerified: verified,
-    isLoading,
-    isSanctioned,
-    isMintingActive,
-  } = useAuth();
+  const { isVerified: verified, isLoading, isSanctioned, isMintingActive } = useAuth();
 
   return (
     <BrowserRouter>

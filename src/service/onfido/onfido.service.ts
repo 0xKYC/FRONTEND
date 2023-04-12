@@ -1,4 +1,5 @@
 import { ChainId } from "constans/chains";
+
 import { api } from "../config";
 import { Applicant } from "./types";
 
@@ -12,7 +13,7 @@ export async function onfidoRedirect(
   walletAddress: string,
   chainId: ChainId,
   redirectUrl?: string | null,
-  email?: string
+  email?: string,
 ) {
   const res = await api.post<string>("onfido/redirect", {
     applicantId: applicantId,
