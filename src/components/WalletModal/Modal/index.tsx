@@ -1,7 +1,4 @@
-import {
-  selectIsModalOpen,
-  toggleModal,
-} from "../../../redux/features/network/networkSlice";
+import { selectIsModalOpen, toggleModal } from "../../../redux/features/network/networkSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Options } from "../Options";
 import { StyledModal, Text } from "./styles";

@@ -1,4 +1,5 @@
-import { ChainId } from "../../constans/chains";
+import { ChainId } from "constans/chains";
+
 import { api } from "../config";
 import { User, WalletAddress } from "./types";
 
@@ -32,13 +33,8 @@ export async function findUserInDB(walletAddress: WalletAddress) {
   return res.data;
 }
 
-export async function checkForSBT(
-  walletAddress: WalletAddress,
-  chainId: ChainId
-) {
-  const res = await api.get<boolean>(
-    `/soulbound/wallet/${walletAddress}/blockchainId/${chainId}`
-  );
+export async function checkForSBT(walletAddress: WalletAddress, chainId: ChainId) {
+  const res = await api.get<boolean>(`/soulbound/wallet/${walletAddress}/blockchainId/${chainId}`);
 
   return res.data;
 }

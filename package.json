@@ -54,6 +54,8 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.191"
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/lodash": "^4.14.191",
+    "prettier": "2.8.7"
   }
 }

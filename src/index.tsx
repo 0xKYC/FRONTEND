@@ -1,25 +1,27 @@
+import { Web3Modal } from "@web3modal/react";
 import ReactDOM from "react-dom";
-
 import { I18nextProvider } from "react-i18next";
-import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import "antd/dist/reset.css";
+
+import { ConfigProvider } from "antd";
 import { WagmiConfig } from "wagmi";
+
+import "antd/dist/reset.css";
+import throttle from "lodash/throttle";
+
+import { WalletConnectionModal } from "./components/WalletModal";
+import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
+import { saveState } from "./redux/localStorage";
+import { store } from "./redux/store";
 import Router from "./router";
 import i18n from "./translation";
-import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
-import { Web3Modal } from "@web3modal/react";
-import { ConfigProvider } from "antd";
-import { saveState } from "./redux/localStorage";
-import throttle from "lodash/throttle";
-import { WalletConnectionModal } from "./components/WalletModal";
 
 store.subscribe(
   throttle(() => {
     saveState({
       user: store.getState().user,
     });
-  }, 1000)
+  }, 1000),
 );
 
 const App = () => (
@@ -42,11 +44,7 @@ ReactDOM.render(
         <WalletConnectionModal />
       </ConfigProvider>
     </WagmiConfig>
-    <Web3Modal
-      themeColor="orange"
-      projectId={connectWalletId}
-      ethereumClient={ethereumClient}
-    />
+    <Web3Modal themeColor="orange" projectId={connectWalletId} ethereumClient={ethereumClient} />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

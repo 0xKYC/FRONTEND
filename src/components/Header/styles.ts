@@ -1,6 +1,7 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+
 import { MenuOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
 export const Image = styled.img`
   display: none;

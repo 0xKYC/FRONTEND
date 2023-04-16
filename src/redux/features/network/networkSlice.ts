@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { ChainId, SupportedChainId } from "../../../constans/chains";
 import { RootState } from "../../store";
 
@@ -27,7 +28,5 @@ export const { toggleModal, setChain } = networkSlice.actions;
 
 export default networkSlice.reducer;
 
-export const selectIsModalOpen = (state: RootState) =>
-  state.network.isModalOpen;
-export const selectCurrentChain = (state: RootState) =>
-  state.network.selectedChain;
+export const selectIsModalOpen = (state: RootState) => state.network.isModalOpen;
+export const selectCurrentChain = (state: RootState) => state.network.selectedChain;

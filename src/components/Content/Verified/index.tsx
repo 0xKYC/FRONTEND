@@ -1,25 +1,18 @@
-import { Row, Col } from "antd";
-
 import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
+
+import { Col, Row } from "antd";
 import { useNetwork } from "wagmi";
-import { getChainInfo } from "../../../constans/chains";
-import vContent from "../../../content/VerifiedContent.json";
-import { selectTxHashes } from "../../../redux/features/user/userSlice";
-import { useAppSelector } from "../../../redux/hooks";
+
+import { getChainInfo } from "constans/chains";
+import vContent from "content/VerifiedContent.json";
+import { selectTxHashes } from "redux/features/user/userSlice";
+import { useAppSelector } from "redux/hooks";
+
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";
 import { Checkmark } from "./Checkmark";
-
-import {
-  Content,
-  Box,
-  StyledLink,
-  StyledCard,
-  BlockWrapper,
-  ContentWrapper,
-  Flex,
-} from "./styles";
+import { BlockWrapper, Box, Content, ContentWrapper, Flex, StyledCard, StyledLink } from "./styles";
 import { getHash } from "./utils";
 
 const VerifiedContent = () => {

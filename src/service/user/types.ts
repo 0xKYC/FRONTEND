@@ -1,4 +1,4 @@
-import { ChainId } from "../../constans/chains";
+import { ChainId } from "constans/chains";
 
 export interface User {
   walletAddress: string;

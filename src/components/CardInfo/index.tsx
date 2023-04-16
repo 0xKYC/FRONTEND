@@ -12,8 +12,8 @@ export const CardInfo = () => {
     >
       <StyledText>
         This is a demo product only, please contact us{" "}
-        <StyledLink href="mailto:support@0xkyc.id">here</StyledLink> when you
-        see any bugs, issues or improvements.
+        <StyledLink href="mailto:support@0xkyc.id">here</StyledLink> when you see any bugs, issues
+        or improvements.
       </StyledText>
     </StyledCard>
   );

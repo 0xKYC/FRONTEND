@@ -1,12 +1,14 @@
 import { useEffect } from "react";
+
 import { useAccount, useNetwork } from "wagmi";
+
 import {
   selectIsMinting,
   selectMintingChain,
   selectMintingWallet,
   setMintingActive,
-} from "../../redux/features/user/userSlice";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+} from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 export const useCheckMinting = (isVerified: boolean) => {
   const minting = useAppSelector(selectIsMinting);
@@ -18,23 +20,10 @@ export const useCheckMinting = (isVerified: boolean) => {
   const { chain } = useNetwork();
 
   useEffect(() => {
-    if (
-      minting &&
-      !isVerified &&
-      mintingChain === chain?.id &&
-      address === mintingWalletAddress
-    ) {
+    if (minting && !isVerified && mintingChain === chain?.id && address === mintingWalletAddress) {
       dispatch(setMintingActive(true));
     } else {
       dispatch(setMintingActive(false));
     }
-  }, [
-    address,
-    chain?.id,
-    minting,
-    mintingChain,
-    mintingWalletAddress,
-    dispatch,
-    isVerified,
-  ]);
+  }, [address, chain?.id, minting, mintingChain, mintingWalletAddress, dispatch, isVerified]);
 };
