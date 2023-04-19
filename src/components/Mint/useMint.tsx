@@ -65,12 +65,7 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (
-      data !== "noUserError" &&
-      typeof data !== "undefined" &&
-      !loading &&
-      data.onfidoStatus.length !== 0
-    ) {
+    if (data !== "noUserError" && typeof data !== "undefined" && !loading && data.onfidoStatus) {
       if (data.onfidoStatus !== "approved") {
         setError(true);
         dispatch(

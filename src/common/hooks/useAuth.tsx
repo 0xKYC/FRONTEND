@@ -21,7 +21,6 @@ import {
   createUserInDB,
   editUserInDB,
   findUserInDB,
-  initUserInDB,
 } from "service/user/user.service";
 
 import { useCheckMinting } from "./useCheckMinting";
@@ -60,7 +59,6 @@ export const useAuth = () => {
         const user = await findUserInDB(account);
 
         if (user === "noUserError") {
-          await initUserInDB(account);
           const newApplicant = await onfidoCreateApplicant();
           await createUserInDB({
             walletAddress: account,
@@ -102,7 +100,7 @@ export const useAuth = () => {
     const checkSBT = async (address: string, chainId: number) => {
       try {
         const isVerified = await checkForSBT(address, chainId);
-
+        
         if (isVerified) {
           const user = await findUserInDB(address);
           if (user !== "noUserError") {

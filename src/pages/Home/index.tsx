@@ -1,5 +1,9 @@
 import { lazy } from "react";
 
+import { useAccount } from "wagmi";
+
+import { useFetchUser } from "common/hooks/useFetchUser";
+
 import { LoadingSpinner } from "../../common/LoadingSpinner";
 import IntroContent from "../../content/IntroContent.json";
 import VerifyContent from "../../content/VerifyContent.json";
@@ -10,6 +14,7 @@ const ContentBlock = lazy(() => import("../../components/Content"));
 
 const Home = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
+
   return (
     <Container>
       <ScrollToTop />
