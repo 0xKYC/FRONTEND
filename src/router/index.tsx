@@ -9,7 +9,7 @@ import Header from "../components/Header";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
-import { About, Error, Home, Mint, Profile, TermsOfService, Wave } from "./pages";
+import { About, Error, Home, Mint, PrivacyPolicy, Profile, TermsOfService, Wave } from "./pages";
 
 // import { Status } from "../components/Mint/test";
 
@@ -76,6 +76,7 @@ const Router = () => {
             /> */}
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<Error />} path="/error" />
           </Routes>
           <Wave />
