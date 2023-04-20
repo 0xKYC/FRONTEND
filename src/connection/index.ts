@@ -29,12 +29,12 @@ export const wagmiClient = createClient({
         qrcode: true,
       },
     }),
-    // new CoinbaseWalletConnector({
-    //   chains,
-    //   options: {
-    //     appName: "0xKYC",
-    //   },
-    // }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: "0xKYC",
+      },
+    }),
   ],
 
   provider,
