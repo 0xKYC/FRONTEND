@@ -25,7 +25,7 @@ export const servicesData = [
   {
     title: "Discord",
     description:
-      "The most popular online community-building tool, soon supported by 0xKYC and our Discord bot ⚡️",
+      "The most popular online community-building tool, supported by 0xKYC and our Discord bot ⚡️",
     tags: ["Software"],
     href: "https://discord.com/",
     img: "/img/discord.png",

@@ -1,6 +1,8 @@
 import CookieConsent from "react-cookie-consent";
 import { Link } from "react-router-dom";
+
 import styled from "styled-components";
+
 export const CookieBanner = () => {
   return (
     <CookieConsent
@@ -16,6 +18,7 @@ export const CookieBanner = () => {
       }}
       buttonText="Okay"
       buttonStyle={{
+        padding: ".5rem 1rem",
         background: "#fb7324",
         color: "white",
         fontSize: "1rem",
@@ -35,9 +38,9 @@ export const CookieBanner = () => {
 };
 
 const StyledLink = styled(Link)`
-  color: #ffffffec;
+  color: #62b5e6;
   transition: all 0.3s;
   &:hover {
-    color: #ffffffce;
+    color: #79bde4;
   }
 `;
