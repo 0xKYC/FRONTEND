@@ -19,6 +19,7 @@ import { useAuth } from "../common/hooks/useAuth";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import { LoadingSpinner } from "../common/LoadingSpinner";
+import { CookieBanner } from "../components/CookieBanner";
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
@@ -91,6 +92,7 @@ const Router = () => {
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<Error />} path="/error" />
           </Routes>
+          <CookieBanner />
           <Wave />
         </div>
         <Footer />

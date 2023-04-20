@@ -1,19 +1,17 @@
-import ReactDOM from "react-dom";
-
-import { I18nextProvider } from "react-i18next";
+import { WalletConnectionModal } from "./components/WalletModal";
+import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
+import { saveState } from "./redux/localStorage";
 import { store } from "./redux/store";
-import { Provider } from "react-redux";
-import "antd/dist/reset.css";
-import { WagmiConfig } from "wagmi";
 import Router from "./router";
 import i18n from "./translation";
-import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
 import { Web3Modal } from "@web3modal/react";
 import { ConfigProvider } from "antd";
-import { saveState } from "./redux/localStorage";
+import "antd/dist/reset.css";
 import throttle from "lodash/throttle";
-import { WalletConnectionModal } from "./components/WalletModal";
-import CookieConsent from "react-cookie-consent";
+import ReactDOM from "react-dom";
+import { I18nextProvider } from "react-i18next";
+import { Provider } from "react-redux";
+import { WagmiConfig } from "wagmi";
 
 store.subscribe(
   throttle(() => {
@@ -48,29 +46,6 @@ ReactDOM.render(
       projectId={connectWalletId}
       ethereumClient={ethereumClient}
     />
-    <CookieConsent
-      style={{
-        position: "fixed",
-        width: "96%",
-        margin: "auto",
-        bottom: "20px",
-        borderRadius: "0.5rem",
-        left: "50%",
-        marginBottom: "1rem",
-        transform: "translateX(-50%)",
-      }}
-      buttonText="Okay"
-      buttonStyle={{
-        background: "#fb7324",
-        color: "white",
-        fontSize: "1rem",
-        borderRadius: "0.4rem",
-        fontWeight: "bold",
-        fontFamily: "Motiva Sans Light",
-      }}
-    >
-      This website uses cookies to improve your experience
-    </CookieConsent>
   </Provider>,
   document.getElementById("root")
 );
