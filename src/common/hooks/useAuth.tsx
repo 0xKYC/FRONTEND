@@ -67,6 +67,7 @@ export const useAuth = () => {
             onfidoApplicantId: newApplicant.id,
           });
           dispatch(addApplicantId(newApplicant.id));
+          dispatch(signTos(false));
         } else {
           if (user.tosVersion !== tos.version) {
             dispatch(signTos(false));
@@ -81,6 +82,7 @@ export const useAuth = () => {
             walletAddress: account,
             onfidoApplicantId: newApplicant.id,
           });
+
           dispatch(addApplicantId(newApplicant.id));
         } else if (user !== "noUserError" && user.onfidoApplicantId !== null) {
           dispatch(addApplicantId(user.onfidoApplicantId));
