@@ -1,3 +1,4 @@
+
 import { Web3Modal } from "@web3modal/react";
 import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
@@ -48,3 +49,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root"),
 );
+
