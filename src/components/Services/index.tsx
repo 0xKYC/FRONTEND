@@ -1,6 +1,6 @@
-import { Service } from "./Service";
-
 import { Col, Row } from "antd";
+
+import { Service } from "./Service";
 import { servicesData } from "./data";
 import { Heading, Wrapper } from "./styles";
 

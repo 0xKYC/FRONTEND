@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { User } from "../../service/user/types";
-import { findUserInDB } from "../../service/user/user.service";
+
+import { User } from "service/user/types";
+import { findUserInDB } from "service/user/user.service";
 
 export const useFetchUser = (address: string | undefined) => {
   const [data, setData] = useState<User | "noUserError">();

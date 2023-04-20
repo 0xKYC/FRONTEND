@@ -6,12 +6,7 @@ export interface RouteProps {
   minting?: boolean;
   children: JSX.Element;
 }
-const RedirectRoute = ({
-  verified,
-  children,
-  sanctioned,
-  minting,
-}: RouteProps) => {
+const RedirectRoute = ({ verified, children, sanctioned, minting }: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;
   } else if (sanctioned) {

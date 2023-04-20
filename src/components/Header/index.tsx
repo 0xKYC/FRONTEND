@@ -1,3 +1,14 @@
+import { withTranslation } from "react-i18next";
+
+import { Row } from "antd";
+import { useAccount, useDisconnect } from "wagmi";
+
+import { Button } from "common/Button";
+import Container from "common/Container";
+import { toggleModal } from "redux/features/network/networkSlice";
+import { useAppDispatch } from "redux/hooks";
+
+import { ChainSelectionMenu } from "./ChainSelection/Menu";
 import {
   Box,
   HeaderSection,
@@ -7,17 +18,6 @@ import {
   MobileImage,
   NotHidden,
 } from "./styles";
-import { Row } from "antd";
-
-import { Button } from "../../common/Button";
-import Container from "../../common/Container";
-import { useAccount, useDisconnect } from "wagmi";
-import { withTranslation } from "react-i18next";
-
-import { ChainSelectionMenu } from "./ChainSelection/Menu";
-
-import { useAppDispatch } from "../../redux/hooks";
-import { toggleModal } from "../../redux/features/network/networkSlice";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -50,18 +50,8 @@ const Header = () => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <Image
-              src="/img/icons/new-logo.png"
-              alt="logo"
-              width="180px"
-              height="54px"
-            />
-            <MobileImage
-              src="/img/icons/0xkyc-icon.png"
-              alt="logo"
-              width="54px"
-              height="54px"
-            />
+            <Image src="/img/icons/new-logo.png" alt="logo" width="180px" height="54px" />
+            <MobileImage src="/img/icons/0xkyc-icon.png" alt="logo" width="54px" height="54px" />
           </LogoContainer>
           <MobileConnectBtn>
             <Button color={address ? "#FFFFFFff" : ""} onClick={handleOpen}>

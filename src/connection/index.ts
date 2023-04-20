@@ -1,9 +1,11 @@
+import { configureChains, createClient } from "wagmi";
+
 import { EthereumClient, walletConnectProvider } from "@web3modal/ethereum";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { goerli, polygonMumbai } from "wagmi/chains";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { configureChains, createClient } from "wagmi";
-import { goerli, polygonMumbai } from "wagmi/chains";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+
 import { scrollAlpha } from "../constans/chains";
 
 export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
@@ -27,12 +29,12 @@ export const wagmiClient = createClient({
         qrcode: true,
       },
     }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: "0xKYC",
-      },
-    }),
+    // new CoinbaseWalletConnector({
+    //   chains,
+    //   options: {
+    //     appName: "0xKYC",
+    //   },
+    // }),
   ],
 
   provider,

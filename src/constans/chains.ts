@@ -1,4 +1,5 @@
 import { Chain } from "wagmi";
+
 interface BaseChainInfo {
   readonly bridge?: string;
   readonly docs?: string;
@@ -58,7 +59,7 @@ export const CHAIN_IDS = [
   SupportedChainId.SCROLL_ALPHA,
 ] as const;
 
-export type ChainId = typeof CHAIN_IDS[number];
+export type ChainId = (typeof CHAIN_IDS)[number];
 
 export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
   if (typeof chainId === "undefined") {

@@ -1,7 +1,9 @@
-import { InfoCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useSignTerms } from "./useSignTerms";
+
+import { InfoCircleOutlined } from "@ant-design/icons";
+
 import { Box, StyledInfo, StyledModal, StyledP, Title } from "./styles";
+import { useSignTerms } from "./useSignTerms";
 
 export const TosModal = () => {
   const { closeModal, sign, isModalOpen, isLoading } = useSignTerms();
@@ -23,11 +25,7 @@ export const TosModal = () => {
             Terms of Service{" "}
           </Link>
           and{" "}
-          <a
-            href="https://0xkyc.id/privacy-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://0xkyc.id/privacy-policy" target="_blank" rel="noopener noreferrer">
             Privacy Policy
           </a>
           .
@@ -35,8 +33,7 @@ export const TosModal = () => {
 
         {isLoading && (
           <StyledInfo>
-            <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Check your
-            wallet to confirm
+            <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Check your wallet to confirm
           </StyledInfo>
         )}
       </Box>

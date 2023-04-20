@@ -1,8 +1,9 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
 import { createSlice } from "@reduxjs/toolkit";
-import { ChainId } from "../../../constans/chains";
-import { txHash } from "../../../service/user/types";
+import { ChainId } from "constans/chains";
+import { txHash } from "service/user/types";
+
+import { RootState } from "../../store";
 
 // isMinting indicate if user's token is minting, isMintingActive indicate if user is on the network of his minting token
 export interface User {
@@ -35,6 +36,7 @@ export const userSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.verified = false;
+      state.tosAccepted = false;
     },
     addApplicantId: (state, action: PayloadAction<string>) => {
       state.applicantId = action.payload;
@@ -52,7 +54,7 @@ export const userSlice = createSlice({
         chainId: ChainId | null;
         walletAddress: string;
         error: boolean;
-      }>
+      }>,
     ) => {
       state.isMinting = action.payload.minting;
       state.mintingChain = action.payload.chainId;
@@ -84,12 +86,8 @@ export const selectApplicantId = (state: RootState) => state.user.applicantId;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHashes = (state: RootState) => state.user.txHashes;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
-export const selectIsMintingError = (state: RootState) =>
-  state.user.isMintingError;
-export const selectIsMintingActive = (state: RootState) =>
-  state.user.isMintingActive;
+export const selectIsMintingError = (state: RootState) => state.user.isMintingError;
+export const selectIsMintingActive = (state: RootState) => state.user.isMintingActive;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
-export const selectTosAcceptedWallet = (state: RootState) =>
-  state.user.tosAccepted;
-export const selectMintingWallet = (state: RootState) =>
-  state.user.mintingWalletAddress;
+export const selectTosAcceptedWallet = (state: RootState) => state.user.tosAccepted;
+export const selectMintingWallet = (state: RootState) => state.user.mintingWalletAddress;

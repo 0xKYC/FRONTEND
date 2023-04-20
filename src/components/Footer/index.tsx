@@ -1,20 +1,22 @@
-import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
-import { SvgIcon } from "../../common/SvgIcon";
-import Container from "../../common/Container";
+
+import { Col, Row } from "antd";
+
+import Container from "common/Container";
+import { SvgIcon } from "common/SvgIcon";
 
 import {
-  FooterSection,
-  Title,
-  NavLink,
-  Extra,
-  LogoContainer,
-  Para,
-  Large,
   Chat,
+  Extra,
   FooterContainer,
+  FooterSection,
   Language,
+  Large,
+  LogoContainer,
+  NavLink,
+  Para,
   StyledLink,
+  Title,
 } from "./styles";
 
 interface SocialLinkProps {
@@ -25,13 +27,7 @@ interface SocialLinkProps {
 const Footer = ({ t }: any) => {
   const SocialLink = ({ href, src }: SocialLinkProps) => {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        key={src}
-        aria-label={src}
-      >
+      <a href={href} target="_blank" rel="noopener noreferrer" key={src} aria-label={src}>
         <SvgIcon src={src} width="25px" height="25px" />
       </a>
     );
@@ -66,29 +62,19 @@ const Footer = ({ t }: any) => {
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Legal")}</Title>
-
+              <Large left="true" to="/privacy-policy">
+                {t("Privacy Policy")}
+              </Large>
               <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
               </Large>
-
-              <StyledLink
-                href="https://0xkyc.id/privacy-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t("Privacy Policy")} &#8618;
-              </StyledLink>
             </Col>
           </Row>
         </Container>
       </FooterSection>
       <Extra>
         <Container border={true}>
-          <Row
-            justify="space-between"
-            align="middle"
-            style={{ paddingTop: "3rem" }}
-          >
+          <Row justify="space-between" align="middle" style={{ paddingTop: "3rem" }}>
             <NavLink to="/">
               <LogoContainer>
                 <img src="/img/icons/new-logo.png" alt="logo" height="44px" />
@@ -97,14 +83,8 @@ const Footer = ({ t }: any) => {
             <FooterContainer>
               <SocialLink href="https://0xkyc.id" src="internet.svg" />
               <SocialLink href="https://github.com/0xKYC" src="github.svg" />
-              <SocialLink
-                href="https://twitter.com/0xkycinc"
-                src="twitter.svg"
-              />
-              <SocialLink
-                href="https://www.linkedin.com/company/0xkyc/"
-                src="linkedin.svg"
-              />
+              <SocialLink href="https://twitter.com/0xkycinc" src="twitter.svg" />
+              <SocialLink href="https://www.linkedin.com/company/0xkyc/" src="linkedin.svg" />
               {/* crunchbase icon */}
             </FooterContainer>
           </Row>

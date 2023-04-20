@@ -1,4 +1,4 @@
-import { CheckmarkWrapper, Checkmark as CheckmarkIcon } from "./styles";
+import { Checkmark as CheckmarkIcon, CheckmarkWrapper } from "./styles";
 
 export const Checkmark = () => {
   return (

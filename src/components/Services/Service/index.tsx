@@ -1,11 +1,11 @@
 import {
-  StyledCard,
-  StyledText,
+  Box,
   Heading,
   ImageWrapper,
+  StyledCard,
   StyledImg,
+  StyledText,
   StyledTitle,
-  Box,
 } from "./styles";
 
 interface Props {
@@ -15,13 +15,7 @@ interface Props {
   tags: string[];
   href: string;
 }
-export const Service = ({
-  title,
-  description,
-  img = "",
-  tags,
-  href,
-}: Props) => {
+export const Service = ({ title, description, img = "", tags, href }: Props) => {
   return (
     <a href={href} target="_blank" rel="noreferrer">
       <StyledCard>

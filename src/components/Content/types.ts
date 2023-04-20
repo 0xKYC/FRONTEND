@@ -1,4 +1,4 @@
-import { button } from "../../content/IntroContent.json";
+import { button } from "content/IntroContent.json";
 
 export interface ContentBlockProps {
   icon: string;
