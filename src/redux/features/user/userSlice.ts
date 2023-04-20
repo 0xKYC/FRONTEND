@@ -36,7 +36,6 @@ export const userSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.verified = false;
-      state.tosAccepted = false;
     },
     addApplicantId: (state, action: PayloadAction<string>) => {
       state.applicantId = action.payload;

@@ -69,7 +69,7 @@ export const useMint = () => {
       data !== "noUserError" &&
       typeof data !== "undefined" &&
       !loading &&
-      data?.onfidoStatus?.length !== 0
+      data.onfidoStatus.length !== 0
     ) {
       if (data.onfidoStatus !== "approved") {
         setError(true);
