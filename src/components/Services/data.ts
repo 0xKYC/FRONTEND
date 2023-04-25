@@ -22,6 +22,14 @@ export const servicesData = [
     href: "https://aragon.org/",
     img: "/img/aragon.png",
   },
+  {
+    title: "Discord",
+    description:
+      "The most popular online community-building tool, supported by 0xKYC and our Discord bot ⚡️",
+    tags: ["Software"],
+    href: "https://discord.com/",
+    img: "/img/discord.png",
+  },
   // {
   //   title: "CodeMonk",
   //   description:

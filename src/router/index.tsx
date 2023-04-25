@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import { CookieBanner } from "components/CookieBanner";
+
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ScrollToTop } from "../common/Scroll";
 import { useAuth } from "../common/hooks/useAuth";
@@ -81,6 +83,7 @@ const Router = () => {
           </Routes>
           <Wave />
         </div>
+        <CookieBanner />
         <Footer />
       </Suspense>
     </BrowserRouter>
