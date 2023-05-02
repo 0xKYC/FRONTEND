@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import { CookieBanner } from "components/CookieBanner";
+
 // import { Status } from "../components/Mint/test";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ScrollToTop } from "../common/Scroll";
@@ -15,10 +17,13 @@ import {
   Error,
   Home,
   Mint,
+  PrivacyPolicy,
   Profile,
   TermsOfService,
   Wave,
 } from "./pages";
+
+// import { Status } from "../components/Mint/test";
 
 const Router = () => {
   const {
@@ -88,10 +93,12 @@ const Router = () => {
             /> */}
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<Error />} path="/error" />
           </Routes>
           <Wave />
         </div>
+        <CookieBanner />
         <Footer />
       </Suspense>
     </BrowserRouter>
