@@ -4,7 +4,7 @@ import { User } from "service/user/types";
 import { findUserInDB } from "service/user/user.service";
 
 export const useFetchUser = (address: string | undefined) => {
-  const [data, setData] = useState<User | "noUserError">();
+  const [data, setData] = useState<User>();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 

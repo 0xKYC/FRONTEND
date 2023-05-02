@@ -1,4 +1,3 @@
-import { Web3Modal } from "@web3modal/react";
 import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
@@ -10,7 +9,7 @@ import "antd/dist/reset.css";
 import throttle from "lodash/throttle";
 
 import { WalletConnectionModal } from "./components/WalletModal";
-import { connectWalletId, ethereumClient, wagmiClient } from "./connection";
+import { wagmiClient } from "./connection";
 import { saveState } from "./redux/localStorage";
 import { store } from "./redux/store";
 import Router from "./router";
@@ -44,7 +43,6 @@ ReactDOM.render(
         <WalletConnectionModal />
       </ConfigProvider>
     </WagmiConfig>
-    <Web3Modal themeColor="orange" projectId={connectWalletId} ethereumClient={ethereumClient} />
   </Provider>,
   document.getElementById("root"),
 );

@@ -1,8 +1,7 @@
 import { ChainId } from "../../../constans/chains";
-import { txHash } from "../../../service/user/types";
+import { User } from "../../../service/user/types";
 
-export const getHash = (txHashes: txHash, chainID: ChainId) => {
-  if (!txHashes) return;
-
-  return txHashes[chainID] || chainID;
+export const getUserSbt = (user: User, chainId: ChainId) => {
+  const sbt = user.sbts.find((sbt) => sbt.chainId === chainId);
+  return sbt;
 };

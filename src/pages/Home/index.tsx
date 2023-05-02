@@ -1,9 +1,5 @@
 import { lazy } from "react";
 
-import { useAccount } from "wagmi";
-
-import { useFetchUser } from "common/hooks/useFetchUser";
-
 import { LoadingSpinner } from "../../common/LoadingSpinner";
 import IntroContent from "../../content/IntroContent.json";
 import VerifyContent from "../../content/VerifyContent.json";
