@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 
+import { App as AntdApp } from "antd";
 import { ConfigProvider } from "antd";
 import { WagmiConfig } from "wagmi";
 
@@ -32,18 +33,19 @@ const App = () => (
 ReactDOM.render(
   <Provider store={store}>
     <WagmiConfig client={wagmiClient}>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#fb7324",
-          },
-        }}
-      >
-        <App />
-        <WalletConnectionModal />
-      </ConfigProvider>
+      <AntdApp>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#fb7324",
+            },
+          }}
+        >
+          <App />
+          <WalletConnectionModal />
+        </ConfigProvider>
+      </AntdApp>
     </WagmiConfig>
   </Provider>,
   document.getElementById("root"),
 );
-
