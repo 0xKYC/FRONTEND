@@ -1,8 +1,6 @@
-import { Modal } from "antd";
+import { App } from "antd";
 
 import { ArrowLeftOutlined, ExclamationCircleFilled } from "@ant-design/icons";
-
-const { confirm } = Modal;
 
 interface Props {
   title: string;
@@ -13,8 +11,17 @@ interface Props {
   cancelText: string;
 }
 export const useConfirmModal = () => {
-  const showConfirm = ({ title, content, onOk, onCancel, okText, cancelText }: Props) => {
-    confirm({
+  const { modal } = App.useApp();
+
+  const showConfirm = ({
+    title,
+    content,
+    onOk,
+    onCancel,
+    okText,
+    cancelText,
+  }: Props) => {
+    modal.confirm({
       title: title,
       icon: <ExclamationCircleFilled />,
       content: content,

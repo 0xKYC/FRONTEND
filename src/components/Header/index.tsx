@@ -6,6 +6,7 @@ import { useAccount, useDisconnect } from "wagmi";
 import { Button } from "common/Button";
 import Container from "common/Container";
 import { toggleModal } from "redux/features/network/networkSlice";
+import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
@@ -23,7 +24,11 @@ const Header = () => {
   const dispatch = useAppDispatch();
 
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
+  const { disconnect } = useDisconnect({
+    onSuccess() {
+      dispatch(reset());
+    },
+  });
 
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isConnected) {

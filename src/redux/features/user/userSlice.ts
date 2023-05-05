@@ -1,7 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { ChainId } from "constans/chains";
-import { txHash } from "service/user/types";
 
 import { RootState } from "../../store";
 
@@ -9,7 +8,7 @@ import { RootState } from "../../store";
 export interface User {
   applicantId: string | null;
   verified: boolean;
-  txHashes: txHash;
+  txHash: string;
   isMinting: boolean;
   mintingChain: ChainId | null;
   mintingWalletAddress: string | null;
@@ -21,7 +20,7 @@ export interface User {
 const initialState: User = {
   applicantId: "",
   verified: false,
-  txHashes: {},
+  txHash: "",
   isMinting: false,
   mintingChain: null,
   mintingWalletAddress: null,
@@ -35,7 +34,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.applicantId = "";
       state.verified = false;
+      state.txHash = "";
+      state.isMinting = false;
+      state.mintingChain = null;
+      state.mintingWalletAddress = null;
+      state.isMintingActive = false;
+      state.isMintingError = false;
     },
     addApplicantId: (state, action: PayloadAction<string>) => {
       state.applicantId = action.payload;
@@ -43,8 +49,8 @@ export const userSlice = createSlice({
     checkIfVerified: (state, action: PayloadAction<boolean>) => {
       state.verified = action.payload;
     },
-    addTxHashes: (state, action: PayloadAction<txHash>) => {
-      state.txHashes = action.payload;
+    addTxHash: (state, action: PayloadAction<string>) => {
+      state.txHash = action.payload;
     },
     setMinting: (
       state,
@@ -72,7 +78,7 @@ export const userSlice = createSlice({
 export const {
   addApplicantId,
   checkIfVerified,
-  addTxHashes,
+  addTxHash,
   setMinting,
   reset,
   setMintingActive,
@@ -83,7 +89,7 @@ export default userSlice.reducer;
 
 export const selectApplicantId = (state: RootState) => state.user.applicantId;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
-export const selectTxHashes = (state: RootState) => state.user.txHashes;
+export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
 export const selectIsMintingError = (state: RootState) => state.user.isMintingError;
 export const selectIsMintingActive = (state: RootState) => state.user.isMintingActive;

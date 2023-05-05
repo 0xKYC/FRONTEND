@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "components/CookieBanner";
 
+// import { Status } from "../components/Mint/test";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ScrollToTop } from "../common/Scroll";
 import { useAuth } from "../common/hooks/useAuth";
@@ -11,12 +12,26 @@ import Header from "../components/Header";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
-import { About, Error, Home, Mint, PrivacyPolicy, Profile, TermsOfService, Wave } from "./pages";
+import {
+  About,
+  Error,
+  Home,
+  Mint,
+  PrivacyPolicy,
+  Profile,
+  TermsOfService,
+  Wave,
+} from "./pages";
 
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
-  const { isVerified: verified, isLoading, isSanctioned, isMintingActive } = useAuth();
+  const {
+    isVerified: verified,
+    isLoading,
+    isSanctioned,
+    isMintingActive,
+  } = useAuth();
 
   return (
     <BrowserRouter>

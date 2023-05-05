@@ -10,6 +10,7 @@ const ContentBlock = lazy(() => import("../../components/Content"));
 
 const Home = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
+
   return (
     <Container>
       <ScrollToTop />
