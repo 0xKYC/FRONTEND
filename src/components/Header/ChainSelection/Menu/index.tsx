@@ -15,10 +15,11 @@ import {
   getChainInfo,
 } from "constans/chains";
 import {
+  closeConnectionInfoModal,
+  openConnectionInfoModal,
   selectCurrentChain,
   selectIsConnectionInfoModalOpen,
   setChain,
-  toggleConnectionInfoModal,
 } from "redux/features/connection/connectionSlice";
 import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -33,14 +34,19 @@ export const ChainSelectionMenu = () => {
   const navigate = useNavigate();
   const chainId = useAppSelector(selectCurrentChain);
   const isConnectionModalOpen = useAppSelector(selectIsConnectionInfoModalOpen);
-  console.log("modal", isConnectionModalOpen);
+
   const onOpenChange = (open: boolean) => {
     setIsDropdownOpen(open);
   };
+  const closeConnectionModal = useCallback(() => {
+    dispatch(closeConnectionInfoModal());
+  }, [dispatch]);
 
   const handleMenuClick = () => {};
+
   const { switchNetwork, error, pendingChainId } = useSwitchNetwork({
     onSuccess() {
+      closeConnectionModal();
       dispatch(reset());
       navigate("/");
     },
@@ -48,28 +54,24 @@ export const ChainSelectionMenu = () => {
 
   const { contextHolder } = useErrorMessage(error);
 
-  const closeConnectionInfoModal = useCallback(() => {
-    dispatch(toggleConnectionInfoModal());
-  }, [dispatch]);
-
   const onSelectChain = (targetChain: ChainId, active: boolean) => {
     if (!active) {
       switchNetwork?.(targetChain);
     }
-    if (!active && chain) {
-      closeConnectionInfoModal();
+    if (chain) {
+      dispatch(openConnectionInfoModal());
     }
   };
 
   useEffect(() => {
     if (error) {
       setIsDropdownOpen(false);
-      closeConnectionInfoModal();
+      closeConnectionModal();
       if (chain) {
         dispatch(setChain(chain.id));
       }
     }
-  }, [error, dispatch, chain, closeConnectionInfoModal]);
+  }, [error, dispatch, chain, closeConnectionModal]);
 
   const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
@@ -91,8 +93,9 @@ export const ChainSelectionMenu = () => {
     <>
       {contextHolder}
       <ConnectionInfoModal
+        title={chain ? "Switching networks..." : "Connecting"}
         chain={chainId}
-        closeModal={closeConnectionInfoModal}
+        closeModal={closeConnectionModal}
         isModalOpen={isConnectionModalOpen}
       />
       <Dropdown

@@ -20,8 +20,11 @@ export const connectionSlice = createSlice({
     toggleConnectorsModal: (state) => {
       state.isConnectorsModalOpen = !state.isConnectorsModalOpen;
     },
-    toggleConnectionInfoModal: (state) => {
-      state.isConnectionInfoModalOpen = !state.isConnectionInfoModalOpen;
+    closeConnectionInfoModal: (state) => {
+      state.isConnectionInfoModalOpen = false;
+    },
+    openConnectionInfoModal: (state) => {
+      state.isConnectionInfoModalOpen = true;
     },
     setChain: (state, action: PayloadAction<ChainId>) => {
       state.selectedChain = action.payload;
@@ -29,8 +32,12 @@ export const connectionSlice = createSlice({
   },
 });
 
-export const { toggleConnectorsModal, setChain, toggleConnectionInfoModal } =
-  connectionSlice.actions;
+export const {
+  toggleConnectorsModal,
+  setChain,
+  openConnectionInfoModal,
+  closeConnectionInfoModal,
+} = connectionSlice.actions;
 
 export default connectionSlice.reducer;
 

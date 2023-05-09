@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { Connector, useConnect } from "wagmi";
 
 import {
+  closeConnectionInfoModal,
+  openConnectionInfoModal,
   selectCurrentChain,
-  toggleConnectionInfoModal,
   toggleConnectorsModal,
 } from "redux/features/connection/connectionSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -19,13 +20,17 @@ interface Props {
 
 export const Option = ({ connector }: Props) => {
   const dispatch = useAppDispatch();
-  const { connect, isLoading, pendingConnector, error } = useConnect();
+  const { connect, error } = useConnect({
+    onSuccess() {
+      dispatch(closeConnectionInfoModal());
+    },
+  });
 
   const chainId = useAppSelector(selectCurrentChain);
   const iconUrl = getIcon(connector.id);
   useEffect(() => {
     if (error) {
-      dispatch(toggleConnectionInfoModal());
+      dispatch(closeConnectionInfoModal());
     }
   }, [error, dispatch]);
   const isMetamaskConnector = connector.name === "MetaMask";
@@ -37,7 +42,7 @@ export const Option = ({ connector }: Props) => {
           key={connector.id}
           onClick={() => {
             connect({ connector, chainId });
-            dispatch(toggleConnectionInfoModal());
+            dispatch(openConnectionInfoModal());
             dispatch(toggleConnectorsModal());
           }}
         >

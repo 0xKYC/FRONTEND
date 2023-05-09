@@ -14,6 +14,7 @@ type Props = {
   isModalOpen: boolean;
   chain: number | undefined;
   closeModal: () => void;
+  title: string;
 };
 const loadingIcon = (
   <LoadingOutlined
@@ -24,6 +25,7 @@ const loadingIcon = (
 
 export const ConnectionInfoModal = ({
   isModalOpen,
+  title,
   closeModal,
   chain,
 }: Props) => {
@@ -45,7 +47,7 @@ export const ConnectionInfoModal = ({
         </StyledP>
 
         <StyledInfo>
-          <Spin indicator={loadingIcon} /> Switching networks...
+          <Spin indicator={loadingIcon} /> {title}
         </StyledInfo>
       </Box>
     </StyledModal>
