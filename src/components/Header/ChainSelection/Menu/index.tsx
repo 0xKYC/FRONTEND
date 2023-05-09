@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import type { MenuProps } from "antd";
@@ -7,8 +7,19 @@ import { useNetwork, useSwitchNetwork } from "wagmi";
 
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { useErrorMessage } from "common/hooks/useErrorMessage";
-import { ChainId, NETWORK_SELECTOR_CHAINS, SupportedChainId, getChainInfo } from "constans/chains";
-import { selectCurrentChain, setChain } from "redux/features/network/networkSlice";
+import { ConnectionInfoModal } from "components/ConnectionInfoModal";
+import {
+  ChainId,
+  NETWORK_SELECTOR_CHAINS,
+  SupportedChainId,
+  getChainInfo,
+} from "constans/chains";
+import {
+  selectCurrentChain,
+  selectIsConnectionInfoModalOpen,
+  setChain,
+  toggleConnectionInfoModal,
+} from "redux/features/connection/connectionSlice";
 import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
@@ -16,13 +27,15 @@ import { ChainSelectorItem } from "../Item";
 import { StyledButton } from "./styles";
 
 export const ChainSelectionMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { chain } = useNetwork();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const chainId = useAppSelector(selectCurrentChain);
+  const isConnectionModalOpen = useAppSelector(selectIsConnectionInfoModalOpen);
+  console.log("modal", isConnectionModalOpen);
   const onOpenChange = (open: boolean) => {
-    setIsOpen(open);
+    setIsDropdownOpen(open);
   };
 
   const handleMenuClick = () => {};
@@ -35,18 +48,28 @@ export const ChainSelectionMenu = () => {
 
   const { contextHolder } = useErrorMessage(error);
 
+  const closeConnectionInfoModal = useCallback(() => {
+    dispatch(toggleConnectionInfoModal());
+  }, [dispatch]);
+
   const onSelectChain = (targetChain: ChainId, active: boolean) => {
-    if (!active) switchNetwork?.(targetChain);
+    if (!active) {
+      switchNetwork?.(targetChain);
+    }
+    if (!active && chain) {
+      closeConnectionInfoModal();
+    }
   };
 
   useEffect(() => {
     if (error) {
-      setIsOpen(false);
+      setIsDropdownOpen(false);
+      closeConnectionInfoModal();
       if (chain) {
         dispatch(setChain(chain.id));
       }
     }
-  }, [error, dispatch, chain]);
+  }, [error, dispatch, chain, closeConnectionInfoModal]);
 
   const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
@@ -67,20 +90,25 @@ export const ChainSelectionMenu = () => {
   return (
     <>
       {contextHolder}
+      <ConnectionInfoModal
+        chain={chainId}
+        closeModal={closeConnectionInfoModal}
+        isModalOpen={isConnectionModalOpen}
+      />
       <Dropdown
         menu={{ items, onClick: handleMenuClick }}
         placement="bottomRight"
         arrow
         trigger={["click"]}
         onOpenChange={onOpenChange}
-        open={isOpen}
+        open={isDropdownOpen}
       >
         <StyledButton
-          isOpen={isOpen}
+          isOpen={isDropdownOpen}
           icon={<img width={20} height={20} src={logoUrl} alt={label} />}
         >
           {label}
-          {isOpen ? <UpOutlined /> : <DownOutlined />}
+          {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
         </StyledButton>
       </Dropdown>
     </>

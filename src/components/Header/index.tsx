@@ -5,7 +5,7 @@ import { useAccount, useDisconnect } from "wagmi";
 
 import { Button } from "common/Button";
 import Container from "common/Container";
-import { toggleModal } from "redux/features/network/networkSlice";
+import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -34,7 +34,7 @@ const Header = () => {
     if (isConnected) {
       disconnect();
     } else {
-      dispatch(toggleModal());
+      dispatch(toggleConnectorsModal());
       event.currentTarget.blur();
     }
   };
@@ -55,8 +55,18 @@ const Header = () => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <Image src="/img/icons/new-logo.png" alt="logo" width="180px" height="54px" />
-            <MobileImage src="/img/icons/0xkyc-icon.png" alt="logo" width="54px" height="54px" />
+            <Image
+              src="/img/icons/new-logo.png"
+              alt="logo"
+              width="180px"
+              height="54px"
+            />
+            <MobileImage
+              src="/img/icons/0xkyc-icon.png"
+              alt="logo"
+              width="54px"
+              height="54px"
+            />
           </LogoContainer>
           <MobileConnectBtn>
             <Button color={address ? "#FFFFFFff" : ""} onClick={handleOpen}>

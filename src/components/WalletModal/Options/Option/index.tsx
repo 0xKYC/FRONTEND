@@ -1,6 +1,12 @@
+import { useEffect } from "react";
+
 import { Connector, useConnect } from "wagmi";
 
-import { selectCurrentChain, toggleModal } from "redux/features/network/networkSlice";
+import {
+  selectCurrentChain,
+  toggleConnectionInfoModal,
+  toggleConnectorsModal,
+} from "redux/features/connection/connectionSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { InstallMetamaskOption } from "./InstallMetamask";
@@ -13,10 +19,15 @@ interface Props {
 
 export const Option = ({ connector }: Props) => {
   const dispatch = useAppDispatch();
-  const { connect } = useConnect();
+  const { connect, isLoading, pendingConnector, error } = useConnect();
+
   const chainId = useAppSelector(selectCurrentChain);
   const iconUrl = getIcon(connector.id);
-
+  useEffect(() => {
+    if (error) {
+      dispatch(toggleConnectionInfoModal());
+    }
+  }, [error, dispatch]);
   const isMetamaskConnector = connector.name === "MetaMask";
   return (
     <>
@@ -26,11 +37,18 @@ export const Option = ({ connector }: Props) => {
           key={connector.id}
           onClick={() => {
             connect({ connector, chainId });
-            dispatch(toggleModal());
+            dispatch(toggleConnectionInfoModal());
+            dispatch(toggleConnectorsModal());
           }}
         >
           <ImageBox>
-            <img src={iconUrl} height="36" width="36" alt="icon" style={{ marginLeft: "2.5rem" }} />
+            <img
+              src={iconUrl}
+              height="36"
+              width="36"
+              alt="icon"
+              style={{ marginLeft: "2.5rem" }}
+            />
           </ImageBox>
           <TextBox>{connector.name}</TextBox>
         </StyledOptionBtn>
