@@ -7,11 +7,9 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
 import { SvgIcon } from "common/SvgIcon";
-import { SupportedChainId } from "constans/chains";
 import { toggleModal } from "redux/features/network/networkSlice";
 import {
   selectApplicantId,
-  selectMockedWalletAddress,
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -68,7 +66,7 @@ const ContentBlock = ({
     if (walletAddress && tosAccepted) {
       setVerifyClicked(true);
     } else {
-      dispatch(toggleModal());
+      dispatch(toggleConnectorsModal());
       event.currentTarget.blur();
     }
   };

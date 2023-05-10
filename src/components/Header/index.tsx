@@ -5,7 +5,7 @@ import { useAccount, useDisconnect } from "wagmi";
 
 import { Button } from "common/Button";
 import Container from "common/Container";
-import { toggleModal } from "redux/features/network/networkSlice";
+import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import {
   reset,
   selectMockedWalletAddress,
@@ -40,7 +40,7 @@ const Header = () => {
     if (isConnected) {
       disconnect();
     } else {
-      dispatch(toggleModal());
+      dispatch(toggleConnectorsModal());
       event.currentTarget.blur();
     }
   };
