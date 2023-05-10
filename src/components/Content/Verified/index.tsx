@@ -4,6 +4,7 @@ import { useTranslation, withTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 import { useAccount, useNetwork } from "wagmi";
 
+import { LoadingSpinner } from "common/LoadingSpinner";
 import { getChainInfo } from "constans/chains";
 import vContent from "content/VerifiedContent.json";
 import { useGetUserQuery } from "redux/api/user/userApi";
@@ -11,7 +12,15 @@ import { useGetUserQuery } from "redux/api/user/userApi";
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";
 import { Checkmark } from "./Checkmark";
-import { BlockWrapper, Box, Content, ContentWrapper, Flex, StyledCard, StyledLink } from "./styles";
+import {
+  BlockWrapper,
+  Box,
+  Content,
+  ContentWrapper,
+  Flex,
+  StyledCard,
+  StyledLink,
+} from "./styles";
 import { getUserSbt } from "./utils";
 
 const VerifiedContent = () => {
@@ -20,9 +29,10 @@ const VerifiedContent = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
 
-  const { data: user } = useGetUserQuery(address);
+  const { data: user, isLoading } = useGetUserQuery(address);
   if (!chain) return <p>Error with fetching the network</p>;
 
+  if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
   const sbt = getUserSbt(user, chain.id);
