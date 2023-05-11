@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 import styled from "styled-components";
 
-export const StyledButton = styled(Button)<{ isOpen: boolean }>`
+export const StyledButton = styled(Button)<{ isOpen?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;

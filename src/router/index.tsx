@@ -27,12 +27,7 @@ import {
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
-  const {
-    isVerified: verified,
-    isLoading,
-    isSanctioned,
-    isMintingActive,
-  } = useAuth();
+  const { isVerified: verified, isLoading, isSanctioned, isMintingActive } = useAuth();
 
   return (
     <BrowserRouter>
@@ -80,9 +75,9 @@ const Router = () => {
             />
             <Route
               element={
-                <ProtectedRoute verified={verified}>
-                  <Profile />
-                </ProtectedRoute>
+                // <ProtectedRoute verified={verified}>
+                <Profile />
+                // </ProtectedRoute>
               }
               path="/profile"
             />

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
 
-import { CHAIN_IDS } from "constans/chains";
+import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
 import {
   addApplicantId,
@@ -44,6 +44,8 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+
   useCheckMinting(isVerified);
 
   useEffect(() => {
@@ -57,11 +59,11 @@ export const useAuth = () => {
 
   useEffect(() => {
     const checkSBT = async () => {
-      if (walletAddress && chain) {
+      if (walletAddress && chainId) {
         try {
           setIsLoading(true);
 
-          const isVerified = await hasSoul(chain.id, walletAddress);
+          const isVerified = await hasSoul(chainId, walletAddress);
           if (isVerified) {
             dispatch(checkIfVerified(isVerified));
           } else {
@@ -77,7 +79,7 @@ export const useAuth = () => {
     };
 
     checkSBT();
-  }, [walletAddress, dispatch, provider, chain]);
+  }, [walletAddress, dispatch, provider, chainId]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {

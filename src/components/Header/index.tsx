@@ -44,7 +44,7 @@ const Header = () => {
       event.currentTarget.blur();
     }
   };
-  console.log(mockedWalletAddress);
+ 
   const MenuItem = () => {
     return (
       <Box>

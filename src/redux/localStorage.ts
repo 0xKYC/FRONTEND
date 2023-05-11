@@ -1,7 +1,7 @@
 const KEY = "minting";
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem(KEY);
+    const serializedState = sessionStorage.getItem(KEY);
 
     if (serializedState === null) {
       return undefined;
@@ -16,7 +16,7 @@ export const loadState = () => {
 export const saveState = (state: any) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem(KEY, serializedState);
+    sessionStorage.setItem(KEY, serializedState);
   } catch (err) {
     console.error(err);
   }

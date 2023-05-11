@@ -21,7 +21,10 @@ import {
   selectIsConnectionInfoModalOpen,
   setChain,
 } from "redux/features/connection/connectionSlice";
-import { reset } from "redux/features/user/userSlice";
+import {
+  reset,
+  selectMockedWalletAddress,
+} from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ChainSelectorItem } from "../Item";
@@ -34,7 +37,8 @@ export const ChainSelectionMenu = () => {
   const navigate = useNavigate();
   const chainId = useAppSelector(selectCurrentChain);
   const isConnectionModalOpen = useAppSelector(selectIsConnectionInfoModalOpen);
-
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  
   const onOpenChange = (open: boolean) => {
     setIsDropdownOpen(open);
   };
@@ -75,6 +79,10 @@ export const ChainSelectionMenu = () => {
 
   const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
+  // get mocked chain (mumbai) for partner integration
+  const { label: mumbaiLabel, logoUrl: mumbaiLogoUrl } = getChainInfo(
+    SupportedChainId.POLYGON_MUMBAI,
+  );
   const items: MenuProps["items"] = NETWORK_SELECTOR_CHAINS.map(
     (chainId: SupportedChainId, index) => ({
       key: index,
@@ -98,22 +106,33 @@ export const ChainSelectionMenu = () => {
         closeModal={closeConnectionModal}
         isModalOpen={isConnectionModalOpen}
       />
-      <Dropdown
-        menu={{ items, onClick: handleMenuClick }}
-        placement="bottomRight"
-        arrow
-        trigger={["click"]}
-        onOpenChange={onOpenChange}
-        open={isDropdownOpen}
-      >
+
+      {mockedWalletAddress ? (
         <StyledButton
-          isOpen={isDropdownOpen}
-          icon={<img width={20} height={20} src={logoUrl} alt={label} />}
+          icon={
+            <img width={20} height={20} src={mumbaiLogoUrl} alt={mumbaiLabel} />
+          }
         >
-          {label}
-          {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
+          {mumbaiLabel}
         </StyledButton>
-      </Dropdown>
+      ) : (
+        <Dropdown
+          menu={{ items, onClick: handleMenuClick }}
+          placement="bottomRight"
+          arrow
+          trigger={["click"]}
+          onOpenChange={onOpenChange}
+          open={isDropdownOpen}
+        >
+          <StyledButton
+            isOpen={isDropdownOpen}
+            icon={<img width={20} height={20} src={logoUrl} alt={label} />}
+          >
+            {label}
+            {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
+          </StyledButton>
+        </Dropdown>
+      )}
     </>
   );
 };

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useAccount, useNetwork } from "wagmi";
 
+import { SupportedChainId } from "constans/chains";
 import {
   selectIsMinting,
   selectMintingChain,
@@ -19,11 +20,26 @@ export const useCheckMinting = (isVerified: boolean) => {
   const { address } = useAccount();
   const { chain } = useNetwork();
 
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+
   useEffect(() => {
-    if (minting && !isVerified && mintingChain === chain?.id && address === mintingWalletAddress) {
+    if (
+      minting &&
+      !isVerified &&
+      mintingChain === chainId &&
+      address === mintingWalletAddress
+    ) {
       dispatch(setMintingActive(true));
     } else {
       dispatch(setMintingActive(false));
     }
-  }, [address, chain?.id, minting, mintingChain, mintingWalletAddress, dispatch, isVerified]);
+  }, [
+    address,
+    chainId,
+    minting,
+    mintingChain,
+    mintingWalletAddress,
+    dispatch,
+    isVerified,
+  ]);
 };
