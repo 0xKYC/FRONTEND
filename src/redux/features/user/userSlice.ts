@@ -50,6 +50,7 @@ export const userSlice = createSlice({
       state.applicantId = "";
       state.verified = false;
       state.txHash = "";
+      state.mockedWalletAddress = null;
     },
     addApplicantId: (state, action: PayloadAction<string>) => {
       state.applicantId = action.payload;
