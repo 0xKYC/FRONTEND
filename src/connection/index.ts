@@ -1,21 +1,19 @@
 import { configureChains, createClient } from "wagmi";
 
-import { EthereumClient, walletConnectProvider } from "@web3modal/ethereum";
+import { EthereumClient } from "@web3modal/ethereum";
 import { goerli, polygonMumbai } from "wagmi/chains";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { publicProvider } from "wagmi/providers/public";
 
 import { scrollAlpha } from "../constans/chains";
+import { ENV } from "../env";
 
-export const connectWalletId = process.env.REACT_APP_WALLET_CONNECT_ID || "";
+export const projectId = ENV.REACT_APP_WALLET_CONNECT_ID;
+
 export const chains = [goerli, polygonMumbai, scrollAlpha];
 
-const { provider } = configureChains(chains, [
-  walletConnectProvider({
-    projectId: connectWalletId,
-  }),
-]);
-
+const { provider } = configureChains(chains, [publicProvider()]);
 export const wagmiClient = createClient({
   autoConnect: true,
   connectors: [
@@ -23,22 +21,12 @@ export const wagmiClient = createClient({
     new WalletConnectConnector({
       chains,
       options: {
-        name: "0xKYC",
-        projectId: connectWalletId,
-        qrcode: true,
+        projectId: projectId,
       },
     }),
-    // new CoinbaseWalletConnector({
-    //   chains,
-    //   options: {
-    //     appName: "0xKYC",
-    //   },
-    // }),
   ],
 
   provider,
 });
 
 export const ethereumClient = new EthereumClient(wagmiClient, chains);
-
-ethereumClient.getDefaultChain();

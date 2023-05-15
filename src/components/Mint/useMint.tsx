@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
 
 import { useFetchUser } from "common/hooks/useFetchUser";
+import { getUserSbt } from "components/Content/Verified/utils";
 import {
-  addTxHashes,
+  addTxHash,
   checkIfVerified,
   selectMintingChain,
   setMinting,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { checkForSBT, findUserInDB } from "service/user/user.service";
+import { hasSoul } from "web3/methods/hasSoul";
 
-const apiRequestsToCall = 20;
+const apiRequestsToCall = 30;
 
 export const useMint = () => {
   const navigate = useNavigate();
@@ -25,23 +26,23 @@ export const useMint = () => {
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
 
-  const { data, loading } = useFetchUser(address);
+  const { data: user, loading } = useFetchUser(address);
 
-  useEffect(() => {
-    if (!address || !chain) {
-      return navigate("/");
-    }
-    if (success) {
-      dispatch(
-        setMinting({
-          minting: false,
-          chainId: null,
-          walletAddress: address,
-          error: false,
-        }),
-      );
-    }
-  }, [address, chain, dispatch, navigate, success]);
+  // useEffect(() => {
+  //   if (!address || !chain) {
+  //     return navigate("/");
+  //   }
+  //   if (success) {
+  //     dispatch(
+  //       setMinting({
+  //         minting: false,
+  //         chainId: null,
+  //         walletAddress: address,
+  //         error: false,
+  //       }),
+  //     );
+  //   }
+  // }, [address, chain, dispatch, navigate, success]);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -65,13 +66,11 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (
-      data !== "noUserError" &&
-      typeof data !== "undefined" &&
-      !loading &&
-      data?.onfidoStatus?.length !== 0
-    ) {
-      if (data.onfidoStatus !== "approved") {
+    if (user && typeof user !== "undefined" && !loading) {
+      const sbt = getUserSbt(user, chain.id);
+      console.log(sbt);
+      if (sbt && sbt.onfidoStatus !== "approved") {
+        console.log("why");
         setError(true);
         dispatch(
           setMinting({
@@ -84,7 +83,7 @@ export const useMint = () => {
         return navigate("/error");
       }
     }
-  }, [address, chain, data, dispatch, navigate, loading]);
+  }, [address, chain, user, dispatch, navigate, loading]);
 
   useEffect(() => {
     if (!address || !chain) {
@@ -106,7 +105,7 @@ export const useMint = () => {
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          const isVerified = await checkForSBT(address, chain.id);
+          const isVerified = await hasSoul(chain.id, address);
 
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
@@ -122,7 +121,10 @@ export const useMint = () => {
             setSuccess(false);
           }
           if (isVerified) {
-            const user = await findUserInDB(address);
+            if (user) {
+              const sbt = getUserSbt(user, chain.id);
+              if (sbt && sbt.txHash) dispatch(addTxHash(sbt?.txHash));
+            }
             dispatch(
               setMinting({
                 minting: false,
@@ -132,21 +134,29 @@ export const useMint = () => {
               }),
             );
 
-            if (user !== "noUserError") {
-              setSuccess(true);
-              dispatch(checkIfVerified(isVerified));
-              dispatch(addTxHashes(user.txHashes));
-              navigate("/profile");
-            }
+            setSuccess(true);
+            dispatch(checkIfVerified(isVerified));
+
+            navigate("/profile");
           }
         } catch (err) {
           console.error(err);
           setError(true);
         }
-      }, 5000);
+      }, 3000);
       return () => clearInterval(interval);
     }
-  }, [apiCalls, navigate, address, dispatch, chain, data, error, mintingChain, success]);
+  }, [
+    apiCalls,
+    navigate,
+    address,
+    dispatch,
+    chain,
+    user,
+    error,
+    mintingChain,
+    success,
+  ]);
 
   return { error };
 };

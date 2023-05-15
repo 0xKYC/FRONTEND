@@ -1,20 +1,47 @@
 import { ChainId } from "constans/chains";
 
-export interface User {
+export type User = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  uuid: string | null;
   walletAddress: string;
   onfidoApplicantId: string;
-  onfidoResponse: null;
-  onfidoStatus: OnfidoStatus;
-  proof: Proof;
-  txHashes: txHash;
-  signature?: string;
-  tosVersion?: string;
-  time_stamp?: string;
-}
+  email: string | null;
+  tosVersion: string | null;
+  signature: string | null;
+  timestamp: Date | null;
+  sbts: Sbt[];
+};
+
+export type Sbt = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+  txHash: string | null;
+  proof: any | null;
+  chainId: number;
+  mintStatus: MintStatus;
+  onfidoWorkflowRunWebhook: any | null;
+  onfidoWorkflowRunId: string | null;
+  onfidoStatus: OnfidoStatus | null;
+};
 
 export type txHash = {
   [k in ChainId]?: string;
 };
+
+const mintStatus = {
+  none: "none",
+  todo: "todo",
+  enqueued: "enqueued",
+  tx_sent: "tx_sent",
+  success: "success",
+  failed: "failed",
+};
+
+export type MintStatus = (typeof mintStatus)[keyof typeof mintStatus];
 
 export type OnfidoStatus =
   | "error"
@@ -24,18 +51,5 @@ export type OnfidoStatus =
   | "review"
   | "awaiting_input"
   | "processing";
-
-interface Proof {
-  scheme: string;
-  curve: string;
-  proof: Proofs;
-  inputs: string[];
-}
-
-interface Proofs {
-  a: string[];
-  b: Array<string[]>;
-  c: string[];
-}
 
 export type WalletAddress = string;

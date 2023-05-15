@@ -7,8 +7,11 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
 import { SvgIcon } from "common/SvgIcon";
-import { toggleModal } from "redux/features/network/networkSlice";
-import { selectApplicantId, selectTosAcceptedWallet } from "redux/features/user/userSlice";
+import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
+import {
+  selectApplicantId,
+  selectTosAcceptedWallet,
+} from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { onfidoRedirect } from "service/onfido/onfido.service";
 
@@ -45,7 +48,13 @@ const ContentBlock = ({
   const handleOnfidoRedirect = async (email?: string) => {
     if (address && onfidoApplicantId && chain) {
       try {
-        await onfidoRedirect(onfidoApplicantId, address, chain.id, window.location.href, email);
+        await onfidoRedirect(
+          onfidoApplicantId,
+          address,
+          chain.id,
+          window.location.href,
+          email,
+        );
       } catch (error) {
         console.error(error);
       }
@@ -55,7 +64,7 @@ const ContentBlock = ({
     if (address && tosAccepted) {
       setVerifyClicked(true);
     } else {
-      dispatch(toggleModal());
+      dispatch(toggleConnectorsModal());
       event.currentTarget.blur();
     }
   };
@@ -76,8 +85,9 @@ const ContentBlock = ({
                 <Fade>
                   <Heading>Please provide your email address</Heading>
                   <Content>
-                    We collect your email address to contact you regarding critical transactional
-                    features of your user profile, it is optional, but recommended
+                    We collect your email address to contact you regarding
+                    critical transactional features of your user profile, it is
+                    optional, but recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>

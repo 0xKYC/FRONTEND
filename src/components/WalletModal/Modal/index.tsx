@@ -1,17 +1,21 @@
-import { selectIsModalOpen, toggleModal } from "../../../redux/features/network/networkSlice";
+import {
+  selectIsConnectorsModalOpen,
+  toggleConnectorsModal,
+} from "../../../redux/features/connection/connectionSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { Options } from "../Options";
 import { StyledModal, Text } from "./styles";
 
 export const WalletModal = () => {
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector(selectIsModalOpen);
+  const isModalOpen = useAppSelector(selectIsConnectorsModalOpen);
 
   const closeModal = () => {
-    dispatch(toggleModal());
+    dispatch(toggleConnectorsModal());
   };
   return (
     <StyledModal
+      key={2}
       open={isModalOpen}
       onCancel={closeModal}
       okButtonProps={{ hidden: true }}
