@@ -19,10 +19,10 @@ import {
   Title,
 } from "./styles";
 
-interface SocialLinkProps {
+type SocialLinkProps = {
   href: string;
   src: string;
-}
+};
 
 const Footer = ({ t }: any) => {
   const SocialLink = ({ href, src }: SocialLinkProps) => {
@@ -84,7 +84,10 @@ const Footer = ({ t }: any) => {
               <SocialLink href="https://0xkyc.id" src="internet.svg" />
               <SocialLink href="https://github.com/0xKYC" src="github.svg" />
               <SocialLink href="https://twitter.com/0xkycinc" src="twitter.svg" />
-              <SocialLink href="https://www.linkedin.com/company/0xkyc/" src="linkedin.svg" />
+              <SocialLink
+                href="https://www.linkedin.com/company/0xkyc/"
+                src="linkedin.svg"
+              />
               {/* crunchbase icon */}
             </FooterContainer>
           </Row>

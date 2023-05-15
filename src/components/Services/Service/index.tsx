@@ -8,13 +8,13 @@ import {
   StyledTitle,
 } from "./styles";
 
-interface Props {
+type Props = {
   title: string;
   description: string;
   img?: string;
   tags: string[];
   href: string;
-}
+};
 export const Service = ({ title, description, img = "", tags, href }: Props) => {
   return (
     <a href={href} target="_blank" rel="noreferrer">

@@ -9,13 +9,13 @@ import { subscribeNewsletter } from "service/user/user.service";
 
 import { ErrorText, Flex } from "./styles";
 
-interface FormValues {
+type FormValues = {
   email: string;
   newsletterChecked: boolean;
-}
-interface Props {
+};
+type Props = {
   handleOnfidoRedirect: (email?: string) => Promise<void>;
-}
+};
 
 const Spinner = <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />;
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
@@ -49,7 +49,9 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   };
 
   if (error) {
-    return <ErrorText>An error has occured. Please, refresh the page and try again.</ErrorText>;
+    return (
+      <ErrorText>An error has occured. Please, refresh the page and try again.</ErrorText>
+    );
   }
 
   return (

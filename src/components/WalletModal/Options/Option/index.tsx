@@ -14,9 +14,9 @@ import { InstallMetamaskOption } from "./InstallMetamask";
 import { getIcon } from "./getIcon";
 import { ImageBox, StyledOptionBtn, TextBox } from "./styles";
 
-interface Props {
+type Props = {
   connector: Connector<any, any, any>;
-}
+};
 
 export const Option = ({ connector }: Props) => {
   const dispatch = useAppDispatch();

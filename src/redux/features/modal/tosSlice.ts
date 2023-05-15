@@ -2,9 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 
-interface State {
+type State = {
   isTosModalOpen: boolean;
-}
+};
 const initialState: State = {
   isTosModalOpen: false,
 };

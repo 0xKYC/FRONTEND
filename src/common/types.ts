@@ -1,12 +1,12 @@
 import React from "react";
 
-export interface ContainerProps {
+export type ContainerProps = {
   border?: boolean;
   padding?: boolean;
   children: React.ReactNode;
-}
+};
 
-export interface ButtonProps {
+export type ButtonProps = {
   color?: string;
   fixedWidth?: boolean;
   name?: string;
@@ -14,15 +14,15 @@ export interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+};
 
-export interface SvgIconProps {
+export type SvgIconProps = {
   src: string;
   width: string;
   height: string;
-}
+};
 
-export interface InputProps {
+export type InputProps = {
   name: string;
   placeholder: string;
   t: any;
@@ -31,10 +31,4 @@ export interface InputProps {
   onChange: (
     event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
   ) => void;
-}
-
-export interface validateProps {
-  name: string;
-  message: string;
-  email: string;
-}
+};

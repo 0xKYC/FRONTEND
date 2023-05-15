@@ -1,6 +1,6 @@
 import { button } from "content/IntroContent.json";
 
-export interface ContentBlockProps {
+export type ContentBlockProps = {
   icon: string;
   title?: string;
   verifyTitle: string;
@@ -10,4 +10,4 @@ export interface ContentBlockProps {
   button?: typeof button;
   t?: any;
   type?: string;
-}
+};

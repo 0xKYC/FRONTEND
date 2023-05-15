@@ -1,4 +1,6 @@
-export interface Applicant {
+import { ChainId } from "constans/chains";
+
+export type Applicant = {
   id: string;
   createdAt: string;
   deleteAt: string | null;
@@ -11,22 +13,22 @@ export interface Applicant {
   idNumbers: IdNumber[] | null;
   phoneNumber: string | null;
   location: Location | null;
-}
-interface IdNumber {
+};
+type IdNumber = {
   type: string;
   value: string;
   stateCode: string | null;
-}
-interface Address {
+};
+type Address = {
   postcode: string;
   country: string;
-}
+};
 
-export interface OnfidoRedirectData {
+export type OnfidoRedirectData = {
   applicantId: string;
   walletAddress: string;
   chainId: ChainId;
   redirectUrl?: string | null;
   callbackUrl?: string | null;
   email?: string;
-}
+};

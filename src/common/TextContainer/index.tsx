@@ -1,9 +1,9 @@
 import { StyledContainer, StyledText, StyledTitle } from "./style";
 
-interface Props {
+type Props = {
   text: string;
   title: string;
-}
+};
 const TextContainer = ({ text, title }: Props) => {
   return (
     <StyledContainer>
