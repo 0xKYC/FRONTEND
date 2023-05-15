@@ -13,6 +13,7 @@ import { toggleConnectorsModal } from "redux/features/connection/connectionSlice
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
+  selectCallbackUrl,
   selectMockedWalletAddress,
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
@@ -46,21 +47,24 @@ const ContentBlock = ({
   const { address } = useAccount();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
+  console.log(partnerCallbackUrl);
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
   const walletAddress = address || mockedWalletAddress;
 
-  const chainID = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
   const handleOnfidoRedirect = async (email?: string) => {
-    if (walletAddress && onfidoApplicantId && chainID) {
+    if (walletAddress && onfidoApplicantId && chainId) {
       try {
-        await onfidoRedirect(
-          onfidoApplicantId,
+        await onfidoRedirect({
+          applicantId: onfidoApplicantId,
+          chainId,
           walletAddress,
-          chainID,
-          window.location.href,
+          callbackUrl: partnerCallbackUrl,
+          redirectUrl: "http://localhost:3000/",
           email,
-        );
+        });
       } catch (error) {
         console.error(error);
       }

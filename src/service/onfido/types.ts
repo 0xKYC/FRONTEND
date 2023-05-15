@@ -21,3 +21,12 @@ interface Address {
   postcode: string;
   country: string;
 }
+
+export interface OnfidoRedirectData {
+  applicantId: string;
+  walletAddress: string;
+  chainId: ChainId;
+  redirectUrl?: string | null;
+  callbackUrl?: string | null;
+  email?: string;
+}

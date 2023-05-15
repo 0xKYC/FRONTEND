@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Container from "common/Container";
 import Content from "components/Content";
-import { addMockedWalletAddress, setRedirectUrl } from "redux/features/user/userSlice";
+import { setPartnerParams } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { LoadingSpinner } from "../../common/LoadingSpinner";
@@ -16,19 +16,23 @@ const PartnersWithoutWalletConnection = ({ isLoading }: { isLoading: boolean }) 
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const address = searchParams.get("wallet-address");
-  const redirectUrl = searchParams.get("redirect-url");
+  const address = searchParams.get("walletAddress");
+  const redirectUrl = searchParams.get("redirectUrl");
+  const callbackUrl = searchParams.get("callbackUrl");
 
   useEffect(() => {
-    if (!address || !redirectUrl) {
+    if (!address || !redirectUrl || !callbackUrl) {
       navigate("/");
     } else {
-      dispatch(addMockedWalletAddress(address));
-      dispatch(setRedirectUrl(redirectUrl));
+      dispatch(
+        setPartnerParams({
+          mockedWalletAddress: address,
+          callbackUrl,
+          redirectUrl,
+        }),
+      );
     }
-  }, [address, navigate, redirectUrl, dispatch]);
-
-  console.log(address, redirectUrl);
+  }, [address, navigate, redirectUrl, dispatch, callbackUrl]);
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
 
