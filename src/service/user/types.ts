@@ -1,5 +1,3 @@
-import { ChainId } from "constans/chains";
-
 export type User = {
   id: number;
   createdAt: Date;
@@ -26,10 +24,6 @@ export type Sbt = {
   onfidoWorkflowRunWebhook: any | null;
   onfidoWorkflowRunId: string | null;
   onfidoStatus: OnfidoStatus | null;
-};
-
-export type txHash = {
-  [k in ChainId]?: string;
 };
 
 const mintStatus = {
