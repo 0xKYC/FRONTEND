@@ -33,6 +33,7 @@ export const ConnectionInfoModal = ({
   return (
     <StyledModal
       key={1}
+      zIndex={10}
       open={isModalOpen}
       onCancel={closeModal}
       maskClosable={true}
