@@ -2,24 +2,17 @@ import { useNetwork } from "wagmi";
 
 import { CheckOutlined, LoadingOutlined } from "@ant-design/icons";
 import { SupportedChainId, getChainInfo } from "constans/chains";
-import {
-  selectCurrentChain,
-  setChain,
-} from "redux/features/connection/connectionSlice";
+import { selectCurrentChain, setChain } from "redux/features/connection/connectionSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ApproveText, Container, Label, Logo, Status } from "./styles";
 
-interface Props {
+type Props = {
   targetChain: SupportedChainId;
   onSelectChain: (targetChain: SupportedChainId, active: boolean) => void;
   isPending: boolean;
-}
-export const ChainSelectorItem = ({
-  onSelectChain,
-  isPending,
-  targetChain,
-}: Props) => {
+};
+export const ChainSelectorItem = ({ onSelectChain, isPending, targetChain }: Props) => {
   const dispatch = useAppDispatch();
   const { chain } = useNetwork();
   const chainId = useAppSelector(selectCurrentChain);

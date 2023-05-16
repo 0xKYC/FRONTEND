@@ -16,6 +16,7 @@ import {
   About,
   Error,
   Home,
+  HomeWithoutWalletConnection,
   Mint,
   PrivacyPolicy,
   Profile,
@@ -26,12 +27,7 @@ import {
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
-  const {
-    isVerified: verified,
-    isLoading,
-    isSanctioned,
-    isMintingActive,
-  } = useAuth();
+  const { isVerified: verified, isLoading, isSanctioned, isMintingActive } = useAuth();
 
   return (
     <BrowserRouter>
@@ -52,6 +48,18 @@ const Router = () => {
                 </RedirectRoute>
               }
               path="/"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <HomeWithoutWalletConnection isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/:partner/*"
             />
             <Route
               element={

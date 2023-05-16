@@ -3,11 +3,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ChainId, SupportedChainId } from "../../../constans/chains";
 import { RootState } from "../../store";
 
-interface State {
+type State = {
   isConnectorsModalOpen: boolean;
   isConnectionInfoModalOpen: boolean;
   selectedChain: ChainId;
-}
+};
 const initialState: State = {
   isConnectorsModalOpen: false,
   isConnectionInfoModalOpen: false,
@@ -47,5 +47,4 @@ export const selectIsConnectorsModalOpen = (state: RootState) =>
 export const selectIsConnectionInfoModalOpen = (state: RootState) =>
   state.connection.isConnectionInfoModalOpen;
 
-export const selectCurrentChain = (state: RootState) =>
-  state.connection.selectedChain;
+export const selectCurrentChain = (state: RootState) => state.connection.selectedChain;

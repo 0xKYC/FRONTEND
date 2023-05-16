@@ -5,9 +5,14 @@ import { Col, Row } from "antd";
 import { useAccount, useNetwork } from "wagmi";
 
 import { LoadingSpinner } from "common/LoadingSpinner";
-import { getChainInfo } from "constans/chains";
+import { SupportedChainId, getChainInfo } from "constans/chains";
 import vContent from "content/VerifiedContent.json";
 import { useGetUserQuery } from "redux/api/user/userApi";
+import {
+  selectMockedWalletAddress,
+  selectRedirectUrl,
+} from "redux/features/user/userSlice";
+import { useAppSelector } from "redux/hooks";
 
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";
@@ -28,16 +33,20 @@ const VerifiedContent = () => {
 
   const { chain } = useNetwork();
   const { address } = useAccount();
-
-  const { data: user, isLoading } = useGetUserQuery(address);
-  if (!chain) return <p>Error with fetching the network</p>;
+  const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const walletAddress = address || mockedWalletAddress;
+  const { data: user, isLoading } = useGetUserQuery(walletAddress || "");
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
-  const sbt = getUserSbt(user, chain.id);
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+
+  const sbt = getUserSbt(user, chainId);
   const txHash = sbt?.txHash;
-  const { logoUrl, label, explorer, explorerName } = getChainInfo(chain.id);
+
+  const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
 
   return (
     <BlockWrapper>
@@ -63,7 +72,7 @@ const VerifiedContent = () => {
                   return <Content key={id}>{t(text)}</Content>;
                 })}
                 <StyledLink
-                  chainId={chain.id}
+                  chainId={chainId}
                   href={explorer + txHash}
                   target="_blank"
                   rel="noreferrer"
@@ -76,6 +85,19 @@ const VerifiedContent = () => {
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <CardInfo />
+              {redirectUrlFromPartner && (
+                <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                  <a
+                    style={{
+                      color: "black",
+                      fontSize: "1rem",
+                    }}
+                    href={redirectUrlFromPartner}
+                  >
+                    Close the tab or go back to Insert Stonks
+                  </a>
+                </div>
+              )}
             </ContentWrapper>
           </Col>
         </Row>

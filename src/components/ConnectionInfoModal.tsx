@@ -32,6 +32,7 @@ export const ConnectionInfoModal = ({
   const { label } = getChainInfo(chain || 5);
   return (
     <StyledModal
+      zIndex={10}
       key={1}
       open={isModalOpen}
       onCancel={closeModal}

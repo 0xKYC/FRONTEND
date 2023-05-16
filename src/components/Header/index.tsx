@@ -6,8 +6,8 @@ import { useAccount, useDisconnect } from "wagmi";
 import { Button } from "common/Button";
 import Container from "common/Container";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
-import { reset } from "redux/features/user/userSlice";
-import { useAppDispatch } from "redux/hooks";
+import { reset, selectMockedWalletAddress } from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
 import {
@@ -29,8 +29,9 @@ const Header = () => {
       dispatch(reset());
     },
   });
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
 
-  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleConnectionButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isConnected) {
       disconnect();
     } else {
@@ -42,9 +43,15 @@ const Header = () => {
   const MenuItem = () => {
     return (
       <Box>
-        <Button onClick={handleOpen} color={address ? "#FFFFFFff" : ""}>
-          {address ? `Disconnect ...${address.slice(-6)}` : "Connect Wallet"}
-        </Button>
+        {!mockedWalletAddress && (
+          <Button
+            onClick={handleConnectionButtonClick}
+            color={address ? "#FFFFFFff" : ""}
+          >
+            {address ? `Disconnect ...${address.slice(-6)}` : "Connect Wallet"}
+          </Button>
+        )}
+
         <ChainSelectionMenu />
       </Box>
     );
@@ -55,12 +62,7 @@ const Header = () => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <Image
-              src="/img/icons/new-logo.png"
-              alt="logo"
-              width="180px"
-              height="54px"
-            />
+            <Image src="/img/icons/new-logo.png" alt="logo" width="180px" height="54px" />
             <MobileImage
               src="/img/icons/0xkyc-icon.png"
               alt="logo"
@@ -68,12 +70,17 @@ const Header = () => {
               height="54px"
             />
           </LogoContainer>
-          <MobileConnectBtn>
-            <Button color={address ? "#FFFFFFff" : ""} onClick={handleOpen}>
-              {" "}
-              {isConnected ? "Disconnect" : "Connect"}
-            </Button>
-          </MobileConnectBtn>
+          {!mockedWalletAddress && (
+            <MobileConnectBtn>
+              <Button
+                color={address ? "#FFFFFFff" : ""}
+                onClick={handleConnectionButtonClick}
+              >
+                {" "}
+                {isConnected ? "Disconnect" : "Connect"}
+              </Button>
+            </MobileConnectBtn>
+          )}
 
           <NotHidden>
             <MenuItem />

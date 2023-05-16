@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 
-export interface RouteProps {
+export type RouteProps = {
   verified: boolean;
   sanctioned?: boolean;
   minting?: boolean;
   children: JSX.Element;
-}
+};
 const RedirectRoute = ({ verified, children, sanctioned, minting }: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;

@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
 
-import { CHAIN_IDS } from "constans/chains";
+import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
 import {
   addApplicantId,
   checkIfVerified,
   reset,
   selectIsMintingActive,
+  selectMockedWalletAddress,
   selectVerifiedUser,
   signTos,
 } from "redux/features/user/userSlice";
@@ -28,9 +29,11 @@ export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
   const isMintingActive = useAppSelector(selectIsMintingActive);
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
 
   const { address, isConnected } = useAccount();
+  const walletAddress = address || mockedWalletAddress;
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
     onSuccess() {
@@ -40,6 +43,8 @@ export const useAuth = () => {
   const isVerified = isConnected && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
+
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
 
   useCheckMinting(isVerified);
 
@@ -54,11 +59,11 @@ export const useAuth = () => {
 
   useEffect(() => {
     const checkSBT = async () => {
-      if (address && chain) {
+      if (walletAddress && chainId) {
         try {
           setIsLoading(true);
 
-          const isVerified = await hasSoul(chain.id, address);
+          const isVerified = await hasSoul(chainId, walletAddress);
           if (isVerified) {
             dispatch(checkIfVerified(isVerified));
           } else {
@@ -74,12 +79,12 @@ export const useAuth = () => {
     };
 
     checkSBT();
-  }, [address, dispatch, provider, chain]);
+  }, [walletAddress, dispatch, provider, chainId]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {
-      if (address) {
-        const isSanctioned = await isWalletSanctioned(address);
+      if (walletAddress) {
+        const isSanctioned = await isWalletSanctioned(walletAddress);
 
         if (isSanctioned) {
           setIsSanctioned(true);
@@ -88,16 +93,16 @@ export const useAuth = () => {
     };
 
     const handleOnfidoAuth = async () => {
-      if (address) {
+      if (walletAddress) {
         try {
           setIsLoading(true);
-          const user = await findUserInDB(address);
+          const user = await findUserInDB(walletAddress);
           console.log("USER", user);
           if (!user) {
             dispatch(signTos(false));
             const newApplicant = await onfidoCreateApplicant();
             await createUserInDB({
-              walletAddress: address,
+              walletAddress,
               onfidoApplicantId: newApplicant.id,
             });
 
@@ -114,7 +119,7 @@ export const useAuth = () => {
           if (user.onfidoApplicantId === null) {
             const newApplicant = await onfidoCreateApplicant();
             await editUserInDB({
-              walletAddress: address,
+              walletAddress,
               onfidoApplicantId: newApplicant.id,
             });
             dispatch(addApplicantId(newApplicant.id));
@@ -131,7 +136,7 @@ export const useAuth = () => {
     };
     handleOnfidoAuth();
     handleWalletSanctionCheck();
-  }, [address, dispatch]);
+  }, [walletAddress, dispatch]);
 
   return {
     isVerified,

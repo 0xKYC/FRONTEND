@@ -7,9 +7,14 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
 import { SvgIcon } from "common/SvgIcon";
+import { TosModalWeb2 } from "components/TosModal/web2Sign";
+import { SupportedChainId } from "constans/chains";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
+import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
+  selectCallbackUrl,
+  selectMockedWalletAddress,
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -17,7 +22,7 @@ import { onfidoRedirect } from "service/onfido/onfido.service";
 
 import { CardInfo } from "../CardInfo";
 import { EmailForm } from "../EmailForm";
-import { TosModal } from "../TosModal";
+import { TosModal } from "../TosModal/walletSign";
 import {
   ButtonWrapper,
   Container,
@@ -36,58 +41,67 @@ const ContentBlock = ({
   button,
   icon,
   t,
-  id,
 }: ContentBlockProps) => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const { address } = useAccount();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
+  console.log(partnerCallbackUrl);
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
+  const walletAddress = address || mockedWalletAddress;
 
+  const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
   const handleOnfidoRedirect = async (email?: string) => {
-    if (address && onfidoApplicantId && chain) {
+    if (walletAddress && onfidoApplicantId && chainId) {
       try {
-        await onfidoRedirect(
-          onfidoApplicantId,
-          address,
-          chain.id,
-          window.location.href,
+        await onfidoRedirect({
+          applicantId: onfidoApplicantId,
+          chainId,
+          walletAddress,
+          callbackUrl: partnerCallbackUrl,
+          redirectUrl: "http://localhost:3000/",
           email,
-        );
+        });
       } catch (error) {
         console.error(error);
       }
     }
   };
   const handleVerify = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (address && tosAccepted) {
+    if (walletAddress && tosAccepted) {
       setVerifyClicked(true);
+    } else if (walletAddress && !tosAccepted) {
+      dispatch(toggleTosModal(true));
     } else {
       dispatch(toggleConnectorsModal());
       event.currentTarget.blur();
     }
   };
 
-  const buttonText = address ? button?.enabled.title : button?.disabled.title;
+  const buttonText = walletAddress ? button?.enabled.title : button?.disabled.title;
 
-  const header = address ? verifyTitle : title;
-  const contentText = address ? verifyText : content;
+  const header = walletAddress ? verifyTitle : title;
+  const contentText = walletAddress ? verifyText : content;
   return (
     <RightBlockContainer>
       {!tosAccepted && <TosModal />}
 
+      {mockedWalletAddress && !tosAccepted && <TosModalWeb2 />}
+
       <Fade direction="right">
-        <Row justify="space-between" align="middle" id={id}>
+        <Row justify="space-between" align="middle">
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              {verifyClicked && address ? (
+              {verifyClicked && walletAddress ? (
                 <Fade>
                   <Heading>Please provide your email address</Heading>
                   <Content>
-                    We collect your email address to contact you regarding
-                    critical transactional features of your user profile, it is
-                    optional, but recommended
+                    We collect your email address to contact you regarding critical
+                    transactional features of your user profile, it is optional, but
+                    recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
@@ -103,7 +117,7 @@ const ContentBlock = ({
             </ContentWrapper>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            {address ? (
+            {walletAddress ? (
               <ContentWrapper>
                 <CardInfo />
               </ContentWrapper>

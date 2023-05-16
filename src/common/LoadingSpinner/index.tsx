@@ -1,11 +1,11 @@
 import { Spin } from "antd";
 
-interface Props {
+type Props = {
   tip: string;
   size?: "large" | "small" | "default";
   height?: string;
   width?: string;
-}
+};
 export const LoadingSpinner = ({ tip, size = "large", height, width }: Props) => {
   return (
     <Spin

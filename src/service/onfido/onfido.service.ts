@@ -1,26 +1,26 @@
-import { ChainId } from "constans/chains";
-
 import { api } from "../config";
-import { Applicant } from "./types";
+import { Applicant, OnfidoRedirectData } from "./types";
 
 export async function getSDKToken() {
   const generateSdkToken = await api.post("onfido/sdkToken", {});
   return generateSdkToken;
 }
 
-export async function onfidoRedirect(
-  applicantId: string,
-  walletAddress: string,
-  chainId: ChainId,
-  redirectUrl?: string | null,
-  email?: string,
-) {
+export async function onfidoRedirect({
+  applicantId,
+  chainId,
+  walletAddress,
+  callbackUrl,
+  email,
+  redirectUrl,
+}: OnfidoRedirectData) {
   const res = await api.post<string>("onfido/redirect", {
     applicantId: applicantId,
     walletAddress: walletAddress,
     chainId: chainId,
     redirectUrl: redirectUrl ? redirectUrl : window.location.href,
     email: email || "",
+    callbackUrl: callbackUrl || "",
   });
 
   window.location.replace(res.data);
