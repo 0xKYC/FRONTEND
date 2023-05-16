@@ -1,7 +1,13 @@
 import { Spin } from "antd";
 
 import { LoadingOutlined } from "@ant-design/icons";
-import { Box, StyledInfo, StyledModal, StyledP, Title } from "components/TosModal/styles";
+import {
+  Box,
+  StyledInfo,
+  StyledModal,
+  StyledP,
+  Title,
+} from "components/TosModal/styles";
 import { getChainInfo } from "constans/chains";
 
 type Props = {
@@ -11,10 +17,18 @@ type Props = {
   title: string;
 };
 const loadingIcon = (
-  <LoadingOutlined style={{ fontSize: 20, color: "blue", marginRight: ".3rem" }} spin />
+  <LoadingOutlined
+    style={{ fontSize: 20, color: "blue", marginRight: ".3rem" }}
+    spin
+  />
 );
 
-export const ConnectionInfoModal = ({ isModalOpen, title, closeModal, chain }: Props) => {
+export const ConnectionInfoModal = ({
+  isModalOpen,
+  title,
+  closeModal,
+  chain,
+}: Props) => {
   const { label } = getChainInfo(chain || 5);
   return (
     <StyledModal
@@ -29,8 +43,8 @@ export const ConnectionInfoModal = ({ isModalOpen, title, closeModal, chain }: P
         <Title>Network selection</Title>
 
         <StyledP>
-          Please make sure that you have selected the correct network ({label}) in your
-          wallet.
+          Please make sure that you have selected the correct network ({label})
+          in your wallet.
         </StyledP>
 
         <StyledInfo>

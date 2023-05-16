@@ -13,7 +13,14 @@ type Props = {
 export const useConfirmModal = () => {
   const { modal } = App.useApp();
 
-  const showConfirm = ({ title, content, onOk, onCancel, okText, cancelText }: Props) => {
+  const showConfirm = ({
+    title,
+    content,
+    onOk,
+    onCancel,
+    okText,
+    cancelText,
+  }: Props) => {
     modal.confirm({
       title: title,
       icon: <ExclamationCircleFilled />,
