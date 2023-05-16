@@ -37,16 +37,15 @@ const VerifiedContent = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const walletAddress = address || mockedWalletAddress;
   const { data: user, isLoading } = useGetUserQuery(walletAddress || "");
-  // if (!chain) return <p>Error with fetching the network</p>;
-  console.log(user);
+
   if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
 
-  // const sbt = getUserSbt(user, chainId);
-  // const txHash = sbt?.txHash;
-  const txHash = "123";
+  const sbt = getUserSbt(user, chainId);
+  const txHash = sbt?.txHash;
+
   const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
 
   return (
@@ -80,18 +79,25 @@ const VerifiedContent = () => {
                 >
                   Link to {explorerName}
                 </StyledLink>
-
-                {redirectUrlFromPartner && (
-                  <a href={redirectUrlFromPartner}>
-                    Close the tab or go back to Insert Stonks
-                  </a>
-                )}
               </StyledCard>
             </ContentWrapper>
           </Col>
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <CardInfo />
+              {redirectUrlFromPartner && (
+                <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                  <a
+                    style={{
+                      color: "black",
+                      fontSize: "1rem",
+                    }}
+                    href={redirectUrlFromPartner}
+                  >
+                    Close the tab or go back to Insert Stonks
+                  </a>
+                </div>
+              )}
             </ContentWrapper>
           </Col>
         </Row>
