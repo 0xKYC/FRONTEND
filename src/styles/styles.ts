@@ -192,5 +192,5 @@ export const Styles = createGlobalStyle`
     height: 100%;
 }
 
-.w3m-overlay, .w3m-active { z-index: 110 !important; }
+
 `;
