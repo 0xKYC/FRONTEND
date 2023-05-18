@@ -20,7 +20,7 @@ export const userApi = createApi({
       Partial<User> & Pick<User, "walletAddress">
     >({
       query: (user) => ({
-        url: `user`,
+        url: `user/wallet`,
         method: "PATCH",
         body: user,
       }),

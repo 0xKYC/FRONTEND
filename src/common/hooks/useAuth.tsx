@@ -4,6 +4,7 @@ import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
 
 import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
+import { useEditUserMutation } from "redux/api/user/userApi";
 import {
   addApplicantId,
   checkIfVerified,
@@ -15,11 +16,7 @@ import {
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { onfidoCreateApplicant } from "service/onfido/onfido.service";
-import {
-  createUserInDB,
-  editUserInDB,
-  findUserInDB,
-} from "service/user/user.service";
+import { createUserInDB, findUserInDB } from "service/user/user.service";
 import { hasSoul } from "web3/methods/hasSoul";
 import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
@@ -45,7 +42,7 @@ export const useAuth = () => {
   const [isSanctioned, setIsSanctioned] = useState(false);
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
-
+  const [editUser] = useEditUserMutation();
   useCheckMinting(isVerified);
 
   useEffect(() => {
@@ -97,9 +94,11 @@ export const useAuth = () => {
         try {
           setIsLoading(true);
           const user = await findUserInDB(walletAddress, chainId);
+          console.log(user);
           if (!user) {
             dispatch(signTos(false));
             const newApplicant = await onfidoCreateApplicant();
+
             await createUserInDB({
               walletAddress,
               onfidoApplicantId: newApplicant.id,
@@ -117,7 +116,7 @@ export const useAuth = () => {
 
           if (user.onfidoApplicantId === null) {
             const newApplicant = await onfidoCreateApplicant();
-            await editUserInDB({
+            await editUser({
               walletAddress,
               onfidoApplicantId: newApplicant.id,
             });
@@ -135,7 +134,7 @@ export const useAuth = () => {
     };
     handleOnfidoAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch, chainId]);
+  }, [walletAddress, dispatch, chainId, editUser]);
 
   return {
     isVerified,

@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import tos from "content/TermsOfService.json";
 import { useEditUserMutation } from "redux/api/user/userApi";
-import { selectIsTosModalOpen, toggleTosModal } from "redux/features/modal/tosSlice";
+import {
+  selectIsTosModalOpen,
+  toggleTosModal,
+} from "redux/features/modal/tosSlice";
 import {
   selectMockedWalletAddress,
   selectTosAcceptedWallet,
@@ -14,7 +17,9 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { Box, StyledModal, StyledP, Title } from "../styles";
 
-const loadingIcon = <LoadingOutlined style={{ fontSize: 18, color: "white" }} spin />;
+const loadingIcon = (
+  <LoadingOutlined style={{ fontSize: 18, color: "white" }} spin />
+);
 const { version } = tos;
 
 export const TosModalWeb2 = () => {
@@ -31,7 +36,10 @@ export const TosModalWeb2 = () => {
     dispatch(signTos(false));
   };
 
-  const showModal = useCallback(() => dispatch(toggleTosModal(true)), [dispatch]);
+  const showModal = useCallback(
+    () => dispatch(toggleTosModal(true)),
+    [dispatch],
+  );
 
   useEffect(() => {
     if (mockedWalletAddress && !tosAccepted) {
@@ -55,7 +63,7 @@ export const TosModalWeb2 = () => {
           dispatch(toggleTosModal(false));
           dispatch(signTos(true));
         })
-        .catch((err) => console.error(err));
+        .catch((err: any) => console.error(err));
     }
   };
 

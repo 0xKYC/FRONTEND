@@ -11,11 +11,7 @@ type UserUpdate = {
   time_stamp?: string;
 };
 export async function createUserInDB(user: UserUpdate) {
-  const res = await api.post<User>("user", user);
-  return res.data;
-}
-export async function editUserInDB(user: UserUpdate) {
-  const res = await api.patch<User>("user", user);
+  const res = await api.post<User>("user/wallet", user);
   return res.data;
 }
 
