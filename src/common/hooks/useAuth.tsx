@@ -92,7 +92,6 @@ export const useAuth = () => {
         try {
           setIsLoading(true);
           const user = await findUserInDB(address);
-          console.log("USER", user);
           if (!user) {
             dispatch(signTos(false));
             const newApplicant = await onfidoCreateApplicant();
