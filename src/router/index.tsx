@@ -27,7 +27,12 @@ import {
 // import { Status } from "../components/Mint/test";
 
 const Router = () => {
-  const { isVerified: verified, isLoading, isSanctioned, isMintingActive } = useAuth();
+  const {
+    isVerified: verified,
+    isLoading,
+    isSanctioned,
+    isMintingActive,
+  } = useAuth();
 
   return (
     <BrowserRouter>
