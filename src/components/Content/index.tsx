@@ -48,7 +48,7 @@ const ContentBlock = ({
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
-  console.log(partnerCallbackUrl);
+
   const { chain } = useNetwork();
   const [verifyClicked, setVerifyClicked] = useState(false);
   const walletAddress = address || mockedWalletAddress;
@@ -62,6 +62,7 @@ const ContentBlock = ({
           chainId,
           walletAddress,
           callbackUrl: partnerCallbackUrl,
+          redirectUrl: "http://localhost:3000/",
           email,
         });
       } catch (error) {

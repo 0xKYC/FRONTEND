@@ -96,8 +96,7 @@ export const useAuth = () => {
       if (walletAddress) {
         try {
           setIsLoading(true);
-          const user = await findUserInDB(walletAddress);
-
+          const user = await findUserInDB(walletAddress, chainId);
           if (!user) {
             dispatch(signTos(false));
             const newApplicant = await onfidoCreateApplicant();
@@ -136,7 +135,7 @@ export const useAuth = () => {
     };
     handleOnfidoAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch]);
+  }, [walletAddress, dispatch, chainId]);
 
   return {
     isVerified,

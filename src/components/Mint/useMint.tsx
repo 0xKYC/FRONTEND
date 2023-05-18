@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { useFetchUser } from "common/hooks/useFetchUser";
 import { getUserSbt } from "components/Content/Verified/utils";
 import { SupportedChainId } from "constans/chains";
+import { useGetUserQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,
   checkIfVerified,
@@ -32,8 +32,15 @@ export const useMint = () => {
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
 
-  const { data: user, loading } = useFetchUser(walletAddress || "");
+  const { data: user, isLoading } = useGetUserQuery({
+    walletAddress: walletAddress || "",
+    chainId,
+  });
 
+  const { refetch } = userApi.endpoints.getUser.useQuerySubscription({
+    walletAddress: walletAddress || "",
+    chainId,
+  });
   useEffect(() => {
     if (!walletAddress || !chainId) {
       return navigate("/");
@@ -56,8 +63,8 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (user && typeof user !== "undefined" && !loading) {
-      const sbt = getUserSbt(user, chainId);
+    if (user && !isLoading && user?.sbts?.length > 0) {
+      const sbt = getUserSbt(user);
 
       if (sbt && sbt.onfidoStatus !== "approved") {
         setError(true);
@@ -72,7 +79,7 @@ export const useMint = () => {
         return navigate("/error");
       }
     }
-  }, [walletAddress, chainId, user, dispatch, navigate, loading]);
+  }, [walletAddress, chainId, user, dispatch, navigate, isLoading]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
@@ -109,24 +116,29 @@ export const useMint = () => {
             setError(true);
             setSuccess(false);
           }
+
           if (isVerified) {
-            if (user) {
-              const sbt = getUserSbt(user, chainId);
-              if (sbt && sbt.txHash) dispatch(addTxHash(sbt?.txHash));
+            refetch();
+
+            if (user && user?.sbts?.length > 0) {
+              const sbt = getUserSbt(user);
+              if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
+              dispatch(
+                setMinting({
+                  minting: false,
+                  chainId: null,
+                  walletAddress: walletAddress,
+                  error: false,
+                }),
+              );
+
+              setSuccess(true);
+              dispatch(checkIfVerified(isVerified));
+
+              navigate("/profile");
+            } else {
+              refetch();
             }
-            dispatch(
-              setMinting({
-                minting: false,
-                chainId: null,
-                walletAddress: walletAddress,
-                error: false,
-              }),
-            );
-
-            setSuccess(true);
-            dispatch(checkIfVerified(isVerified));
-
-            navigate("/profile");
           }
         } catch (err) {
           console.error(err);
@@ -145,6 +157,7 @@ export const useMint = () => {
     error,
     mintingChain,
     success,
+    refetch,
   ]);
 
   return { error };

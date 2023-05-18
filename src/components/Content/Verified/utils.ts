@@ -1,10 +1,10 @@
-import { ChainId } from "../../../constans/chains";
 import { User } from "../../../service/user/types";
 
-export const getUserSbt = (user: User, chainId: ChainId) => {
-  if (!user.sbts) return null;
-
-  const sbt = user.sbts.find((sbt) => sbt.chainId === chainId);
-
-  return sbt;
+export const getUserSbt = (user: User) => {
+  if (user?.sbts.length > 0) {
+    const sbt = user.sbts[0];
+    return sbt;
+  } else {
+    return null;
+  }
 };

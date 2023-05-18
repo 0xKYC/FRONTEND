@@ -27,6 +27,6 @@ export async function onfidoRedirect({
 }
 
 export async function onfidoCreateApplicant() {
-  const res = await api.post<Applicant>("onfido/createApplicant", {});
+  const res = await api.post<Applicant>("onfido/applicant", {});
   return res.data;
 }
