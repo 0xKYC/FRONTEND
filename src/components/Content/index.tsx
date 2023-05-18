@@ -62,7 +62,6 @@ const ContentBlock = ({
           chainId,
           walletAddress,
           callbackUrl: partnerCallbackUrl,
-          redirectUrl: "http://localhost:3000/",
           email,
         });
       } catch (error) {
@@ -81,7 +80,9 @@ const ContentBlock = ({
     }
   };
 
-  const buttonText = walletAddress ? button?.enabled.title : button?.disabled.title;
+  const buttonText = walletAddress
+    ? button?.enabled.title
+    : button?.disabled.title;
 
   const header = walletAddress ? verifyTitle : title;
   const contentText = walletAddress ? verifyText : content;
@@ -99,9 +100,9 @@ const ContentBlock = ({
                 <Fade>
                   <Heading>Please provide your email address</Heading>
                   <Content>
-                    We collect your email address to contact you regarding critical
-                    transactional features of your user profile, it is optional, but
-                    recommended
+                    We collect your email address to contact you regarding
+                    critical transactional features of your user profile, it is
+                    optional, but recommended
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
