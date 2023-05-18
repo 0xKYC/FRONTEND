@@ -40,7 +40,7 @@ export const useAuth = () => {
       dispatch(reset());
     },
   });
-  const isVerified = Boolean(mockedWalletAddress) && verified;
+  const isVerified = Boolean(walletAddress) && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
