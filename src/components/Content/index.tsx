@@ -63,6 +63,7 @@ const ContentBlock = ({
           walletAddress,
           callbackUrl: partnerCallbackUrl,
           redirectUrl: "https://stage.0xkyc.id/",
+          // redirectUrl: "http://localhost:3000/",
           email,
         });
       } catch (error) {
