@@ -15,7 +15,6 @@ export const useFetchUser = (address: string | undefined) => {
         setLoading(true);
         const response = await findUserInDB(address);
         setData(response);
-        console.log(response);
       } catch (err) {
         console.error(err);
         setError(true);
