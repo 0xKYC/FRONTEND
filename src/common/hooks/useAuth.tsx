@@ -32,7 +32,7 @@ export const useAuth = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
 
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
   const walletAddress = address || mockedWalletAddress;
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
@@ -40,7 +40,7 @@ export const useAuth = () => {
       dispatch(reset());
     },
   });
-  const isVerified = isConnected && verified;
+  const isVerified = Boolean(mockedWalletAddress) && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
