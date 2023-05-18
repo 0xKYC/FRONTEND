@@ -36,16 +36,17 @@ const VerifiedContent = () => {
   const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const walletAddress = address || mockedWalletAddress;
-  const { data: user, isLoading } = useGetUserQuery(walletAddress || "");
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const { data: user, isLoading } = useGetUserQuery({
+    walletAddress: walletAddress || "",
+    chainId,
+  });
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
-
-  const sbt = getUserSbt(user, chainId);
+  const sbt = getUserSbt(user);
   const txHash = sbt?.txHash;
-
   const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
 
   return (

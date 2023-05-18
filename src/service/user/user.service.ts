@@ -1,3 +1,5 @@
+import { ChainId } from "constans/chains";
+
 import { api } from "../config";
 import { User, WalletAddress } from "./types";
 
@@ -17,12 +19,15 @@ export async function editUserInDB(user: UserUpdate) {
   return res.data;
 }
 
-export async function findUserInDB(walletAddress: WalletAddress) {
+export async function findUserInDB(
+  walletAddress: WalletAddress,
+  chainId: ChainId,
+) {
   try {
-    const res = await api.get<User>(`user/${walletAddress}`);
+    const res = await api.get<User>(`user/${walletAddress}/chainId/${chainId}`);
     return res.data;
   } catch (error) {
-    console.log("ERR", error);
+    console.error("ERR", error);
   }
 }
 
