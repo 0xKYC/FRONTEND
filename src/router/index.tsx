@@ -80,9 +80,9 @@ const Router = () => {
             />
             <Route
               element={
-                // <ProtectedRoute verified={verified}>
-                <Profile />
-                // </ProtectedRoute>
+                <ProtectedRoute verified={verified}>
+                  <Profile />
+                </ProtectedRoute>
               }
               path="/profile"
             />
