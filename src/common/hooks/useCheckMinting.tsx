@@ -7,6 +7,7 @@ import {
   selectIsMinting,
   selectMintingChain,
   selectMintingWallet,
+  selectMockedWalletAddress,
   setMintingActive,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -15,11 +16,11 @@ export const useCheckMinting = (isVerified: boolean) => {
   const minting = useAppSelector(selectIsMinting);
   const mintingChain = useAppSelector(selectMintingChain);
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
-
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
   const { chain } = useNetwork();
-
+  const walletAddress = address || mockedWalletAddress;
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
 
   useEffect(() => {
@@ -27,14 +28,14 @@ export const useCheckMinting = (isVerified: boolean) => {
       minting &&
       !isVerified &&
       mintingChain === chainId &&
-      address === mintingWalletAddress
+      walletAddress === mintingWalletAddress
     ) {
       dispatch(setMintingActive(true));
     } else {
       dispatch(setMintingActive(false));
     }
   }, [
-    address,
+    walletAddress,
     chainId,
     minting,
     mintingChain,
