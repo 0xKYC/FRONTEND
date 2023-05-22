@@ -160,6 +160,10 @@ export const Styles = createGlobalStyle`
     .ant-dropdown {
     z-index: 9999;
     }
+    ul {
+  list-style-position: inside;
+  padding-left: .3rem
+}
 .wave {
     position: absolute;
     bottom: 0;

@@ -13,17 +13,18 @@ const Error = () => {
         title="Verification failed"
         extra={
           <Link to="/">
-            <ArrowLeftOutlined style={{ fontSize: ".75rem" }} /> Go to homepage
+            <ArrowLeftOutlined style={{ fontSize: ".75rem" }} /> Try again
           </Link>
         }
       />
       <TextBox>
         <Text>
-          We weren't able to verify your request, please contact{" "}
-          <a href="mailto:support@0xkyc.id">support@0xkyc.id</a> and carefully explain your
-          situation and we will try to help. Please be advised it might take up to 48h to get a
-          response. Please don't share any personal information with us except for your wallet
-          address and the blockchain and it's version (ex. Polygon Mumbai, Ethereum Goerli etc.).
+          We weren't able to verify your request, if this issue persists please
+          contact <a href="mailto:support@0xkyc.id">support@0xkyc.id</a> and
+          carefully explain your situation. We are trying to provide the best
+          service for our users and clients and therefore, we have to block some
+          people, however you might have been blocked in error. Please check
+          your internet connection and try again using the above button.
         </Text>
       </TextBox>
     </Container>
