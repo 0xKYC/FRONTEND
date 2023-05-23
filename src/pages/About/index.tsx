@@ -91,7 +91,9 @@ const About = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <LargeText>We won the DAO Global Hackathon!</LargeText>
+        <LargeText style={{ textDecoration: "underline" }}>
+          We are the winners of the DAO Global Hackathon!
+        </LargeText>
       </a>
       <StyledText>
         Our innovative pluign designed to democratize DAO governance, leverages
