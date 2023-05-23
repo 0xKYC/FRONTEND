@@ -20,28 +20,6 @@ const About = () => {
         We are a team of experienced blockchain developers and KYC experts who
         came together during ETHWarsaw September hackathon.
       </StyledText>
-      <a
-        href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Img
-          src="img/ethwarsaw.jpg"
-          alt="eth warsaw"
-          objectFit="cover"
-          objectPosition="center"
-          height="300px"
-        />
-
-        <StyledLink>
-          0xKYC — The ETHWarsaw Success Story by Matt Kielczewski
-        </StyledLink>
-      </a>
-      <StyledText>
-        Our decentralized app (dApp) allows users to obtain unique, soulbound
-        tokens on the Ethereum, Polygon and Scroll networks and soon on others.
-      </StyledText>
-
       <Img
         src="img/founders.jpg"
         alt="founders"
@@ -61,6 +39,27 @@ const About = () => {
       </a>
       <a href="https://twitter.com/wysock_"> wysock_ </a>
 
+      <StyledText>
+        Our decentralized app (dApp) allows users to obtain unique, soulbound
+        tokens on the Ethereum, Polygon and Scroll networks and soon on others.
+      </StyledText>
+      <a
+        href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Img
+          src="img/ethwarsaw.jpg"
+          alt="eth warsaw"
+          objectFit="cover"
+          objectPosition="center"
+          height="300px"
+        />
+
+        <StyledLink>
+          0xKYC — The ETHWarsaw Success Story by Matt Kielczewski
+        </StyledLink>
+      </a>
       <StyledText>
         Our solution is used for anonymous verification in various use cases,
         such as DAO governance, NFT mints and access to DeFi protocols. We have
@@ -101,7 +100,7 @@ const About = () => {
         users get a unique identifier and a single, verified vote. No more fake
         accounts or duplicate votes!
       </StyledText>
-      <StyledText>
+      <StyledText style={{ marginTop: 0 }}>
         See the
         <a
           target="_blank"

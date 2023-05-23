@@ -10,7 +10,9 @@ export const CardInfo = () => {
         borderRadius: "0 0 40px",
       }}
     >
-      <StyledText>Your data is not being shared with our clients!</StyledText>
+      <StyledText style={{ fontWeight: "500" }}>
+        Your data is not being shared with our clients!
+      </StyledText>
       <StyledText>
         Only the result of the check is shared, shared information includes:
         <ul>

@@ -41,7 +41,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
     showConfirm({
       title: "Are you sure you want to skip?",
       content:
-        "If you skip you will only miss out on our company updates, your email is currently not linked to your wallet address so subscribing to our newsletter is 100% safe",
+        "If you skip you will only miss out on our company updates, your email is currently not linked to your wallet address",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",

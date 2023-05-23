@@ -103,8 +103,7 @@ const ContentBlock = ({
                   <Heading>Please provide your email address</Heading>
                   <Content>
                     For now you can only subscribe to our marketing newsletter,
-                    otherwise we will not use your email, this feature will soon
-                    be available
+                    otherwise we will not use your email
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
