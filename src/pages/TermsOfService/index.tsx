@@ -1,8 +1,10 @@
+import { useFetchContent } from "common/TextContainer/useFetchContent";
+
 import TextContainer from "../../common/TextContainer";
-import tos from "../../content/TermsOfService.json";
 
 const TermsOfService = () => {
-  const { termsOfService } = tos;
-  return <TextContainer text={termsOfService} title="0xKYC Terms Of Service" />;
+  const { content } = useFetchContent("terms-of-service");
+
+  return <TextContainer text={content} title="Terms Of Service" />;
 };
 export default TermsOfService;

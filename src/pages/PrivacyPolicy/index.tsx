@@ -1,8 +1,9 @@
+import { useFetchContent } from "common/TextContainer/useFetchContent";
+
 import TextContainer from "../../common/TextContainer";
-import pp from "../../content/PrivacyPolicy.json";
 
 const PrivacyPolicy = () => {
-  const { privacyPolicy } = pp;
-  return <TextContainer text={privacyPolicy} title="0xKYC Privacy Policy" />;
+  const { content } = useFetchContent("privacy-policy");
+  return <TextContainer text={content} title="Privacy Policy" />;
 };
 export default PrivacyPolicy;
