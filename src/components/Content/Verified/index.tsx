@@ -8,10 +8,7 @@ import { LoadingSpinner } from "common/LoadingSpinner";
 import { SupportedChainId, getChainInfo } from "constans/chains";
 import vContent from "content/VerifiedContent.json";
 import { useGetUserQuery } from "redux/api/user/userApi";
-import {
-  selectMockedWalletAddress,
-  selectRedirectUrl,
-} from "redux/features/user/userSlice";
+import { selectMockedWalletAddress } from "redux/features/user/userSlice";
 import { useAppSelector } from "redux/hooks";
 
 import { CardInfo } from "../../CardInfo";
@@ -33,7 +30,7 @@ const VerifiedContent = () => {
 
   const { chain } = useNetwork();
   const { address } = useAccount();
-  const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
+  // const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const walletAddress = address || mockedWalletAddress;
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
@@ -86,19 +83,6 @@ const VerifiedContent = () => {
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <CardInfo />
-              {redirectUrlFromPartner && (
-                <div style={{ textAlign: "center", marginTop: "2rem" }}>
-                  <a
-                    style={{
-                      color: "black",
-                      fontSize: "1rem",
-                    }}
-                    href={redirectUrlFromPartner}
-                  >
-                    Close the tab or go back to Insert Stonks
-                  </a>
-                </div>
-              )}
             </ContentWrapper>
           </Col>
         </Row>

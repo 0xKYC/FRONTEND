@@ -47,7 +47,8 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
 `;
 export const StyledCard = styled(Card)`
   min-width: 340px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   @media screen and (min-width: 1100px) {
     width: 570px;
     padding: 2rem 1.4rem;
@@ -64,6 +65,7 @@ export const ContentWrapper = styled("div")`
     padding: 4rem 0 5rem;
     margin: 0 auto;
     max-width: 540px;
+    padding-bottom: 0;
   }
 `;
 
@@ -75,13 +77,14 @@ export const BlockWrapper = styled("section")`
 
   min-height: 70vh;
   margin: 0 auto;
-
+  padding-bottom: 15rem;
+  padding-top: 5rem;
   @media only screen and (max-width: 1024px) {
     padding: 8rem 0 10rem;
   }
 
   @media only screen and (max-width: 768px) {
-    padding: 4rem 0 10rem;
+    padding: 1rem 0 10rem;
   }
 `;
 
