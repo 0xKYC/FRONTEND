@@ -160,9 +160,46 @@ export const Styles = createGlobalStyle`
     .ant-dropdown {
     z-index: 9999;
     }
-    ul {
+
+ul {
   list-style-position: inside;
   padding-left: .3rem
+}
+
+
+.markdown .title {
+    text-decoration: underline;
+    margin-left: 2.5rem;
+    font-weight: bold;
+}
+.markdown .bold {
+      font-weight: bold;
+}
+.markdown .underline_li {
+     text-decoration: underline;
+}
+.red {
+    color:red
+}
+
+.markdown table, tr,td,th {
+    border:1px solid black;
+    padding: .3rem;
+    color: #18216d
+}
+.markdown table {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+.markdown p {
+    font-weight: 400;
+}
+.markdown li {
+    color:#18216d
+}
+.markdown a {
+    font-weight: 800;
+    text-decoration: underline;
 }
 .wave {
     position: absolute;
