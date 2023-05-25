@@ -1,26 +1,22 @@
-import ReactMarkdown from "react-markdown";
-
 import { GoBackArrow } from "common/GoBackArrow";
-import rehypeRaw from "rehype-raw";
 
 import { StyledContainer, StyledTitle } from "./style";
 
 type Props = {
-  text: string;
   title: string;
+  children: JSX.Element[];
 };
 
-const TextContainer = ({ text, title }: Props) => {
+const TextContainer = ({ title, children }: Props) => {
   return (
-    <StyledContainer style={{ textAlign: "left", color: "black" }}>
+    <StyledContainer
+      style={{ textAlign: "left", color: "black" }}
+      className="markdown"
+    >
       <GoBackArrow />
 
       <StyledTitle>{title}</StyledTitle>
-      <ReactMarkdown
-        children={text}
-        rehypePlugins={[rehypeRaw]}
-        className="markdown"
-      />
+      {children}
     </StyledContainer>
   );
 };
