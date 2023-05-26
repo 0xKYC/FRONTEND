@@ -82,7 +82,7 @@ const TermsOfService = () => {
         application or right to apply for any of the rights referred to in this
         clause, including, any pending registrations or applications; and (c)
         any and all renewals, extensions and restorations thereof, now or
-        hereafter in force and effect. Furthermore, if alternatively reasonable
+        hereafter in force and effect.  Furthermore, if alternatively reasonable
         approaches and/or modifications to methodologies, techniques, design
         details, drawings, processes and procedures, inventions, know-how,
         pending patents, information disclosures, and/or other intellectual
@@ -126,51 +126,59 @@ const TermsOfService = () => {
         By accepting these Terms or accessing our Site and/or Services, you
         hereby agree as follows:
       </p>
-      <p>
-        if you are an individual, you represent and warrant that you are of the
-        legal age of majority in your jurisdiction as is required to enter into
-        these Terms, and you have the capacity to enter into these Terms and the
-        transactions contemplated under these Terms. Specifically, to use our
-        Services, you must be at least 18 years old and provide accurate and
-        complete information about yourself. We reserve the right to request
-        additional information to verify your identity, and to deny or terminate
-        your access to our Services if we are unable to verify your identity.
-      </p>
-      <p>
-        if you are accessing or using the Services on behalf of an entity, you
-        represent and warrant that you have the authority to bind such entity to
-        these Terms and the transactions contemplated under these Terms, and all
-        references to &quot;you&quot; and similar expressions in these Terms
-        shall mean that entity.
-      </p>
-      <p>
-        you represent and warrant that you are not subject to any applicable
-        laws which would restrict or prohibit your access or use of the
-        Services; and
-      </p>
-      <p>
-        you represent and warrant that any funds used by you in connection with
-        the Site and Services are owned by you.
-      </p>
-      <p>
-        you may not use our Services for any illegal or unauthorized purpose nor
-        may you, in the use of the Services, violate any laws in your
-        jurisdiction (including but not limited to copyright laws).
-      </p>
-      <p>
-        you must not transmit any worms or viruses or any code of a destructive
-        nature. You agree not to reproduce, duplicate, copy, sell, resell, or
-        exploit any portion of the Services, use of the Services, or access to
-        the Services or any contact on the website through which the Service is
-        provided, without express written permission by us. We reserve the right
-        to refuse our Service to anyone for any reason at any time. A breach or
-        violation of any of the Terms will result in an immediate termination of
-        your Services. We may update or change these Terms at any time at our
-        discretion. If we make any changes deemed to be material in our sole
-        discretion, we will make a reasonable effort to inform you of such
-        changes. If you object to a change, your exclusive remedy is to cease
-        any and all access and use of the Site and Services.
-      </p>
+
+      <ol type="a" className="li_margin">
+        <li>
+          if you are an individual, you represent and warrant that you are of
+          the legal age of majority in your jurisdiction as is required to enter
+          into these Terms, and you have the capacity to enter into these Terms
+          and the transactions contemplated under these Terms. Specifically, to
+          use our Services, you must be at least 18 years old and provide
+          accurate and complete information about yourself. We reserve the right
+          to request additional information to verify your identity, and to deny
+          or terminate your access to our Services if we are unable to verify
+          your identity.
+        </li>
+
+        <li>
+          if you are accessing or using the Services on behalf of an entity, you
+          represent and warrant that you have the authority to bind such entity
+          to these Terms and the transactions contemplated under these Terms,
+          and all references to &quot;you&quot; and similar expressions in these
+          Terms shall mean that entity.
+        </li>
+        <li>
+          you represent and warrant that you are not subject to any applicable
+          laws which would restrict or prohibit your access or use of the
+          Services; and
+        </li>
+        <li>
+          you represent and warrant that any funds used by you in connection
+          with the Site and Services are owned by you.
+        </li>
+        <li>
+          you may not use our Services for any illegal or unauthorized purpose
+          nor may you, in the use of the Services, violate any laws in your
+          jurisdiction (including but not limited to copyright laws).
+        </li>
+        <li>
+          you must not transmit any worms or viruses or any code of a
+          destructive nature. You agree not to reproduce, duplicate, copy, sell,
+          resell, or exploit any portion of the Services, use of the Services,
+          or access to the Services or any contact on the website through which
+          the Service is provided, without express written permission by us.
+        </li>
+        <li>
+          We reserve the right to refuse our Service to anyone for any reason at
+          any time. A breach or violation of any of the Terms will result in an
+          immediate termination of your Services. We may update or change these
+          Terms at any time at our discretion. If we make any changes deemed to
+          be material in our sole discretion, we will make a reasonable effort
+          to inform you of such changes. If you object to a change, your
+          exclusive remedy is to cease any and all access and use of the Site
+          and Services.
+        </li>
+      </ol>
       <p>
         <strong>
           3. <span className="title"> Description of Services </span>
@@ -180,17 +188,17 @@ const TermsOfService = () => {
         Our Services include the 0xKYC check, which is a zero-knowledge proof
         check and verification of End-Users’ identity, the result of which is
         minted into a non-transferable identity verification “Soulbound” token
-        (the “Identity Token”) and made available on the decentralized
-        blockchain network, and 1Vote, which is a service that lets End-Users
-        get a UUID based on a selfie or another biometric verification method.
-        In order for the 0xKYC identity verification services to be provided,
-        End-User will be required to provide certain information 0xKYC through
-        our identity verification partners for us to Provide the Services,
-        including an email address (on an optional basis), means of
-        identification and a selfie photograph and End-User will be required
-        respond to verification questions specifically about End-User’s country
-        (and in the case of potentially sanctioned countries, End-User may be
-        asked to provide an address). With regard to 1Vote, the UUID is
+        (the “<strong>Identity Token</strong>”) and made available on the
+        decentralized blockchain network, and 1Vote, which is a service that
+        lets End-Users get a UUID based on a selfie or another biometric
+        verification method. In order for the 0xKYC identity verification
+        services to be provided, End-User will be required to provide certain
+        information 0xKYC through our identity verification partners for us to
+        Provide the Services, including an email address (on an optional basis),
+        means of identification and a selfie photograph and End-User will be
+        required respond to verification questions specifically about End-User’s
+        country (and in the case of potentially sanctioned countries, End-User
+        may be asked to provide an address). With regard to 1Vote, the UUID is
         generated on the basis of biometric verification (a selfie, a 3D scan or
         otherwise). 1Vote is currently an integral part of the 0xKYC identity
         verification service and may be provided as a standalone opt-in service
@@ -207,10 +215,10 @@ const TermsOfService = () => {
         following specific criteria - (i) End-User is 18 years old or older,
         (ii) End-User is not subject to any OFAC sanctions or any other
         sanctions, and (iii) End-User’s wallet is not sanctioned and does not
-        contain any suspicious funds ((i) to (ii) together the “Shared Data”).
-        This confirmation will be expressed in concise affirmations (e.g.,
-        &quot;yes&quot; or “green checkmarks”) without disclosing any personally
-        identifiable information of the End-Users.
+        contain any suspicious funds ((i) to (ii) together the “
+        <strong>Shared Data</strong>”). This confirmation will be expressed in
+        concise affirmations (e.g., "yes" or “green checkmarks”) without
+        disclosing any personally identifiable information of the End-Users.
       </p>
       <p>
         By accepting our Terms, you acknowledge that we do not generate the full
@@ -230,7 +238,7 @@ const TermsOfService = () => {
       <p>
         For more information on our commitment to End-User privacy and data
         protection practices, please review our{" "}
-        <a href="https://app.0xkyc.id/privacy-policy">Privacy Policy</a>.
+        <a href="https://app.0xkyc.id/privacy-policy">Privacy Policy</a>
       </p>
       <p>
         <strong>
@@ -241,25 +249,38 @@ const TermsOfService = () => {
         By accepting these Terms and using the Services, you acknowledge and
         agree as follows:
       </p>
-      <p>
-        Non-Reliance Basis: Our check is conducted on a non-reliance basis. This
-        means that you cannot establish a client-user relationship solely based
-        on our check. The check we perform does not serve as a comprehensive
-        assessment of an End-User’s identity or compliance with regulations. No
-        Substitute for Comprehensive KYC Verification: The check we provide is
-        not a substitute for a full KYC service. Our check is limited to issuing
-        proof of compliance with specific AML criteria based on the information
-        available to us. You should therefore not solely rely on our check to
-        establish a contractual or client-user relationship or for a
-        comprehensive verification of an individual&#39;s identity. Risk-Based
-        Approach: Our check is aligned with a risk-based approach as part of our
-        commitment to AML compliance. It helps identify potential risks by
-        assessing certain aspects such as the presence of suspicious funds,
-        compliance with sanctions, and age verification. However, it should be
-        noted that this check does not guarantee complete elimination of all AML
-        risks. It is the responsibility of the clients to understand and adhere
-        to the limitations and implications of our check.
-      </p>
+      <ul>
+        <li>
+          {" "}
+          Non-Reliance Basis: Our check is conducted on a non-reliance basis.
+          This means that you cannot establish a client-user relationship solely
+          based on our check. The check we perform does not serve as a
+          comprehensive assessment of an End-User’s identity or compliance with
+          regulations.
+        </li>
+        <li>
+          {" "}
+          No Substitute for Comprehensive KYC Verification: The check we provide
+          is not a substitute for a full KYC service. Our check is limited to
+          issuing proof of compliance with specific AML criteria based on the
+          information available to us. You should therefore not solely rely on
+          our check to establish a contractual or client-user relationship or
+          for a comprehensive verification of an individual's identity.
+        </li>
+        <li>
+          Risk-Based Approach: Our check is aligned with a risk-based approach
+          as part of our commitment to AML compliance. It helps identify
+          potential risks by assessing certain aspects such as the presence of
+          suspicious funds, compliance with sanctions, and age verification.
+          However, it should be noted that this check does not guarantee
+          complete elimination of all AML risks.
+        </li>
+        <li>
+          It is the responsibility of the clients to understand and adhere to
+          the limitations and implications of our check.
+        </li>
+      </ul>
+
       <p>
         <strong>
           5. <span className="title"> Intellectual Property Rights. </span>
@@ -308,7 +329,7 @@ const TermsOfService = () => {
       </p>
       <p>
         No rights are granted to you with respect to the source code of any
-        component of the Services. We reserve all rights not expressly granted
+        component of the Services. We reserve all rights not expressly granted
         under these Terms.
       </p>
       <p>
@@ -318,31 +339,57 @@ const TermsOfService = () => {
       </p>
       <p>
         Except as otherwise permitted under this Agreement, you will not, and
-        will not permit any third party to: (i) share, transfer, resell, bundle,
-        rent, distribute, sublicense, or otherwise make the Services available
-        except as expressly set forth herein and subject to all the controls and
-        protections set forth herein. (ii) send or store viruses, worms, time
-        bombs, Trojan horses and other harmful or malicious code, files,
-        scripts, agents or programs via the Site or Services. (iii) attempt to
-        gain unauthorized access to, or disrupt the integrity or performance of,
-        the Site or Services or the data contained therein. (iv) adapt, modify,
-        translate, copy, disassemble, decompile, reverse engineer, create
-        derivative works of or make any other attempt by any means to discover
-        or obtain the source code or other proprietary information. (v) access
-        the Site or Services for the purpose of building a competitive product
-        or service or copying its features or user interface for the purpose of
-        reducing the number of transactions under these Terms. (vi) use the Site
-        or Services or permit them to be used, for purposes of product
-        evaluation, benchmarking or other comparative analysis intended for
-        publication without our prior written consent. (vii) use this website or
-        its associated Services to transmit or publish any harassing, indecent
-        obscene, fraudulent, or unlawful material, or to send unauthorized
-        advertising or spam. (viii) use this website or its associated Services
-        in such a way that may infringe the privacy, intellectual property
-        rights, or other rights of third parties. (ix) use the Site or Services
-        in any way that would violate any applicable federal, state, and local
-        law, court order or regulation.
+        will not permit any third party to:
       </p>
+      <ol type="i">
+        <li>
+          share, transfer, resell, bundle, rent, distribute, sublicense, or
+          otherwise make the Services available except as expressly set forth
+          herein and subject to all the controls and protections set forth
+          herein.
+        </li>
+        <li>
+          send or store viruses, worms, time bombs, Trojan horses and other
+          harmful or malicious code, files, scripts, agents or programs via the
+          Site or Services.
+        </li>
+        <li></li>
+        <li>
+          attempt to gain unauthorized access to, or disrupt the integrity or
+          performance of, the Site or Services or the data contained therein.
+        </li>
+        <li>
+          adapt, modify, translate, copy, disassemble, decompile, reverse
+          engineer, create derivative works of or make any other attempt by any
+          means to discover or obtain the source code or other proprietary
+          information.
+        </li>
+        <li>
+          access the Site or Services for the purpose of building a competitive
+          product or service or copying its features or user interface for the
+          purpose of reducing the number of transactions under these Terms.
+        </li>
+        <li>
+          use the Site or Services or permit them to be used, for purposes of
+          product evaluation, benchmarking or other comparative analysis
+          intended for publication without our prior written consent.
+        </li>
+        <li>
+          use this website or its associated Services to transmit or publish any
+          harassing, indecent obscene, fraudulent, or unlawful material, or to
+          send unauthorized advertising or spam.
+        </li>
+        <li>
+          use this website or its associated Services in such a way that may
+          infringe the privacy, intellectual property rights, or other rights of
+          third parties.
+        </li>
+        <li>
+          use the Site or Services in any way that would violate any applicable
+          federal, state, and local law, court order or regulation.
+        </li>
+      </ol>
+
       <p>
         <strong>
           8. <span> Suspension. </span>
@@ -352,7 +399,7 @@ const TermsOfService = () => {
         We, in our sole discretion, may immediately suspend you right to access
         and use some or all of the Services if we reasonably believe that you
         have (i) used the Site or Services in an illegal manner, (ii) breached
-        these Terms, or iii) used the Services is in violation of the license
+        these Terms, or iii (used the Services is in violation of the license
         restrictions set forth in Section 5 above or iv) suffered a security
         breach.
       </p>
@@ -421,7 +468,7 @@ const TermsOfService = () => {
         We reserve the right to revoke or update the 0xKYC Identity Token
         without prior notice if we have valid suspicions that the End-User is or
         has been sanctioned, or any illegitimate funds are found on the
-        End-User&#39;s account. This may be confirmed by trusted third-party
+        End-User's account. This may be confirmed by trusted third-party
         providers such as Chainalysis oracle for sanctions screening, available
         at{" "}
         <a href="https://go.chainalysis.com/chainalysis-oracle-docs.html">
@@ -478,8 +525,10 @@ const TermsOfService = () => {
         SERVICES. WE DO NOT WARRANT THAT THE RESULTS THAT MAY BE OBTAINED FROM
         THE USE OF THE SERVICES WILL BE ACCURATE OR RELIABLE. YOU AGREE THAT
         FROM TIME TO TIME WE MAY REMOVE THE SERVICES FOR INDEFINITE PERIODS OF
-        TIME OR CANCEL THE SERVICES AT ANY TIME, WITHOUT NOTICE TO YOU. WE DO
-        NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY
+        TIME OR CANCEL THE SERVICES AT ANY TIME, WITHOUT NOTICE TO YOU.
+      </p>
+      <p>
+        WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY
         PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE
         WEBSITE OR SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR ANY
         MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE
@@ -487,14 +536,17 @@ const TermsOfService = () => {
         TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR
         SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY
         MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND
-        EXERCISE CAUTION WHERE APPROPRIATE. TO THE FULLEST EXTENT PERMITTED BY
-        APPLICABLE LAW, 0XKYC AND ITS AFFILIATES, DIRECTORS, EMPLOYEES, AND
-        LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
-        CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES,
-        WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE,
-        GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM YOUR ACCESS TO OR
-        USE OF, OR INABILITY TO ACCESS OR USE, OUR SERVICES, EVEN IF 0XKYC HAS
-        BEEN NOTIFIED, ORALLY OR IN WRITING, OF THE POSSIBILITY OF SUCH DAMAGE.
+        EXERCISE CAUTION WHERE APPROPRIATE.
+      </p>
+      <p>
+        TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, 0XKYC AND ITS
+        AFFILIATES, DIRECTORS, EMPLOYEES, AND LICENSORS SHALL NOT BE LIABLE FOR
+        ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
+        OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR
+        INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE
+        LOSSES, RESULTING FROM YOUR ACCESS TO OR USE OF, OR INABILITY TO ACCESS
+        OR USE, OUR SERVICES, EVEN IF 0XKYC HAS BEEN NOTIFIED, ORALLY OR IN
+        WRITING, OF THE POSSIBILITY OF SUCH DAMAGE.
       </p>
       <p>
         IN THE CONTEXT OF THIS AGREEMENT, “CONSEQUENTIAL LOSS” INCLUDES ANY
@@ -520,7 +572,7 @@ const TermsOfService = () => {
         You agree to release and to indemnify, defend, and hold harmless 0xKYC,
         its affiliates, and their respective directors, officers, employees, and
         agents from and against any and all claims, liabilities, damages,
-        losses, or expenses, including reasonable attorneys&#39; fees and costs,
+        losses, or expenses, including reasonable attorneys' fees and costs,
         arising out of or in any way connected with your access to or use of our
         Services, your violation of these Terms and any of your acts or omission
         that implicate breach of Intellectual Property Rights of a third party,
@@ -538,8 +590,8 @@ const TermsOfService = () => {
         To the extent that any of the Services are currently or in the future
         become subject to export control and economic sanctions laws and
         regulations administered or enforced by the United States Department of
-        Commerce, Department of Treasury&#39;s Office of Foreign Assets Control
-        (“<strong>OFAC</strong>”), Department of State, and other United States
+        Commerce, Department of Treasury's Office of Foreign Assets Control (“
+        <strong>OFAC</strong>”), Department of State, and other United States
         authorities (collectively, “<strong>U.S. Trade Laws</strong>”), you
         agree that you may not access, download, use or export the Services or
         any information derived from the Services, in whole or in part, in
@@ -557,9 +609,9 @@ const TermsOfService = () => {
         Services outside the U.S. Neither the Services or any information
         derived from the Services or the underlying information or technology
         may be downloaded or otherwise provided or made available, either
-        directly or indirectly, to anyone on the U.S. Treasury Department&#39;s
-        list of Specially Designated Nationals and Blocked Persons or the U.S.
-        Commerce Department&#39;s Table of Denial Orders. By agreeing to these
+        directly or indirectly, to anyone on the U.S. Treasury Department's list
+        of Specially Designated Nationals and Blocked Persons or the U.S.
+        Commerce Department's Table of Denial Orders. By agreeing to these
         Terms, you represent and warrant that you are not (a) an individual,
         organization or entity organized or located in a country or territory
         that is the target of OFAC sanctions (including Cuba, Iran, Syria,
@@ -590,45 +642,80 @@ const TermsOfService = () => {
         user of our Services. In compliance with Section 512 of the Digital
         Millennium Copyright Act of 1998 (the “<strong>DMCA</strong>”), we
         designate the following individual to receive any notifications of an
-        alleged infringement: Copyright Agent: Dylan Wysocki An effective
-        notification should include: A physical or electronic signature of a
-        person authorized to act on behalf of the owner of an exclusive right
-        that is allegedly infringed; Identification of the copyrighted work
-        claimed to have been infringed, or, if multiple copyrighted works at a
-        single online site are covered by a single notification, a
-        representative list of such works at that site; Identification of the
-        material that is claimed to be infringing or to be the subject of
-        infringing activity and that is to be removed or access to which is to
-        be disabled, and information reasonably sufficient to permit us to
-        locate the material; Information reasonably sufficient to permit us to
-        contact the complaining party, such as an address, telephone number,
-        and, if available, an electronic mail address at which the complaining
-        party may be contacted; A statement that the complaining party has a
-        good faith belief that use of the material in the manner complained of
-        is not authorized by the copyright owner, its agent, or the law; A
-        statement that the information in the notification is accurate, and
-        under penalty of perjury, that the complaining party is authorized to
-        act on behalf of the owner of an exclusive right that is allegedly
-        infringed.
+        alleged infringement:
       </p>
       <p>
+        Copyright Agent: Dylan Wysocki<sup>3</sup>
+      </p>
+      <p>An effective notification should include:</p>
+      <ol type="a">
+        <li>
+          A physical or electronic signature of a person authorized to act on
+          behalf of the owner of an exclusive right that is allegedly infringed;
+        </li>
+        <li>
+          Identification of the copyrighted work claimed to have been infringed,
+          or, if multiple copyrighted works at a single online site are covered
+          by a single notification, a representative list of such works at that
+          site;
+        </li>
+        <li>
+          Identification of the material that is claimed to be infringing or to
+          be the subject of infringing activity and that is to be removed or
+          access to which is to be disabled, and information reasonably
+          sufficient to permit us to locate the material;
+        </li>
+        <li>
+          Information reasonably sufficient to permit us to contact the
+          complaining party, such as an address, telephone number, and, if
+          available, an electronic mail address at which the complaining party
+          may be contacted;
+        </li>
+        <li>
+          A statement that the complaining party has a good faith belief that
+          use of the material in the manner complained of is not authorized by
+          the copyright owner, its agent, or the law;
+        </li>
+        <li>
+          A statement that the information in the notification is accurate, and
+          under penalty of perjury, that the complaining party is authorized to
+          act on behalf of the owner of an exclusive right that is allegedly
+          infringed.
+        </li>
+      </ol>
+      <hr style={{ width: "15%", marginLeft: "0" }} />
+      <p>
+        <sup>3</sup> Dylan Wysocki, 2810 N Church St PMB 81635, Wilmington,
+        Delaware 19802, dylan@0xkyc.id
+      </p>
+
+      <p style={{ marginTop: "2rem" }}>
         A notification that does not comply with all the above-mentioned
         requirements may not be valid. If you believe that a notice was wrongly
         filed against you, under the DMCA, you may file a counter-notice to our
-        designated individual with the following information: Your physical or
-        electronic signature; Identification of the material that has been
-        removed or to which access has been disabled and the location at which
-        the material appeared before it was removed or access to it was
-        disabled; A statement under penalty of perjury that you have a good
-        faith belief that the material was removed or disabled as a result of
-        mistake or misidentification of the material to be removed or disabled;
-        Your name, address, and telephone number, and a statement that you
-        consent to the jurisdiction of Federal District Court for the judicial
-        district in which we are located, or if your address is outside of the
-        United States, for any judicial district in which we may be found, and
-        that you will accept service of process from the person who provided
-        notification or an agent of such person.
+        designated individual with the following information:
       </p>
+      <ol type="a">
+        <li>Your physical or electronic signature;</li>
+        <li>
+          Identification of the material that has been removed or to which
+          access has been disabled and the location at which the material
+          appeared before it was removed or access to it was disabled;
+        </li>
+        <li>
+          A statement under penalty of perjury that you have a good faith belief
+          that the material was removed or disabled as a result of mistake or
+          misidentification of the material to be removed or disabled;
+        </li>
+        <li>
+          Your name, address, and telephone number, and a statement that you
+          consent to the jurisdiction of Federal District Court for the judicial
+          district in which we are located, or if your address is outside of the
+          United States, for any judicial district in which we may be found, and
+          that you will accept service of process from the person who provided
+          notification or an agent of such person.
+        </li>
+      </ol>
       <p>
         We are responsible for the investigation, defense, settlement and
         discharge of any intellectual property infringement relating to the
@@ -640,16 +727,16 @@ const TermsOfService = () => {
         along with that of the alleged infringer pending resolution of the
         matter. 0xKYC will provide you with notice if your materials have been
         removed based on a third-party complaint of alleged infringement of the
-        third-party&#39;s intellectual property rights.
+        third-party's intellectual property rights.
       </p>
       <p>
         IF YOU KNOWINGLY MISREPRESENT THAT MATERIAL IS OR IS NOT INFRINGING, YOU
         MAY BE SUBJECT TO CIVIL PENALTIES. THESE INCLUDE MONETARY DAMAGES, COURT
-        COSTS, AND ATTORNEYS&#39; FEES INCURRED BY 0XKYC, BY ANY COPYRIGHT
-        OWNER, OR BY ANY COPYRIGHT OWNER&#39;S LICENSEE THAT IS INJURED AS A
-        RESULT OF RELIANCE UPON YOUR MISREPRESENTATION. YOU MAY ALSO BE SUBJECT
-        TO CRIMINAL PROSECUTION FOR PERJURY. YOU AGREE WE MAY PROVIDE YOUR
-        NOTICE TO THE PROVIDER OF THE ALLEGEDLY INFRINGING MATERIAL.
+        COSTS, AND ATTORNEYS' FEES INCURRED BY 0XKYC, BY ANY COPYRIGHT OWNER, OR
+        BY ANY COPYRIGHT OWNER'S LICENSEE THAT IS INJURED AS A RESULT OF
+        RELIANCE UPON YOUR MISREPRESENTATION. YOU MAY ALSO BE SUBJECT TO
+        CRIMINAL PROSECUTION FOR PERJURY. YOU AGREE WE MAY PROVIDE YOUR NOTICE
+        TO THE PROVIDER OF THE ALLEGEDLY INFRINGING MATERIAL.
       </p>
       <p>
         We may terminate your access to the Services if you repeatedly and
@@ -657,7 +744,7 @@ const TermsOfService = () => {
         obligations under this section shall survive any termination or
         expiration of these Terms or your use of the Services.
       </p>
-      <p>
+      <p style={{ marginTop: "2rem" }}>
         <strong>
           11. <span className="title"> Amendments. </span>
         </strong>
@@ -690,15 +777,16 @@ const TermsOfService = () => {
         You agree that any dispute, claim, or controversy arising out of or
         relating to these Terms or the breach, termination, enforcement,
         interpretation, or validity thereof, or the use of our Services
-        (collectively, &quot;<strong>Disputes</strong>&quot;) shall be resolved
-        through binding, individual arbitration administered by the American
-        Arbitration Association (&quot;<strong>AAA</strong>&quot;) in accordance
-        with its Commercial Arbitration Rules, rather than in court. The
-        decision of the arbitrator shall be final and binding, and judgment on
-        the award rendered by the arbitrator may be entered in any court having
-        jurisdiction thereof. You and 0xKYC agree that each party will bear its
-        own attorneys&#39; fees and costs unless the arbitrator determines that
-        your claim is frivolous or brought for an improper purpose.
+        (collectively, " <strong>Disputes</strong>") shall be resolved through
+        binding, individual arbitration administered by the American Arbitration
+        Association ("
+        <strong>AAA</strong>") in accordance with its Commercial Arbitration
+        Rules, rather than in court. The decision of the arbitrator shall be
+        final and binding, and judgment on the award rendered by the arbitrator
+        may be entered in any court having jurisdiction thereof. You and 0xKYC
+        agree that each party will bear its own attorneys' fees and costs unless
+        the arbitrator determines that your claim is frivolous or brought for an
+        improper purpose.
       </p>
       <p>
         <strong>
@@ -734,8 +822,9 @@ const TermsOfService = () => {
         </strong>
       </p>
       <p>
-        We may suspend or terminate your right to use our Services immediately
-        upon written notice to you for any breach of these Terms of Service.
+        We may suspend or terminate your right to use our Services, or otherwise
+        deny your access to all or part of the Services, with or without notice
+        to you, for any breach of these Terms of Service.
       </p>
       <p>
         <strong>

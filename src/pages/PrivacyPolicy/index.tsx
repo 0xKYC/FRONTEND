@@ -65,13 +65,13 @@ const PrivacyPolicy = () => {
           <td>
             Although you may not actively provide us with this information, we
             will utilize your wallet address from the publicly available
-            blockchain data for the purpose of providing our Services. We use
-            this information to establish trust and provide you with a Universal
-            Unique Identifier Number (UUID), which will represent you across the
-            internet, and may be linked to more than one wallet. Your UUID is
-            user-owned, though we will make this information available on the
-            blockchain and this will be linked to your wallet and accessible to
-            all users of the blockchain.
+            blockchain data for the purpose of providing our Portal and
+            Services. We use this information to establish trust and provide you
+            with a Universal Unique Identifier Number (UUID), which will
+            represent you across the internet, and may be linked to more than
+            one wallet. Your UUID is user-owned, though we will make this
+            information available on the blockchain and this will be linked to
+            your wallet and accessible to all users of the blockchain.
           </td>
         </tr>
         <tr>
@@ -113,8 +113,8 @@ const PrivacyPolicy = () => {
             We may collect information automatically sent by your devices when
             accessing our Services. We may automatically collect standard data
             from your web browser when you visit our website. These details
-            include your device&#39;s IP address, your browser type and version,
-            the pages you visited, the time and date of your visit, and the time
+            include your device's IP address, your browser type and version, the
+            pages you visited, the time and date of your visit, and the time
             spent on each page. Furthermore, we may automatically collect data
             about errors you encounter while using the site, as well as the
             circumstances under which they occurred.
@@ -131,10 +131,7 @@ const PrivacyPolicy = () => {
         We will only collect and use your Personal Data when we have a
         legitimate reason for doing so. In that case, we will only collect
         Personal Data reasonably necessary to provide our Services. We may use
-        your Personal Data for the following purposes: To operate, maintain,
-        improve, and provide you with the features and functionality of our
-        Services. To enable identity verification and otherwise operate,
-        maintain, and provide our Services.
+        your Personal Data for the following purposes:
       </p>
       <ol type="a">
         <li>
@@ -217,19 +214,23 @@ const PrivacyPolicy = () => {
           </span>{" "}
           We may share your Personal Data with our trusted third-party service
           providers, such as Onfido, only for the purpose of performing identity
-          verifications and provide our Services, provided such companies
+          verifications and providing our Services, provided such companies
           protect your Personal Data and only use it for the purposes we
-          specify.
-          <span className="red">
-            {" "}
-            Once such Personal Data is processed by our third-party partners and
-            the Identity Token has been created, we do not retain and/or share
-            any Personal Data with such third-party partners.
-          </span>{" "}
-          However, please note that by using the Services, you agree to our
-          provision of such Personal Data as is necessary for providing the
-          Services, to the third-party service providers and agree to be bound
-          by their respective terms of service and privacy policies.
+          specify. Once such Personal Data is processed by our third-party
+          partners and the Identity Token has been created, we do not retain
+          and/or share any other Personal Data with such third-party partners,
+          unless we are legally required to do so. However, please note that by
+          using the Services, you agree to our provision of such Personal Data
+          as it is necessary for providing the Services, to the third-party
+          service providers and agree to be bound by their respective terms of
+          service and privacy policies. This means that while we do not store
+          any Personal Data on our side, our trusted third-party service
+          providers may do if their respective terms of service and privacy
+          policies allow it. If such is the case, we retain the right to access
+          this stored data by our trusted third-party service providers at a
+          later point if deemed necessary. We strongly encourage you to read and
+          understand how our third-party service providers store your personal
+          data to ensure you are aware of their practices and policies.
         </li>
         <li>
           <span className="underline_li">Clients and Blockchain Users:</span> We
@@ -244,9 +245,8 @@ const PrivacyPolicy = () => {
           wallet is not subject to any sanctions and they do not possess
           suspicious funds in their blockchain wallet as well as will expose the
           public UUID outside of the zero-knowledge proof. This confirmation
-          will be expressed in concise affirmations (e.g., &quot;yes&quot; or
-          “green checkmarks”) without disclosing any Personal Data of the
-          End-Users.
+          will be expressed in concise affirmations (e.g., "yes" or “green
+          checkmarks”) without disclosing any Personal Data of the End-Users.
         </li>
         <li>
           <span className="underline_li">Business transfers:</span> We may share
@@ -378,8 +378,10 @@ const PrivacyPolicy = () => {
           <span className="underline_li">
             Right to limit the use of sensitive personal information.
           </span>
-          You have the right to request the restriction of the processing of
-          your Personal Data under certain circumstances.
+          You have the right to limit the use of your Sensitive Personal
+          Information (as defined in the California Consumer Privacy Act, as
+          amended by the California Privacy Rights Act) to specifically
+          permitted purposes.
         </li>
       </ol>
 
@@ -419,7 +421,7 @@ const PrivacyPolicy = () => {
           processed.
         </li>
         <li>
-          <span className="underline_li">Right to restriction.</span> The right
+          <span className="underline_li">Right to restriction.</span>  The right
           to obtain the restriction of the processing undertaken by us on your
           Personal Data in certain circumstances, such as where the accuracy of
           the Personal Data is contested by you, for a period enabling us to
@@ -427,7 +429,7 @@ const PrivacyPolicy = () => {
         </li>
         <li>
           <span className="underline_li">Right to portability.</span> The right
-          to portability allows you to move, copy, or transfer Personal Data
+          to portability allows you to move, copy or transfer Personal Data
           easily from one organization to another.
         </li>
         <li>
@@ -528,7 +530,7 @@ const PrivacyPolicy = () => {
         <li>
           <span className="bold">Research and development.</span> We use
           information to improve our services and to develop new products,
-          features, and technologies that benefit our users and the public.
+          features and technologies that benefit our users and the public.
         </li>
         <li>
           <span className="bold">Use of service providers.</span> We share
@@ -538,8 +540,8 @@ const PrivacyPolicy = () => {
         </li>
         <li>
           <span className="bold">Legal reasons.</span> We also use information
-          to satisfy applicable laws or regulations and disclose information in
-          response to legal process or enforceable government requests,
+          to satisfy applicable laws or regulations, and discloses information
+          in response to legal process or enforceable government requests,
           including to law enforcement.
         </li>
       </ul>
@@ -548,22 +550,23 @@ const PrivacyPolicy = () => {
         <span className="bold"> How to Submit a Request </span>
       </p>
       <p>
-        To submit an access or deletion request, contact us at support@0xkyc.id.
-        All requests must be labelled “California Access/Removal Request” on the
-        email subject line or post. All requests must state that you personally
-        posted such content and provide a description of the content or
-        information you want removed and information reasonably sufficient to
-        permit us to locate such content or information. We are not responsible
-        for notices that are not labelled or sent properly, and we may not be
-        able to respond if you do not provide adequate information. Please allow
-        30 days for a response. To help protect your privacy and maintain
-        security, we may take steps to verify your identity before granting you
-        access to your personal information or complying with your request. To
-        the extent permitted by applicable law, we may charge a reasonable fee
-        to comply with your request. Additionally, in some circumstances, such
-        as if you request that we delete your data, we may not be able to
-        complete a request for a good or service because we will not have the
-        required information to deliver it.
+        To submit an access or deletion request, contact us at{" "}
+        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>. All requests
+        must be labelled “California Access/Removal Request” on the email
+        subject line or post. All requests must state that you personally posted
+        such content and provide a description of the content or information you
+        want removed and information reasonably sufficient to permit us to
+        locate such content or information. We are not responsible for notices
+        that are not labelled or sent properly, and we may not be able to
+        respond if you do not provide adequate information. Please allow 30 days
+        for a response. To help protect your privacy and maintain security, we
+        may take steps to verify your identity before granting you access to
+        your personal information or complying with your request. To the extent
+        permitted by applicable law, we may charge a reasonable fee to comply
+        with your request. Additionally, in some circumstances, such as if you
+        request that we delete your data, we may not be able to complete a
+        request for a good or service because we will not have the required
+        information to deliver it.
       </p>
       <p>
         <span className="bold">
@@ -574,13 +577,14 @@ const PrivacyPolicy = () => {
       <p>
         You always have the opportunity to opt out of our marketing
         communications (if any) with you or change your preferences by emailing
-        us at support@0xkyc.id or by using the unsubscribe link found at the
-        bottom of a marketing email to opt out of receiving future emails. Some
-        communications from us are considered transactional or service
-        communications, and our Services are provided to you upon the condition
-        that you receive these communications from us. You must cancel your
-        account and/or order for our Services, as applicable, if you do not wish
-        to receive any transactional or service communications.
+        us at <a href="mailto:support@0xkyc.id">support@0xkyc.id</a> or by using
+        the unsubscribe link found at the bottom of a marketing email to opt out
+        of receiving future emails. Some communications from us are considered
+        transactional or service communications, and our Services are provided
+        to you upon the condition that you receive these communications from us.
+        You must cancel your account and/or order for our Services, as
+        applicable, if you do not wish to receive any transactional or service
+        communications.
       </p>
       <p>
         <span className="bold"> CHANGES </span>
@@ -606,12 +610,14 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         Our global headquarters are in the United States, but we may have
-        customers that operate around the world to provide our Services. Where
-        we transfer your Personal Data to a country that does not provide
-        adequate data protection legislation, we will ensure that it is
-        protected and transferred in a manner consistent with legal requirements
-        applicable to the jurisdiction and classification of information, such
-        as with the EU’s Standard Contractual Clauses.
+        customers that operate around the world to provide our Services.
+        Although we do not typically transfer data, there might be instances
+        where it becomes necessary, such as when establishing an API connection.
+        In such cases, if we need to transfer your Personal Data to a country
+        that does not provide adequate data protection legislation, we will
+        ensure that it is protected and transferred in a manner consistent with
+        legal requirements applicable to the jurisdiction and classification of
+        information, such as with the EU’s Standard Contractual Clauses.
       </p>
       <p>
         <strong>
@@ -666,29 +672,28 @@ const PrivacyPolicy = () => {
         user, or prevent fraud or identity theft.
       </p>
       <p>
-        The Illinois Biometric Information Privacy Act (&quot;
-        <strong>BIPA</strong>&quot;), regulates the collection, storage, use,
-        and retention of &quot;biometric identifiers&quot; and &quot;biometric
-        information.&quot; &quot;Biometric identifier&quot; means a retina or
-        iris scan, fingerprint, voiceprint, or scan of hand or face geometry.
-        &quot;Biometric information&quot; means any information, regardless of
+        The Illinois Biometric Information Privacy Act (" <strong>BIPA</strong>
+        "), regulates the collection, storage, use, and retention of "biometric
+        identifiers" and "biometric information." "Biometric identifier" means a
+        retina or iris scan, fingerprint, voiceprint, or scan of hand or face
+        geometry. "Biometric information" means any information, regardless of
         how it is captured, converted, stored, or shared, based on an
-        individual&#39;s biometric identifier used to identify an individual.
-        Your biometric information will not be collected or otherwise obtained
-        by us without your prior consent. Prior to using our Services, you will
-        need to understand and accept the
+        individual's biometric identifier used to identify an individual. Your
+        biometric information will not be collected or otherwise obtained by us
+        without your prior consent. Prior to using our Services, you will need
+        to understand and accept the{" "}
         <a href="https://onfido.com/facial-scan-policy-and-release/">
-          {" "}
           Onfido Facial Scan Policy and Release
         </a>
-        , <a href="https://onfido.com/privacy/"> Onfido Privacy Policy</a>, and{" "}
+        , <a href="https://onfido.com/privacy/">Onfido Privacy Policy</a>, and{" "}
         <a href="https://onfido.com/terms-of-service/and">
-          Onfido Terms of Service
+          Onfido Terms of Service.
         </a>
-        . You can decline to provide biometric identifiers and biometric
+        You can decline to provide biometric identifiers and biometric
         information to us and/or trusted third-party providers, though you will
         not be able to use our Services without this feature. You may revoke
-        this consent at any time by notifying us at support@0xkyc.id.
+        this consent at any time by notifying us at{" "}
+        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>.
       </p>
       <p>
         <span className="bold"> Storage and Retention Schedule.</span>
@@ -727,8 +732,8 @@ const PrivacyPolicy = () => {
         </strong>
       </p>
       <p>
-        To exercise any of the rights listed above, please contact us using
-        <a href="mailto:support@0xkyc.id"> support@0xkyc.id</a>. We will comply
+        To exercise any of the rights listed above, please contact us using{" "}
+        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>. We will comply
         with applicable laws but may not be able to honor your request in all
         circumstances.
       </p>
@@ -759,8 +764,8 @@ const PrivacyPolicy = () => {
         Data from a child under 18, we will take steps to delete such
         information as soon as possible. If you have reason to believe that a
         child under the age of 13 has provided Personal Data to us through are
-        site, please contact us at
-        <a href="mailto:support@0xkyc.id"> support@0xkyc.id</a> and we will
+        site, please contact us at{" "}
+        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a> and we will
         endeavor to delete that information from our databases.
       </p>
       <p>
@@ -784,8 +789,8 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         If you have any questions or concerns about this Privacy Policy or our
-        handling of your Personal Data, please contact us at: 0xKYC, Inc. Email:
-        <a href="mailto:support@0xkyc.id"> support@0xkyc.id</a>
+        handling of your Personal Data, please contact us at: 0xKYC, Inc. Email:{" "}
+        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>
       </p>
     </TextContainer>
   );
