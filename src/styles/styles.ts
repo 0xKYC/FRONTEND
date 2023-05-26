@@ -201,6 +201,13 @@ ul {
     font-weight: 800;
     text-decoration: underline;
 }
+.markdown ul{
+     list-style-position: outside;
+     margin-left: 1rem;
+}
+.li_margin li {
+    margin-bottom: .7rem;
+}
 .wave {
     position: absolute;
     bottom: 0;
