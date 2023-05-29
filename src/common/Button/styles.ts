@@ -21,4 +21,8 @@ export const StyledButton = styled("button")<any>`
     border: 1px solid rgb(255, 130, 92);
     background-color: rgb(255, 130, 92);
   }
+
+  @media screen and (max-width: 890px) {
+    padding: 0.5rem 1rem;
+  }
 `;

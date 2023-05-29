@@ -1,3 +1,4 @@
+import { TwitterOutlined } from "@ant-design/icons";
 import { GoBackArrow } from "common/GoBackArrow";
 
 import {
@@ -6,6 +7,7 @@ import {
   LargeText,
   StyledContainer,
   StyledLink,
+  StyledOlList,
   StyledText,
   StyledTitle,
 } from "../../common/TextContainer/style";
@@ -17,8 +19,15 @@ const About = () => {
       <StyledTitle>About us</StyledTitle>
       <StyledText>
         {" "}
-        We are a team of experienced blockchain developers and KYC experts who
-        came together during ETHWarsaw September hackathon.
+        We are a dynamic team of smart contract engineers and KYC/AML
+        professionals, who found synergy at the ETHWarsaw 2022. United by a
+        vision, we're building a trusted identity verification system to enhance
+        security in the digital realm.
+      </StyledText>
+      <StyledText style={{ marginTop: 0, marginBottom: "3rem" }}>
+        We've developed a decentralized app (dApp), enabling users to secure
+        unique, soulbound tokens across Ethereum, Polygon, Scroll, and soon,
+        other networks as well.
       </StyledText>
       <Img
         src="img/founders.jpg"
@@ -28,20 +37,28 @@ const About = () => {
         objectPosition="top"
       />
 
-      <BlackText>
-        {" "}
-        Co-Founders of 0xKYC Adam (CEO) , left and Dylan (CTO), right
-      </BlackText>
+      <BlackText> Co-Founders of 0xKYC: Adam (CEO) and Dylan (CTO)</BlackText>
 
-      <a href="https://twitter.com/adag1oeth" style={{ marginRight: ".5rem" }}>
-        {" "}
-        adag1oeth{" "}
+      <a
+        href="https://twitter.com/adag1oeth"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ marginRight: "1rem" }}
+      >
+        <TwitterOutlined /> adag1oeth{" "}
       </a>
-      <a href="https://twitter.com/wysock_"> wysock_ </a>
-
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/wysock_"
+      >
+        <TwitterOutlined /> wysock_{" "}
+      </a>
       <StyledText>
-        Our decentralized app (dApp) allows users to obtain unique, soulbound
-        tokens on the Ethereum, Polygon and Scroll networks and soon on others.
+        Our solution is unique – it verifies users in our partner applications
+        without revealing personal data. It confirms the user's minimum age and
+        non-sanctioned status while providing a unique identifier (UUID). And
+        that's it - ensuring your privacy remains intact.
       </StyledText>
       <a
         href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
@@ -49,6 +66,7 @@ const About = () => {
         rel="noreferrer"
       >
         <Img
+          style={{ marginTop: "3rem" }}
           src="img/ethwarsaw.jpg"
           alt="eth warsaw"
           objectFit="cover"
@@ -61,16 +79,38 @@ const About = () => {
         </StyledLink>
       </a>
       <StyledText>
-        Our solution is used for anonymous verification in various use cases,
-        such as DAO governance, NFT mints and access to DeFi protocols. We have
-        the support of Outlier Ventures and New Order, and our team includes
-        co-founders Adam and Dylan, a frontend engineer Sebastian, a backend
-        engineer MG, an analyst Alicja and a group of advisors who provide
-        valuable contributions and support for our company. We are excited to
-        bring our vision to our partners, including OKX Web3, Blue, Cryptum and
-        more...
+        Our solution, armed with Proof of Uniqueness and sanctions checks,
+        extends beyond the blockchain, providing unique and versatile
+        applications. Here are a few cases where our anonymous verification
+        comes into play:
       </StyledText>
-
+      <StyledOlList type="i">
+        <li>
+          DAO Governance – Our solution emerged as a winner at the DAO Global
+          Hackathon.
+        </li>
+        <li>
+          Web3 Games, Casinos, and DAO Governance Protocols – We ensure the
+          uniqueness of participants.
+        </li>
+        <li>
+          Social Networks – We validate the 'realness' and uniqueness of
+          profiles across platforms like Discord.
+        </li>
+        <li>
+          Token Launches – We cater to the verification requirements during
+          token launches in specific jurisdictions.
+        </li>
+        <li>DeFi Protocols – We verify sanctions of DeFi protocol users.</li>
+        <li>
+          Giveaways and Airdrops – We identify and verify individuals for fair
+          distribution.
+        </li>
+        <li>
+          Deepfakes and AI Generation – We verify authenticity, providing a
+          solid defense against AI manipulations.
+        </li>
+      </StyledOlList>
       <a
         href="https://www.linkedin.com/posts/0xkyc_daoglobalhackathon-daogovernance-kyc-activity-7065325352893497346-Ik04?utm_source=share&utm_medium=member_desktop"
         target="_blank"
@@ -94,23 +134,36 @@ const About = () => {
           We are the winners of the DAO Global Hackathon!
         </LargeText>
       </a>
-      <StyledText>
-        Our innovative pluign designed to democratize DAO governance, leverages
-        our proprietary Proof of Uniqueness technology. With a simple selfie 📸,
-        users get a unique identifier and a single, verified vote. No more fake
-        accounts or duplicate votes!
-      </StyledText>
-      <StyledText style={{ marginTop: 0 }}>
-        See the
+      <StyledText style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+        We won{" "}
+        <a
+          href="https://www.linkedin.com/posts/0xkyc_daoglobalhackathon-daogovernance-kyc-activity-7065325352893497346-Ik04?utm_source=share&utm_medium=member_desktop"
+          target="_blank"
+          rel="noreferrer"
+        >
+          DAO Global Hackathon{" "}
+        </a>
+        for the most creative use of{" "}
+        <a href=" https://aragon.org/" target="_blank" rel="noreferrer">
+          Aragon OSx{" "}
+        </a>{" "}
+        plugin protocol and our app is available as an Aragon OSx app, see
+        details on our{" "}
         <a
           target="_blank"
           rel="noreferrer"
           href="https://github.com/0xKYC/0xkyc-1vote-aragon-plugin"
         >
-          {" "}
-          github repository
-        </a>{" "}
-        for technical details
+          GitHub
+        </a>
+      </StyledText>
+
+      <StyledText>
+        Our strength lies in our team - a global ensemble of 10 individuals,
+        hailing from different corners of the world. We have MG from Korea,
+        Alicja from Poland, Sebastian from Brazil, and many more. We operate on
+        a decentralized, remote-work model, but our heart beats in sync with
+        Warsaw, Poland.
       </StyledText>
     </StyledContainer>
   );

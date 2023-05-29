@@ -18,6 +18,7 @@ export const wagmiClient = createClient({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
+
     new WalletConnectConnector({
       chains,
       options: {
