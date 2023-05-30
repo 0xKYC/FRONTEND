@@ -51,9 +51,9 @@ const About = () => {
       >
         <TwitterOutlined /> wysock_{" "}
       </a>
-      <StyledText style={{ marginTop: "3rem" }}>
+      <StyledText style={{ marginTop: "1.5rem" }}>
         We've designed a decentralized app (dApp) that provides users the
-        ability t o secure unique, soulbound tokens across Ethereum, Polygon,
+        ability to secure unique, soulbound tokens across Ethereum, Polygon,
         Scroll, and soon other networks. Our unique solution verifies users in
         our partnered applications, all while maintaining confidentiality of
         personal data. It confirms a user's minimum age and non-sanctioned
@@ -67,7 +67,7 @@ const About = () => {
         rel="noreferrer"
       >
         <Img
-          style={{ marginTop: "3rem" }}
+          style={{ marginTop: "1.5rem" }}
           src="img/ethwarsaw.jpg"
           alt="eth warsaw"
           objectFit="cover"
@@ -131,9 +131,9 @@ const About = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <LargeText style={{ textDecoration: "underline" }}>
+        <StyledLink>
           We are the winners of the DAO Global Hackathon!
-        </LargeText>
+        </StyledLink>
       </a>
       <StyledText style={{ marginTop: "2rem", marginBottom: "1rem" }}>
         We're proud to have clinched victory at the{" "}
