@@ -449,23 +449,11 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         As a California resident, you have certain rights under the California
-        Consumer Privacy Act (“
-        <strong style={{ fontStyle: "italic" }}>CCPA</strong>”) <br /> including
-        the right to: (i) request additional disclosures about the Personal
-        Information we collect, use, and disclose; (ii) obtain a copy of
-        Personal Information; (iii) request deletion of Personal Information;
-        (iv) request correction of inaccurate personal information; (v) opt out
-        of the sale of Personal Information if we were to sell Personal
-        Information; and (v) right to limit the use of your Sensitive Personal
-        Information (as defined in the CCPA). We will not discriminate against
-        you for exercising any of your rights under the CCPA. However, we may
-        offer you certain financial incentives permitted by the CCPA that can
-        result in different prices, rates, or quality levels when that
-        difference is reasonably related to the value provided to us by the
-        data. Participation in a financial incentive program requires your prior
-        opt in consent, which you may revoke at any time. The CCPA requires
-        specific disclosures for California residents which are set forth below
-        -
+        Consumer Privacy Act (“<strong style={{ fontStyle: "italic" }}>CCPA</strong>”)
+        including the right to:  (i) request additional disclosures about the Personal Information we collect, use, and disclose; (ii) obtain a copy of Personal Information; (iii) request deletion of Personal Information; (iv) request correction of inaccurate personal information; (v) opt out of the sale of Personal Information if we were to sell Personal Information; and (v) right to limit the use of your Sensitive Personal Information (as defined in the CCPA). We will not discriminate against you for exercising any of your rights under the CCPA. However, we may offer you certain financial incentives permitted by the CCPA that can result in different prices, rates, or quality levels when that difference is reasonably related to the value provided to us by the data. Participation in a financial incentive program requires your prior opt in consent, which you may revoke at any time. 
+      </p>
+      <p>
+        The CCPA requires specific disclosures for California residents which are set forth below.
       </p>
       <p>
         <span className="bold">
@@ -475,14 +463,11 @@ const PrivacyPolicy = () => {
       </p>
       <ul>
         <li>
-          Identifiers, such as your name, alias, address, phone numbers, IP
-          address, certain biometric information, the Internet Token;
+          Identifiers, such as your name, alias, address, phone numbers, IP address, certain biometric information, the Internet Token;
         </li>
         <li>Internet or other electronic network activity information;</li>
         <li>
-          Geolocation data, such as the location of your device or computer, for
-          example if you enable location services to enable us comply with
-          applicable laws; and
+          Geolocation data, such as the location of your device or computer, for example if you enable location services to enable us comply with applicable laws; and
         </li>
         <li>inference data, such as information about your preferences.</li>
       </ul>
@@ -595,7 +580,10 @@ const PrivacyPolicy = () => {
       <p>
         We may update this Privacy Policy from time to time in order to reflect,
         for example, changes to our practices or for other operational, legal,
-        or regulatory reasons. Please note that although you have a right to
+        or regulatory reasons.
+      </p>
+      <p>
+        Please note that although you have a right to
         request deletion or erasure of your Personal Data under the applicable
         laws set forth above, once the Identity Token is minted, we are no
         longer able to delete it from the decentralized network. We may only be
@@ -681,8 +669,10 @@ const PrivacyPolicy = () => {
         retina or iris scan, fingerprint, voiceprint, or scan of hand or face
         geometry. "Biometric information" means any information, regardless of
         how it is captured, converted, stored, or shared, based on an
-        individual's biometric identifier used to identify an individual. Your
-        biometric information will not be collected or otherwise obtained by us
+        individual's biometric identifier used to identify an individual. 
+      </p>
+      <p>
+        Your biometric information will not be collected or otherwise obtained by us
         without your prior consent. Prior to using our Services, you will need
         to understand and accept the{" "}
         <a
