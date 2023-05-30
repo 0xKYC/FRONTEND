@@ -168,17 +168,17 @@ const TermsOfService = () => {
           or access to the Services or any contact on the website through which
           the Service is provided, without express written permission by us.
         </li>
-        <li>
-          We reserve the right to refuse our Service to anyone for any reason at
-          any time. A breach or violation of any of the Terms will result in an
-          immediate termination of your Services. We may update or change these
-          Terms at any time at our discretion. If we make any changes deemed to
-          be material in our sole discretion, we will make a reasonable effort
-          to inform you of such changes. If you object to a change, your
-          exclusive remedy is to cease any and all access and use of the Site
-          and Services.
-        </li>
       </ol>
+      <p>
+        {" "}
+        We reserve the right to refuse our Service to anyone for any reason at
+        any time. A breach or violation of any of the Terms will result in an
+        immediate termination of your Services. We may update or change these
+        Terms at any time at our discretion. If we make any changes deemed to be
+        material in our sole discretion, we will make a reasonable effort to
+        inform you of such changes. If you object to a change, your exclusive
+        remedy is to cease any and all access and use of the Site and Services.
+      </p>
       <p>
         <strong>
           3. <span className="title"> Description of Services </span>
@@ -238,7 +238,7 @@ const TermsOfService = () => {
       <p>
         For more information on our commitment to End-User privacy and data
         protection practices, please review our{" "}
-        <a href="https://app.0xkyc.id/privacy-policy">Privacy Policy</a>
+        <a href="https://app.0xkyc.id/privacy-policy">Privacy Policy</a>.
       </p>
       <p>
         <strong>
@@ -292,27 +292,32 @@ const TermsOfService = () => {
         materials that are included in or otherwise a part of the Services, such
         as past, present, and future versions, domain names, source and object
         code, the text, site design, logos, graphics, and the “look and feel” of
-        the Services (collectively, &quot;<strong>0xKYC Content</strong>&quot;),
-        and all Intellectual Property Rights therein) are owned, controlled and
+        the Services (collectively, "
+        <strong style={{ fontStyle: "italic" }}>0xKYC Content</strong>")), and
+        all Intellectual Property Rights therein are owned, controlled and
         licensed by 0xKYC. 0xKYC Content is protected from unauthorized use,
         copying and dissemination by copyright, trademark, patent, and other
         laws, rules, regulations, and treaties. Any unauthorized use of 0xKYC is
         prohibited. Any unauthorized use of the materials appearing on the
         Services violates copyright, trademark, patent, and other applicable
         laws, rules, regulations, and treaties, and could result in criminal or
-        civil penalties. All trademarks, service marks and trade names of 0xKYC
-        used herein (including but not limited to: the company name, the company
-        corporate logo, the Website names, the Website design, and any logos)
-        (collectively “<strong>Marks</strong>”) are trademarks or registered
-        trademarks of 0xKYC or its affiliates, partners, vendors or licensors.
-        You may not use, copy, reproduce, republish, upload, post, transmit,
-        distribute, or modify 0xKYC’s Marks in any way, including in advertising
-        or publicity pertaining to distribution of materials on the Services,
-        without 0xKYC’s prior written consent. The use of 0xKYC’s Marks on any
-        other sites or network computer environment is not allowed. 0xKYC
-        prohibits the use of 0xKYC’s Marks as a &quot;hot&quot; link on or to
-        any other sites unless establishment of such a link is approved by 0xKYC
-        in advance.
+        civil penalties.
+      </p>
+      <p>
+        {" "}
+        All trademarks, service marks and trade names of 0xKYC used herein
+        (including but not limited to: the company name, the company corporate
+        logo, the Website names, the Website design, and any logos)
+        (collectively “<strong style={{ fontStyle: "italic" }}>Marks</strong>”)
+        are trademarks or registered trademarks of 0xKYC or its affiliates,
+        partners, vendors or licensors. You may not use, copy, reproduce,
+        republish, upload, post, transmit, distribute, or modify 0xKYC’s Marks
+        in any way, including in advertising or publicity pertaining to
+        distribution of materials on the Services, without 0xKYC’s prior written
+        consent. The use of 0xKYC’s Marks on any other sites or network computer
+        environment is not allowed. 0xKYC prohibits the use of 0xKYC’s Marks as
+        a &quot;hot&quot; link on or to any other sites unless establishment of
+        such a link is approved by 0xKYC in advance.
       </p>
       <p>
         <strong>
@@ -353,7 +358,6 @@ const TermsOfService = () => {
           harmful or malicious code, files, scripts, agents or programs via the
           Site or Services.
         </li>
-        <li></li>
         <li>
           attempt to gain unauthorized access to, or disrupt the integrity or
           performance of, the Site or Services or the data contained therein.
@@ -399,8 +403,8 @@ const TermsOfService = () => {
         We, in our sole discretion, may immediately suspend you right to access
         and use some or all of the Services if we reasonably believe that you
         have (i) used the Site or Services in an illegal manner, (ii) breached
-        these Terms, or iii (used the Services is in violation of the license
-        restrictions set forth in Section 5 above or iv) suffered a security
+        these Terms, or (iii) used the Services is in violation of the license
+        restrictions set forth in Section 5 above or (iv) suffered a security
         breach.
       </p>
       <p>
@@ -446,18 +450,26 @@ const TermsOfService = () => {
         marketing and transactional purposes and only if the End-User provides
         us their email. By using our Services, you also agree to Onfido&#39;s
         Terms of Service, available at{" "}
-        <a href="https://onfido.com/terms-of-service/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://onfido.com/terms-of-service/"
+        >
           https://onfido.com/terms-of-service/
         </a>
         , and Customer.io&#39;s Privacy Policy, available at{" "}
-        <a href="https://customer.io/legal/privacy-policy/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://customer.io/legal/privacy-policy/"
+        >
           https://customer.io/legal/privacy-policy/
         </a>
         .
       </p>
       <p>
         <strong>
-          5.{" "}
+          11.{" "}
           <span className="title">
             {" "}
             Right to Revoke 0xKYC “Soulbound” Token.{" "}
@@ -471,13 +483,17 @@ const TermsOfService = () => {
         End-User's account. This may be confirmed by trusted third-party
         providers such as Chainalysis oracle for sanctions screening, available
         at{" "}
-        <a href="https://go.chainalysis.com/chainalysis-oracle-docs.html">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://go.chainalysis.com/chainalysis-oracle-docs.html"
+        >
           https://go.chainalysis.com/chainalysis-oracle-docs.html
         </a>
       </p>
       <p>
         <strong>
-          6.{" "}
+          12.{" "}
           <span className="title">
             {" "}
             Responsibility for End-User’s Universally Unique Identifier Number.{" "}
@@ -492,11 +508,11 @@ const TermsOfService = () => {
         available and visible to all users of the blockchain, and we shall not
         be held responsible for any unauthorized access or misuse of the UUID by
         third parties. Also, once the UUID is made available on the blockchain,
-        please note that we are not able to delete same.
+        please note that we are not able to delete it.
       </p>
       <p>
         <strong>
-          7. <span className="title"> Fees. </span>
+          13. <span className="title"> Fees. </span>
         </strong>
       </p>
       <p>
@@ -506,7 +522,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          8. <span className="title"> Limitation of Liability. </span>
+          14. <span className="title"> Limitation of Liability. </span>
         </strong>
       </p>
       <p>
@@ -565,7 +581,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          9. <span className="title"> Indemnification </span>
+          15. <span className="title"> Indemnification </span>
         </strong>
       </p>
       <p>
@@ -580,7 +596,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          10. <span className="title"> U.S. LEGAL COMPLIANCE </span>
+          16. <span className="title"> U.S. LEGAL COMPLIANCE </span>
         </strong>
       </p>
       <p>
@@ -647,6 +663,11 @@ const TermsOfService = () => {
       <p>
         Copyright Agent: Dylan Wysocki<sup>3</sup>
       </p>
+      <hr style={{ width: "15%", marginLeft: "0" }} />
+      <p>
+        <sup>3</sup> Dylan Wysocki, 2810 N Church St PMB 81635, Wilmington,
+        Delaware 19802, dylan@0xkyc.id
+      </p>
       <p>An effective notification should include:</p>
       <ol type="a">
         <li>
@@ -683,11 +704,6 @@ const TermsOfService = () => {
           infringed.
         </li>
       </ol>
-      <hr style={{ width: "15%", marginLeft: "0" }} />
-      <p>
-        <sup>3</sup> Dylan Wysocki, 2810 N Church St PMB 81635, Wilmington,
-        Delaware 19802, dylan@0xkyc.id
-      </p>
 
       <p style={{ marginTop: "2rem" }}>
         A notification that does not comply with all the above-mentioned
@@ -746,7 +762,7 @@ const TermsOfService = () => {
       </p>
       <p style={{ marginTop: "2rem" }}>
         <strong>
-          11. <span className="title"> Amendments. </span>
+          17. <span className="title"> Amendments. </span>
         </strong>
       </p>
       <p>
@@ -757,7 +773,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          12. <span className="title"> Governing Law and Jurisdiction. </span>
+          18. <span className="title"> Governing Law and Jurisdiction. </span>
         </strong>
       </p>
       <p>
@@ -770,14 +786,14 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          13. <span className="title"> Dispute Resolution. </span>
+          19. <span className="title"> Dispute Resolution. </span>
         </strong>
       </p>
       <p>
         You agree that any dispute, claim, or controversy arising out of or
         relating to these Terms or the breach, termination, enforcement,
         interpretation, or validity thereof, or the use of our Services
-        (collectively, " <strong>Disputes</strong>") shall be resolved through
+        (collectively, "<strong>Disputes</strong>") shall be resolved through
         binding, individual arbitration administered by the American Arbitration
         Association ("
         <strong>AAA</strong>") in accordance with its Commercial Arbitration
@@ -790,7 +806,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          14. <span className="title"> Severability. </span>
+          20. <span className="title"> Severability. </span>
         </strong>
       </p>
       <p>
@@ -804,7 +820,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          15. <span className="title"> Waiver. </span>
+          21. <span className="title"> Waiver. </span>
         </strong>
       </p>
       <p>
@@ -818,7 +834,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          16. <span className="title"> Right to terminate. </span>
+          22. <span className="title"> Right to terminate. </span>
         </strong>
       </p>
       <p>
@@ -828,7 +844,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          17. <span className="title"> Entire Agreement. </span>
+          23. <span className="title"> Entire Agreement. </span>
         </strong>
       </p>
       <p>
@@ -839,7 +855,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          18. <span className="title"> Contact Information. </span>
+          24. <span className="title"> Contact Information. </span>
         </strong>
       </p>
       <p>
