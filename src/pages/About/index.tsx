@@ -59,7 +59,7 @@ const About = () => {
         personal data. It confirms a user's minimum age and non-sanctioned
         status while simultaneously generating a unique identifier (UUID).
         Simply put - your privacy remains safeguarded and the results of the
-        verification are permissionless. 👍"
+        verification are permissionless. 👍
       </StyledText>
       <a
         href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
