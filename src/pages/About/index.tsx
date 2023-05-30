@@ -19,10 +19,11 @@ const About = () => {
       <StyledTitle>About us</StyledTitle>
       <StyledText>
         {" "}
-        We are a dynamic team of smart contract engineers and KYC/AML
-        professionals, who found synergy at the ETHWarsaw 2022. United by a
-        vision, we're building a trusted identity verification system to enhance
-        security in the digital realm.
+        We are a vibrant team of smart contract engineers and KYC/AML experts 
+        who discovered collaborative energy at the ETHWarsaw 2022 Hackathon. 
+        Brought together by a common vision, we're constructing a trusted 
+        identity verification system to elevate security in the digital sphere. 
+        We are leaders of the virtual world.
       </StyledText>
       
       <Img
@@ -50,7 +51,7 @@ const About = () => {
       >
         <TwitterOutlined /> wysock_{" "}
       </a>
-      <StyledText style={{ marginTop: 0, marginTop: "3rem" }}>
+      <StyledText style={{ marginTop: "3rem" }}>
         We've engineered a decentralized app (dApp), granting users the ability to obtain unique,
         soulbound tokens across Ethereum, Polygon, Scroll, and other networks in the near future. 
         Our solution stands out - it verifies users in our partner applications, all while keeping personal data confidential. 
