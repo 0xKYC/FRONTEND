@@ -50,7 +50,7 @@ const About = () => {
       >
         <TwitterOutlined /> wysock_{" "}
       </a>
-      <StyledText style={{ marginTop: 0, marginBottom: "3rem" }}>
+      <StyledText style={{ marginTop: 0, marginTop: "3rem" }}>
         We've engineered a decentralized app (dApp), granting users the ability to obtain unique,
         soulbound tokens across Ethereum, Polygon, Scroll, and other networks in the near future. 
         Our solution stands out - it verifies users in our partner applications, all while keeping personal data confidential. 
@@ -152,7 +152,7 @@ const About = () => {
           href="https://github.com/0xKYC/0xkyc-1vote-aragon-plugin"
         >
           GitHub
-        </a>
+        </a>.
       </StyledText>
 
       <StyledText>
