@@ -22,9 +22,9 @@ export const StyledTitle = styled("h6")`
 `;
 
 export const LargeText = styled("p")`
-  font-size: 1.5rem;
-  margin-top: 2rem;
-  font-weight: 500;
+  line-height: 2.1rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 `;
 export const StyledText = styled("p")`
   line-height: 2.1rem;
@@ -45,6 +45,16 @@ export const StyledLink = styled("p")`
   margin-top: 0.5rem;
   text-decoration: underline;
 `;
+
+export const StyledOlList = styled("ol")`
+  color: #18216d;
+  line-height: 2;
+  font-weight: 200;
+  font-size: 1rem;
+  list-style-position: outside;
+  margin: 2rem 3em;
+`;
+
 export const Img = styled("img")<{
   objectPosition: string;
   objectFit: string;

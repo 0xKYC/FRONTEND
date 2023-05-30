@@ -47,14 +47,15 @@ const PrivacyPolicy = () => {
           </td>
           <td>
             You share your personal identifiers with us and/or our trusted
-            third-party partners so that we can verify your identity. We will
-            collect and further process those personal identifiers either
-            directly or through our trusted third-party partners, for the
-            purpose of generating an identity token that verifies that you are
-            at least 18 years of age, you are not from a sanctioned country and
-            your wallet is not sanctioned nor contains suspicious funds, this
-            identity token can facilitate your online transactions, prove
-            uniqueness, prevent identity theft and fraudulent activity.
+            third-party partners so that we can verify your identity. <br />
+            <br /> We will collect and further process those personal
+            identifiers either directly or through our trusted third-party
+            partners, for the purpose of generating an identity token that
+            verifies that you are at least 18 years of age, you are not from a
+            sanctioned country and your wallet is not sanctioned nor contains
+            suspicious funds, this identity token can facilitate your online
+            transactions, prove uniqueness, prevent identity theft and
+            fraudulent activity.
           </td>
         </tr>
         <tr>
@@ -66,12 +67,13 @@ const PrivacyPolicy = () => {
             Although you may not actively provide us with this information, we
             will utilize your wallet address from the publicly available
             blockchain data for the purpose of providing our Portal and
-            Services. We use this information to establish trust and provide you
-            with a Universal Unique Identifier Number (UUID), which will
-            represent you across the internet, and may be linked to more than
-            one wallet. Your UUID is user-owned, though we will make this
-            information available on the blockchain and this will be linked to
-            your wallet and accessible to all users of the blockchain.
+            Services. <br />
+            We use this information to establish trust and provide you with a
+            Universal Unique Identifier Number (UUID), which will represent you
+            across the internet, and may be linked to more than one wallet. Your
+            UUID is user-owned, though we will make this information available
+            on the blockchain and this will be linked to your wallet and
+            accessible to all users of the blockchain.
           </td>
         </tr>
         <tr>
@@ -85,6 +87,7 @@ const PrivacyPolicy = () => {
             information to enable our products to function and authenticate ID
             documents, proving the uniqueness of the individual while using a
             minimum set of data in the most privacy-preserving manner possible.
+            <br /> <br />
             We will only collect the biometric information we need for the
             purpose of providing our Services. Your biometric information will
             only be used and maintained for lawful purposes directly related to
@@ -175,7 +178,7 @@ const PrivacyPolicy = () => {
         <li>
           <span className="underline_li">
             Keeping our contracts and agreements with you.
-          </span>
+          </span>{" "}
           We may need Personal Data to provide our Services.
         </li>
         <li>
@@ -364,7 +367,7 @@ const PrivacyPolicy = () => {
           organization to another.
         </li>
         <li>
-          <span className="underline_li">Right to object.</span> YYou have the
+          <span className="underline_li">Right to object.</span> You have the
           right to object to our processing of your Personal Data on grounds
           relating to your particular situation, in certain circumstances..
         </li>
@@ -421,7 +424,7 @@ const PrivacyPolicy = () => {
           processed.
         </li>
         <li>
-          <span className="underline_li">Right to restriction.</span>  The right
+          <span className="underline_li">Right to restriction.</span> The right
           to obtain the restriction of the processing undertaken by us on your
           Personal Data in certain circumstances, such as where the accuracy of
           the Personal Data is contested by you, for a period enabling us to
@@ -446,21 +449,11 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         As a California resident, you have certain rights under the California
-        Consumer Privacy Act (“<strong>CCPA</strong>”) including the right to:
-        (i) request additional disclosures about the Personal Information we
-        collect, use, and disclose; (ii) obtain a copy of Personal Information;
-        (iii) request deletion of Personal Information; (iv) request correction
-        of inaccurate personal information; (v) opt out of the sale of Personal
-        Information if we were to sell Personal Information; and (v) right to
-        limit the use of your Sensitive Personal Information (as defined in the
-        CCPA). We will not discriminate against you for exercising any of your
-        rights under the CCPA. However, we may offer you certain financial
-        incentives permitted by the CCPA that can result in different prices,
-        rates, or quality levels when that difference is reasonably related to
-        the value provided to us by the data. Participation in a financial
-        incentive program requires your prior opt in consent, which you may
-        revoke at any time. The CCPA requires specific disclosures for
-        California residents which are set forth below -
+        Consumer Privacy Act (“<strong style={{ fontStyle: "italic" }}>CCPA</strong>”)
+        including the right to:  (i) request additional disclosures about the Personal Information we collect, use, and disclose; (ii) obtain a copy of Personal Information; (iii) request deletion of Personal Information; (iv) request correction of inaccurate personal information; (v) opt out of the sale of Personal Information if we were to sell Personal Information; and (v) right to limit the use of your Sensitive Personal Information (as defined in the CCPA). We will not discriminate against you for exercising any of your rights under the CCPA. However, we may offer you certain financial incentives permitted by the CCPA that can result in different prices, rates, or quality levels when that difference is reasonably related to the value provided to us by the data. Participation in a financial incentive program requires your prior opt in consent, which you may revoke at any time. 
+      </p>
+      <p>
+        The CCPA requires specific disclosures for California residents which are set forth below.
       </p>
       <p>
         <span className="bold">
@@ -470,16 +463,13 @@ const PrivacyPolicy = () => {
       </p>
       <ul>
         <li>
-          Identifiers, such as your name, alias, address, phone numbers, IP
-          address, certain biometric information, the Internet Token;
+          Identifiers, such as your name, alias, address, phone numbers, IP address, certain biometric information, the Internet Token;
         </li>
         <li>Internet or other electronic network activity information;</li>
         <li>
-          Geolocation data, such as the location of your device or computer, for
-          example if you enable location services to enable us comply with
-          applicable laws; and inference data, such as information about your
-          preferences.
+          Geolocation data, such as the location of your device or computer, for example if you enable location services to enable us comply with applicable laws; and
         </li>
+        <li>inference data, such as information about your preferences.</li>
       </ul>
 
       <p>
@@ -493,10 +483,8 @@ const PrivacyPolicy = () => {
           Identifiers, such as your name, address, phone numbers, IP address,
           the Internet Token, UUID;
         </li>
-        <li>
-          Internet or other electronic network activity information; and
-          geolocation data.
-        </li>
+        <li>Internet or other electronic network activity information; and</li>
+        <li>geolocation data.</li>
       </ul>
 
       <p>
@@ -522,7 +510,7 @@ const PrivacyPolicy = () => {
         <li>
           <span className="bold">
             Protecting against security threats, abuse, and illegal activity.
-          </span>
+          </span>{" "}
           We use and may disclose information to detect, prevent and respond to
           security incidents, and for protecting against other malicious,
           deceptive, fraudulent, or illegal activity.
@@ -592,7 +580,10 @@ const PrivacyPolicy = () => {
       <p>
         We may update this Privacy Policy from time to time in order to reflect,
         for example, changes to our practices or for other operational, legal,
-        or regulatory reasons. Please note that although you have a right to
+        or regulatory reasons.
+      </p>
+      <p>
+        Please note that although you have a right to
         request deletion or erasure of your Personal Data under the applicable
         laws set forth above, once the Identity Token is minted, we are no
         longer able to delete it from the decentralized network. We may only be
@@ -672,23 +663,41 @@ const PrivacyPolicy = () => {
         user, or prevent fraud or identity theft.
       </p>
       <p>
-        The Illinois Biometric Information Privacy Act (" <strong>BIPA</strong>
+        The Illinois Biometric Information Privacy Act ("<strong>BIPA</strong>
         "), regulates the collection, storage, use, and retention of "biometric
         identifiers" and "biometric information." "Biometric identifier" means a
         retina or iris scan, fingerprint, voiceprint, or scan of hand or face
         geometry. "Biometric information" means any information, regardless of
         how it is captured, converted, stored, or shared, based on an
-        individual's biometric identifier used to identify an individual. Your
-        biometric information will not be collected or otherwise obtained by us
+        individual's biometric identifier used to identify an individual. 
+      </p>
+      <p>
+        Your biometric information will not be collected or otherwise obtained by us
         without your prior consent. Prior to using our Services, you will need
         to understand and accept the{" "}
-        <a href="https://onfido.com/facial-scan-policy-and-release/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://onfido.com/facial-scan-policy-and-release/"
+        >
           Onfido Facial Scan Policy and Release
         </a>
-        , <a href="https://onfido.com/privacy/">Onfido Privacy Policy</a>, and{" "}
-        <a href="https://onfido.com/terms-of-service/and">
-          Onfido Terms of Service.
+        ,{" "}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://onfido.com/privacy/"
+        >
+          Onfido Privacy Policy
         </a>
+        , and{" "}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://onfido.com/terms-of-service/and"
+        >
+          Onfido Terms of Service.
+        </a>{" "}
         You can decline to provide biometric identifiers and biometric
         information to us and/or trusted third-party providers, though you will
         not be able to use our Services without this feature. You may revoke
@@ -789,8 +798,8 @@ const PrivacyPolicy = () => {
       </p>
       <p>
         If you have any questions or concerns about this Privacy Policy or our
-        handling of your Personal Data, please contact us at: 0xKYC, Inc. Email:{" "}
-        <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>
+        handling of your Personal Data, please contact us at: <br /> 0xKYC, Inc.
+        Email: <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>
       </p>
     </TextContainer>
   );

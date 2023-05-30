@@ -5,14 +5,14 @@ import styled from "styled-components";
 
 export const Image = styled.img`
   display: none;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 520px) {
     display: block;
   }
 `;
 
 export const MobileImage = styled.img`
   display: block;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 520px) {
     display: none;
   }
 `;
@@ -66,7 +66,9 @@ export const ContactWrapper = styled("div")<any>`
 
 export const MobileConnectBtn = styled("div")`
   @media only screen and (max-width: 890px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   display: none;

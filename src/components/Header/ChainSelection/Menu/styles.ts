@@ -17,3 +17,10 @@ export const StyledButton = styled(Button)<{ isOpen?: boolean }>`
     border: 1px solid #fb7324;
   }
 `;
+
+export const StyledLabel = styled("span")`
+  display: none !important;
+  @media screen and (min-width: 700px) {
+    display: inline !important;
+  }
+`;

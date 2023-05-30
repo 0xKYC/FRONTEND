@@ -92,3 +92,12 @@ export const Flex = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const StyledRedirectLink = styled.a`
+  text-decoration: underline;
+`;
+
+export const P = styled.p`
+  text-align: center;
+  font-size: 1rem;
+`;

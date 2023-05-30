@@ -15,3 +15,8 @@ export const StyledCard = styled(Card)`
 export const StyledLink = styled("a")`
   text-decoration: underline;
 `;
+export const StyledList = styled("ul")`
+  color: #18216d;
+  font-weight: 200;
+  font-size: 1rem;
+`;

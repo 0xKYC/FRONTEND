@@ -28,7 +28,7 @@ import {
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ChainSelectorItem } from "../Item";
-import { StyledButton } from "./styles";
+import { StyledButton, StyledLabel } from "./styles";
 
 export const ChainSelectionMenu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -38,18 +38,20 @@ export const ChainSelectionMenu = () => {
   const chainId = useAppSelector(selectCurrentChain);
   const isConnectionModalOpen = useAppSelector(selectIsConnectionInfoModalOpen);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
-  
+
   const onOpenChange = (open: boolean) => {
     setIsDropdownOpen(open);
   };
+
   const closeConnectionModal = useCallback(() => {
     dispatch(closeConnectionInfoModal());
   }, [dispatch]);
 
   const handleMenuClick = () => {};
 
-  const { switchNetwork, error, pendingChainId } = useSwitchNetwork({
+  const { switchNetwork, error, pendingChainId, isLoading } = useSwitchNetwork({
     onSuccess() {
+      setIsDropdownOpen(false);
       closeConnectionModal();
       dispatch(reset());
       navigate("/");
@@ -91,7 +93,7 @@ export const ChainSelectionMenu = () => {
           onSelectChain={onSelectChain}
           targetChain={chainId}
           key={chainId}
-          isPending={chainId === pendingChainId && !error}
+          isPending={chainId === pendingChainId && Boolean(!error) && isLoading}
         />
       ),
     }),
@@ -113,7 +115,7 @@ export const ChainSelectionMenu = () => {
             <img width={20} height={20} src={mumbaiLogoUrl} alt={mumbaiLabel} />
           }
         >
-          {mumbaiLabel}
+          <StyledLabel>{mumbaiLabel}</StyledLabel>
         </StyledButton>
       ) : (
         <Dropdown
@@ -128,7 +130,7 @@ export const ChainSelectionMenu = () => {
             isOpen={isDropdownOpen}
             icon={<img width={20} height={20} src={logoUrl} alt={label} />}
           >
-            {label}
+            <StyledLabel>{label}</StyledLabel>
             {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
           </StyledButton>
         </Dropdown>

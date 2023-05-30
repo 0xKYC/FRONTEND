@@ -8,7 +8,10 @@ import { LoadingSpinner } from "common/LoadingSpinner";
 import { SupportedChainId, getChainInfo } from "constans/chains";
 import vContent from "content/VerifiedContent.json";
 import { useGetUserQuery } from "redux/api/user/userApi";
-import { selectMockedWalletAddress } from "redux/features/user/userSlice";
+import {
+  selectMockedWalletAddress,
+  selectRedirectUrl,
+} from "redux/features/user/userSlice";
 import { useAppSelector } from "redux/hooks";
 
 import { CardInfo } from "../../CardInfo";
@@ -20,8 +23,10 @@ import {
   Content,
   ContentWrapper,
   Flex,
+  P,
   StyledCard,
   StyledLink,
+  StyledRedirectLink,
 } from "./styles";
 import { getUserSbt } from "./utils";
 
@@ -30,7 +35,7 @@ const VerifiedContent = () => {
 
   const { chain } = useNetwork();
   const { address } = useAccount();
-  // const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
+  const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const walletAddress = address || mockedWalletAddress;
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
@@ -83,6 +88,14 @@ const VerifiedContent = () => {
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <CardInfo />
+              {redirectUrlFromPartner && (
+                <P>
+                  Close the tab or go back to{" "}
+                  <StyledRedirectLink href={redirectUrlFromPartner}>
+                    Insert Stonks
+                  </StyledRedirectLink>
+                </P>
+              )}
             </ContentWrapper>
           </Col>
         </Row>

@@ -160,6 +160,9 @@ export const Styles = createGlobalStyle`
     .ant-dropdown {
     z-index: 9999;
     }
+    .ant-dropdown-menu {
+   margin: 0;
+    }
 
 ul {
   list-style-position: inside;
