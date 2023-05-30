@@ -131,7 +131,7 @@ const About = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <StyledLink>
+        <StyledLink style={{ fontSize: "1.5rem", marginTop: "1.2rem" }}>
           We are the winners of the DAO Global Hackathon!
         </StyledLink>
       </a>
