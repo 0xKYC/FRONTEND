@@ -109,7 +109,7 @@ const About = () => {
         </li>
       </StyledOlList>
       <a
-        href="https://www.linkedin.com/posts/0xkyc_daoglobalhackathon-daogovernance-kyc-activity-7065325352893497346-Ik04?utm_source=share&utm_medium=member_desktop"
+        href="https://blog.aragon.org/dao-global-hackathon-bounty-winners/"
         target="_blank"
         rel="noreferrer"
       >
@@ -132,7 +132,7 @@ const About = () => {
         </LargeText>
       </a>
       <StyledText style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-        We won{" "}
+        We're proud to have clinched victory at the{" "}
         <a
           href="https://blog.aragon.org/dao-global-hackathon-bounty-winners/"
           target="_blank"
@@ -140,12 +140,12 @@ const About = () => {
         >
           DAO Global Hackathon{" "}
         </a>
-        for the most creative use of{" "}
+        for the most inventive use of the{" "}
         <a href=" https://aragon.org/" target="_blank" rel="noreferrer">
           Aragon OSx{" "}
         </a>{" "}
-        plugin protocol and our app is available as an Aragon OSx app, see
-        details on our{" "}
+        plugin protocol. Our app is now available as an Aragon OSx app, 
+        with further information accessible on our{" "}
         <a
           target="_blank"
           rel="noreferrer"
