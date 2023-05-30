@@ -661,11 +661,7 @@ const TermsOfService = () => {
         alleged infringement:
       </p>
       <p>
-        Copyright Agent: Dylan Wysocki<sup>3</sup>
-      </p>
-      <hr style={{ width: "15%", marginLeft: "0" }} />
-      <p>
-        <sup>3</sup> Dylan Wysocki, 2810 N Church St PMB 81635, Wilmington,
+        Copyright Agent: Dylan Wysocki, 2810 N Church St PMB 81635, Wilmington,
         Delaware 19802, dylan@0xkyc.id
       </p>
       <p>An effective notification should include:</p>
