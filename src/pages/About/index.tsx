@@ -24,11 +24,7 @@ const About = () => {
         vision, we're building a trusted identity verification system to enhance
         security in the digital realm.
       </StyledText>
-      <StyledText style={{ marginTop: 0, marginBottom: "3rem" }}>
-        We've developed a decentralized app (dApp), enabling users to secure
-        unique, soulbound tokens across Ethereum, Polygon, Scroll, and soon,
-        other networks as well.
-      </StyledText>
+      
       <Img
         src="img/founders.jpg"
         alt="founders"
@@ -54,6 +50,11 @@ const About = () => {
       >
         <TwitterOutlined /> wysock_{" "}
       </a>
+      <StyledText style={{ marginTop: 0, marginBottom: "3rem" }}>
+        We've developed a decentralized app (dApp), enabling users to secure
+        unique, soulbound tokens across Ethereum, Polygon, Scroll and soon
+        other networks.
+      </StyledText>
       <StyledText>
         Our solution is unique – it verifies users in our partner applications
         without revealing personal data. It confirms the user's minimum age and
@@ -126,7 +127,7 @@ const About = () => {
         />
       </a>
       <a
-        href="https://www.linkedin.com/posts/0xkyc_daoglobalhackathon-daogovernance-kyc-activity-7065325352893497346-Ik04?utm_source=share&utm_medium=member_desktop"
+        href="https://blog.aragon.org/dao-global-hackathon-bounty-winners/"
         target="_blank"
         rel="noreferrer"
       >
@@ -137,7 +138,7 @@ const About = () => {
       <StyledText style={{ marginTop: "2rem", marginBottom: "1rem" }}>
         We won{" "}
         <a
-          href="https://www.linkedin.com/posts/0xkyc_daoglobalhackathon-daogovernance-kyc-activity-7065325352893497346-Ik04?utm_source=share&utm_medium=member_desktop"
+          href="https://blog.aragon.org/dao-global-hackathon-bounty-winners/"
           target="_blank"
           rel="noreferrer"
         >
