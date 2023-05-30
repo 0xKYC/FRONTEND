@@ -51,15 +51,11 @@ const About = () => {
         <TwitterOutlined /> wysock_{" "}
       </a>
       <StyledText style={{ marginTop: 0, marginBottom: "3rem" }}>
-        We've developed a decentralized app (dApp), enabling users to secure
-        unique, soulbound tokens across Ethereum, Polygon, Scroll and soon
-        other networks.
-      </StyledText>
-      <StyledText>
-        Our solution is unique – it verifies users in our partner applications
-        without revealing personal data. It confirms the user's minimum age and
-        non-sanctioned status while providing a unique identifier (UUID). And
-        that's it - ensuring your privacy remains intact.
+        We've engineered a decentralized app (dApp), granting users the ability to obtain unique,
+        soulbound tokens across Ethereum, Polygon, Scroll, and other networks in the near future. 
+        Our solution stands out - it verifies users in our partner applications, all while keeping personal data confidential. 
+        It verifies the user's minimum age and non-sanctioned status, concurrently generating a unique identifier (UUID). 
+        That's the sum of it - your privacy stays uncompromised and the result of the check remains permissionless 👏
       </StyledText>
       <a
         href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
