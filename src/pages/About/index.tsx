@@ -19,16 +19,16 @@ const About = () => {
       <StyledTitle>About us</StyledTitle>
       <StyledText>
         {" "}
-        We are a vibrant team of smart contract engineers and KYC/AML experts 
-        who discovered collaborative energy at the ETHWarsaw 2022 Hackathon. 
-        Brought together by a common vision, we're constructing a trusted 
-        identity verification system to elevate security in the digital sphere. 
+        We are a vibrant team of smart contract engineers and KYC/AML experts
+        who discovered collaborative energy at the ETHWarsaw 2022 Hackathon.
+        Brought together by a common vision, we're constructing a trusted
+        identity verification system to elevate security in the digital sphere.
         We are leaders of the virtual world.
       </StyledText>
-      
+
       <Img
-        src="img/founders.jpg"
-        alt="founders"
+        src="img/Adam-and-Dylan-of-0xKYC.jpg"
+        alt="Adam and Dylan of 0xKYC"
         height="620px"
         objectFit="cover"
         objectPosition="top"
@@ -52,11 +52,14 @@ const About = () => {
         <TwitterOutlined /> wysock_{" "}
       </a>
       <StyledText style={{ marginTop: "3rem" }}>
-        We've engineered a decentralized app (dApp), granting users the ability to obtain unique,
-        soulbound tokens across Ethereum, Polygon, Scroll, and other networks in the near future. 
-        Our solution stands out - it verifies users in our partner applications, all while keeping personal data confidential. 
-        It verifies the user's minimum age and non-sanctioned status, concurrently generating a unique identifier (UUID). 
-        That's the sum of it - your privacy stays uncompromised and the result of the check remains permissionless 👏
+        We've engineered a decentralized app (dApp), granting users the ability
+        to obtain unique, soulbound tokens across Ethereum, Polygon, Scroll, and
+        other networks in the near future. Our solution stands out - it verifies
+        users in our partner applications, all while keeping personal data
+        confidential. It verifies the user's minimum age and non-sanctioned
+        status, concurrently generating a unique identifier (UUID). That's the
+        sum of it - your privacy stays uncompromised and the result of the check
+        remains permissionless 👏
       </StyledText>
       <a
         href="https://medium.com/ethwarsaw/0xkyc-the-ethwarsaw-success-story-5c3663a33996"
@@ -145,15 +148,16 @@ const About = () => {
         <a href=" https://aragon.org/" target="_blank" rel="noreferrer">
           Aragon OSx{" "}
         </a>{" "}
-        plugin protocol. Our app is now available as an Aragon OSx app, 
-        with further information accessible on our{" "}
+        plugin protocol. Our app is now available as an Aragon OSx app, with
+        further information accessible on our{" "}
         <a
           target="_blank"
           rel="noreferrer"
           href="https://github.com/0xKYC/0xkyc-1vote-aragon-plugin"
         >
           GitHub
-        </a>.
+        </a>
+        .
       </StyledText>
 
       <StyledText>
