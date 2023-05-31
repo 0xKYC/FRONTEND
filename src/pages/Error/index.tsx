@@ -8,6 +8,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import {
   selectMockedWalletAddress,
   setMinting,
+  setMintingActive,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import styled from "styled-components";
@@ -27,6 +28,7 @@ const Error = () => {
         error: true,
       }),
     );
+    dispatch(setMintingActive(false));
   }, [dispatch, walletAddress]);
 
   return (
