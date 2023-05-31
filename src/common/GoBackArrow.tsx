@@ -4,18 +4,19 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
 const StyledLink = styled(Link)`
-  display: none;
-
-  @media (min-width: 768px) {
-    display: inline-block;
-  }
+  display: inline-block;
+  margin-bottom: 2rem;
 `;
 
 const StyledArrowLeft = styled(ArrowLeftOutlined)`
   font-size: 1rem;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 10%;
+
+  @media (min-width: 1224px) {
+    left: 3%;
+  }
 `;
 export const GoBackArrow = () => {
   return (

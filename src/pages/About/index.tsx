@@ -4,7 +4,6 @@ import { GoBackArrow } from "common/GoBackArrow";
 import {
   BlackText,
   Img,
-  LargeText,
   StyledContainer,
   StyledLink,
   StyledOlList,
@@ -14,7 +13,7 @@ import {
 
 const About = () => {
   return (
-    <StyledContainer>
+    <StyledContainer style={{ marginTop: "2rem" }}>
       <GoBackArrow />
       <StyledTitle>About us</StyledTitle>
       <StyledText>

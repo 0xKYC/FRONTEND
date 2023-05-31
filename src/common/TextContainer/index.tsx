@@ -10,7 +10,7 @@ type Props = {
 const TextContainer = ({ title, children }: Props) => {
   return (
     <StyledContainer
-      style={{ textAlign: "left", color: "black" }}
+      style={{ textAlign: "left", color: "black", marginTop: "2rem" }}
       className="markdown"
     >
       <GoBackArrow />
