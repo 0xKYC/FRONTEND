@@ -25,13 +25,9 @@ export const TosModal = () => {
             Terms of Service{" "}
           </Link>
           and{" "}
-          <a
-            href="https://0xkyc.id/privacy-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link to="privacy-policy" target="_blank" rel="noopener noreferrer">
             Privacy Policy
-          </a>
+          </Link>
           .
         </StyledP>
 
