@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Button, Form, Input, Spin } from "antd";
+import { Button, Checkbox, Form, Input, Spin } from "antd";
 
 import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "common/ConfirmModal";
@@ -29,7 +29,9 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       setIsLoading(true);
 
       await handleOnfidoRedirect(values.email);
-      await subscribeNewsletter(values.email);
+      if (values.newsletterChecked) {
+        await subscribeNewsletter(values.email);
+      }
     } catch (error) {
       console.error(error);
       setError(true);
@@ -41,7 +43,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
     showConfirm({
       title: "Are you sure you want to skip?",
       content:
-        "Join our newsletter for a curated look at our latest progress and developments. It's worth it.",
+        "Are you sure you don't want to provide your email? You might miss some important updates about your account.",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",
@@ -68,7 +70,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       <Form.Item
         label="Email"
         name="email"
-        style={{ marginBottom: "2rem" }}
+        style={{ marginBottom: "1.5rem" }}
         rules={[
           {
             message: "Email is not valid",
@@ -92,9 +94,9 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
         />
       </Form.Item>
 
-      {/* <Form.Item name="newsletterChecked" valuePropName="checked">
+      <Form.Item name="newsletterChecked" valuePropName="checked">
         <Checkbox>I want to receive product updates</Checkbox>
-      </Form.Item> */}
+      </Form.Item>
       <Flex>
         <Button
           type="primary"
