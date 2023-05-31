@@ -5,6 +5,7 @@ import { useAccount, useNetwork } from "wagmi";
 import { SupportedChainId } from "constans/chains";
 import {
   selectIsMinting,
+  selectIsMintingError,
   selectMintingChain,
   selectMintingWallet,
   selectMockedWalletAddress,
@@ -17,6 +18,7 @@ export const useCheckMinting = (isVerified: boolean) => {
   const mintingChain = useAppSelector(selectMintingChain);
   const mintingWalletAddress = useAppSelector(selectMintingWallet);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const isError = useAppSelector(selectIsMintingError);
   const dispatch = useAppDispatch();
   const { address } = useAccount();
   const { chain } = useNetwork();
@@ -27,6 +29,7 @@ export const useCheckMinting = (isVerified: boolean) => {
     if (
       minting &&
       !isVerified &&
+      !isError &&
       mintingChain === chainId &&
       walletAddress === mintingWalletAddress
     ) {
@@ -42,5 +45,6 @@ export const useCheckMinting = (isVerified: boolean) => {
     mintingWalletAddress,
     dispatch,
     isVerified,
+    isError,
   ]);
 };

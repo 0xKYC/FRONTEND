@@ -1,11 +1,34 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Result } from "antd";
+import { useAccount } from "wagmi";
 
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import {
+  selectMockedWalletAddress,
+  setMinting,
+} from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import styled from "styled-components";
 
 const Error = () => {
+  const dispatch = useAppDispatch();
+  const { address } = useAccount();
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const walletAddress = address || mockedWalletAddress || "";
+
+  useEffect(() => {
+    dispatch(
+      setMinting({
+        minting: false,
+        chainId: null,
+        walletAddress,
+        error: true,
+      }),
+    );
+  }, [dispatch, walletAddress]);
+
   return (
     <Container>
       <Result
