@@ -1,15 +1,15 @@
 import Container from "common/Container";
-import Content from "components/Content";
 
 import IntroContent from "../../content/IntroContent.json";
 import VerifyContent from "../../content/VerifyContent.json";
+import { VerificationForPartners } from "./Verifcation";
 import { useHandleParams } from "./hooks/useHandleParams";
 
 export const PartnersWithoutWalletConnectionScreen = () => {
   useHandleParams();
   return (
     <Container>
-      <Content
+      <VerificationForPartners
         type="right"
         button={IntroContent.button}
         verifyTitle={VerifyContent.title}

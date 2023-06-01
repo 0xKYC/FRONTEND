@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
 
@@ -23,7 +24,6 @@ import {
   Content,
   ContentWrapper,
   Flex,
-  P,
   StyledCard,
   StyledLink,
   StyledRedirectLink,
@@ -44,6 +44,18 @@ const VerifiedContent = () => {
     chainId,
   });
 
+  useEffect(() => {
+    if (redirectUrlFromPartner) {
+      const timer = setTimeout(() => {
+        window.location.href = redirectUrlFromPartner;
+      }, 3500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [redirectUrlFromPartner]);
+
   if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
@@ -62,9 +74,10 @@ const VerifiedContent = () => {
                   <Heading>{t(vContent.title)}</Heading>
                   <Flex>
                     <Checkmark />
+
                     <img
                       alt={label}
-                      src={logoUrl}
+                      src={mockedWalletAddress ? "/img/IS-logo.png" : logoUrl}
                       width={44}
                       height={42}
                       style={{ marginTop: "3px", marginLeft: "6px" }}
@@ -74,28 +87,29 @@ const VerifiedContent = () => {
                 {vContent.info.map(({ text, id }) => {
                   return <Content key={id}>{t(text)}</Content>;
                 })}
-                <StyledLink
-                  chainId={chainId}
-                  href={explorer + txHash}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Link to {explorerName}
-                </StyledLink>
+                {redirectUrlFromPartner ? (
+                  <StyledRedirectLink href={redirectUrlFromPartner}>
+                    Continue to Insert Stonks
+                  </StyledRedirectLink>
+                ) : (
+                  <StyledLink
+                    chainId={chainId}
+                    href={explorer + txHash}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Link to {explorerName}
+                  </StyledLink>
+                )}
               </StyledCard>
             </ContentWrapper>
           </Col>
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <CardInfo />
-              {redirectUrlFromPartner && (
-                <P>
-                  Close the tab or go back to{" "}
-                  <StyledRedirectLink href={redirectUrlFromPartner}>
-                    Insert Stonks
-                  </StyledRedirectLink>
-                </P>
-              )}
+              <CardInfo
+                txHash={txHash}
+                redirectUrlFromPartner={Boolean(redirectUrlFromPartner)}
+              />
             </ContentWrapper>
           </Col>
         </Row>

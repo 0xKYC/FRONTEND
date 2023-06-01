@@ -1,6 +1,12 @@
+import { PolygonLink } from "components/Content/Verified/styles";
+
 import { StyledCard, StyledLink, StyledList, StyledText } from "./styles";
 
-export const CardInfo = () => {
+type Props = {
+  txHash?: string | null | undefined;
+  redirectUrlFromPartner?: boolean;
+};
+export const CardInfo = ({ txHash, redirectUrlFromPartner }: Props) => {
   return (
     <StyledCard
       bordered={false}
@@ -34,6 +40,15 @@ export const CardInfo = () => {
         </StyledLink>{" "}
         for a live support chat
       </StyledText>
+      {redirectUrlFromPartner && (
+        <PolygonLink
+          href={"https://mumbai.polygonscan.com/tx/" + txHash}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Link to Polygon Scan
+        </PolygonLink>
+      )}
     </StyledCard>
   );
 };

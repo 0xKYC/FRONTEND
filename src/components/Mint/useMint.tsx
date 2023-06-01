@@ -16,7 +16,7 @@ import {
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { hasSoul } from "web3/methods/hasSoul";
 
-const apiRequestsToCall = 30;
+const apiRequestsToCall = 200;
 
 export const useMint = () => {
   const navigate = useNavigate();
