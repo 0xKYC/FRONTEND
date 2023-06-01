@@ -44,6 +44,7 @@ export const VerificationForPartners = ({
   const handleOnfidoRedirect = async () => {
     if (mockedWalletAddress && !tosAccepted) {
       dispatch(toggleTosModal(true));
+      return;
     }
     if (mockedWalletAddress && onfidoApplicantId && chainId) {
       try {
