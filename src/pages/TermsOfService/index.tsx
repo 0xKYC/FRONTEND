@@ -396,7 +396,7 @@ const TermsOfService = () => {
 
       <p>
         <strong>
-          8. <span> Suspension. </span>
+          8. <span className="title"> Suspension. </span>
         </strong>
       </p>
       <p>
@@ -409,7 +409,7 @@ const TermsOfService = () => {
       </p>
       <p>
         <strong>
-          9. <span> Reporting. </span>
+          9. <span className="title"> Reporting. </span>
         </strong>
       </p>
       <p>
