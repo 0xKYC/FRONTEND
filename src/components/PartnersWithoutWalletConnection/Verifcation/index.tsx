@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 
 import { Col, Row } from "antd";
 
 import { Button } from "common/Button";
+import { LoadingCircle } from "common/Spinner";
 import { TosModalWeb2 } from "components/TosModal/web2Sign";
 import { SupportedChainId } from "constans/chains";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
@@ -31,8 +33,8 @@ export const VerificationForPartners = ({
   verifyTitle,
   content,
   button,
-  icon,
 }: ContentBlockProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const dispatch = useAppDispatch();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
@@ -48,6 +50,7 @@ export const VerificationForPartners = ({
     }
     if (mockedWalletAddress && onfidoApplicantId && chainId) {
       try {
+        setIsLoading(true);
         await onfidoRedirect({
           applicantId: onfidoApplicantId,
           chainId,
@@ -58,6 +61,9 @@ export const VerificationForPartners = ({
         });
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -80,7 +86,9 @@ export const VerificationForPartners = ({
               <Heading>{header}</Heading>
               <Content>{contentText}</Content>
               <ButtonWrapper>
-                <Button onClick={handleOnfidoRedirect}>{buttonText}</Button>
+                <Button onClick={handleOnfidoRedirect}>
+                  {isLoading ? <LoadingCircle /> : buttonText}
+                </Button>
               </ButtonWrapper>
             </ContentWrapper>
           </Col>

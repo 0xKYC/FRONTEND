@@ -47,7 +47,8 @@ const VerifiedContent = () => {
   useEffect(() => {
     if (redirectUrlFromPartner) {
       const timer = setTimeout(() => {
-        window.location.href = redirectUrlFromPartner;
+        // window.location.href = redirectUrlFromPartner;
+        window.open(redirectUrlFromPartner, "_blank");
       }, 3500);
 
       return () => {
@@ -106,10 +107,7 @@ const VerifiedContent = () => {
           </Col>
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <CardInfo
-                txHash={txHash}
-                redirectUrlFromPartner={Boolean(redirectUrlFromPartner)}
-              />
+              <CardInfo />
             </ContentWrapper>
           </Col>
         </Row>

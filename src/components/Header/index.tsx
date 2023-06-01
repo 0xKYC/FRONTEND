@@ -17,7 +17,9 @@ import {
   Box,
   HeaderSection,
   Image,
+  ImgWrapper,
   LogoContainer,
+  LogoText,
   MobileConnectBtn,
   MobileImage,
   NotHidden,
@@ -48,16 +50,39 @@ const Header = () => {
   const MenuItem = () => {
     return (
       <Box>
-        {!mockedWalletAddress && (
-          <Button
-            onClick={handleConnectionButtonClick}
-            color={address ? "#FFFFFFff" : ""}
-          >
-            {address ? `Disconnect ...${address.slice(-6)}` : "Connect Wallet"}
-          </Button>
+        {mockedWalletAddress ? (
+          <ImgWrapper>
+            <img
+              width={26}
+              height={26}
+              src="/img/IS-logo-2.png"
+              alt="insert stonks"
+            />{" "}
+            <LogoText
+              style={{
+                margin: 0,
+                fontSize: "1.2rem",
+                marginLeft: ".5rem",
+                fontWeight: "bold",
+                color: "black",
+              }}
+            >
+              Insert Stonks
+            </LogoText>
+          </ImgWrapper>
+        ) : (
+          <>
+            <Button
+              onClick={handleConnectionButtonClick}
+              color={address ? "#FFFFFFff" : ""}
+            >
+              {address
+                ? `Disconnect ...${address.slice(-6)}`
+                : "Connect Wallet"}
+            </Button>
+            <ChainSelectionMenu />
+          </>
         )}
-
-        <ChainSelectionMenu />
       </Box>
     );
   };
