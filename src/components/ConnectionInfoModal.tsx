@@ -34,7 +34,6 @@ export const ConnectionInfoModal = ({
     <StyledModal
       zIndex={10}
       key={1}
-      zIndex={10}
       open={isModalOpen}
       onCancel={closeModal}
       maskClosable={true}
