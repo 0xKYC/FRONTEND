@@ -79,7 +79,7 @@ export const TosModalWeb2 = () => {
       <Box>
         <Title>Welcome to 0xKYC </Title>
 
-        <StyledP biggerMargin>
+        <StyledP>
           By clicking on the “Accept” button or otherwise continuing to use this
           service, you agree you have read, understand and accept{" "}
           <a

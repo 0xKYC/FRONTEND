@@ -9,12 +9,16 @@ export const StyledModal = styled(Modal)`
 `;
 
 export const StyledP = styled.p<{ biggerMargin?: boolean }>`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: ${(props) => (props.biggerMargin ? ".5rem 1rem" : ".5rem")};
 
   @media screen and (min-width: 1024px) {
     margin: ${(props) => (props.biggerMargin ? ".5rem 4rem" : ".5rem")};
   }
+
+  /* a {
+    font-size: 1.2rem;
+  } */
 `;
 
 export const Title = styled.p`
