@@ -3,7 +3,9 @@ import { Modal } from "antd";
 import styled from "styled-components";
 
 export const StyledModal = styled(Modal)`
-  margin-top: 10rem;
+  @media screen and (min-width: 1024px) {
+    margin-top: 10rem;
+  }
 `;
 
 export const StyledP = styled.p<{ biggerMargin?: boolean }>`
@@ -24,7 +26,6 @@ export const StyledInfo = styled.p`
   font-weight: 600;
 `;
 export const Box = styled.div`
-  padding: 0.7rem;
   padding-bottom: 0.3rem;
   text-align: center;
 `;

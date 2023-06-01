@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 
+import { decode as base64_decode } from "base-64";
 import { setPartnerParams } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -12,13 +13,18 @@ export const useSetUserParams = () => {
   const dispatch = useAppDispatch();
   const setParams = useCallback(
     ({ address, callbackUrl, redirectUrl }: Props) => {
-      dispatch(
-        setPartnerParams({
-          mockedWalletAddress: address,
-          callbackUrl,
-          redirectUrl,
-        }),
-      );
+      try {
+        const decodedRedirectUrl = base64_decode(redirectUrl);
+        dispatch(
+          setPartnerParams({
+            mockedWalletAddress: address,
+            callbackUrl,
+            redirectUrl: decodedRedirectUrl,
+          }),
+        );
+      } catch (error) {
+        console.error(error);
+      }
     },
     [dispatch],
   );
