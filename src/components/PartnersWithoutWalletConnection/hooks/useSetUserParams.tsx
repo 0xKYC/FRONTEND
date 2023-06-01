@@ -12,15 +12,11 @@ export const useSetUserParams = () => {
   const dispatch = useAppDispatch();
   const setParams = useCallback(
     ({ address, callbackUrl, redirectUrl }: Props) => {
-      const decodedRedirectUrl = Buffer.from(redirectUrl, "base64").toString(
-        "utf-8",
-      );
-
       dispatch(
         setPartnerParams({
           mockedWalletAddress: address,
           callbackUrl,
-          redirectUrl: decodedRedirectUrl,
+          redirectUrl,
         }),
       );
     },

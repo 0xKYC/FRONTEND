@@ -7,7 +7,6 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
 import { SvgIcon } from "common/SvgIcon";
-import { TosModalWeb2 } from "components/TosModal/web2Sign";
 import { SupportedChainId } from "constans/chains";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
@@ -54,6 +53,7 @@ const ContentBlock = ({
   const walletAddress = address || mockedWalletAddress;
 
   const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
+
   const handleOnfidoRedirect = async (email?: string) => {
     if (walletAddress && onfidoApplicantId && chainId) {
       try {
@@ -91,8 +91,6 @@ const ContentBlock = ({
   return (
     <RightBlockContainer>
       {!tosAccepted && <TosModal />}
-
-      {mockedWalletAddress && !tosAccepted && <TosModalWeb2 />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle">
