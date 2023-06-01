@@ -663,7 +663,7 @@ const PrivacyPolicy = () => {
         user, or prevent fraud or identity theft.
       </p>
       <p>
-        The Illinois Biometric Information Privacy Act ("<strong>BIPA</strong>
+        The Illinois Biometric Information Privacy Act ("<strong style={{ fontStyle: "italic" }}>BIPA</strong>
         "), regulates the collection, storage, use, and retention of "biometric
         identifiers" and "biometric information." "Biometric identifier" means a
         retina or iris scan, fingerprint, voiceprint, or scan of hand or face
