@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-import { Button, Checkbox, Form, Input, Spin } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 
-import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
+import { MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "common/ConfirmModal";
+import { LoadingCircle } from "common/Spinner";
 import { isCompanyEmail } from "common/utils/email-validator/validateEmail";
 import { subscribeNewsletter } from "service/user/user.service";
 
@@ -17,9 +18,6 @@ type Props = {
   handleOnfidoRedirect: (email?: string) => Promise<void>;
 };
 
-const Spinner = (
-  <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />
-);
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
@@ -106,7 +104,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
             width: "50%",
           }}
         >
-          {isLoading ? <Spin indicator={Spinner} /> : "Submit"}
+          {isLoading ? <LoadingCircle /> : "Submit"}
         </Button>
         <Button
           size="large"

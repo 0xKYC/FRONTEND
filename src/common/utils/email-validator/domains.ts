@@ -112,4 +112,6 @@ spamfree24.info
 spamfree24.de
 spamfree24.com`;
 
-export const free_email_provider_set = new Set(free_email_provider_domains.split('\n'));
+export const free_email_provider_set = new Set(
+  free_email_provider_domains.split("\n"),
+);

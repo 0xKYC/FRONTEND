@@ -52,8 +52,7 @@ export const TosModal = () => {
           </Link>{" "}
           and{" "}
           <Link to="privacy-policy" target="_blank" rel="noopener noreferrer">
-            {" "}
-            0xKYC Privacy Policy
+            Privacy Policy
           </Link>
           .
         </StyledP>
