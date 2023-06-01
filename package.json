@@ -9,6 +9,7 @@
     "@web3modal/react": "^2.1.1",
     "antd": "^5.1.7",
     "axios": "^0.21.4",
+    "base-64": "^1.0.0",
     "email-validator": "^2.0.4",
     "env-cmd": "^10.1.0",
     "ethers": "^5.7.2",
@@ -59,6 +60,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/base-64": "^1.0.0",
     "@types/lodash": "^4.14.191",
     "@types/node": "^15.14.9",
     "@types/react": "^17.0.52",
