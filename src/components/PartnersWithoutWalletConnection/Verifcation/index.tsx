@@ -49,6 +49,13 @@ export const VerificationForPartners = ({
       return;
     }
     if (mockedWalletAddress && onfidoApplicantId && chainId) {
+      let redirectUrl = "http://localhost:3000/";
+      if (process.env.ENVIRONMENT === "stage") {
+        redirectUrl = "https://stage.0xkyc.id/";
+      } else if (process.env.ENVIRONMENT === "prod") {
+        redirectUrl = "https://app.0xkyc.id/";
+      }
+
       try {
         setIsLoading(true);
         await onfidoRedirect({
@@ -56,7 +63,7 @@ export const VerificationForPartners = ({
           chainId,
           walletAddress: mockedWalletAddress,
           callbackUrl: partnerCallbackUrl,
-          redirectUrl: "https://stage.0xkyc.id/",
+          redirectUrl,
           // redirectUrl: "http://localhost:3000/",
         });
       } catch (error) {
