@@ -88,7 +88,7 @@ const Header = () => {
   };
 
   return (
-    <HeaderSection>
+    <HeaderSection id="intro">
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
