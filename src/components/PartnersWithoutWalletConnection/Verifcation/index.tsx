@@ -56,7 +56,7 @@ export const VerificationForPartners = ({
           chainId,
           walletAddress: mockedWalletAddress,
           callbackUrl: partnerCallbackUrl,
-          redirectUrl: "https://stage.0xkyc.id/",
+          redirectUrl: "https://app.0xkyc.id/",
           // redirectUrl: "http://localhost:3000/",
         });
       } catch (error) {
