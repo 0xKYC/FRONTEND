@@ -56,13 +56,20 @@ const ContentBlock = ({
 
   const handleOnfidoRedirect = async (email?: string) => {
     if (walletAddress && onfidoApplicantId && chainId) {
+      let redirectUrl = "http://localhost:3000/";
+      if (process.env.ENVIRONMENT === "stage") {
+        redirectUrl = "https://stage.0xkyc.id/";
+      } else if (process.env.ENVIRONMENT === "prod") {
+        redirectUrl = "https://app.0xkyc.id/";
+      }
+
       try {
         await onfidoRedirect({
           applicantId: onfidoApplicantId,
           chainId,
           walletAddress,
           callbackUrl: partnerCallbackUrl,
-          redirectUrl: "https://app.0xkyc.id/",
+          redirectUrl,
           // redirectUrl: "http://localhost:3000/",
           email,
         });
