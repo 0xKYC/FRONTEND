@@ -10,9 +10,9 @@ const ScrollToTop = () => {
   const checkScrollTop = (event: any) => {
     const offsetFromTop = getScroll(event.target, true);
 
-    if (!showScroll && offsetFromTop > 350) {
+    if (!showScroll && offsetFromTop > 250) {
       setShowScroll(true);
-    } else if (offsetFromTop <= 350) {
+    } else if (offsetFromTop <= 250) {
       setShowScroll(false);
     }
   };
