@@ -3,6 +3,7 @@ import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
 
 import { Col, Row } from "antd";
+import { ENV } from "env";
 import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
@@ -57,9 +58,9 @@ const ContentBlock = ({
   const handleOnfidoRedirect = async (email?: string) => {
     if (walletAddress && onfidoApplicantId && chainId) {
       let redirectUrl = "http://localhost:3000/";
-      if (process.env.ENVIRONMENT === "stage") {
+      if (ENV.REACT_APP_ENVIRONMENT === "stage") {
         redirectUrl = "https://stage.0xkyc.id/";
-      } else if (process.env.ENVIRONMENT === "prod") {
+      } else if (ENV.REACT_APP_ENVIRONMENT === "prod") {
         redirectUrl = "https://app.0xkyc.id/";
       }
 
