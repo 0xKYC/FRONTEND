@@ -2,23 +2,21 @@ import { useEffect, useState } from "react";
 
 import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
 
-import { CHAIN_IDS } from "constans/chains";
+import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
+import { useEditUserMutation } from "redux/api/user/userApi";
 import {
   addApplicantId,
   checkIfVerified,
   reset,
   selectIsMintingActive,
+  selectMockedWalletAddress,
   selectVerifiedUser,
   signTos,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { onfidoCreateApplicant } from "service/onfido/onfido.service";
-import {
-  createUserInDB,
-  editUserInDB,
-  findUserInDB,
-} from "service/user/user.service";
+import { createUserInDB, findUserInDB } from "service/user/user.service";
 import { hasSoul } from "web3/methods/hasSoul";
 import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
@@ -28,19 +26,23 @@ export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
   const isMintingActive = useAppSelector(selectIsMintingActive);
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
 
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
+  const walletAddress = address || mockedWalletAddress;
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
     },
   });
-  const isVerified = isConnected && verified;
+  const isVerified = Boolean(walletAddress) && verified;
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const [editUser] = useEditUserMutation();
   useCheckMinting(isVerified);
 
   useEffect(() => {
@@ -54,11 +56,11 @@ export const useAuth = () => {
 
   useEffect(() => {
     const checkSBT = async () => {
-      if (address && chain) {
+      if (walletAddress && chainId) {
         try {
           setIsLoading(true);
 
-          const isVerified = await hasSoul(chain.id, address);
+          const isVerified = await hasSoul(chainId, walletAddress);
           if (isVerified) {
             dispatch(checkIfVerified(isVerified));
           } else {
@@ -74,12 +76,12 @@ export const useAuth = () => {
     };
 
     checkSBT();
-  }, [address, dispatch, provider, chain]);
+  }, [walletAddress, dispatch, provider, chainId]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {
-      if (address) {
-        const isSanctioned = await isWalletSanctioned(address);
+      if (walletAddress) {
+        const isSanctioned = await isWalletSanctioned(walletAddress);
 
         if (isSanctioned) {
           setIsSanctioned(true);
@@ -88,15 +90,17 @@ export const useAuth = () => {
     };
 
     const handleOnfidoAuth = async () => {
-      if (address) {
+      if (walletAddress) {
         try {
           setIsLoading(true);
-          const user = await findUserInDB(address);
+          const user = await findUserInDB(walletAddress, chainId);
+
           if (!user) {
             dispatch(signTos(false));
             const newApplicant = await onfidoCreateApplicant();
+
             await createUserInDB({
-              walletAddress: address,
+              walletAddress,
               onfidoApplicantId: newApplicant.id,
             });
 
@@ -112,8 +116,8 @@ export const useAuth = () => {
 
           if (user.onfidoApplicantId === null) {
             const newApplicant = await onfidoCreateApplicant();
-            await editUserInDB({
-              walletAddress: address,
+            await editUser({
+              walletAddress,
               onfidoApplicantId: newApplicant.id,
             });
             dispatch(addApplicantId(newApplicant.id));
@@ -130,7 +134,7 @@ export const useAuth = () => {
     };
     handleOnfidoAuth();
     handleWalletSanctionCheck();
-  }, [address, dispatch]);
+  }, [walletAddress, dispatch, chainId, editUser]);
 
   return {
     isVerified,

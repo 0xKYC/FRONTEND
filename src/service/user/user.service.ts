@@ -1,3 +1,5 @@
+import { ChainId } from "constans/chains";
+
 import { api } from "../config";
 import { User, WalletAddress } from "./types";
 
@@ -9,20 +11,19 @@ type UserUpdate = {
   time_stamp?: string;
 };
 export async function createUserInDB(user: UserUpdate) {
-  const res = await api.post<User>("user", user);
-  return res.data;
-}
-export async function editUserInDB(user: UserUpdate) {
-  const res = await api.patch<User>("user", user);
+  const res = await api.post<User>("user/wallet", user);
   return res.data;
 }
 
-export async function findUserInDB(walletAddress: WalletAddress) {
+export async function findUserInDB(
+  walletAddress: WalletAddress,
+  chainId: ChainId,
+) {
   try {
-    const res = await api.get<User>(`user/${walletAddress}`);
+    const res = await api.get<User>(`user/${walletAddress}/chainId/${chainId}`);
     return res.data;
   } catch (error) {
-    console.log("ERR", error);
+    console.error("ERR", error);
   }
 }
 

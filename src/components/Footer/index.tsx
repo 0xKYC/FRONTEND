@@ -19,20 +19,24 @@ import {
   Title,
 } from "./styles";
 
-interface SocialLinkProps {
+type SocialLinkProps = {
   href: string;
   src: string;
-}
-
+};
+export const SocialLink = ({ href, src }: SocialLinkProps) => {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      key={src}
+      aria-label={src}
+    >
+      <SvgIcon src={src} width="25px" height="25px" />
+    </a>
+  );
+};
 const Footer = ({ t }: any) => {
-  const SocialLink = ({ href, src }: SocialLinkProps) => {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" key={src} aria-label={src}>
-        <SvgIcon src={src} width="25px" height="25px" />
-      </a>
-    );
-  };
-
   return (
     <>
       <FooterSection>
@@ -59,6 +63,13 @@ const Footer = ({ t }: any) => {
               >
                 {t("Documentation")} &#8618;
               </StyledLink>
+              <StyledLink
+                href="https://www.notion.so/0xkyc/How-to-get-verified-on-0xKYC-dApp-5a2e8532c564491189db9f816b5ee046"
+                target="_blank"
+                rel="noopener"
+              >
+                {t("How to get verified")} &#8618;
+              </StyledLink>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
               <Title>{t("Legal")}</Title>
@@ -74,7 +85,11 @@ const Footer = ({ t }: any) => {
       </FooterSection>
       <Extra>
         <Container border={true}>
-          <Row justify="space-between" align="middle" style={{ paddingTop: "3rem" }}>
+          <Row
+            justify="space-between"
+            align="middle"
+            style={{ paddingTop: "3rem" }}
+          >
             <NavLink to="/">
               <LogoContainer>
                 <img src="/img/icons/new-logo.png" alt="logo" height="44px" />
@@ -83,8 +98,14 @@ const Footer = ({ t }: any) => {
             <FooterContainer>
               <SocialLink href="https://0xkyc.id" src="internet.svg" />
               <SocialLink href="https://github.com/0xKYC" src="github.svg" />
-              <SocialLink href="https://twitter.com/0xkycinc" src="twitter.svg" />
-              <SocialLink href="https://www.linkedin.com/company/0xkyc/" src="linkedin.svg" />
+              <SocialLink
+                href="https://twitter.com/0xkycinc"
+                src="twitter.svg"
+              />
+              <SocialLink
+                href="https://www.linkedin.com/company/0xkyc/"
+                src="linkedin.svg"
+              />
               {/* crunchbase icon */}
             </FooterContainer>
           </Row>

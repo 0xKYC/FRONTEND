@@ -1,5 +1,3 @@
-import { ChainId } from "constans/chains";
-
 export type User = {
   id: number;
   createdAt: Date;
@@ -7,13 +5,21 @@ export type User = {
   uuid: string | null;
   walletAddress: string;
   onfidoApplicantId: string;
-  email: string | null;
-  tosVersion: string | null;
   signature: string | null;
   timestamp: Date | null;
+  tosVersion: string | null;
   sbts: Sbt[];
 };
-
+export type Wallet = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+  onfidoApplicantId: string;
+  address: string;
+  signature: string | null;
+  sbts: Sbt[];
+};
 export type Sbt = {
   id: number;
   createdAt: Date;
@@ -26,10 +32,6 @@ export type Sbt = {
   onfidoWorkflowRunWebhook: any | null;
   onfidoWorkflowRunId: string | null;
   onfidoStatus: OnfidoStatus | null;
-};
-
-export type txHash = {
-  [k in ChainId]?: string;
 };
 
 const mintStatus = {

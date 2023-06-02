@@ -10,11 +10,11 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { ApproveText, Container, Label, Logo, Status } from "./styles";
 
-interface Props {
+type Props = {
   targetChain: SupportedChainId;
   onSelectChain: (targetChain: SupportedChainId, active: boolean) => void;
   isPending: boolean;
-}
+};
 export const ChainSelectorItem = ({
   onSelectChain,
   isPending,
@@ -33,6 +33,7 @@ export const ChainSelectorItem = ({
 
     onSelectChain(targetChain, active);
   };
+
   return (
     <Container onClick={handleSelectChain}>
       <Logo src={logoUrl} alt={label} />

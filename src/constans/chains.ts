@@ -1,6 +1,6 @@
 import { Chain } from "wagmi";
 
-interface BaseChainInfo {
+type BaseChainInfo = {
   readonly bridge?: string;
   readonly docs?: string;
   readonly explorer: string;
@@ -14,7 +14,7 @@ interface BaseChainInfo {
     symbol: string; // e.g. 'gorETH',
     decimals: number; // e.g. 18,
   };
-}
+};
 
 export enum SupportedChainId {
   GOERLI = 5,

@@ -1,14 +1,22 @@
-import { StyledContainer, StyledText, StyledTitle } from "./style";
+import { GoBackArrow } from "common/GoBackArrow";
 
-interface Props {
-  text: string;
+import { StyledContainer, StyledTitle } from "./style";
+
+type Props = {
   title: string;
-}
-const TextContainer = ({ text, title }: Props) => {
+  children: JSX.Element[];
+};
+
+const TextContainer = ({ title, children }: Props) => {
   return (
-    <StyledContainer>
+    <StyledContainer
+      style={{ textAlign: "left", color: "black", marginTop: "2rem" }}
+      className="markdown"
+    >
+      <GoBackArrow />
+
       <StyledTitle>{title}</StyledTitle>
-      <StyledText> &emsp; &emsp; &emsp;{text}</StyledText>
+      {children}
     </StyledContainer>
   );
 };

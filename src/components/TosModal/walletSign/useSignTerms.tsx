@@ -3,18 +3,24 @@ import { useCallback, useEffect, useState } from "react";
 import { useAccount, useDisconnect, useSignMessage } from "wagmi";
 
 import tos from "content/TermsOfService.json";
-import { reset, selectTosAcceptedWallet, signTos } from "redux/features/user/userSlice";
+import { useEditUserMutation } from "redux/api/user/userApi";
+import {
+  reset,
+  selectTosAcceptedWallet,
+  signTos,
+} from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { editUserInDB } from "service/user/user.service";
 
+const { version, walletContent } = tos;
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
-  const { version, walletContent } = tos;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
+  const [editUser] = useEditUserMutation();
 
   const showModal = () => setIsModalOpen(true);
 
@@ -38,7 +44,7 @@ export const useSignTerms = () => {
         time_stamp: new Date().toISOString(),
       };
       try {
-        await editUserInDB(user);
+        await editUser(user);
       } catch (err) {
         closeModal();
       }

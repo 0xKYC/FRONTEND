@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 import styled from "styled-components";
 
-export const StyledButton = styled(Button)<{ isOpen: boolean }>`
+export const StyledButton = styled(Button)<{ isOpen?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,5 +15,12 @@ export const StyledButton = styled(Button)<{ isOpen: boolean }>`
     background-color: white;
     color: black !important;
     border: 1px solid #fb7324;
+  }
+`;
+
+export const StyledLabel = styled("span")`
+  display: none !important;
+  @media screen and (min-width: 700px) {
+    display: inline !important;
   }
 `;

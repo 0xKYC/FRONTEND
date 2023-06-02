@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 import { useTranslation, withTranslation } from "react-i18next";
 
@@ -5,9 +6,14 @@ import { Col, Row } from "antd";
 import { useAccount, useNetwork } from "wagmi";
 
 import { LoadingSpinner } from "common/LoadingSpinner";
-import { getChainInfo } from "constans/chains";
+import { SupportedChainId, getChainInfo } from "constans/chains";
 import vContent from "content/VerifiedContent.json";
 import { useGetUserQuery } from "redux/api/user/userApi";
+import {
+  selectMockedWalletAddress,
+  selectRedirectUrl,
+} from "redux/features/user/userSlice";
+import { useAppSelector } from "redux/hooks";
 
 import { CardInfo } from "../../CardInfo";
 import { Heading } from "../styles";
@@ -20,6 +26,7 @@ import {
   Flex,
   StyledCard,
   StyledLink,
+  StyledRedirectLink,
 } from "./styles";
 import { getUserSbt } from "./utils";
 
@@ -28,16 +35,34 @@ const VerifiedContent = () => {
 
   const { chain } = useNetwork();
   const { address } = useAccount();
+  const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
+  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+  const walletAddress = address || mockedWalletAddress;
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const { data: user, isLoading } = useGetUserQuery({
+    walletAddress: walletAddress || "",
+    chainId,
+  });
 
-  const { data: user, isLoading } = useGetUserQuery(address);
-  if (!chain) return <p>Error with fetching the network</p>;
+  useEffect(() => {
+    if (redirectUrlFromPartner) {
+      const timer = setTimeout(() => {
+        // window.location.href = redirectUrlFromPartner;
+        window.open(redirectUrlFromPartner, "_blank");
+      }, 3500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [redirectUrlFromPartner]);
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="70vh" />;
   if (!user) return <p>Error with fetching the user</p>;
 
-  const sbt = getUserSbt(user, chain.id);
+  const sbt = getUserSbt(user);
   const txHash = sbt?.txHash;
-  const { logoUrl, label, explorer, explorerName } = getChainInfo(chain.id);
+  const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
 
   return (
     <BlockWrapper>
@@ -50,9 +75,10 @@ const VerifiedContent = () => {
                   <Heading>{t(vContent.title)}</Heading>
                   <Flex>
                     <Checkmark />
+
                     <img
                       alt={label}
-                      src={logoUrl}
+                      src={mockedWalletAddress ? "/img/IS-logo.png" : logoUrl}
                       width={44}
                       height={42}
                       style={{ marginTop: "3px", marginLeft: "6px" }}
@@ -62,14 +88,20 @@ const VerifiedContent = () => {
                 {vContent.info.map(({ text, id }) => {
                   return <Content key={id}>{t(text)}</Content>;
                 })}
-                <StyledLink
-                  chainId={chain.id}
-                  href={explorer + txHash}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Link to {explorerName}
-                </StyledLink>
+                {redirectUrlFromPartner ? (
+                  <StyledRedirectLink href={redirectUrlFromPartner}>
+                    Continue to Insert Stonks
+                  </StyledRedirectLink>
+                ) : (
+                  <StyledLink
+                    chainId={chainId}
+                    href={explorer + txHash}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Link to {explorerName}
+                  </StyledLink>
+                )}
               </StyledCard>
             </ContentWrapper>
           </Col>

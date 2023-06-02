@@ -4,8 +4,13 @@ import { ChainId } from "constans/chains";
 
 import { RootState } from "../../store";
 
+type PartnerPayload = {
+  callbackUrl: string;
+  redirectUrl: string;
+  mockedWalletAddress: string;
+};
 // isMinting indicate if user's token is minting, isMintingActive indicate if user is on the network of his minting token
-export interface User {
+export type User = {
   applicantId: string | null;
   verified: boolean;
   txHash: string;
@@ -15,7 +20,12 @@ export interface User {
   isMintingActive: boolean;
   tosAccepted: boolean;
   isMintingError: boolean;
-}
+
+  // when user comes from partner's website
+  redirectUrl: string | null;
+  mockedWalletAddress: string | null;
+  callbackUrl: string | null;
+};
 
 const initialState: User = {
   applicantId: "",
@@ -27,6 +37,9 @@ const initialState: User = {
   isMintingActive: false,
   tosAccepted: false,
   isMintingError: false,
+  mockedWalletAddress: null,
+  redirectUrl: null,
+  callbackUrl: null,
 };
 
 export const userSlice = createSlice({
@@ -37,14 +50,15 @@ export const userSlice = createSlice({
       state.applicantId = "";
       state.verified = false;
       state.txHash = "";
-      state.isMinting = false;
-      state.mintingChain = null;
-      state.mintingWalletAddress = null;
-      state.isMintingActive = false;
-      state.isMintingError = false;
+      state.mockedWalletAddress = null;
     },
     addApplicantId: (state, action: PayloadAction<string>) => {
       state.applicantId = action.payload;
+    },
+    setPartnerParams: (state, action: PayloadAction<PartnerPayload>) => {
+      state.mockedWalletAddress = action.payload.mockedWalletAddress;
+      state.redirectUrl = action.payload.redirectUrl;
+      state.callbackUrl = action.payload.callbackUrl;
     },
     checkIfVerified: (state, action: PayloadAction<boolean>) => {
       state.verified = action.payload;
@@ -83,11 +97,16 @@ export const {
   reset,
   setMintingActive,
   signTos,
+  setPartnerParams,
 } = userSlice.actions;
 
 export default userSlice.reducer;
 
 export const selectApplicantId = (state: RootState) => state.user.applicantId;
+export const selectRedirectUrl = (state: RootState) => state.user.redirectUrl;
+export const selectCallbackUrl = (state: RootState) => state.user.callbackUrl;
+export const selectMockedWalletAddress = (state: RootState) =>
+  state.user.mockedWalletAddress;
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;

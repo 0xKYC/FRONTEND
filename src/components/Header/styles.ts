@@ -3,16 +3,27 @@ import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
+export const ImgWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const LogoText = styled.p`
+  margin: 0;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: bold;
+`;
 export const Image = styled.img`
   display: none;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 520px) {
     display: block;
   }
 `;
 
 export const MobileImage = styled.img`
   display: block;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 520px) {
     display: none;
   }
 `;
@@ -66,7 +77,9 @@ export const ContactWrapper = styled("div")<any>`
 
 export const MobileConnectBtn = styled("div")`
   @media only screen and (max-width: 890px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   display: none;

@@ -16,6 +16,7 @@ import {
   About,
   Error,
   Home,
+  HomeWithoutWalletConnection,
   Mint,
   PrivacyPolicy,
   Profile,
@@ -52,6 +53,18 @@ const Router = () => {
                 </RedirectRoute>
               }
               path="/"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <HomeWithoutWalletConnection isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/:partner/*"
             />
             <Route
               element={

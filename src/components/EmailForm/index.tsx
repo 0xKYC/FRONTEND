@@ -1,23 +1,23 @@
 import { useState } from "react";
 
-import { Button, Checkbox, Form, Input, Spin } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 
-import { LoadingOutlined, MailOutlined } from "@ant-design/icons";
+import { MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "common/ConfirmModal";
+import { LoadingCircle } from "common/Spinner";
 import { isCompanyEmail } from "common/utils/email-validator/validateEmail";
 import { subscribeNewsletter } from "service/user/user.service";
 
 import { ErrorText, Flex } from "./styles";
 
-interface FormValues {
+type FormValues = {
   email: string;
   newsletterChecked: boolean;
-}
-interface Props {
+};
+type Props = {
   handleOnfidoRedirect: (email?: string) => Promise<void>;
-}
+};
 
-const Spinner = <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />;
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
@@ -25,10 +25,11 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const handleSubmit = async (values: FormValues) => {
     try {
       setIsLoading(true);
+
+      await handleOnfidoRedirect(values.email);
       if (values.newsletterChecked) {
         await subscribeNewsletter(values.email);
       }
-      await handleOnfidoRedirect(values.email);
     } catch (error) {
       console.error(error);
       setError(true);
@@ -40,7 +41,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
     showConfirm({
       title: "Are you sure you want to skip?",
       content:
-        "You won’t be informed about important updates in your account, including verification expiration",
+        "Are you sure you don't want to provide your email? You might miss some important updates about your account.",
       onCancel: () => {},
       onOk: handleOnfidoRedirect,
       okText: "Skip",
@@ -49,7 +50,11 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   };
 
   if (error) {
-    return <ErrorText>An error has occured. Please, refresh the page and try again.</ErrorText>;
+    return (
+      <ErrorText>
+        An error has occured. Please, refresh the page and try again.
+      </ErrorText>
+    );
   }
 
   return (
@@ -63,7 +68,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       <Form.Item
         label="Email"
         name="email"
-        style={{ marginBottom: "1.3rem" }}
+        style={{ marginBottom: "1.5rem" }}
         rules={[
           {
             message: "Email is not valid",
@@ -99,9 +104,14 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
             width: "50%",
           }}
         >
-          {isLoading ? <Spin indicator={Spinner} /> : "Submit"}
+          {isLoading ? <LoadingCircle /> : "Submit"}
         </Button>
-        <Button size="large" style={{ width: "50%" }} type="ghost" onClick={showModal}>
+        <Button
+          size="large"
+          style={{ width: "50%" }}
+          type="ghost"
+          onClick={showModal}
+        >
           Skip
         </Button>
       </Flex>

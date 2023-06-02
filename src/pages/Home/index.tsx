@@ -22,7 +22,6 @@ const Home = ({ isLoading }: { isLoading: boolean }) => {
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.content}
         icon="developer.svg"
-        id="intro"
       />
     </Container>
   );

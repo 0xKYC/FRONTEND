@@ -160,6 +160,57 @@ export const Styles = createGlobalStyle`
     .ant-dropdown {
     z-index: 9999;
     }
+    .ant-dropdown-menu {
+   margin: 0;
+    }
+
+ul {
+  list-style-position: inside;
+  padding-left: .3rem
+}
+
+
+.markdown .title {
+    text-decoration: underline;
+    margin-left: 2.5rem;
+    font-weight: bold;
+}
+.markdown .bold {
+      font-weight: bold;
+}
+.markdown .underline_li {
+     text-decoration: underline;
+}
+.red {
+    color:red
+}
+
+.markdown table, tr,td,th {
+    border:1px solid black;
+    padding: .3rem;
+    color: #18216d
+}
+.markdown table {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+.markdown p {
+    font-weight: 400;
+}
+.markdown li {
+    color:#18216d
+}
+.markdown a {
+    font-weight: 800;
+    text-decoration: underline;
+}
+.markdown ul{
+     list-style-position: outside;
+     margin-left: 1rem;
+}
+.li_margin li {
+    margin-bottom: .7rem;
+}
 .wave {
     position: absolute;
     bottom: 0;
@@ -191,4 +242,6 @@ export const Styles = createGlobalStyle`
 .ant-modal-content { 
     height: 100%;
 }
+
+
 `;
