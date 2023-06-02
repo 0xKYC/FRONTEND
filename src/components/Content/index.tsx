@@ -107,9 +107,9 @@ const ContentBlock = ({
               {verifyClicked && walletAddress ? (
                 <Fade>
                   <Heading>Please provide your email address</Heading>
-                  <Content>
-                    For now you can only subscribe to our marketing newsletter,
-                    otherwise we will not use your email
+                  <Content style={{ marginBottom: "1rem" }}>
+                    We use it to inform you about the details of your
+                    verification
                   </Content>
                   <EmailForm handleOnfidoRedirect={handleOnfidoRedirect} />
                 </Fade>
