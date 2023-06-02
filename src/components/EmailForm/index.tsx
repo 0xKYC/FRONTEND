@@ -52,7 +52,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   if (error) {
     return (
       <ErrorText>
-        An error has occured. Please, refresh the page and try again.
+        An error has occurred. Please, refresh the page and try again.
       </ErrorText>
     );
   }
