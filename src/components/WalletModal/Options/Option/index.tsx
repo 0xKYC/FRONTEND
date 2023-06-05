@@ -33,7 +33,8 @@ export const Option = ({ connector }: Props) => {
       dispatch(closeConnectionInfoModal());
     }
   }, [error, dispatch]);
-  const isMetamaskConnector = connector.name === "MetaMask";
+  const isMetamaskConnector = connector.id === "metaMask";
+
   return (
     <>
       {connector.ready ? (
@@ -55,7 +56,9 @@ export const Option = ({ connector }: Props) => {
               style={{ marginLeft: "2.5rem" }}
             />
           </ImageBox>
-          <TextBox>{connector.name}</TextBox>
+          <TextBox>
+            {isMetamaskConnector ? connector.name : "WalletConnect"}
+          </TextBox>
         </StyledOptionBtn>
       ) : (
         <InstallMetamaskOption isMetamaskConnector={isMetamaskConnector} />
