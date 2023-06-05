@@ -22,7 +22,7 @@ import {
   Profile,
   TermsOfService,
   Wave,
-} from "./pages";
+} from "./lazyLoadPages";
 
 // import { Status } from "../components/Mint/test";
 
