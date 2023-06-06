@@ -21,6 +21,7 @@ import {
   PrivacyPolicy,
   Profile,
   TermsOfService,
+  ThirdParties,
   Wave,
 } from "./pages";
 
@@ -107,6 +108,7 @@ const Router = () => {
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+            <Route element={<ThirdParties />} path="/third-parties" />
             <Route element={<Error />} path="/error" />
           </Routes>
           <Wave />

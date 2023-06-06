@@ -4,7 +4,7 @@ import { StyledContainer, StyledTitle } from "./style";
 
 type Props = {
   title: string;
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 };
 
 const TextContainer = ({ title, children }: Props) => {
