@@ -1,6 +1,6 @@
-import COINBASE_ICON_URL from "../../assets/coinbase-wallet.svg";
-import METAMASK_ICON_URL from "../../assets/metamask-icon.svg";
-import WALLET_CONNECT_ICON_URL from "../../assets/walletconnect.svg";
+import COINBASE_ICON_URL from "components/WalletModal/assets/coinbase-wallet.svg";
+import METAMASK_ICON_URL from "components/WalletModal/assets/metamask-icon.svg";
+import WALLET_CONNECT_ICON_URL from "components/WalletModal/assets/walletconnect.svg";
 
 export const getIcon = (connectorID: string) => {
   if (connectorID === "metaMask") {
