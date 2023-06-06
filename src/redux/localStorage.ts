@@ -21,3 +21,18 @@ export const saveState = (state: any) => {
     console.error(err);
   }
 };
+
+const localKey = "access-token";
+export const loadLocalStorage = () => {
+  try {
+    const state = localStorage.getItem(localKey);
+
+    if (state === null) {
+      return undefined;
+    }
+    return state;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
+};

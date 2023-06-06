@@ -20,11 +20,12 @@ export type User = {
   isMintingActive: boolean;
   tosAccepted: boolean;
   isMintingError: boolean;
-
+  accessToken: string | null;
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
   callbackUrl: string | null;
+  apiKey: string | null;
 };
 
 const initialState: User = {
@@ -40,6 +41,8 @@ const initialState: User = {
   mockedWalletAddress: null,
   redirectUrl: null,
   callbackUrl: null,
+  accessToken: null,
+  apiKey: null,
 };
 
 export const userSlice = createSlice({
@@ -86,6 +89,12 @@ export const userSlice = createSlice({
     setMintingActive: (state, action: PayloadAction<boolean>) => {
       state.isMintingActive = action.payload;
     },
+    setAccessToken: (state, action: PayloadAction<string>) => {
+      state.accessToken = action.payload;
+    },
+    setApiKey: (state, action: PayloadAction<string>) => {
+      state.apiKey = action.payload;
+    },
   },
 });
 
@@ -98,6 +107,8 @@ export const {
   setMintingActive,
   signTos,
   setPartnerParams,
+  setAccessToken,
+  setApiKey,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -110,8 +121,14 @@ export const selectMockedWalletAddress = (state: RootState) =>
 export const selectVerifiedUser = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
-export const selectIsMintingError = (state: RootState) => state.user.isMintingError;
-export const selectIsMintingActive = (state: RootState) => state.user.isMintingActive;
+export const selectIsMintingError = (state: RootState) =>
+  state.user.isMintingError;
+export const selectIsMintingActive = (state: RootState) =>
+  state.user.isMintingActive;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
-export const selectTosAcceptedWallet = (state: RootState) => state.user.tosAccepted;
-export const selectMintingWallet = (state: RootState) => state.user.mintingWalletAddress;
+export const selectTosAcceptedWallet = (state: RootState) =>
+  state.user.tosAccepted;
+export const selectMintingWallet = (state: RootState) =>
+  state.user.mintingWalletAddress;
+export const selectAccessToken = (state: RootState) => state.user.accessToken;
+export const selectApiKey = (state: RootState) => state.user.apiKey;

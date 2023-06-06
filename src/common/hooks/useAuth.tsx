@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 
+import { SiweMessage } from "siwe";
 import { useAccount, useDisconnect, useNetwork, useProvider } from "wagmi";
 
 import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
-import { useEditUserMutation } from "redux/api/user/userApi";
+import {
+  useEditUserMutation,
+  useGetUserQuery,
+  userApi,
+} from "redux/api/user/userApi";
 import {
   addApplicantId,
   checkIfVerified,
@@ -22,6 +27,7 @@ import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
 import { useCheckMinting } from "./useCheckMinting";
 
+const { walletContent } = tos;
 export const useAuth = () => {
   const provider = useProvider();
   const verified = useAppSelector(selectVerifiedUser);
@@ -35,6 +41,7 @@ export const useAuth = () => {
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
+      localStorage.clear();
     },
   });
   const isVerified = Boolean(walletAddress) && verified;
@@ -43,6 +50,7 @@ export const useAuth = () => {
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const [editUser] = useEditUserMutation();
+  const [fetchUser] = userApi.endpoints.getUser.useLazyQuery();
   useCheckMinting(isVerified);
 
   useEffect(() => {
@@ -93,38 +101,54 @@ export const useAuth = () => {
       if (walletAddress) {
         try {
           setIsLoading(true);
-          const user = await findUserInDB(walletAddress, chainId);
+          // const user = await findUserInDB(walletAddress, chainId);
+          const user = await fetchUser({ walletAddress, chainId })
+            .unwrap()
+            .catch(async (e) => {
+              dispatch(signTos(false));
+              const newApplicant = await onfidoCreateApplicant();
 
-          if (!user) {
-            dispatch(signTos(false));
-            const newApplicant = await onfidoCreateApplicant();
+              await createUserInDB({
+                walletAddress,
+                onfidoApplicantId: newApplicant.id,
+              });
 
-            await createUserInDB({
-              walletAddress,
-              onfidoApplicantId: newApplicant.id,
+              dispatch(addApplicantId(newApplicant.id));
+              return;
             });
 
-            dispatch(addApplicantId(newApplicant.id));
-            return;
-          }
+          // if (!user) {
+          //   dispatch(signTos(false));
+          //   const newApplicant = await onfidoCreateApplicant();
 
-          if (user.tosVersion !== tos.version) {
-            dispatch(signTos(false));
-          } else {
-            dispatch(signTos(true));
-          }
+          //   await createUserInDB({
+          //     walletAddress,
+          //     onfidoApplicantId: newApplicant.id,
+          //   });
 
-          if (user.onfidoApplicantId === null) {
-            const newApplicant = await onfidoCreateApplicant();
-            await editUser({
-              walletAddress,
-              onfidoApplicantId: newApplicant.id,
-            });
-            dispatch(addApplicantId(newApplicant.id));
-          } else if (user.onfidoApplicantId !== null) {
-            dispatch(addApplicantId(user.onfidoApplicantId));
+          //   dispatch(addApplicantId(newApplicant.id));
+          //   return;
+          // }
+          if (user) {
+            if (user.tosVersion !== tos.version) {
+              dispatch(signTos(false));
+            } else {
+              dispatch(signTos(true));
+            }
+
+            if (user.onfidoApplicantId === null) {
+              const newApplicant = await onfidoCreateApplicant();
+              await editUser({
+                walletAddress,
+                onfidoApplicantId: newApplicant.id,
+              });
+              dispatch(addApplicantId(newApplicant.id));
+            } else if (user.onfidoApplicantId !== null) {
+              dispatch(addApplicantId(user.onfidoApplicantId));
+            }
           }
         } catch (err) {
+          dispatch(signTos(false));
           setIsLoading(false);
           console.error(err);
         } finally {
@@ -134,7 +158,7 @@ export const useAuth = () => {
     };
     handleOnfidoAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch, chainId, editUser]);
+  }, [walletAddress, dispatch, chainId, editUser, fetchUser]);
 
   return {
     isVerified,
