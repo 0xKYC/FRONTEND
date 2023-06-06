@@ -1,3 +1,5 @@
+import { Chain } from "wagmi";
+
 type BaseChainInfo = {
   readonly bridge?: string;
   readonly docs?: string;
