@@ -92,7 +92,7 @@ const Footer = ({ t }: any) => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <img src="/img/icons/new-logo.png" alt="logo" height="303" />
+                <img src="/img/icons/new-logo.png" alt="logo" height="44px" />
               </LogoContainer>
             </NavLink>
             <FooterContainer>
