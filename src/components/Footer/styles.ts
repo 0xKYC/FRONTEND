@@ -50,6 +50,7 @@ export const Para = styled("div")`
   width: 70%;
 `;
 
+// TODO: need to check transition effect
 export const Large = styled(Link)<any>`
   font-size: 16px;
   color: #000;
@@ -68,6 +69,8 @@ export const Large = styled(Link)<any>`
     text-decoration: rgb(255, 130, 92) wavy underline;
   }
 `;
+
+// TODO: need to check transition effect
 export const StyledLink = styled("a")`
   font-size: 16px;
   color: #000;
