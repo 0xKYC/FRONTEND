@@ -28,6 +28,7 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
+  const [secondsRemaining, setSecondsRemaining] = useState(10);
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -41,6 +42,19 @@ export const useMint = () => {
     walletAddress: walletAddress || "",
     chainId,
   });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSecondsRemaining((prevSeconds) => prevSeconds - 1);
+    }, 1000);
+
+    if (secondsRemaining === 0) {
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);
+  }, [secondsRemaining]);
+
   useEffect(() => {
     if (!walletAddress || !chainId) {
       return navigate("/");
@@ -160,5 +174,5 @@ export const useMint = () => {
     refetch,
   ]);
 
-  return { error };
+  return { error, secondsRemaining };
 };
