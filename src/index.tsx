@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 
 import { App as AntdApp } from "antd";
 import { ConfigProvider } from "antd";
+import { Buffer } from "buffer";
 import { WagmiConfig } from "wagmi";
 
 import "antd/dist/reset.css";
@@ -15,6 +16,8 @@ import { saveState } from "./redux/localStorage";
 import { store } from "./redux/store";
 import Router from "./router";
 import i18n from "./translation";
+
+window.Buffer = window.Buffer || Buffer;
 
 store.subscribe(
   throttle(() => {

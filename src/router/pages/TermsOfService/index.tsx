@@ -1,4 +1,4 @@
-import TextContainer from "../../common/TextContainer";
+import TextContainer from "../../../common/TextContainer";
 
 const TermsOfService = () => {
   return (

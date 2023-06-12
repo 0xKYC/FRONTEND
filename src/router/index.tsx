@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "components/CookieBanner";
 
-// import { Status } from "../components/Mint/test";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ScrollToTop } from "../common/Scroll";
 import { useAuth } from "../common/hooks/useAuth";
@@ -22,9 +21,7 @@ import {
   Profile,
   TermsOfService,
   Wave,
-} from "./pages";
-
-// import { Status } from "../components/Mint/test";
+} from "./lazyLoadPages";
 
 const Router = () => {
   const {
@@ -94,16 +91,6 @@ const Router = () => {
               }
               path="/mint"
             />
-
-            {/* route for testing */}
-            {/* <Route
-              element={
-                <ProtectedRoute verified={verified}>
-                  <Status />
-                </ProtectedRoute>
-              }
-              path="/status"
-            /> */}
             <Route element={<About />} path="/about" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />

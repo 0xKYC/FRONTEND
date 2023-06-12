@@ -121,7 +121,7 @@ export const useAuth = () => {
               onfidoApplicantId: newApplicant.id,
             });
             dispatch(addApplicantId(newApplicant.id));
-          } else if (user.onfidoApplicantId !== null) {
+          } else {
             dispatch(addApplicantId(user.onfidoApplicantId));
           }
         } catch (err) {
