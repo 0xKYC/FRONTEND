@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-import TextContainer from "../../common/TextContainer";
+import TextContainer from "../../../common/TextContainer";
 
 const TermsOfService = () => {
   return (
@@ -861,7 +859,6 @@ const TermsOfService = () => {
         our Services, please contact us at{" "}
         <a href="mailto:support@0xkyc.id">support@0xkyc.id</a>
       </p>
-      <Link to="/third-parties">See Third Parties</Link>
     </TextContainer>
   );
 };
