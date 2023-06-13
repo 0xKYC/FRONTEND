@@ -6,7 +6,12 @@ type Props = {
   height?: string;
   width?: string;
 };
-export const LoadingSpinner = ({ tip, size = "large", height, width }: Props) => {
+export const LoadingSpinner = ({
+  tip,
+  size = "large",
+  height,
+  width,
+}: Props) => {
   return (
     <Spin
       tip={tip}

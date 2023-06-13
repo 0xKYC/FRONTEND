@@ -9,5 +9,6 @@ export const Container = styled("div")`
 `;
 
 export const StyledBox = styled("div")`
-  margin-right: 300px;
+  max-width: 500px;
+  margin: 0 2rem;
 `;
