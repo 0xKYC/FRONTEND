@@ -3,7 +3,8 @@ import { configureChains, createClient } from "wagmi";
 import { EthereumClient } from "@web3modal/ethereum";
 import { goerli, polygonMumbai } from "wagmi/chains";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+// import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { WalletConnectLegacyConnector } from "wagmi/connectors/walletConnectLegacy";
 import { publicProvider } from "wagmi/providers/public";
 
 import { scrollAlpha } from "../constans/chains";
@@ -19,10 +20,17 @@ export const wagmiClient = createClient({
   connectors: [
     new MetaMaskConnector({ chains }),
 
-    new WalletConnectConnector({
-      chains,
+    // @@ not compatible yet with metamask mobile
+    // new WalletConnectConnector({
+    //   chains,
+    //   options: {
+    //     projectId: projectId,
+    //   },
+    // }),
+
+    new WalletConnectLegacyConnector({
       options: {
-        projectId: projectId,
+        qrcode: true,
       },
     }),
   ],

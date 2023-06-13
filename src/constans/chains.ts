@@ -78,6 +78,7 @@ export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.SCROLL_ALPHA,
 ];
 
+// TODO: need to check this code. I got an red underline.  `} as const satisfies Chain;`
 export const scrollAlpha = {
   id: 534353,
   name: "Scroll Alpha",
