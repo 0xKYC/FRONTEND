@@ -9,6 +9,10 @@ export const Container = styled("div")`
 `;
 
 export const StyledBox = styled("div")`
-  max-width: 500px;
+  width: 400px;
   margin: 0 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 `;

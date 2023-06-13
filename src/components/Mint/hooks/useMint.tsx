@@ -16,6 +16,8 @@ import {
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { hasSoul } from "web3/methods/hasSoul";
 
+import { useLoadingBar } from "./useLoadingBar";
+
 const apiRequestsToCall = 200;
 
 export const useMint = () => {
@@ -28,7 +30,7 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
-  const [secondsRemaining, setSecondsRemaining] = useState(10);
+  const { percent, secondsRemaining, setPercent } = useLoadingBar();
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -42,18 +44,6 @@ export const useMint = () => {
     walletAddress: walletAddress || "",
     chainId,
   });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsRemaining((prevSeconds) => prevSeconds - 1);
-    }, 1000);
-
-    if (secondsRemaining === 0) {
-      clearInterval(timer);
-    }
-
-    return () => clearInterval(timer);
-  }, [secondsRemaining]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
@@ -118,6 +108,7 @@ export const useMint = () => {
           const isVerified = await hasSoul(chainId, walletAddress);
 
           if (apiCalls === apiRequestsToCall - 1) {
+            setPercent(100);
             clearInterval(interval);
             dispatch(
               setMinting({
@@ -172,7 +163,8 @@ export const useMint = () => {
     mintingChain,
     success,
     refetch,
+    setPercent,
   ]);
 
-  return { error, secondsRemaining };
+  return { error, secondsRemaining, percent };
 };
