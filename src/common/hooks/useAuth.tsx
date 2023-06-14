@@ -45,6 +45,7 @@ export const useAuth = () => {
     },
   });
   const isVerified = Boolean(walletAddress) && verified;
+  console.log(verified);
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
@@ -62,29 +63,29 @@ export const useAuth = () => {
     }
   }, [chain, disconnect, dispatch]);
 
-  useEffect(() => {
-    const checkSBT = async () => {
-      if (walletAddress && chainId) {
-        try {
-          setIsLoading(true);
+  // useEffect(() => {
+  //   const checkSBT = async () => {
+  //     if (walletAddress && chainId) {
+  //       try {
+  //         setIsLoading(true);
 
-          const isVerified = await hasSoul(chainId, walletAddress);
-          if (isVerified) {
-            dispatch(checkIfVerified(isVerified));
-          } else {
-            dispatch(checkIfVerified(false));
-          }
-        } catch (err) {
-          console.error(err);
-          setIsLoading(false);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
+  //         const isVerified = await hasSoul(chainId, walletAddress);
+  //         if (isVerified) {
+  //           dispatch(checkIfVerified(isVerified));
+  //         } else {
+  //           dispatch(checkIfVerified(false));
+  //         }
+  //       } catch (err) {
+  //         console.error(err);
+  //         setIsLoading(false);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //     }
+  //   };
 
-    checkSBT();
-  }, [walletAddress, dispatch, provider, chainId]);
+  //   checkSBT();
+  // }, [walletAddress, dispatch, provider, chainId]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {
@@ -104,17 +105,22 @@ export const useAuth = () => {
           // const user = await findUserInDB(walletAddress, chainId);
           const user = await fetchUser({ walletAddress, chainId })
             .unwrap()
-            .catch(async (e) => {
-              dispatch(signTos(false));
-              const newApplicant = await onfidoCreateApplicant();
+            .catch(async (error) => {
+              if (error.status === 404) {
+                dispatch(signTos(false));
+                const newApplicant = await onfidoCreateApplicant();
 
-              await createUserInDB({
-                walletAddress,
-                onfidoApplicantId: newApplicant.id,
-              });
+                await createUserInDB({
+                  walletAddress,
+                  onfidoApplicantId: newApplicant.id,
+                });
 
-              dispatch(addApplicantId(newApplicant.id));
-              return;
+                dispatch(addApplicantId(newApplicant.id));
+                return;
+              } else if (error.status === 401) {
+                dispatch(signTos(false));
+                dispatch(checkIfVerified(false));
+              }
             });
 
           // if (!user) {
@@ -130,6 +136,12 @@ export const useAuth = () => {
           //   return;
           // }
           if (user) {
+            const isVerified = await hasSoul(chainId, walletAddress);
+            if (isVerified) {
+              dispatch(checkIfVerified(isVerified));
+            } else {
+              dispatch(checkIfVerified(false));
+            }
             if (user.tosVersion !== tos.version) {
               dispatch(signTos(false));
             } else {
