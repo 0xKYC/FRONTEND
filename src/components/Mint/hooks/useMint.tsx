@@ -168,5 +168,5 @@ export const useMint = () => {
     handleCompleteLoading,
   ]);
 
-  return { error, percent, loadingText };
+  return { error, percent, loadingText, mockedWalletAddress };
 };

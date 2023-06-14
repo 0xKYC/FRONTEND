@@ -5,7 +5,7 @@ import { useMint } from "./hooks/useMint";
 import { Container, P, StyledBox, Text } from "./styled";
 
 export const MintContent = () => {
-  const { error, percent, loadingText } = useMint();
+  const { error, percent, loadingText, mockedWalletAddress } = useMint();
 
   return (
     <Container>
@@ -16,7 +16,7 @@ export const MintContent = () => {
         />
       ) : (
         <StyledBox>
-          <P>Your token is being minted</P>
+          {!mockedWalletAddress && <P>Your token is being minted</P>}
 
           <Spin
             style={{
