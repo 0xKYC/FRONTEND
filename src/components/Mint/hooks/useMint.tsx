@@ -31,7 +31,8 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
-  const { percent, setPercent, loadingText } = useLoadingBar();
+  const { percent, setPercent, loadingText, handleCompleteLoading } =
+    useLoadingBar();
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -122,7 +123,6 @@ export const useMint = () => {
           const isVerified = await hasSoul(chainId, walletAddress);
 
           if (apiCalls === apiRequestsToCall - 1) {
-            setPercent(100);
             clearInterval(interval);
             dispatch(
               setMinting({
@@ -140,6 +140,7 @@ export const useMint = () => {
             refetch();
 
             if (user && user?.sbts?.length > 0) {
+              handleCompleteLoading();
               const sbt = getUserSbt(user);
               if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
               dispatch(
@@ -178,6 +179,7 @@ export const useMint = () => {
     success,
     refetch,
     setPercent,
+    handleCompleteLoading,
   ]);
 
   return { error, percent, loadingText };
