@@ -14,6 +14,7 @@ import {
   setMinting,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { getTransaction } from "web3/methods/getTransaction";
 import { hasSoul } from "web3/methods/hasSoul";
 
 import { useLoadingBar } from "./useLoadingBar";
@@ -30,7 +31,7 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
-  const { percent, secondsRemaining, setPercent } = useLoadingBar();
+  const { percent, setPercent, loadingText } = useLoadingBar();
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -44,6 +45,19 @@ export const useMint = () => {
     walletAddress: walletAddress || "",
     chainId,
   });
+
+  useEffect(() => {
+    const getTx = async () => {
+      if (user) {
+        console.log(user);
+        const sbt = getUserSbt(user);
+        if (sbt && sbt.txHash) {
+          await getTransaction(chainId, sbt.txHash);
+        }
+      }
+    };
+    getTx();
+  }, [chainId, user]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
@@ -166,5 +180,5 @@ export const useMint = () => {
     setPercent,
   ]);
 
-  return { error, secondsRemaining, percent };
+  return { error, percent, loadingText };
 };

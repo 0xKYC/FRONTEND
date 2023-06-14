@@ -3,33 +3,11 @@ import { useEffect, useState } from "react";
 export const useLoadingBar = () => {
   const [secondsRemaining, setSecondsRemaining] = useState(10);
   const [percent, setPercent] = useState(0);
-  console.log(percent);
 
-  //   useEffect(() => {
-  //     const totalDuration = 10000; // 10 seconds in milliseconds
-  //     const updateInterval = 100; // Update progress bar every 10 milliseconds
-
-  //     const startTime = Date.now();
-
-  //     const timer = setInterval(() => {
-  //       const elapsedTime = Date.now() - startTime;
-  //       const remainingTime = totalDuration - elapsedTime;
-
-  //       if (remainingTime <= 0) {
-  //         clearInterval(timer);
-  //         setSecondsRemaining(0);
-  //         setPercent(99);
-  //       } else {
-  //         setSecondsRemaining(remainingTime / 1000);
-  //         const calculatedPercent = Math.floor(
-  //           ((totalDuration - remainingTime) / totalDuration) * 100,
-  //         );
-  //         setPercent(calculatedPercent);
-  //       }
-  //     }, updateInterval);
-
-  //     return () => clearInterval(timer);
-  //   }, []);
+  const loadingText =
+    secondsRemaining === 0
+      ? "This is taking longer than usual. Please wait for the token to mint. This usually takes up to 30 seconds."
+      : "Please wait a few moments, you will be automatically redirected.";
 
   useEffect(() => {
     const totalDuration = 10000; // 10 seconds in milliseconds
@@ -55,5 +33,5 @@ export const useLoadingBar = () => {
     return () => clearInterval(timer);
   }, [secondsRemaining]);
 
-  return { secondsRemaining, percent, setPercent };
+  return { percent, setPercent, loadingText };
 };

@@ -16,3 +16,16 @@ export const StyledBox = styled("div")`
   flex-direction: column;
   text-align: center;
 `;
+
+export const Text = styled("p")`
+  color: #fb7324;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0 3rem 0 2rem;
+`;
+
+export const P = styled("p")`
+  color: #fb7324;
+  font-size: 1.3rem;
+  font-weight: 400;
+`;
