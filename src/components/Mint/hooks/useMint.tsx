@@ -16,6 +16,8 @@ import {
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { hasSoul } from "web3/methods/hasSoul";
 
+import { useLoadingBar } from "./useLoadingBar";
+
 const apiRequestsToCall = 200;
 
 export const useMint = () => {
@@ -28,6 +30,8 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
+  const { percent, setPercent, loadingText, handleCompleteLoading } =
+    useLoadingBar();
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -41,6 +45,7 @@ export const useMint = () => {
     walletAddress: walletAddress || "",
     chainId,
   });
+
   useEffect(() => {
     if (!walletAddress || !chainId) {
       return navigate("/");
@@ -121,6 +126,7 @@ export const useMint = () => {
             refetch();
 
             if (user && user?.sbts?.length > 0) {
+              handleCompleteLoading();
               const sbt = getUserSbt(user);
               if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
               dispatch(
@@ -158,7 +164,9 @@ export const useMint = () => {
     mintingChain,
     success,
     refetch,
+    setPercent,
+    handleCompleteLoading,
   ]);
 
-  return { error };
+  return { error, percent, loadingText, mockedWalletAddress };
 };
