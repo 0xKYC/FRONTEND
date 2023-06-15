@@ -1,12 +1,11 @@
-import { Result } from "antd";
+import { Result, Spin } from "antd";
+import { Progress } from "antd";
 
-import { LoadingSpinner } from "common/LoadingSpinner";
-
-import { Container, StyledBox } from "./styled";
-import { useMint } from "./useMint";
+import { useMint } from "./hooks/useMint";
+import { Container, P, StyledBox, Text } from "./styled";
 
 export const MintContent = () => {
-  const { error } = useMint();
+  const { error, percent, loadingText, mockedWalletAddress } = useMint();
 
   return (
     <Container>
@@ -17,10 +16,22 @@ export const MintContent = () => {
         />
       ) : (
         <StyledBox>
-          <LoadingSpinner
-            tip="Please wait a few moments, you will be automatically redirected."
-            width="300px"
+          {!mockedWalletAddress && <P>Your token is being minted</P>}
+
+          <Spin
+            style={{
+              color: "#fb7324",
+              fontSize: "1.2rem",
+            }}
+          ></Spin>
+          <Progress
+            percent={percent}
+            type="line"
+            showInfo={false}
+            strokeColor={{ from: "#fbae81", to: "#fb7324" }}
           />
+
+          <Text>{loadingText}</Text>
         </StyledBox>
       )}
     </Container>
