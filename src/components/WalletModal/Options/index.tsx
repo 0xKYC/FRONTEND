@@ -5,7 +5,6 @@ import { Box } from "./styles";
 
 export const Options = () => {
   const { connectors } = useConnect();
-
   return (
     <Box>
       {connectors.map((connector) => (

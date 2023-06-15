@@ -3,22 +3,14 @@ import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
 
 import { Col, Row } from "antd";
-import { ENV } from "env";
-import { useAccount, useNetwork } from "wagmi";
 
 import { Button } from "common/Button";
+import { LoadingCircle } from "common/Spinner";
 import { SvgIcon } from "common/SvgIcon";
-import { SupportedChainId } from "constans/chains";
+import { useHandleOnfidoRedirect } from "common/utils/handleOnfidoRedirect";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
-import {
-  selectApplicantId,
-  selectCallbackUrl,
-  selectMockedWalletAddress,
-  selectTosAcceptedWallet,
-} from "redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { onfidoRedirect } from "service/onfido/onfido.service";
+import { useAppDispatch } from "redux/hooks";
 
 import { CardInfo } from "../CardInfo";
 import { EmailForm } from "../EmailForm";
@@ -42,43 +34,11 @@ const ContentBlock = ({
   icon,
   t,
 }: ContentBlockProps) => {
+  const [isVerifyClicked, setVerifyClicked] = useState(false);
   const dispatch = useAppDispatch();
-  const onfidoApplicantId = useAppSelector(selectApplicantId);
-  const { address } = useAccount();
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
-  const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
-  const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
+  const { handleOnfidoRedirect, walletAddress, tosAccepted, isLoading } =
+    useHandleOnfidoRedirect();
 
-  const { chain } = useNetwork();
-  const [verifyClicked, setVerifyClicked] = useState(false);
-  const walletAddress = address || mockedWalletAddress;
-
-  const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
-
-  const handleOnfidoRedirect = async (email?: string) => {
-    if (walletAddress && onfidoApplicantId && chainId) {
-      let redirectUrl = "http://localhost:3000/";
-      if (ENV.REACT_APP_ENVIRONMENT === "stage") {
-        redirectUrl = "https://stage.0xkyc.id/";
-      } else if (ENV.REACT_APP_ENVIRONMENT === "prod") {
-        redirectUrl = "https://app.0xkyc.id/";
-      }
-
-      try {
-        await onfidoRedirect({
-          applicantId: onfidoApplicantId,
-          chainId,
-          walletAddress,
-          callbackUrl: partnerCallbackUrl,
-          redirectUrl,
-          // redirectUrl: "http://localhost:3000/",
-          email,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
   const handleVerify = async (event: React.MouseEvent<HTMLButtonElement>) => {
     if (walletAddress && tosAccepted) {
       setVerifyClicked(true);
@@ -104,7 +64,7 @@ const ContentBlock = ({
         <Row justify="space-between" align="middle">
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              {verifyClicked && walletAddress ? (
+              {isVerifyClicked && walletAddress ? (
                 <Fade>
                   <Heading>Please provide your email address</Heading>
                   <Content style={{ marginBottom: "1rem" }}>
@@ -118,7 +78,9 @@ const ContentBlock = ({
                   <Heading>{t(header)}</Heading>
                   <Content>{t(contentText)}</Content>
                   <ButtonWrapper>
-                    <Button onClick={handleVerify}>{t(buttonText)}</Button>
+                    <Button onClick={handleVerify}>
+                      {isLoading ? <LoadingCircle /> : buttonText}
+                    </Button>
                   </ButtonWrapper>
                 </>
               )}

@@ -9,7 +9,7 @@ import {
   StyledOlList,
   StyledText,
   StyledTitle,
-} from "../../common/TextContainer/style";
+} from "../../../common/TextContainer/style";
 
 const About = () => {
   return (
