@@ -57,7 +57,7 @@ export const VerificationForPartners = ({
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <CardInfo />
+              <CardInfo isPartnerFlow={Boolean(mockedWalletAddress)} />
             </ContentWrapper>
           </Col>
         </Row>
