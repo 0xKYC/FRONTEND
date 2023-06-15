@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { getUserSbt } from "components/Content/Verified/utils";
+import { getUserSbt } from "components/VerifiedProfile/utils";
 import { SupportedChainId } from "constans/chains";
 import { useGetUserQuery, userApi } from "redux/api/user/userApi";
 import {

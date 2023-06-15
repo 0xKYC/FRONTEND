@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
-import { useTranslation, withTranslation } from "react-i18next";
+import { withTranslation } from "react-i18next";
 
 import { Col, Row } from "antd";
 import { useAccount, useNetwork } from "wagmi";
 
 import { LoadingSpinner } from "common/LoadingSpinner";
-import { SupportedChainId, getChainInfo } from "constans/chains";
-import vContent from "content/VerifiedContent.json";
+import { SupportedChainId } from "constans/chains";
 import { useGetUserQuery } from "redux/api/user/userApi";
 import {
   selectMockedWalletAddress,
@@ -15,24 +14,12 @@ import {
 } from "redux/features/user/userSlice";
 import { useAppSelector } from "redux/hooks";
 
-import { CardInfo } from "../../CardInfo";
-import { Heading } from "../styles";
-import { Checkmark } from "./Checkmark";
-import {
-  BlockWrapper,
-  Box,
-  Content,
-  ContentWrapper,
-  Flex,
-  StyledCard,
-  StyledLink,
-  StyledRedirectLink,
-} from "./styles";
+import { CardInfo } from "../CardInfo";
+import { VerifiedCard } from "./VerifiedCard";
+import { BlockWrapper, ContentWrapper } from "./styles";
 import { getUserSbt } from "./utils";
 
-const VerifiedContent = () => {
-  const { t } = useTranslation();
-
+const VerifiedPage = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
   const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
@@ -62,7 +49,6 @@ const VerifiedContent = () => {
 
   const sbt = getUserSbt(user);
   const txHash = sbt?.txHash;
-  const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
 
   return (
     <BlockWrapper>
@@ -70,39 +56,11 @@ const VerifiedContent = () => {
         <Row justify="space-between" align="middle">
           <Col lg={13} md={12} sm={24} xs={24}>
             <ContentWrapper>
-              <StyledCard>
-                <Box>
-                  <Heading>{t(vContent.title)}</Heading>
-                  <Flex>
-                    <Checkmark />
-
-                    <img
-                      alt={label}
-                      src={mockedWalletAddress ? "/img/IS-logo.png" : logoUrl}
-                      width={44}
-                      height={42}
-                      style={{ marginTop: "3px", marginLeft: "6px" }}
-                    />
-                  </Flex>
-                </Box>
-                {vContent.info.map(({ text, id }) => {
-                  return <Content key={id}>{t(text)}</Content>;
-                })}
-                {redirectUrlFromPartner ? (
-                  <StyledRedirectLink href={redirectUrlFromPartner}>
-                    Continue to Insert Stonks
-                  </StyledRedirectLink>
-                ) : (
-                  <StyledLink
-                    chainId={chainId}
-                    href={explorer + txHash}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Link to {explorerName}
-                  </StyledLink>
-                )}
-              </StyledCard>
+              <VerifiedCard
+                txHash={txHash}
+                chainId={chainId}
+                redirectUrlFromPartner={redirectUrlFromPartner}
+              />
             </ContentWrapper>
           </Col>
           <Col lg={10} md={11} sm={24} xs={24}>
@@ -116,4 +74,4 @@ const VerifiedContent = () => {
   );
 };
 
-export default withTranslation()(VerifiedContent);
+export default withTranslation()(VerifiedPage);

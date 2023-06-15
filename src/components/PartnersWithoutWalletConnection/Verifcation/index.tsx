@@ -14,8 +14,8 @@ import {
   ContentWrapper,
   Heading,
   RightBlockContainer,
-} from "../../Content/styles";
-import { ContentBlockProps } from "../../Content/types";
+} from "../../Verification/styles";
+import { ContentBlockProps } from "../../Verification/types";
 
 export const VerificationForPartners = ({
   title,
