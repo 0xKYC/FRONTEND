@@ -14,8 +14,8 @@ import {
   ContentWrapper,
   Heading,
   RightBlockContainer,
-} from "../../Content/styles";
-import { ContentBlockProps } from "../../Content/types";
+} from "../../Verification/styles";
+import { ContentBlockProps } from "../../Verification/types";
 
 export const VerificationForPartners = ({
   title,
@@ -57,7 +57,7 @@ export const VerificationForPartners = ({
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
             <ContentWrapper>
-              <CardInfo />
+              <CardInfo isPartnerFlow={Boolean(mockedWalletAddress)} />
             </ContentWrapper>
           </Col>
         </Row>

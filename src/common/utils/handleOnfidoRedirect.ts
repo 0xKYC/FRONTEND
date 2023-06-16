@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { getRedirectUrl } from "components/Content/getRedirectUrl";
+import { getRedirectUrl } from "components/Verification/getRedirectUrl";
 import { SupportedChainId } from "constans/chains";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {

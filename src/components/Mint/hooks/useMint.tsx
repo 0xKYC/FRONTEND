@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { getUserSbt } from "components/Content/Verified/utils";
+import { getUserSbt } from "components/VerifiedProfile/utils";
 import { SupportedChainId } from "constans/chains";
 import { useGetUserQuery, userApi } from "redux/api/user/userApi";
 import {
@@ -45,6 +45,21 @@ export const useMint = () => {
     walletAddress: walletAddress || "",
     chainId,
   });
+
+  // useEffect(() => {
+  //   if (mockedWalletAddress && user) {
+  //     console.log(user);
+  //     console.log(user.uuid);
+  //     const sbt = getUserSbt(user);
+  //     console.log(sbt?.onfidoStatus);
+
+  //     if (sbt?.onfidoStatus !== "declined" && user.uuid) {
+  //       return alert("REDIRECT");
+  //     } else {
+  //       return alert("CHECK");
+  //     }
+  //   }
+  // }, [mockedWalletAddress, user]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {

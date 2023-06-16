@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useLoadingBar = () => {
-  const [secondsRemaining, setSecondsRemaining] = useState(10);
+  const [secondsRemaining, setSecondsRemaining] = useState(15);
   const [percent, setPercent] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const loadingText =
@@ -10,8 +10,8 @@ export const useLoadingBar = () => {
       : "Please wait a few moments, you will be automatically redirected.";
 
   useEffect(() => {
-    const totalDuration = 12000; // 12 seconds in milliseconds
-    const updateInterval = 10; // Update progress bar every 10 milliseconds
+    const totalDuration = 15000; // 15 seconds in milliseconds
+    const updateInterval = 5; // Update progress bar every 10 milliseconds
 
     const startTime = Date.now();
 
