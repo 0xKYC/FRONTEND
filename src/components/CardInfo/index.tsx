@@ -1,6 +1,10 @@
+import { CustomPartnerInfo } from "./CustomPartnerInfo";
 import { StyledCard, StyledLink, StyledList, StyledText } from "./styles";
 
-export const CardInfo = () => {
+type Props = {
+  isPartnerFlow?: boolean;
+};
+export const CardInfo = ({ isPartnerFlow }: Props) => {
   return (
     <StyledCard
       bordered={false}
@@ -13,14 +17,23 @@ export const CardInfo = () => {
       <StyledText style={{ fontWeight: "500" }}>
         Your data is not being shared with our clients!
       </StyledText>
-      <StyledText>
-        Only the result of the check is shared, check result includes:
-      </StyledText>
-      <StyledList>
-        <li>if you are verified </li>
-        <li>if you are at least 18 years old</li>
-        <li>your unique identifier (UUID)</li>
-      </StyledList>
+
+      {isPartnerFlow ? (
+        <CustomPartnerInfo />
+      ) : (
+        <>
+          {" "}
+          <StyledText>
+            Only the result of the check is shared, check result includes:
+          </StyledText>
+          <StyledList>
+            <li>if you are verified </li>
+            <li>if you are at least 18 years old</li>
+            <li>your unique identifier (UUID)</li>
+          </StyledList>
+        </>
+      )}
+
       <StyledText>
         Please contact{" "}
         <StyledLink href="mailto:support@0xkyc.id">support@0xkyc.id</StyledLink>{" "}

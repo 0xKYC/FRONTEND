@@ -6,7 +6,7 @@ import VerifyContent from "../../../content/VerifyContent.json";
 
 const Container = lazy(() => import("../../../common/Container"));
 const ScrollToTop = lazy(() => import("../../../common/ScrollToTop"));
-const ContentBlock = lazy(() => import("../../../components/Content"));
+const ContentBlock = lazy(() => import("../../../components/Verification"));
 
 const Home = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
