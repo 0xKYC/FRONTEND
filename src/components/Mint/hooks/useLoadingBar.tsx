@@ -10,7 +10,7 @@ export const useLoadingBar = () => {
       : "Please wait a few moments, you will be automatically redirected.";
 
   useEffect(() => {
-    const totalDuration = 10000; // 10 seconds in milliseconds
+    const totalDuration = 12000; // 12 seconds in milliseconds
     const updateInterval = 10; // Update progress bar every 10 milliseconds
 
     const startTime = Date.now();
@@ -40,6 +40,5 @@ export const useLoadingBar = () => {
     setPercent(100);
   }, []);
 
-  console.log(percent);
   return { percent, setPercent, loadingText, handleCompleteLoading };
 };
