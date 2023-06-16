@@ -1,4 +1,4 @@
-import TextContainer from "../../common/TextContainer";
+import TextContainer from "../../../common/TextContainer";
 
 const PrivacyPolicy = () => {
   return (
@@ -715,8 +715,8 @@ const PrivacyPolicy = () => {
           href="https://onfido.com/terms-of-service/"
         >
           Onfido Terms of Service
-        </a>.{" "}
-        You can decline to provide biometric identifiers and biometric
+        </a>
+        . You can decline to provide biometric identifiers and biometric
         information to us and/or trusted third-party providers, though you will
         not be able to use our Services without this feature. You may revoke
         this consent at any time by notifying us at{" "}
