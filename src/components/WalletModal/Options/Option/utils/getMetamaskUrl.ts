@@ -3,6 +3,7 @@ import { ENV } from "env";
 export const getMetamaskUrl = () => {
   const metamaskUrl = "https://metamask.app.link/dapp/";
   const environments = {
+    local: "",
     dev: "dev.0xkyc.id",
     sandbox: "sandbox.0xkyc.id",
     stage: "stage.0xkyc.id",
