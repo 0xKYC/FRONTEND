@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { getUserSbt } from "components/Content/Verified/utils";
+import { getUserSbt } from "components/VerifiedProfile/utils";
 import { SupportedChainId } from "constans/chains";
 import { useGetUserQuery, userApi } from "redux/api/user/userApi";
 import {
@@ -15,6 +15,8 @@ import {
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { hasSoul } from "web3/methods/hasSoul";
+
+import { useLoadingBar } from "./useLoadingBar";
 
 const apiRequestsToCall = 200;
 
@@ -28,7 +30,8 @@ export const useMint = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [apiCalls, setApiCalls] = useState(0);
-  const [secondsRemaining, setSecondsRemaining] = useState(10);
+  const { percent, setPercent, loadingText, handleCompleteLoading } =
+    useLoadingBar();
 
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
@@ -43,17 +46,20 @@ export const useMint = () => {
     chainId,
   });
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsRemaining((prevSeconds) => prevSeconds - 1);
-    }, 1000);
+  // useEffect(() => {
+  //   if (mockedWalletAddress && user) {
+  //     console.log(user);
+  //     console.log(user.uuid);
+  //     const sbt = getUserSbt(user);
+  //     console.log(sbt?.onfidoStatus);
 
-    if (secondsRemaining === 0) {
-      clearInterval(timer);
-    }
-
-    return () => clearInterval(timer);
-  }, [secondsRemaining]);
+  //     if (sbt?.onfidoStatus !== "declined" && user.uuid) {
+  //       return alert("REDIRECT");
+  //     } else {
+  //       return alert("CHECK");
+  //     }
+  //   }
+  // }, [mockedWalletAddress, user]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
@@ -135,6 +141,7 @@ export const useMint = () => {
             refetch();
 
             if (user && user?.sbts?.length > 0) {
+              handleCompleteLoading();
               const sbt = getUserSbt(user);
               if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
               dispatch(
@@ -172,7 +179,9 @@ export const useMint = () => {
     mintingChain,
     success,
     refetch,
+    setPercent,
+    handleCompleteLoading,
   ]);
 
-  return { error, secondsRemaining };
+  return { error, percent, loadingText, mockedWalletAddress };
 };

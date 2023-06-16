@@ -1,4 +1,4 @@
-import { User } from "../../../service/user/types";
+import { User } from "../../service/user/types";
 
 export const getUserSbt = (user: User) => {
   if (user?.sbts.length > 0) {

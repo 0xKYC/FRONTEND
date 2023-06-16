@@ -1,15 +1,12 @@
 import { Result, Spin } from "antd";
+import { Progress } from "antd";
 
-import { Container, StyledBox } from "./styled";
-import { useMint } from "./useMint";
+import { useMint } from "./hooks/useMint";
+import { Container, P, StyledBox, Text } from "./styled";
 
 export const MintContent = () => {
-  const { error, secondsRemaining } = useMint();
+  const { error, percent, loadingText, mockedWalletAddress } = useMint();
 
-  const loadingInfo =
-    secondsRemaining === 0
-      ? "This is taking longer than usual, please wait for the token to mint. This usually takes up to 30 seconds. We are waiting for the blockchain to mint the token."
-      : "Please wait a few moments, you will be automatically redirected.";
   return (
     <Container>
       {error ? (
@@ -19,14 +16,22 @@ export const MintContent = () => {
         />
       ) : (
         <StyledBox>
+          {!mockedWalletAddress && <P>Your token is being minted</P>}
+
           <Spin
-            tip={loadingInfo}
-            size="large"
             style={{
               color: "#fb7324",
               fontSize: "1.2rem",
             }}
           ></Spin>
+          <Progress
+            percent={percent}
+            type="line"
+            showInfo={false}
+            strokeColor={{ from: "#fbae81", to: "#fb7324" }}
+          />
+
+          <Text>{loadingText}</Text>
         </StyledBox>
       )}
     </Container>

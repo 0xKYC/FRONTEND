@@ -9,7 +9,7 @@ const ThirdParties = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="router/pages/ThirdParties/index"
+          href="https://onfido.com/facial-scan-policy-and-release/"
         >
           Onfido Facial Scan Policy and Release
         </a>
@@ -17,7 +17,7 @@ const ThirdParties = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="router/pages/ThirdParties/index"
+          href="https://onfido.com/privacy/"
         >
           Privacy Policy
         </a>{" "}
@@ -25,7 +25,7 @@ const ThirdParties = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="router/pages/ThirdParties/index"
+          href="https://onfido.com/terms-of-service/"
         >
           Terms Of Service
         </a>{" "}
