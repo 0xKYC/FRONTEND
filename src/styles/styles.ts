@@ -164,17 +164,14 @@ export const Styles = createGlobalStyle`
     margin: 0;
     }
     .ant-modal-footer .ant-btn{
-
         @media screen and (max-width:343px) {
         margin-bottom: .5rem;
-            
         }
     }
-
-ul {
+    ul {
   list-style-position: inside;
   padding-left: .3rem
-}
+    }
 
 
 .markdown .title {
