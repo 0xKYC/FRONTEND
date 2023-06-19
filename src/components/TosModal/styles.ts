@@ -3,9 +3,9 @@ import { Modal } from "antd";
 import styled from "styled-components";
 
 export const StyledModal = styled(Modal)`
-  @media screen and (min-width: 1024px) {
+  /* @media screen and (min-width: 1024px) {
     margin-top: 10rem;
-  }
+  } */
 `;
 
 export const StyledP = styled.p<{ biggerMargin?: boolean }>`
@@ -15,10 +15,6 @@ export const StyledP = styled.p<{ biggerMargin?: boolean }>`
   @media screen and (min-width: 1024px) {
     margin: ${(props) => (props.biggerMargin ? ".5rem 4rem" : ".5rem")};
   }
-
-  /* a {
-    font-size: 1.2rem;
-  } */
 `;
 
 export const Title = styled.p`
