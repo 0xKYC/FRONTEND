@@ -77,20 +77,19 @@ export const useAuth = () => {
     };
 
     //flow for insert stonks
-    // const checkForUuid = async (mockedWalletAddress: string) => {
-    //   const user = await findUserInDB(mockedWalletAddress, chainId);
-    //   if (user?.uuid) {
-    //     dispatch(checkIfVerified(true));
-    //   } else {
-    //     dispatch(checkIfVerified(false));
-    //   }
-    // };
-    // if (mockedWalletAddress) {
-    //   checkForUuid(mockedWalletAddress);
-    // } else {
-    //   checkSBT();
-    // }
-    checkSBT();
+    const checkForUuid = async (mockedWalletAddress: string) => {
+      const user = await findUserInDB(mockedWalletAddress, chainId);
+      if (user?.user?.uuid) {
+        dispatch(checkIfVerified(true));
+      } else {
+        dispatch(checkIfVerified(false));
+      }
+    };
+    if (mockedWalletAddress) {
+      checkForUuid(mockedWalletAddress);
+    } else {
+      checkSBT();
+    }
   }, [walletAddress, dispatch, provider, chainId, mockedWalletAddress]);
 
   useEffect(() => {
