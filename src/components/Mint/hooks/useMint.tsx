@@ -46,15 +46,11 @@ export const useMint = () => {
     chainId,
   });
 
+  // flow for insert stonks users
   useEffect(() => {
-    if (user) {
-      console.log(user.user?.uuid);
-    }
     if (mockedWalletAddress && user) {
-      console.log(user);
-      console.log(user.user?.uuid);
+      refetch();
       const sbt = getUserSbt(user);
-      console.log(sbt?.onfidoStatus);
 
       if (sbt?.onfidoStatus !== "declined" && user.user?.uuid) {
         dispatch(
@@ -65,14 +61,22 @@ export const useMint = () => {
             error: false,
           }),
         );
-
+        handleCompleteLoading();
         setSuccess(true);
         dispatch(checkIfVerified(true));
 
         navigate("/profile");
       }
     }
-  }, [mockedWalletAddress, user, navigate, dispatch]);
+  }, [
+    mockedWalletAddress,
+    user,
+    navigate,
+    dispatch,
+    handleCompleteLoading,
+    apiCalls,
+    refetch,
+  ]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
