@@ -161,13 +161,17 @@ export const Styles = createGlobalStyle`
     z-index: 9999;
     }
     .ant-dropdown-menu {
-   margin: 0;
+    margin: 0;
     }
-
-ul {
+    .ant-modal-footer .ant-btn{
+        @media screen and (max-width:343px) {
+        margin-bottom: .5rem;
+        }
+    }
+    ul {
   list-style-position: inside;
   padding-left: .3rem
-}
+    }
 
 
 .markdown .title {

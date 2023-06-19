@@ -46,20 +46,33 @@ export const useMint = () => {
     chainId,
   });
 
-  // useEffect(() => {
-  //   if (mockedWalletAddress && user) {
-  //     console.log(user);
-  //     console.log(user.uuid);
-  //     const sbt = getUserSbt(user);
-  //     console.log(sbt?.onfidoStatus);
+  useEffect(() => {
+    if (user) {
+      console.log(user.user?.uuid);
+    }
+    if (mockedWalletAddress && user) {
+      console.log(user);
+      console.log(user.user?.uuid);
+      const sbt = getUserSbt(user);
+      console.log(sbt?.onfidoStatus);
 
-  //     if (sbt?.onfidoStatus !== "declined" && user.uuid) {
-  //       return alert("REDIRECT");
-  //     } else {
-  //       return alert("CHECK");
-  //     }
-  //   }
-  // }, [mockedWalletAddress, user]);
+      if (sbt?.onfidoStatus !== "declined" && user.user?.uuid) {
+        dispatch(
+          setMinting({
+            minting: false,
+            chainId: null,
+            walletAddress: mockedWalletAddress,
+            error: false,
+          }),
+        );
+
+        setSuccess(true);
+        dispatch(checkIfVerified(true));
+
+        navigate("/profile");
+      }
+    }
+  }, [mockedWalletAddress, user, navigate, dispatch]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
