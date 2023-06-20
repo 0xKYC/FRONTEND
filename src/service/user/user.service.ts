@@ -1,7 +1,7 @@
 import { ChainId } from "constans/chains";
 
 import { api } from "../config";
-import { User, WalletAddress } from "./types";
+import { User, Wallet, WalletAddress } from "./types";
 
 type UserUpdate = {
   walletAddress: WalletAddress;
@@ -20,7 +20,9 @@ export async function findUserInDB(
   chainId: ChainId,
 ) {
   try {
-    const res = await api.get<User>(`user/${walletAddress}/chainId/${chainId}`);
+    const res = await api.get<Wallet>(
+      `user/${walletAddress}/chainId/${chainId}`,
+    );
     return res.data;
   } catch (error) {
     console.error("ERR", error);

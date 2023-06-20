@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { ChainId } from "constans/chains";
 import { API_URL } from "service/config";
-import type { User } from "service/user/types";
+import type { User, Wallet } from "service/user/types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -10,10 +10,12 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
 
   endpoints: (builder) => ({
-    getUser: builder.query<User, { walletAddress: string; chainId: ChainId }>({
-      query: ({ walletAddress, chainId }) =>
-        `user/${walletAddress}/chainId/${chainId}`,
-    }),
+    getUser: builder.query<Wallet, { walletAddress: string; chainId: ChainId }>(
+      {
+        query: ({ walletAddress, chainId }) =>
+          `user/${walletAddress}/chainId/${chainId}`,
+      },
+    ),
 
     editUser: builder.mutation<
       User,

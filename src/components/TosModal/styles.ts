@@ -15,10 +15,6 @@ export const StyledP = styled.p<{ biggerMargin?: boolean }>`
   @media screen and (min-width: 1024px) {
     margin: ${(props) => (props.biggerMargin ? ".5rem 4rem" : ".5rem")};
   }
-
-  /* a {
-    font-size: 1.2rem;
-  } */
 `;
 
 export const Title = styled.p`

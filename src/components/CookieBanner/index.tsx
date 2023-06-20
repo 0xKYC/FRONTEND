@@ -16,6 +16,16 @@ export const CookieBanner = () => {
         marginBottom: "1rem",
         transform: "translateX(-50%)",
       }}
+      declineButtonText="Cancel"
+      enableDeclineButton
+      declineButtonStyle={{
+        padding: ".3rem .6rem",
+        color: "white",
+        fontSize: ".9rem",
+        borderRadius: "0.4rem",
+        fontWeight: "bold",
+        fontFamily: "Motiva Sans Light",
+      }}
       buttonText="Okay"
       buttonStyle={{
         padding: ".5rem 1rem",
