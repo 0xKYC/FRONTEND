@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import tos from "content/TermsOfService.json";
-import { useEditUserMutation } from "redux/api/user/userApi";
+import { useEditUserWalletMutation } from "redux/api/user/userApi";
 import {
   selectIsTosModalOpen,
   toggleTosModal,
@@ -28,7 +28,7 @@ export const TosModalWeb2 = () => {
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const isTosModalOpen = useAppSelector(selectIsTosModalOpen);
 
-  const [editUser, result] = useEditUserMutation();
+  const [editUser, result] = useEditUserWalletMutation();
 
   const closeModal = () => {
     dispatch(toggleTosModal(false));

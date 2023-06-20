@@ -4,13 +4,9 @@ import { SiweMessage } from "siwe";
 
 import { ChainId } from "constans/chains";
 import { loadLocalStorage } from "redux/localStorage";
-import { RootState } from "redux/store";
-import { API_URL } from "service/config";
-import type { User, Wallet } from "service/user/types";
 
-type Res = {
-  accessToken: string;
-};
+import { API_URL } from "../config";
+import { EditUserData, Wallet } from "./types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -30,25 +26,36 @@ export const userApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getUser: builder.query<Wallet, { walletAddress: string; chainId: ChainId }>(
-      {
-        query: ({ walletAddress, chainId }) =>
-          `user/${walletAddress}/chainId/${chainId}`,
-      },
-    ),
-
-    editUser: builder.mutation<
-      User,
-      Partial<User> & Pick<User, "walletAddress">
+    getUserWallet: builder.query<
+      Wallet,
+      { walletAddress: string; chainId: ChainId }
     >({
-      query: (user) => ({
+      query: ({ walletAddress, chainId }) =>
+        `user/${walletAddress}/chainId/${chainId}`,
+    }),
+    getUserWalletInfo: builder.query<
+      { address: string },
+      { walletAddress: string }
+    >({
+      query: ({ walletAddress }) => `user/${walletAddress}`,
+    }),
+
+    createUserWallet: builder.mutation<Wallet, { walletAddress: string }>({
+      query: (userWalletData) => ({
+        url: `user/wallet`,
+        method: "POST",
+        body: userWalletData,
+      }),
+    }),
+    editUserWallet: builder.mutation<Wallet, EditUserData>({
+      query: (userWalletData) => ({
         url: `user/wallet`,
         method: "PATCH",
-        body: user,
+        body: userWalletData,
       }),
     }),
     verifySignature: builder.mutation<
-      Res,
+      { accessToken: string },
       { message: SiweMessage; signature: string }
     >({
       query: (data) => ({
@@ -57,21 +64,21 @@ export const userApi = createApi({
         body: data,
       }),
     }),
+    subscribeNewsletter: builder.mutation<string, { email: string }>({
+      query: (data) => ({
+        url: `user/newsletter/signup`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
 export const {
-  useGetUserQuery,
-  useEditUserMutation,
+  useGetUserWalletQuery,
+  useGetUserWalletInfoQuery,
+  useEditUserWalletMutation,
+  useCreateUserWalletMutation,
   useVerifySignatureMutation,
+  useSubscribeNewsletterMutation,
 } = userApi;
-// verifySignature: builder.mutation<
-//     Res,
-//     { message: SiweMessage; signature: string }
-//   >({
-//     query: (data) => ({
-//       url: `user/auth`,
-//       method: "POST",
-//       body: data,
-//     }),
-//   }),

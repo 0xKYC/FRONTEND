@@ -1,15 +1,3 @@
-export type User = {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  walletAddress: string;
-  onfidoApplicantId: string;
-  signature: string | null;
-  timestamp: Date | null;
-  tosVersion: string | null;
-  sbts: Sbt[];
-};
-
 type UserObject = {
   uuid: string | null;
 };
@@ -60,3 +48,11 @@ export type OnfidoStatus =
   | "processing";
 
 export type WalletAddress = string;
+
+export type EditUserData = {
+  walletAddress: string;
+  tosVersion?: string;
+  signature?: string;
+  time_stamp?: string;
+  onfidoApplicantId?: string;
+};

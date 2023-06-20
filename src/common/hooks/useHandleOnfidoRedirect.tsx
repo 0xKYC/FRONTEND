@@ -4,6 +4,7 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { getRedirectUrl } from "components/Verification/getRedirectUrl";
 import { SupportedChainId } from "constans/chains";
+import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
@@ -12,7 +13,6 @@ import {
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { onfidoRedirect } from "service/onfido/onfido.service";
 
 export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +21,7 @@ export const useHandleOnfidoRedirect = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [onfidoRedirect] = useOnfidoRedirectMutation();
   const { address } = useAccount();
   const { chain } = useNetwork();
 
@@ -31,22 +31,19 @@ export const useHandleOnfidoRedirect = () => {
   const redirectUrl = getRedirectUrl();
 
   const handleOnfidoRedirect = async (email?: string) => {
-    try {
-      if (walletAddress && onfidoApplicantId && chainId) {
-        await onfidoRedirect({
-          applicantId: onfidoApplicantId,
-          chainId,
-          walletAddress,
-          callbackUrl: partnerCallbackUrl,
-          redirectUrl,
-          email,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
+    if (walletAddress && onfidoApplicantId && chainId) {
+      await onfidoRedirect({
+        applicantId: onfidoApplicantId,
+        chainId,
+        walletAddress,
+        callbackUrl: partnerCallbackUrl,
+        redirectUrl,
+        email,
+      })
+        .unwrap()
+        .then((responseUrl) => window.location.replace(responseUrl))
+        .catch((error) => console.error(error))
+        .finally(() => setIsLoading(false));
     }
   };
   const handleOnfidoRedirectWithTosCheck = async () => {
