@@ -7,6 +7,7 @@ export const HomeWithoutWalletConnection = lazy(
 export const Profile = lazy(() => import("./pages/Profile"));
 export const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 export const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+export const ThirdParties = lazy(() => import("./pages/ThirdParties"));
 export const About = lazy(() => import("./pages/About"));
 export const Mint = lazy(() => import("./pages/Mint"));
 export const Error = lazy(() => import("./pages/Error"));

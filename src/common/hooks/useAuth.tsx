@@ -63,26 +63,26 @@ export const useAuth = () => {
     }
   }, [chain, disconnect, dispatch]);
 
-  // useEffect(() => {
-  //   const checkSBT = async () => {
-  //     if (walletAddress && chainId) {
-  //       try {
-  //         setIsLoading(true);
+  useEffect(() => {
+    const checkSBT = async () => {
+      if (walletAddress && chainId) {
+        try {
+          setIsLoading(true);
 
-  //         const isVerified = await hasSoul(chainId, walletAddress);
-  //         if (isVerified) {
-  //           dispatch(checkIfVerified(isVerified));
-  //         } else {
-  //           dispatch(checkIfVerified(false));
-  //         }
-  //       } catch (err) {
-  //         console.error(err);
-  //         setIsLoading(false);
-  //       } finally {
-  //         setIsLoading(false);
-  //       }
-  //     }
-  //   };
+          const isVerified = await hasSoul(chainId, walletAddress);
+          if (isVerified) {
+            dispatch(checkIfVerified(isVerified));
+          } else {
+            dispatch(checkIfVerified(false));
+          }
+        } catch (err) {
+          console.error(err);
+          setIsLoading(false);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
 
   //   checkSBT();
   // }, [walletAddress, dispatch, provider, chainId]);
@@ -115,22 +115,9 @@ export const useAuth = () => {
                   onfidoApplicantId: newApplicant.id,
                 });
 
-                dispatch(addApplicantId(newApplicant.id));
-                return;
-              } else if (error.status === 401) {
-                dispatch(signTos(false));
-                dispatch(checkIfVerified(false));
-              }
-            });
-
-          // if (!user) {
-          //   dispatch(signTos(false));
-          //   const newApplicant = await onfidoCreateApplicant();
-
-          //   await createUserInDB({
-          //     walletAddress,
-          //     onfidoApplicantId: newApplicant.id,
-          //   });
+            dispatch(addApplicantId(newApplicant.id));
+            return;
+          }
 
           //   dispatch(addApplicantId(newApplicant.id));
           //   return;
@@ -148,6 +135,16 @@ export const useAuth = () => {
               dispatch(signTos(true));
             }
 
+          if (user.onfidoApplicantId === null) {
+            const newApplicant = await onfidoCreateApplicant();
+            await editUser({
+              walletAddress,
+              onfidoApplicantId: newApplicant.id,
+            });
+            dispatch(addApplicantId(newApplicant.id));
+          } else {
+            dispatch(addApplicantId(user.onfidoApplicantId));
+          }
             if (user.onfidoApplicantId === null) {
               const newApplicant = await onfidoCreateApplicant();
               await editUser({

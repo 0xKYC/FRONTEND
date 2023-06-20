@@ -2,7 +2,7 @@ import { Card } from "antd";
 
 import styled from "styled-components";
 
-import { ChainId, SupportedChainId } from "../../../constans/chains";
+import { ChainId, SupportedChainId } from "../../constans/chains";
 
 export const Content = styled("p")`
   margin: 1rem 0;

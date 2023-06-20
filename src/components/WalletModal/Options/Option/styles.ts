@@ -30,6 +30,7 @@ export const StyledOptionBtn = styled.button<{ isMetamask: boolean }>`
 
   @media screen and (max-width: 1024px) {
     display: ${(props) => (props.isMetamask ? "none" : "flex")};
+    align-items: center;
   }
 `;
 
@@ -53,9 +54,14 @@ export const ImageBox = styled.div`
 export const TextBox = styled.div`
   width: 40%;
   margin-right: 5rem;
-
+  font-weight: 600;
   @media screen and (max-width: 540px) {
     width: 100%;
     margin: 0;
+  }
+
+  p {
+    font-weight: 600;
+    margin-bottom: 0;
   }
 `;

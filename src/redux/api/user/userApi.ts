@@ -6,7 +6,7 @@ import { ChainId } from "constans/chains";
 import { loadLocalStorage } from "redux/localStorage";
 import { RootState } from "redux/store";
 import { API_URL } from "service/config";
-import type { User } from "service/user/types";
+import type { User, Wallet } from "service/user/types";
 
 type Res = {
   accessToken: string;
@@ -30,10 +30,12 @@ export const userApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getUser: builder.query<User, { walletAddress: string; chainId: ChainId }>({
-      query: ({ walletAddress, chainId }) =>
-        `user/${walletAddress}/chainId/${chainId}`,
-    }),
+    getUser: builder.query<Wallet, { walletAddress: string; chainId: ChainId }>(
+      {
+        query: ({ walletAddress, chainId }) =>
+          `user/${walletAddress}/chainId/${chainId}`,
+      },
+    ),
 
     editUser: builder.mutation<
       User,

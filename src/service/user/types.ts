@@ -2,13 +2,16 @@ export type User = {
   id: number;
   createdAt: Date;
   updatedAt: Date;
-  uuid: string | null;
   walletAddress: string;
   onfidoApplicantId: string;
   signature: string | null;
   timestamp: Date | null;
   tosVersion: string | null;
   sbts: Sbt[];
+};
+
+type UserObject = {
+  uuid: string | null;
 };
 export type Wallet = {
   id: number;
@@ -19,6 +22,8 @@ export type Wallet = {
   address: string;
   signature: string | null;
   sbts: Sbt[];
+  user: UserObject | null;
+  tosVersion: string | null;
 };
 export type Sbt = {
   id: number;
