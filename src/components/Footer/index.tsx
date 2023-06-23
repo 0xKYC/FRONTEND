@@ -57,7 +57,7 @@ const Footer = ({ t }: any) => {
               </Large>
 
               <StyledLink
-                href="https://0xkyc.notion.site/0xKYC-Public-Documentation-f7db271a06e840f7862a929fb9f42299"
+                href="https://github.com/0xKYC/.docs/blob/main/IMPLEMENTATION.md"
                 target="_blank"
                 rel="noopener"
               >
