@@ -1,34 +1,56 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { ChainId } from "constans/chains";
-import { API_URL } from "service/config";
-import type { User, Wallet } from "service/user/types";
+
+import { API_URL } from "../config";
+import { Applicant } from "../onfido/types";
+import { Wallet } from "./types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  tagTypes: ["user"],
-  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+  }),
   endpoints: (builder) => ({
-    getUser: builder.query<Wallet, { walletAddress: string; chainId: ChainId }>(
-      {
-        query: ({ walletAddress, chainId }) =>
-          `user/${walletAddress}/chainId/${chainId}`,
-      },
-    ),
-
-    editUser: builder.mutation<
-      User,
-      Partial<User> & Pick<User, "walletAddress">
+    getUserWallet: builder.query<
+      Wallet,
+      { walletAddress: string; chainId: ChainId }
     >({
-      query: (user) => ({
+      query: ({ walletAddress, chainId }) =>
+        `user/${walletAddress}/chainId/${chainId}`,
+    }),
+
+    createUserWallet: builder.mutation<
+      Wallet,
+      { walletAddress: string; onfidoApplicantId: string }
+    >({
+      query: (userWalletData) => ({
         url: `user/wallet`,
-        method: "PATCH",
-        body: user,
+        method: "POST",
+        body: userWalletData,
       }),
-      invalidatesTags: [{ type: "user" }],
+    }),
+    createApplicant: builder.mutation<Applicant, {}>({
+      query: (data) => ({
+        url: `onfido/applicant`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    subscribeNewsletter: builder.mutation<string, { email: string }>({
+      query: (data) => ({
+        url: `user/newsletter/signup`,
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
 
-export const { useGetUserQuery, useEditUserMutation } = userApi;
+export const {
+  useGetUserWalletQuery,
+  useCreateUserWalletMutation,
+  useSubscribeNewsletterMutation,
+  useCreateApplicantMutation,
+} = userApi;
