@@ -21,6 +21,10 @@ export const RightBlockContainer = styled("section")`
 export const Content = styled("p")`
   margin: 1.5rem 0 2rem 0;
   font-size: 1.3rem;
+
+  @media only screen and (max-width: 330px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const ContentWrapper = styled("div")`
@@ -50,4 +54,10 @@ export const Container = styled("div")`
 
 export const Heading = styled.h2`
   font-size: 2.8rem;
+  @media only screen and (max-width: 768px) {
+    font-size: 2.4rem;
+  }
+  @media only screen and (max-width: 330px) {
+    font-size: 2rem;
+  }
 `;
