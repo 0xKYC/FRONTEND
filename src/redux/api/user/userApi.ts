@@ -1,9 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { SiweMessage } from "siwe";
-
 import { ChainId } from "constans/chains";
-import { loadLocalStorage } from "redux/localStorage";
 
 import { API_URL } from "../config";
 import { Applicant } from "../onfido/types";
@@ -13,13 +10,6 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
-    prepareHeaders: (headers, { getState }) => {
-      const token = loadLocalStorage();
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-        return headers;
-      }
-    },
   }),
   endpoints: (builder) => ({
     getUserWallet: builder.query<
@@ -47,16 +37,7 @@ export const userApi = createApi({
         body: data,
       }),
     }),
-    verifySignature: builder.mutation<
-      { accessToken: string },
-      { message: SiweMessage; signature: string }
-    >({
-      query: (data) => ({
-        url: `user/auth`,
-        method: "POST",
-        body: data,
-      }),
-    }),
+
     subscribeNewsletter: builder.mutation<string, { email: string }>({
       query: (data) => ({
         url: `user/newsletter/signup`,
@@ -70,7 +51,6 @@ export const userApi = createApi({
 export const {
   useGetUserWalletQuery,
   useCreateUserWalletMutation,
-  useVerifySignatureMutation,
   useSubscribeNewsletterMutation,
   useCreateApplicantMutation,
 } = userApi;
