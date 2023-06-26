@@ -37,6 +37,14 @@ export const Extra = styled("section")`
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    .footer-icons-row {
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+  }
 `;
 
 export const LogoContainer = styled("div")`
@@ -110,9 +118,8 @@ export const Empty = styled("div")`
 
 export const FooterContainer = styled("div")`
   max-width: 510px;
-  width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   gap: 2rem;
   text-align: center;
   align-items: center;
@@ -126,10 +133,6 @@ export const FooterContainer = styled("div")`
       -ms-transform: scale(1.1);
       transform: scale(1.1);
     }
-  }
-
-  @media screen and (max-width: 769px) {
-    max-width: 200px;
   }
 
   div {
