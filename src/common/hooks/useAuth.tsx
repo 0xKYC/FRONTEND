@@ -68,7 +68,6 @@ export const useAuth = () => {
         walletAddress: mockedWalletAddress,
         chainId,
       }).unwrap();
-      console.log(userWallet);
       if (userWallet.user?.uuid) {
         dispatch(checkIfVerified(true));
       } else {
