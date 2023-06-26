@@ -49,10 +49,10 @@ export type OnfidoStatus =
 
 export type WalletAddress = string;
 
-export type EditUserData = {
-  walletAddress: string;
-  tosVersion?: string;
-  signature?: string;
-  time_stamp?: string;
-  onfidoApplicantId?: string;
+export type UserNotFoundError = {
+  status: number;
+  message: string;
+  data: {
+    address: string;
+  };
 };

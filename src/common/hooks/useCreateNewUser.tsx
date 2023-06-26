@@ -1,17 +1,24 @@
 import { useCallback } from "react";
 
-import { useCreateUserWalletMutation } from "redux/api/user/userApi";
+import {
+  useCreateApplicantMutation,
+  useCreateUserWalletMutation,
+} from "redux/api/user/userApi";
 import { addApplicantId } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 
 export const useCreateNewUser = () => {
   const dispatch = useAppDispatch();
   const [createNewWallet] = useCreateUserWalletMutation();
+  const [createApplicant] = useCreateApplicantMutation();
 
   const createNewUser = useCallback(
     async (walletAddress: string) => {
+      const applicant = await createApplicant({}).unwrap();
+
       await createNewWallet({
         walletAddress,
+        onfidoApplicantId: applicant.id,
       })
         .unwrap()
         .then((newUser) => {
@@ -21,7 +28,7 @@ export const useCreateNewUser = () => {
           console.error(e);
         });
     },
-    [createNewWallet, dispatch],
+    [createNewWallet, dispatch, createApplicant],
   );
   return { createNewUser };
 };

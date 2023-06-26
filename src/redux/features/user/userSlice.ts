@@ -20,7 +20,7 @@ export type User = {
   isMintingActive: boolean;
   tosAccepted: boolean;
   isMintingError: boolean;
-  accessToken: string | null;
+
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
@@ -41,7 +41,6 @@ const initialState: User = {
   mockedWalletAddress: null,
   redirectUrl: null,
   callbackUrl: null,
-  accessToken: null,
   apiKey: null,
 };
 
@@ -89,9 +88,7 @@ export const userSlice = createSlice({
     setMintingActive: (state, action: PayloadAction<boolean>) => {
       state.isMintingActive = action.payload;
     },
-    setAccessToken: (state, action: PayloadAction<string>) => {
-      state.accessToken = action.payload;
-    },
+
     setApiKey: (state, action: PayloadAction<string>) => {
       state.apiKey = action.payload;
     },
@@ -107,7 +104,6 @@ export const {
   setMintingActive,
   signTos,
   setPartnerParams,
-  setAccessToken,
   setApiKey,
 } = userSlice.actions;
 
@@ -130,5 +126,5 @@ export const selectTosAcceptedWallet = (state: RootState) =>
   state.user.tosAccepted;
 export const selectMintingWallet = (state: RootState) =>
   state.user.mintingWalletAddress;
-export const selectAccessToken = (state: RootState) => state.user.accessToken;
+
 export const selectApiKey = (state: RootState) => state.user.apiKey;

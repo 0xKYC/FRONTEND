@@ -4,7 +4,8 @@ import { useAccount, useDisconnect, useNetwork } from "wagmi";
 
 import { CHAIN_IDS, SupportedChainId } from "constans/chains";
 import tos from "content/TermsOfService.json";
-import { useEditUserWalletMutation, userApi } from "redux/api/user/userApi";
+import { UserNotFoundError } from "redux/api/user/types";
+import { useCreateApplicantMutation, userApi } from "redux/api/user/userApi";
 import {
   addApplicantId,
   checkIfVerified,
@@ -27,10 +28,10 @@ export const useAuth = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
 
-  const [editUser] = useEditUserWalletMutation();
   const [fetchUser] = userApi.endpoints.getUserWallet.useLazyQuery();
-  const [fetchWalletInfo] = userApi.endpoints.getUserWalletInfo.useLazyQuery();
+
   const { createNewUser } = useCreateNewUser();
+  const [createOnfidoApplicant] = useCreateApplicantMutation();
 
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
@@ -67,7 +68,7 @@ export const useAuth = () => {
         walletAddress: mockedWalletAddress,
         chainId,
       }).unwrap();
-
+      console.log(userWallet);
       if (userWallet.user?.uuid) {
         dispatch(checkIfVerified(true));
       } else {
@@ -98,36 +99,11 @@ export const useAuth = () => {
 
         const userWallet = await fetchUser({ walletAddress, chainId })
           .unwrap()
-          .catch(async (error: any) => {
+          .catch(async (error: UserNotFoundError) => {
             if (error.status === 404) {
               dispatch(signTos(false));
               await createNewUser(walletAddress);
-              // const newApplicant = await createOnfidoApplicant({}).unwrap();
-
-              // await createUserInDB({
-              //   walletAddress,
-              //   onfidoApplicantId: newApplicant.id,
-              // });
-
-              // dispatch(addApplicantId(newApplicant.id));
               return;
-            } else if (error.status === 401) {
-              await fetchWalletInfo({
-                walletAddress,
-              })
-                .unwrap()
-                .then((d) => {
-                  console.log(d);
-                  console.log("user exists");
-                  dispatch(signTos(false));
-                })
-                .catch((err: any) => {
-                  if (err.status === 404) {
-                    console.log("create a user for this wallet address!");
-                    dispatch(signTos(false));
-                    createNewUser(walletAddress);
-                  }
-                });
             }
           });
         if (!userWallet) return;
@@ -138,6 +114,7 @@ export const useAuth = () => {
           dispatch(signTos(true));
         }
         const isVerified = await hasSoul(chainId, walletAddress);
+
         if (isVerified) {
           dispatch(checkIfVerified(isVerified));
         }
@@ -157,10 +134,9 @@ export const useAuth = () => {
     walletAddress,
     dispatch,
     chainId,
-    editUser,
     fetchUser,
     createNewUser,
-    fetchWalletInfo,
+    createOnfidoApplicant,
   ]);
 
   return {

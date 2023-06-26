@@ -1,3 +1,4 @@
+// process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 export const API_URL = "http://localhost:3001/";
 
-// process.env.REACT_APP_BASE_URL ||
+// ("https://devapi.0xkyc.id");

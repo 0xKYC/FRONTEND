@@ -6,20 +6,16 @@ import { ChainId } from "constans/chains";
 import { loadLocalStorage } from "redux/localStorage";
 
 import { API_URL } from "../config";
-import { EditUserData, Wallet } from "./types";
+import { Applicant } from "../onfido/types";
+import { Wallet } from "./types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    // base url of backend API
     baseUrl: API_URL,
-    // prepareHeaders is used to configure the header of every request and gives access to getState which we use to include the token from the store
     prepareHeaders: (headers, { getState }) => {
-      // const token = (getState() as RootState).user.accessToken;
       const token = loadLocalStorage();
-      console.log(token);
       if (token) {
-        // include token in req header
         headers.set("authorization", `Bearer ${token}`);
         return headers;
       }
@@ -33,25 +29,22 @@ export const userApi = createApi({
       query: ({ walletAddress, chainId }) =>
         `user/${walletAddress}/chainId/${chainId}`,
     }),
-    getUserWalletInfo: builder.query<
-      { address: string },
-      { walletAddress: string }
-    >({
-      query: ({ walletAddress }) => `user/${walletAddress}`,
-    }),
 
-    createUserWallet: builder.mutation<Wallet, { walletAddress: string }>({
+    createUserWallet: builder.mutation<
+      Wallet,
+      { walletAddress: string; onfidoApplicantId: string }
+    >({
       query: (userWalletData) => ({
         url: `user/wallet`,
         method: "POST",
         body: userWalletData,
       }),
     }),
-    editUserWallet: builder.mutation<Wallet, EditUserData>({
-      query: (userWalletData) => ({
-        url: `user/wallet`,
-        method: "PATCH",
-        body: userWalletData,
+    createApplicant: builder.mutation<Applicant, {}>({
+      query: (data) => ({
+        url: `onfido/applicant`,
+        method: "POST",
+        body: data,
       }),
     }),
     verifySignature: builder.mutation<
@@ -76,9 +69,8 @@ export const userApi = createApi({
 
 export const {
   useGetUserWalletQuery,
-  useGetUserWalletInfoQuery,
-  useEditUserWalletMutation,
   useCreateUserWalletMutation,
   useVerifySignatureMutation,
   useSubscribeNewsletterMutation,
+  useCreateApplicantMutation,
 } = userApi;
