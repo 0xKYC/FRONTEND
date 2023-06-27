@@ -7,7 +7,7 @@ import { Col, Row } from "antd";
 import { Button } from "common/Button";
 import { LoadingCircle } from "common/Spinner";
 import { SvgIcon } from "common/SvgIcon";
-import { useHandleOnfidoRedirect } from "common/utils/handleOnfidoRedirect";
+import { useHandleOnfidoRedirect } from "common/hooks/useHandleOnfidoRedirect";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";

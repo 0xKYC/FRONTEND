@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 
 import { Button } from "common/Button";
 import { LoadingCircle } from "common/Spinner";
-import { useHandleOnfidoRedirect } from "common/utils/handleOnfidoRedirect";
+import { useHandleOnfidoRedirect } from "common/hooks/useHandleOnfidoRedirect";
 import { TosModalWeb2 } from "components/TosModal/web2Sign";
 
 import { CardInfo } from "../../CardInfo";

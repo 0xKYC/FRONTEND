@@ -6,7 +6,7 @@ import { MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "common/ConfirmModal";
 import { LoadingCircle } from "common/Spinner";
 import { isCompanyEmail } from "common/utils/email-validator/validateEmail";
-import { subscribeNewsletter } from "service/user/user.service";
+import { useSubscribeNewsletterMutation } from "redux/api/user/userApi";
 
 import { ErrorText, Flex } from "./styles";
 
@@ -22,13 +22,14 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
   const [isLoading, setIsLoading] = useState(false);
+  const [subscribeNewsletter] = useSubscribeNewsletterMutation();
   const handleSubmit = async (values: FormValues) => {
     try {
       setIsLoading(true);
 
       await handleOnfidoRedirect(values.email);
       if (values.newsletterChecked) {
-        await subscribeNewsletter(values.email);
+        await subscribeNewsletter({ email: values.email });
       }
     } catch (error) {
       console.error(error);

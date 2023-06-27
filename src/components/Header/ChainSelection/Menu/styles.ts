@@ -10,7 +10,7 @@ export const StyledButton = styled(Button)<{ isOpen?: boolean }>`
   padding: 1.2rem 0.8rem;
   background-color: ${(p) => (p.isOpen ? "white" : "#fb7324")};
   border: ${(p) => (p.isOpen ? "1px solid #fb7324" : "")};
-  color: black;
+  color: ${(p) => (p.isOpen ? "black" : "white")};
   &:hover {
     background-color: white;
     color: black !important;

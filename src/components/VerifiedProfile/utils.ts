@@ -1,4 +1,4 @@
-import { Wallet } from "../../service/user/types";
+import { Wallet } from "redux/api/user/types";
 
 export const getUserSbt = (user: Wallet) => {
   if (user?.sbts.length > 0) {

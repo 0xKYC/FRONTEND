@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 
-import { InfoCircleOutlined } from "@ant-design/icons";
-
-import { Box, StyledInfo, StyledModal, StyledP, Title } from "../styles";
+import { Box, StyledModal, StyledP, Title } from "../styles";
 import { useSignTerms } from "./useSignTerms";
 
 export const TosModal = () => {
-  const { closeModal, sign, isModalOpen, isLoading } = useSignTerms();
+  const { closeModal, sign, isModalOpen } = useSignTerms();
   return (
     <StyledModal
       width={600}
@@ -15,7 +13,6 @@ export const TosModal = () => {
       onOk={sign}
       okText="Accept"
       maskClosable={false}
-      okButtonProps={{ disabled: isLoading }}
     >
       <Box>
         <Title>Welcome to 0xKYC </Title>
@@ -56,12 +53,6 @@ export const TosModal = () => {
           </Link>
           .
         </StyledP>
-        {isLoading && (
-          <StyledInfo>
-            <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Check your
-            wallet to confirm
-          </StyledInfo>
-        )}
       </Box>
     </StyledModal>
   );

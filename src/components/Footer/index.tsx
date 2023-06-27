@@ -57,7 +57,7 @@ const Footer = ({ t }: any) => {
               </Large>
 
               <StyledLink
-                href="https://0xkyc.notion.site/0xKYC-Public-Documentation-f7db271a06e840f7862a929fb9f42299"
+                href="https://github.com/0xKYC/.docs/blob/main/IMPLEMENTATION.md"
                 target="_blank"
                 rel="noopener"
               >
@@ -89,6 +89,7 @@ const Footer = ({ t }: any) => {
       <Extra>
         <Container border={true}>
           <Row
+            className="footer-icons-row"
             justify="space-between"
             align="middle"
             style={{ paddingTop: "3rem" }}
