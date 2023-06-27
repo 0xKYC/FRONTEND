@@ -5,7 +5,7 @@ import WALLET_CONNECT_ICON_URL from "components/WalletModal/assets/walletconnect
 export const getIcon = (connectorID: string) => {
   if (connectorID === "metaMask") {
     return METAMASK_ICON_URL;
-  } else if (connectorID === "walletConnectLegacy") {
+  } else if (connectorID === "walletConnect") {
     return WALLET_CONNECT_ICON_URL;
   } else if (connectorID === "coinbaseWallet") {
     return COINBASE_ICON_URL;
