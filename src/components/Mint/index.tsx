@@ -24,12 +24,14 @@ export const MintContent = () => {
               fontSize: "1.2rem",
             }}
           ></Spin>
-          <Progress
-            percent={percent}
-            type="line"
-            showInfo={false}
-            strokeColor={{ from: "#fbae81", to: "#fb7324" }}
-          />
+          {!mockedWalletAddress && (
+            <Progress
+              percent={percent}
+              type="line"
+              showInfo={false}
+              strokeColor={{ from: "#fbae81", to: "#fb7324" }}
+            />
+          )}
 
           <Text>{loadingText}</Text>
         </StyledBox>
