@@ -89,6 +89,7 @@ const Footer = ({ t }: any) => {
       <Extra>
         <Container border={true}>
           <Row
+            className="footer-icons-row"
             justify="space-between"
             align="middle"
             style={{ paddingTop: "3rem" }}
