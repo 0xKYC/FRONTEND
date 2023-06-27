@@ -1,11 +1,19 @@
+import { useRef } from "react";
 import CookieConsent from "react-cookie-consent";
 import { Link } from "react-router-dom";
 
+import { CloseOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
 export const CookieBanner = () => {
+  const cookieConsentRef = useRef<any>();
+
+  const declineCookies = () => {
+    cookieConsentRef?.current?.decline();
+  };
   return (
     <CookieConsent
+      ref={cookieConsentRef}
       style={{
         position: "fixed",
         width: "96%",
@@ -16,16 +24,6 @@ export const CookieBanner = () => {
         marginBottom: "1rem",
         transform: "translateX(-50%)",
       }}
-      declineButtonText="Cancel"
-      enableDeclineButton
-      declineButtonStyle={{
-        padding: ".3rem .6rem",
-        color: "white",
-        fontSize: ".9rem",
-        borderRadius: "0.4rem",
-        fontWeight: "bold",
-        fontFamily: "Motiva Sans Light",
-      }}
       buttonText="Okay"
       buttonStyle={{
         padding: ".5rem 1rem",
@@ -35,8 +33,12 @@ export const CookieBanner = () => {
         borderRadius: "0.4rem",
         fontWeight: "bold",
         fontFamily: "Motiva Sans Light",
+        marginRight: "2rem",
       }}
     >
+      <StyledBtn onClick={declineCookies}>
+        <CloseOutlined />
+      </StyledBtn>
       This website uses cookies to improve your experience. Please review our
       <StyledLink to="privacy-policy">
         {" "}
@@ -53,4 +55,13 @@ const StyledLink = styled(Link)`
   &:hover {
     color: #79bde4;
   }
+`;
+
+const StyledBtn = styled("button")`
+  position: absolute;
+  top: 1%;
+  right: 0;
+  background: inherit;
+  border: none;
+  cursor: pointer;
 `;
