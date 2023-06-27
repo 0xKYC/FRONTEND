@@ -55,6 +55,7 @@ export const useAuth = () => {
   }, [chain, disconnect, dispatch]);
 
   useEffect(() => {
+    //flow for normal users
     const checkSBT = async () => {
       if (walletAddress && chainId) {
         try {
@@ -75,8 +76,21 @@ export const useAuth = () => {
       }
     };
 
-    checkSBT();
-  }, [walletAddress, dispatch, provider, chainId]);
+    //flow for insert stonks
+    const checkForUuid = async (mockedWalletAddress: string) => {
+      const user = await findUserInDB(mockedWalletAddress, chainId);
+      if (user?.user?.uuid) {
+        dispatch(checkIfVerified(true));
+      } else {
+        dispatch(checkIfVerified(false));
+      }
+    };
+    if (mockedWalletAddress) {
+      checkForUuid(mockedWalletAddress);
+    } else {
+      checkSBT();
+    }
+  }, [walletAddress, dispatch, provider, chainId, mockedWalletAddress]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {
@@ -94,6 +108,7 @@ export const useAuth = () => {
         try {
           setIsLoading(true);
           const user = await findUserInDB(walletAddress, chainId);
+          console.log(user);
 
           if (!user) {
             dispatch(signTos(false));

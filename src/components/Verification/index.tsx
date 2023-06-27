@@ -13,8 +13,8 @@ import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { CardInfo } from "../CardInfo";
-import { EmailForm } from "../EmailForm";
 import { TosModal } from "../TosModal/walletSign";
+import { EmailForm } from "./EmailForm";
 import {
   ButtonWrapper,
   Container,
