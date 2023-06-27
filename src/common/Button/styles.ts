@@ -23,6 +23,6 @@ export const StyledButton = styled("button")<{ color?: string }>`
   }
 
   @media screen and (max-width: 890px) {
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 1.4rem;
   }
 `;

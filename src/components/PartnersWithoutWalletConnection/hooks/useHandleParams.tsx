@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { reset } from "redux/features/user/userSlice";
@@ -16,12 +16,29 @@ export const useHandleParams = () => {
   const callbackUrl = searchParams.get("callbackUrl");
   const { setParams } = useSetUserParams();
 
+  const handleWrongParams = useCallback(() => {
+    dispatch(reset());
+    return navigate("/");
+  }, [dispatch, navigate]);
+
   useEffect(() => {
     if (!address || !redirectUrl || !callbackUrl) {
-      dispatch(reset());
-      return navigate("/");
+      handleWrongParams();
     } else {
-      setParams({ address, redirectUrl, callbackUrl });
+      try {
+        setParams({ address, redirectUrl, callbackUrl });
+      } catch (error) {
+        console.error(error);
+        handleWrongParams();
+      }
     }
-  }, [address, callbackUrl, navigate, redirectUrl, setParams, dispatch]);
+  }, [
+    address,
+    callbackUrl,
+    navigate,
+    redirectUrl,
+    setParams,
+    dispatch,
+    handleWrongParams,
+  ]);
 };

@@ -13,18 +13,14 @@ export const useSetUserParams = () => {
   const dispatch = useAppDispatch();
   const setParams = useCallback(
     ({ address, callbackUrl, redirectUrl }: Props) => {
-      try {
-        const decodedRedirectUrl = base64_decode(redirectUrl);
-        dispatch(
-          setPartnerParams({
-            mockedWalletAddress: address,
-            callbackUrl,
-            redirectUrl: decodedRedirectUrl,
-          }),
-        );
-      } catch (error) {
-        console.error(error);
-      }
+      const decodedRedirectUrl = base64_decode(redirectUrl);
+      dispatch(
+        setPartnerParams({
+          mockedWalletAddress: address,
+          callbackUrl,
+          redirectUrl: decodedRedirectUrl,
+        }),
+      );
     },
     [dispatch],
   );
