@@ -5,7 +5,7 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { getUserSbt } from "components/VerifiedProfile/utils";
 import { SupportedChainId } from "constans/chains";
-import { useGetUserQuery, userApi } from "redux/api/user/userApi";
+import { useGetUserWalletQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,
   checkIfVerified,
@@ -36,12 +36,12 @@ export const useMint = () => {
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
   const walletAddress = address || mockedWalletAddress;
 
-  const { data: user, isLoading } = useGetUserQuery({
+  const { data: user, isLoading } = useGetUserWalletQuery({
     walletAddress: walletAddress || "",
     chainId,
   });
 
-  const { refetch } = userApi.endpoints.getUser.useQuerySubscription({
+  const { refetch } = userApi.endpoints.getUserWallet.useQuerySubscription({
     walletAddress: walletAddress || "",
     chainId,
   });

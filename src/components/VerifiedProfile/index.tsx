@@ -7,7 +7,7 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { LoadingSpinner } from "common/LoadingSpinner";
 import { SupportedChainId } from "constans/chains";
-import { useGetUserQuery } from "redux/api/user/userApi";
+import { useGetUserWalletQuery } from "redux/api/user/userApi";
 import {
   selectMockedWalletAddress,
   selectRedirectUrl,
@@ -26,7 +26,7 @@ const VerifiedPage = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const walletAddress = address || mockedWalletAddress;
   const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
-  const { data: user, isLoading } = useGetUserQuery({
+  const { data: user, isLoading } = useGetUserWalletQuery({
     walletAddress: walletAddress || "",
     chainId,
   });

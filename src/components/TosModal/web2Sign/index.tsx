@@ -1,9 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { LoadingOutlined } from "@ant-design/icons";
-import tos from "content/TermsOfService.json";
-import { useEditUserMutation } from "redux/api/user/userApi";
 import {
   selectIsTosModalOpen,
   toggleTosModal,
@@ -17,18 +14,11 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { Box, StyledModal, StyledP, Title } from "../styles";
 
-const loadingIcon = (
-  <LoadingOutlined style={{ fontSize: 18, color: "white" }} spin />
-);
-const { version } = tos;
-
 export const TosModalWeb2 = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const isTosModalOpen = useAppSelector(selectIsTosModalOpen);
-
-  const [editUser, result] = useEditUserMutation();
 
   const closeModal = () => {
     dispatch(toggleTosModal(false));
@@ -50,21 +40,8 @@ export const TosModalWeb2 = () => {
   }, [mockedWalletAddress, tosAccepted, dispatch, showModal]);
 
   const handleSignTos = () => {
-    if (mockedWalletAddress) {
-      const userToUpdate = {
-        walletAddress: mockedWalletAddress,
-        signature: "signed",
-        tosVersion: version,
-        time_stamp: new Date().toISOString(),
-      };
-      editUser(userToUpdate)
-        .unwrap()
-        .then(() => {
-          dispatch(toggleTosModal(false));
-          dispatch(signTos(true));
-        })
-        .catch((err: any) => console.error(err));
-    }
+    dispatch(toggleTosModal(false));
+    dispatch(signTos(true));
   };
 
   return (
@@ -73,7 +50,7 @@ export const TosModalWeb2 = () => {
       open={isTosModalOpen}
       onCancel={closeModal}
       onOk={handleSignTos}
-      okText={result.isLoading ? loadingIcon : "Accept"}
+      okText="Accept"
       maskClosable={false}
     >
       <Box>
