@@ -20,16 +20,6 @@ export const userApi = createApi({
         `user/${walletAddress}/chainId/${chainId}`,
     }),
 
-    createUserWallet: builder.mutation<
-      Wallet,
-      { walletAddress: string; onfidoApplicantId: string }
-    >({
-      query: (userWalletData) => ({
-        url: `user/wallet`,
-        method: "POST",
-        body: userWalletData,
-      }),
-    }),
     createApplicant: builder.mutation<Applicant, {}>({
       query: (data) => ({
         url: `onfido/applicant`,
@@ -50,7 +40,6 @@ export const userApi = createApi({
 
 export const {
   useGetUserWalletQuery,
-  useCreateUserWalletMutation,
   useSubscribeNewsletterMutation,
   useCreateApplicantMutation,
 } = userApi;
