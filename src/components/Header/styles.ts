@@ -7,6 +7,7 @@ export const ImgWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const LogoText = styled.p`
   margin: 0;
   margin-left: 0.5rem;
@@ -20,10 +21,18 @@ export const Image = styled.img`
     display: block;
   }
 `;
-
+export const LogoWithoutWalletConnection = styled.img`
+  display: block;
+`;
 export const MobileImage = styled.img`
   display: block;
   @media screen and (min-width: 520px) {
+    display: none;
+  }
+`;
+export const IsLogo = styled.img`
+  display: block;
+  @media screen and (min-width: 890px) {
     display: none;
   }
 `;
