@@ -10,7 +10,6 @@ import {
   Extra,
   FooterContainer,
   FooterSection,
-  Language,
   Large,
   LogoContainer,
   NavLink,
@@ -43,7 +42,7 @@ const Footer = ({ t }: any) => {
         <Container padding={true}>
           <Row justify="end">
             <Col lg={7} md={7} sm={24} xs={24}>
-              <Language>{t("Contact")}</Language>
+              <Title>{t("Contact")}</Title>
               <Para>{t(`Do you have any questions?`)}</Para>
 
               <a href="mailto:support@0xkyc.id">
