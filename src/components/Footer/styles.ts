@@ -13,7 +13,8 @@ export const Title = styled("h4")`
   color: #18216d;
 
   @media screen and (max-width: 414px) {
-    padding: 1.5rem 0;
+    padding-top: 0.8rem;
+    padding-bottom: 0.2rem;
   }
 `;
 
