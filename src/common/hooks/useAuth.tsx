@@ -20,17 +20,16 @@ import { hasSoul } from "web3/methods/hasSoul";
 import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
 import { useCheckMinting } from "./useCheckMinting";
-import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 
 export const useAuth = () => {
   const verified = useAppSelector(selectVerifiedUser);
   const isMintingActive = useAppSelector(selectIsMintingActive);
+
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+
   const dispatch = useAppDispatch();
 
   const [fetchUser] = userApi.endpoints.getUserWallet.useLazyQuery();
-
-  const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
@@ -61,25 +60,6 @@ export const useAuth = () => {
   }, [chain, disconnect, dispatch]);
 
   useEffect(() => {
-    //flow for insert stonks
-    const checkForUuid = async (mockedWalletAddress: string) => {
-      const userWallet = await fetchUser({
-        walletAddress: mockedWalletAddress,
-        chainId,
-      }).unwrap();
-      if (userWallet.user?.uuid) {
-        dispatch(checkIfVerified(true));
-      } else {
-        dispatch(checkIfVerified(false));
-      }
-    };
-
-    if (mockedWalletAddress) {
-      checkForUuid(mockedWalletAddress);
-    }
-  }, [chainId, dispatch, fetchUser, mockedWalletAddress]);
-
-  useEffect(() => {
     const handleWalletSanctionCheck = async () => {
       if (walletAddress) {
         const isSanctioned = await isWalletSanctioned(walletAddress);
@@ -99,24 +79,24 @@ export const useAuth = () => {
           .unwrap()
           .catch(async (error: UserNotFoundError) => {
             if (error.status === 404) {
-              dispatch(signTos(false));
-              createOnfidoApplicant();
-              return;
+              dispatch(addApplicantId(null));
             }
           });
+        console.log(userWallet);
         if (!userWallet) return;
 
         if (userWallet.tosVersion !== tos.version) {
           dispatch(signTos(false));
-        } else {
+        }
+        if (userWallet.signature) {
           dispatch(signTos(true));
         }
+        dispatch(addApplicantId(userWallet.onfidoApplicantId));
         const isVerified = await hasSoul(chainId, walletAddress);
 
         if (isVerified) {
           dispatch(checkIfVerified(isVerified));
         }
-        dispatch(addApplicantId(userWallet.onfidoApplicantId));
       } catch (err) {
         dispatch(signTos(false));
         setIsLoading(false);
@@ -127,7 +107,7 @@ export const useAuth = () => {
     };
     handleUserAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch, chainId, fetchUser, createOnfidoApplicant]);
+  }, [walletAddress, dispatch, chainId, fetchUser]);
 
   return {
     isVerified,
