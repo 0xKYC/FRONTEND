@@ -91,7 +91,7 @@ const Footer = ({ t }: any) => {
             className="footer-icons-row"
             justify="space-between"
             align="middle"
-            style={{ paddingTop: "3rem" }}
+            style={{ paddingTop: "1.8rem" }}
           >
             <NavLink to="/">
               <LogoContainer>

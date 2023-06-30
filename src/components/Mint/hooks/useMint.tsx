@@ -156,7 +156,6 @@ export const useMint = () => {
 
           if (isVerified) {
             refetch();
-
             if (user && user?.sbts?.length > 0) {
               handleCompleteLoading();
               const sbt = getUserSbt(user);

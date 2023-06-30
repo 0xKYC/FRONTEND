@@ -14,6 +14,8 @@ import {
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
+import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
+
 export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
@@ -29,11 +31,18 @@ export const useHandleOnfidoRedirect = () => {
   const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
 
   const redirectUrl = getRedirectUrl();
+  const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
   const handleOnfidoRedirect = async (email?: string) => {
-    if (walletAddress && onfidoApplicantId && chainId) {
+    if (walletAddress && chainId) {
+      let applicantId = onfidoApplicantId;
+
+      if (!applicantId) {
+        const applicant = await createOnfidoApplicant();
+        applicantId = applicant.id;
+      }
       await onfidoRedirect({
-        applicantId: onfidoApplicantId,
+        applicantId: applicantId,
         chainId,
         walletAddress,
         callbackUrl: partnerCallbackUrl,

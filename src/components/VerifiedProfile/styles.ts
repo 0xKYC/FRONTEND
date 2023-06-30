@@ -60,14 +60,10 @@ export const ContentWrapper = styled("div")`
   position: relative;
   margin-right: 2rem;
 
-  @media only screen and (max-width: 575px) {
-    padding-bottom: 4rem;
-  }
   @media only screen and (max-width: 768px) {
-    padding: 4rem 0 5rem;
+    padding: 1rem 0 3rem 0;
     margin: 0 auto;
     max-width: 540px;
-    padding-bottom: 0;
   }
 `;
 
