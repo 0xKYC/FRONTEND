@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 import { useAccount, useDisconnect } from "wagmi";
 
@@ -32,9 +32,11 @@ export const useSignTerms = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isConnected && !tosAccepted) {
-      showModal();
+      setTimeout(() => {
+        showModal();
+      }, 500);
     } else {
       setIsModalOpen(false);
     }

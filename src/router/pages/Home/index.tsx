@@ -1,16 +1,15 @@
 import { lazy } from "react";
 
-import { LoadingSpinner } from "../../../common/LoadingSpinner";
-import IntroContent from "../../../content/IntroContent.json";
-import VerifyContent from "../../../content/VerifyContent.json";
+import { LoadingSpinner } from "common/LoadingSpinner";
+import IntroContent from "content/IntroContent.json";
+import VerifyContent from "content/VerifyContent.json";
 
-const Container = lazy(() => import("../../../common/Container"));
-const ScrollToTop = lazy(() => import("../../../common/ScrollToTop"));
-const ContentBlock = lazy(() => import("../../../components/Verification"));
+const Container = lazy(() => import("common/Container"));
+const ScrollToTop = lazy(() => import("common/ScrollToTop"));
+const ContentBlock = lazy(() => import("components/Verification"));
 
 const Home = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
-
   return (
     <Container>
       <ScrollToTop />

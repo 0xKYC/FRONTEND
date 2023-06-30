@@ -12,8 +12,8 @@ export const Title = styled("h4")`
   text-transform: capitalize;
   color: #18216d;
 
-  @media screen and (max-width: 414px) {
-    padding-top: 0.8rem;
+  @media screen and (max-width: 1024px) {
+    padding-top: 1rem;
     padding-bottom: 0.2rem;
   }
 `;
@@ -37,7 +37,7 @@ export const Extra = styled("section")`
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 2rem;
+  padding-bottom: 2.2rem;
 
   @media (max-width: 768px) {
     .footer-icons-row {
