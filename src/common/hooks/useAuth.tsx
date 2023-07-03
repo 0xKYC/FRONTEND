@@ -48,7 +48,7 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON;
 
   useEffect(() => {
     if (!chain) return;
@@ -82,7 +82,6 @@ export const useAuth = () => {
               dispatch(addApplicantId(null));
             }
           });
-        console.log(userWallet);
         if (!userWallet) return;
 
         if (userWallet.tosVersion !== tos.version) {

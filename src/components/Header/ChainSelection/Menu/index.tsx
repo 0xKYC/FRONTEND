@@ -81,23 +81,57 @@ export const ChainSelectionMenu = () => {
 
   const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
-  // get mocked chain (mumbai) for partner integration
+  // get mocked chain (polyhon) for partner integration
   const { label: mumbaiLabel, logoUrl: mumbaiLogoUrl } = getChainInfo(
-    SupportedChainId.POLYGON_MUMBAI,
+    SupportedChainId.POLYGON,
   );
-  const items: MenuProps["items"] = NETWORK_SELECTOR_CHAINS.map(
-    (chainId: SupportedChainId, index) => ({
-      key: index,
+
+  const items: MenuProps["items"] = [
+    {
+      key: "Mainnet",
+      label: "Mainnet",
+      disabled: true,
+    },
+    {
+      key: 0,
       label: (
-        <ChainSelectorItem
-          onSelectChain={onSelectChain}
-          targetChain={chainId}
-          key={chainId}
-          isPending={chainId === pendingChainId && Boolean(!error) && isLoading}
-        />
+        <>
+          <ChainSelectorItem
+            onSelectChain={onSelectChain}
+            targetChain={SupportedChainId.POLYGON}
+            key={SupportedChainId.POLYGON}
+            isPending={
+              SupportedChainId.POLYGON === pendingChainId &&
+              Boolean(!error) &&
+              isLoading
+            }
+          />
+        </>
       ),
-    }),
-  );
+    },
+    {
+      key: "Testnets",
+      label: "Testnets",
+      disabled: true,
+    },
+    ...NETWORK_SELECTOR_CHAINS.slice(1).map(
+      (chainId: SupportedChainId, index) => ({
+        key: index + 1,
+        label: (
+          <>
+            <ChainSelectorItem
+              onSelectChain={onSelectChain}
+              targetChain={chainId}
+              key={chainId}
+              isPending={
+                chainId === pendingChainId && Boolean(!error) && isLoading
+              }
+            />
+          </>
+        ),
+      }),
+    ),
+  ];
 
   return (
     <>

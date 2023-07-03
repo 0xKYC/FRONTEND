@@ -11,11 +11,17 @@ type Chains = {
   };
 };
 
-export const web3Factory = (blockchainId: ChainId): { web3: Web3; soulboundContract: string } => {
+export const web3Factory = (
+  blockchainId: ChainId,
+): { web3: Web3; soulboundContract: string } => {
   const supportedChains: Chains = {
-    [SupportedChainId.GOERLI]: {
-      provider: ENV.REACT_APP_GOERLI_INFURA_URL,
-      soulboundContract: ENV.REACT_APP_GOERLI_SOULBOUND_CONTRACT,
+    [SupportedChainId.POLYGON]: {
+      provider: ENV.REACT_APP_MUMBAI_INFURA_URL,
+      soulboundContract: ENV.REACT_APP_MUMBAI_SOULBOUND_CONTRACT,
+    },
+    [SupportedChainId.SEPOLIA]: {
+      provider: ENV.REACT_APP_SEPOLIA_INFURA_URL,
+      soulboundContract: ENV.REACT_APP_SEPOLIA_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.POLYGON_MUMBAI]: {
       provider: ENV.REACT_APP_MUMBAI_INFURA_URL,

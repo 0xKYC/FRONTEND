@@ -23,7 +23,7 @@ export const useCheckMinting = (isVerified: boolean) => {
   const { address } = useAccount();
   const { chain } = useNetwork();
   const walletAddress = address || mockedWalletAddress;
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON;
 
   useEffect(() => {
     if (
