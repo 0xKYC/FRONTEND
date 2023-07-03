@@ -13,7 +13,7 @@ import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { CardInfo } from "../CardInfo";
-import { TosModal } from "../TosModal/walletSign";
+import { TosModal } from "../TosModal/WalletSign";
 import { EmailForm } from "./EmailForm";
 import {
   ButtonWrapper,
@@ -59,7 +59,6 @@ const ContentBlock = ({
   return (
     <RightBlockContainer>
       {!tosAccepted && <TosModal />}
-
       <Fade direction="right">
         <Row justify="space-between" align="middle">
           <Col lg={11} md={11} sm={24} xs={24}>
