@@ -33,7 +33,7 @@ export const useMint = () => {
   const { percent, setPercent, loadingText, handleCompleteLoading } =
     useLoadingBar();
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : SupportedChainId.POLYGON;
   const walletAddress = address || mockedWalletAddress;
 
   const { data: user, isLoading } = useGetUserWalletQuery({

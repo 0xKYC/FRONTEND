@@ -16,9 +16,10 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
   display: block;
   text-align: center;
   background: ${(props) =>
-    props.chainId === SupportedChainId.GOERLI
+    props.chainId === SupportedChainId.SEPOLIA
       ? "#0077be"
-      : props.chainId === SupportedChainId.POLYGON_MUMBAI
+      : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
+        SupportedChainId.POLYGON
       ? "#8247e5"
       : "#3B226A"};
   color: #fff;
@@ -38,9 +39,10 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
     color: #fff;
     border: 1px solid #0077be;
     background: ${(props) =>
-      props.chainId === SupportedChainId.GOERLI
+      props.chainId === SupportedChainId.SEPOLIA
         ? "#0077be"
-        : props.chainId === SupportedChainId.POLYGON_MUMBAI
+        : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
+          SupportedChainId.POLYGON
         ? "#8247e5"
         : "#3B226A"};
   }

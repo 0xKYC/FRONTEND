@@ -28,7 +28,7 @@ export const useHandleOnfidoRedirect = () => {
   const { chain } = useNetwork();
 
   const walletAddress = address || mockedWalletAddress;
-  const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = address ? chain?.id : SupportedChainId.POLYGON;
 
   const redirectUrl = getRedirectUrl();
   const { createOnfidoApplicant } = useCreateOnfidoApplicant();
