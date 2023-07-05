@@ -8,12 +8,12 @@ import { Button } from "common/Button";
 import { LoadingCircle } from "common/Spinner";
 import { SvgIcon } from "common/SvgIcon";
 import { useHandleOnfidoRedirect } from "common/hooks/useHandleOnfidoRedirect";
+import { TosModal } from "components/TosModal/WalletSign";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { CardInfo } from "../CardInfo";
-import { TosModal } from "../TosModal/walletSign";
 import { EmailForm } from "./EmailForm";
 import {
   ButtonWrapper,

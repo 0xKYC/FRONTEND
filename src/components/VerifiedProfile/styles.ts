@@ -6,7 +6,11 @@ import { ChainId, SupportedChainId } from "../../constans/chains";
 
 export const Content = styled("p")`
   margin: 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+
+  @media screen and (min-width: 728px) {
+    font-size: 1.2rem;
+  }
 `;
 export const Box = styled("div")`
   display: flex;
@@ -64,10 +68,10 @@ export const ContentWrapper = styled("div")`
     padding-bottom: 4rem;
   }
   @media only screen and (max-width: 768px) {
-    padding: 4rem 0 5rem;
     margin: 0 auto;
     max-width: 540px;
-    padding-bottom: 0;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
   }
 `;
 
