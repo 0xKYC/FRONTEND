@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
 
 import { getUserSbt } from "components/VerifiedProfile/utils";
-import { SupportedChainId } from "constans/chains";
+import { DEFAULT_CHAIN } from "constans/chains";
 import { useGetUserWalletQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,
@@ -33,7 +33,7 @@ export const useMint = () => {
   const { percent, setPercent, loadingText, handleCompleteLoading } =
     useLoadingBar();
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON;
+  const chainId = chain ? chain.id : DEFAULT_CHAIN;
   const walletAddress = address || mockedWalletAddress;
 
   const { data: user, isLoading } = useGetUserWalletQuery({

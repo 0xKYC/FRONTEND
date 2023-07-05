@@ -4,6 +4,7 @@ import { sbtABI } from "web3/abis/soulbound";
 import { web3Factory } from "web3/web3Factory";
 
 export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
+  console.log(walletAddress);
   const { web3, soulboundContract } = web3Factory(chainId);
 
   try {
@@ -14,7 +15,8 @@ export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
     const hasSoul: boolean = await soulbound.methods
       .hasSoul(walletAddress)
       .call();
-
+    console.log(walletAddress);
+    console.log(hasSoul);
     return hasSoul;
   } catch (err) {
     console.error(err);
