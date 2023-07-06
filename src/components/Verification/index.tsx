@@ -7,13 +7,13 @@ import { Col, Row } from "antd";
 import { Button } from "common/Button";
 import { LoadingCircle } from "common/Spinner";
 import { SvgIcon } from "common/SvgIcon";
+import { TosModal } from "components/TosModal/WalletSign";
 import { useHandleOnfidoRedirect } from "components/Verification/hooks/useHandleOnfidoRedirect";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 
 import { CardInfo } from "../CardInfo";
-import { TosModal } from "../TosModal/WalletSign";
 import { EmailForm } from "./EmailForm";
 import {
   ButtonWrapper,
