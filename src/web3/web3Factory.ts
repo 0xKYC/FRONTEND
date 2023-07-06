@@ -16,11 +16,11 @@ export const web3Factory = (
 ): { web3: Web3; soulboundContract: string } => {
   const supportedChains: Chains = {
     [SupportedChainId.POLYGON]: {
-      provider: ENV.REACT_APP_POLYGON_INFURA_URL,
+      provider: ENV.REACT_APP_POLYGON_ALCHEMY_URL,
       soulboundContract: ENV.REACT_APP_POLYGON_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.SEPOLIA]: {
-      provider: ENV.REACT_APP_SEPOLIA_INFURA_URL,
+      provider: ENV.REACT_APP_SEPOLIA_ALCHEMY_URL,
       soulboundContract: ENV.REACT_APP_SEPOLIA_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.POLYGON_MUMBAI]: {

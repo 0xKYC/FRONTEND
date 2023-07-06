@@ -1,3 +1,4 @@
+import { ENV } from "env";
 import { Chain } from "wagmi";
 
 type BaseChainInfo = {
@@ -15,6 +16,9 @@ type BaseChainInfo = {
     decimals: number; // e.g. 18,
   };
 };
+
+export const IS_MAINNET =
+  ENV.REACT_APP_ENVIRONMENT === "prod" || ENV.REACT_APP_ENVIRONMENT === "stage";
 
 export enum SupportedChainId {
   // MAINNET = 1,
@@ -89,6 +93,12 @@ export const CHAIN_IDS = [
   SupportedChainId.SCROLL_ALPHA,
 ] as const;
 
+export const TESTNET_CHAINS_IDS = [
+  SupportedChainId.SEPOLIA,
+  SupportedChainId.POLYGON_MUMBAI,
+  SupportedChainId.SCROLL_ALPHA,
+] as const;
+
 export type ChainId = (typeof CHAIN_IDS)[number];
 
 export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
@@ -108,6 +118,16 @@ export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_ALPHA,
 ];
+
+export const ONLY_TESTNET_CHAINS = [
+  SupportedChainId.POLYGON_MUMBAI,
+  SupportedChainId.SEPOLIA,
+  SupportedChainId.SCROLL_ALPHA,
+];
+
+export const DEFAULT_CHAIN = IS_MAINNET
+  ? SupportedChainId.POLYGON
+  : SupportedChainId.POLYGON_MUMBAI;
 
 export const scrollAlpha = {
   id: 534353,

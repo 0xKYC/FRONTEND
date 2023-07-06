@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ChainId, SupportedChainId } from "constans/chains";
+import { ChainId, DEFAULT_CHAIN } from "constans/chains";
 
 import { RootState } from "../../store";
 
@@ -11,7 +11,7 @@ type State = {
 const initialState: State = {
   isConnectorsModalOpen: false,
   isConnectionInfoModalOpen: false,
-  selectedChain: SupportedChainId.POLYGON,
+  selectedChain: DEFAULT_CHAIN,
 };
 export const connectionSlice = createSlice({
   name: "connection",

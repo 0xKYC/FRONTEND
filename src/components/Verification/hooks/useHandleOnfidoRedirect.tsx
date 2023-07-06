@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAccount, useNetwork } from "wagmi";
 
 import { getRedirectUrl } from "components/Verification/getRedirectUrl";
-import { SupportedChainId } from "constans/chains";
+import { DEFAULT_CHAIN } from "constans/chains";
 import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
@@ -28,7 +28,8 @@ export const useHandleOnfidoRedirect = () => {
   const { chain } = useNetwork();
 
   const walletAddress = address || mockedWalletAddress;
-  const chainId = address ? chain?.id : SupportedChainId.POLYGON;
+
+  const chainId = address ? chain?.id : DEFAULT_CHAIN;
 
   const redirectUrl = getRedirectUrl();
   const { createOnfidoApplicant } = useCreateOnfidoApplicant();

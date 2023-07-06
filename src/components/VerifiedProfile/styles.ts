@@ -6,7 +6,15 @@ import { ChainId, SupportedChainId } from "../../constans/chains";
 
 export const Content = styled("p")`
   margin: 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  inline-size: 250px;
+  overflow-wrap: break-word;
+  @media screen and (min-width: 728px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 400px) {
+    inline-size: auto;
+  }
 `;
 export const Box = styled("div")`
   display: flex;

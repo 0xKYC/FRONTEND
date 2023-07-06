@@ -8,9 +8,9 @@ const envVariables = z.object({
   REACT_APP_MUMBAI_SOULBOUND_CONTRACT: z.string().min(1),
   REACT_APP_POLYGON_SOULBOUND_CONTRACT: z.string().min(1),
   REACT_APP_SCROLL_SOULBOUND_CONTRACT: z.string().min(1),
-  REACT_APP_SEPOLIA_INFURA_URL: z.string().min(1),
+  REACT_APP_SEPOLIA_ALCHEMY_URL: z.string().min(1),
   REACT_APP_MUMBAI_INFURA_URL: z.string().min(1),
-  REACT_APP_POLYGON_INFURA_URL: z.string().min(1),
+  REACT_APP_POLYGON_ALCHEMY_URL: z.string().min(1),
   REACT_APP_WALLET_CONNECT_ID: z.string().min(1),
 });
 

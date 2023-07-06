@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 
 import { useAccount, useDisconnect, useNetwork } from "wagmi";
 
-import { CHAIN_IDS, SupportedChainId } from "constans/chains";
+import {
+  CHAIN_IDS,
+  DEFAULT_CHAIN,
+  IS_MAINNET,
+  TESTNET_CHAINS_IDS,
+} from "constans/chains";
 import tos from "content/TermsOfService.json";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
@@ -20,6 +25,8 @@ import { hasSoul } from "web3/methods/hasSoul";
 import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
 import { useCheckMinting } from "./useCheckMinting";
+
+const supportedChains = IS_MAINNET ? CHAIN_IDS : TESTNET_CHAINS_IDS;
 
 export const useAuth = () => {
   const verified = useAppSelector(selectVerifiedUser);
@@ -48,12 +55,12 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON;
+  const chainId = chain ? chain.id : DEFAULT_CHAIN;
 
   useEffect(() => {
     if (!chain) return;
 
-    if (!CHAIN_IDS.includes(chain.id)) {
+    if (!supportedChains.includes(chain.id)) {
       dispatch(reset());
       disconnect();
     }
