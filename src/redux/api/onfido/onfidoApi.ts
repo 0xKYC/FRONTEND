@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import { ENV } from "env";
+
 import { API_URL } from "../config";
 import type { Applicant, OnfidoRedirectData } from "./types";
 
@@ -32,6 +34,7 @@ export const onfidoApi = createApi({
           redirectUrl: redirectUrl || window.location.href,
           email: email || "",
           callbackUrl: callbackUrl || "",
+          environment: ENV.REACT_APP_ENVIRONMENT,
         },
         responseHandler: (response: { text: () => any }) => response.text(),
       }),
