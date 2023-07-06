@@ -2,7 +2,7 @@ import { ModalContent } from "../ModalContent";
 import { StyledModal } from "../styles";
 import { useSignTerms } from "./useSignTerms";
 
-export const TosModal = () => {
+export const TosModalNormal = () => {
   const { closeModal, sign, isModalOpen } = useSignTerms();
 
   return (
