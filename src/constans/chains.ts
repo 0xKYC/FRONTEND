@@ -65,7 +65,7 @@ export const CHAIN_INFO = {
   [SupportedChainId.POLYGON_MUMBAI]: {
     bridge: "https://wallet.polygon.technology/bridge",
     docs: "https://polygon.io/",
-    explorer: "https://mumbai.polygonscan.com/tx/",
+    explorer: "https://mumbai.polygonscan.com/",
     explorerName: "Polygonscan",
     label: "Polygon Mumbai",
     logoUrl: "/img/svg/polygon-matic-logo.svg",
@@ -77,7 +77,7 @@ export const CHAIN_INFO = {
   },
 
   [SupportedChainId.SCROLL_ALPHA]: {
-    explorer: "https://blockscout.scroll.io/tx/",
+    explorer: "https://blockscout.scroll.io/",
     explorerName: "Blockscout",
     label: "Scroll Alpha",
     logoUrl: "/img/svg/scroll.svg",
