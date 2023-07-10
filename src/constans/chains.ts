@@ -1,10 +1,11 @@
+import { ENV } from "env";
 import { Chain } from "wagmi";
 
 type BaseChainInfo = {
   readonly bridge?: string;
   readonly docs?: string;
   readonly explorer: string;
-  readonly explorerName: string;
+  readonly explorerName?: string;
   readonly logoUrl: string;
   readonly circleLogoUrl?: string;
   readonly label: string;
@@ -16,13 +17,51 @@ type BaseChainInfo = {
   };
 };
 
+export const IS_MAINNET =
+  ENV.REACT_APP_ENVIRONMENT === "prod" || ENV.REACT_APP_ENVIRONMENT === "stage";
+
 export enum SupportedChainId {
-  GOERLI = 5,
+  // MAINNET = 1,
+  SEPOLIA = 11155111,
+
+  POLYGON = 137,
   POLYGON_MUMBAI = 80001,
+
   SCROLL_ALPHA = 534353,
 }
 
 export const CHAIN_INFO = {
+  // [SupportedChainId.MAINNET]: {
+  //   docs: "https://docs.uniswap.org/",
+  //   explorer: "https://etherscan.io/",
+  //   infoLink: "https://info.uniswap.org/#/",
+  //   label: "Ethereum",
+  //   logoUrl: "/img/ethereum-logo.png",
+  //   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+  // },
+  [SupportedChainId.SEPOLIA]: {
+    docs: "https://docs.uniswap.org/",
+    explorer: "https://sepolia.etherscan.io/",
+    infoLink: "https://info.uniswap.org/#/",
+    label: "Ethereum Sepolia",
+    logoUrl: "/img/ethereum-logo.png",
+    nativeCurrency: {
+      name: "Sepolia Ether",
+      symbol: "SepoliaETH",
+      decimals: 18,
+    },
+  },
+
+  [SupportedChainId.POLYGON]: {
+    bridge: "https://wallet.polygon.technology/polygon/bridge",
+    docs: "https://polygon.io/",
+    explorer: "https://polygonscan.com/",
+    explorerName: "Polygonscan",
+    infoLink: "https://info.uniswap.org/#/polygon/",
+    label: "Polygon",
+    logoUrl: "/img/svg/polygon-matic-logo.svg",
+    nativeCurrency: { name: "Polygon Matic", symbol: "MATIC", decimals: 18 },
+  },
   [SupportedChainId.POLYGON_MUMBAI]: {
     bridge: "https://wallet.polygon.technology/bridge",
     docs: "https://polygon.io/",
@@ -36,13 +75,6 @@ export const CHAIN_INFO = {
       decimals: 18,
     },
   },
-  [SupportedChainId.GOERLI]: {
-    explorer: "https://goerli.etherscan.io/tx/",
-    explorerName: "Etherscan",
-    label: "Ethereum Goerli",
-    logoUrl: "/img/ethereum-logo.png",
-    nativeCurrency: { name: "Görli Ether", symbol: "görETH", decimals: 18 },
-  },
 
   [SupportedChainId.SCROLL_ALPHA]: {
     explorer: "https://blockscout.scroll.io/tx/",
@@ -54,7 +86,15 @@ export const CHAIN_INFO = {
   },
 };
 export const CHAIN_IDS = [
-  SupportedChainId.GOERLI,
+  SupportedChainId.POLYGON,
+
+  SupportedChainId.SEPOLIA,
+  SupportedChainId.POLYGON_MUMBAI,
+  SupportedChainId.SCROLL_ALPHA,
+] as const;
+
+export const TESTNET_CHAINS_IDS = [
+  SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_ALPHA,
 ] as const;
@@ -63,22 +103,32 @@ export type ChainId = (typeof CHAIN_IDS)[number];
 
 export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
   if (typeof chainId === "undefined") {
-    return CHAIN_INFO[SupportedChainId.POLYGON_MUMBAI];
+    return CHAIN_INFO[SupportedChainId.POLYGON];
   }
 
   if (CHAIN_IDS.includes(chainId)) {
     return CHAIN_INFO[chainId];
   } else {
-    return CHAIN_INFO[SupportedChainId.POLYGON_MUMBAI];
+    return CHAIN_INFO[SupportedChainId.POLYGON];
   }
 }
 export const NETWORK_SELECTOR_CHAINS = [
+  SupportedChainId.POLYGON,
+  SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.GOERLI,
   SupportedChainId.SCROLL_ALPHA,
 ];
 
-// TODO: need to check this code. I got an red underline.  `} as const satisfies Chain;`
+export const ONLY_TESTNET_CHAINS = [
+  SupportedChainId.POLYGON_MUMBAI,
+  SupportedChainId.SEPOLIA,
+  SupportedChainId.SCROLL_ALPHA,
+];
+
+export const DEFAULT_CHAIN = IS_MAINNET
+  ? SupportedChainId.POLYGON
+  : SupportedChainId.POLYGON_MUMBAI;
+
 export const scrollAlpha = {
   id: 534353,
   name: "Scroll Alpha",

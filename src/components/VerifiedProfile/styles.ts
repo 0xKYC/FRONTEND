@@ -6,7 +6,15 @@ import { ChainId, SupportedChainId } from "../../constans/chains";
 
 export const Content = styled("p")`
   margin: 1rem 0;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  inline-size: 250px;
+  overflow-wrap: break-word;
+  @media screen and (min-width: 728px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 400px) {
+    inline-size: auto;
+  }
 `;
 export const Box = styled("div")`
   display: flex;
@@ -16,9 +24,10 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
   display: block;
   text-align: center;
   background: ${(props) =>
-    props.chainId === SupportedChainId.GOERLI
+    props.chainId === SupportedChainId.SEPOLIA
       ? "#0077be"
-      : props.chainId === SupportedChainId.POLYGON_MUMBAI
+      : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
+        SupportedChainId.POLYGON
       ? "#8247e5"
       : "#3B226A"};
   color: #fff;
@@ -38,9 +47,10 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
     color: #fff;
     border: 1px solid #0077be;
     background: ${(props) =>
-      props.chainId === SupportedChainId.GOERLI
+      props.chainId === SupportedChainId.SEPOLIA
         ? "#0077be"
-        : props.chainId === SupportedChainId.POLYGON_MUMBAI
+        : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
+          SupportedChainId.POLYGON
         ? "#8247e5"
         : "#3B226A"};
   }
@@ -60,14 +70,10 @@ export const ContentWrapper = styled("div")`
   position: relative;
   margin-right: 2rem;
 
-  @media only screen and (max-width: 575px) {
-    padding-bottom: 4rem;
-  }
   @media only screen and (max-width: 768px) {
-    padding: 4rem 0 5rem;
+    padding: 1rem 0 3rem 0;
     margin: 0 auto;
     max-width: 540px;
-    padding-bottom: 0;
   }
 `;
 

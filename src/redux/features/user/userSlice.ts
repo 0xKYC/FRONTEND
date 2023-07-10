@@ -49,12 +49,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.applicantId = "";
       state.verified = false;
       state.txHash = "";
       state.mockedWalletAddress = null;
     },
-    addApplicantId: (state, action: PayloadAction<string>) => {
+    addApplicantId: (state, action: PayloadAction<string | null>) => {
       state.applicantId = action.payload;
     },
     setPartnerParams: (state, action: PayloadAction<PartnerPayload>) => {

@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 
 import { useAccount, useDisconnect, useNetwork } from "wagmi";
 
-import { CHAIN_IDS, SupportedChainId } from "constans/chains";
+import {
+  CHAIN_IDS,
+  DEFAULT_CHAIN,
+  IS_MAINNET,
+  TESTNET_CHAINS_IDS,
+} from "constans/chains";
 import tos from "content/TermsOfService.json";
 import { UserNotFoundError } from "redux/api/user/types";
-import { useCreateApplicantMutation, userApi } from "redux/api/user/userApi";
+import { userApi } from "redux/api/user/userApi";
 import {
   addApplicantId,
   checkIfVerified,
@@ -20,18 +25,18 @@ import { hasSoul } from "web3/methods/hasSoul";
 import { isWalletSanctioned } from "web3/methods/isSanctioned";
 
 import { useCheckMinting } from "./useCheckMinting";
-import { useCreateNewUser } from "./useCreateNewUser";
+
+const supportedChains = IS_MAINNET ? CHAIN_IDS : TESTNET_CHAINS_IDS;
 
 export const useAuth = () => {
   const verified = useAppSelector(selectVerifiedUser);
   const isMintingActive = useAppSelector(selectIsMintingActive);
+
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
+
   const dispatch = useAppDispatch();
 
   const [fetchUser] = userApi.endpoints.getUserWallet.useLazyQuery();
-
-  const { createNewUser } = useCreateNewUser();
-  const [createOnfidoApplicant] = useCreateApplicantMutation();
 
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
@@ -50,35 +55,16 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSanctioned, setIsSanctioned] = useState(false);
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : DEFAULT_CHAIN;
 
   useEffect(() => {
     if (!chain) return;
 
-    if (!CHAIN_IDS.includes(chain.id)) {
+    if (!supportedChains.includes(chain.id)) {
       dispatch(reset());
       disconnect();
     }
   }, [chain, disconnect, dispatch]);
-
-  useEffect(() => {
-    //flow for insert stonks
-    const checkForUuid = async (mockedWalletAddress: string) => {
-      const userWallet = await fetchUser({
-        walletAddress: mockedWalletAddress,
-        chainId,
-      }).unwrap();
-      if (userWallet.user?.uuid) {
-        dispatch(checkIfVerified(true));
-      } else {
-        dispatch(checkIfVerified(false));
-      }
-    };
-
-    if (mockedWalletAddress) {
-      checkForUuid(mockedWalletAddress);
-    }
-  }, [chainId, dispatch, fetchUser, mockedWalletAddress]);
 
   useEffect(() => {
     const handleWalletSanctionCheck = async () => {
@@ -90,7 +76,7 @@ export const useAuth = () => {
       }
     };
 
-    const handleOnfidoAuth = async () => {
+    const handleUserAuth = async () => {
       if (!walletAddress) return;
 
       try {
@@ -100,25 +86,23 @@ export const useAuth = () => {
           .unwrap()
           .catch(async (error: UserNotFoundError) => {
             if (error.status === 404) {
-              dispatch(signTos(false));
-              await createNewUser(walletAddress);
-              return;
+              dispatch(addApplicantId(null));
             }
           });
         if (!userWallet) return;
 
         if (userWallet.tosVersion !== tos.version) {
           dispatch(signTos(false));
-        } else {
+        }
+        if (userWallet.signature) {
           dispatch(signTos(true));
         }
+        dispatch(addApplicantId(userWallet.onfidoApplicantId));
         const isVerified = await hasSoul(chainId, walletAddress);
 
         if (isVerified) {
           dispatch(checkIfVerified(isVerified));
         }
-
-        dispatch(addApplicantId(userWallet.onfidoApplicantId));
       } catch (err) {
         dispatch(signTos(false));
         setIsLoading(false);
@@ -127,16 +111,9 @@ export const useAuth = () => {
         setIsLoading(false);
       }
     };
-    handleOnfidoAuth();
+    handleUserAuth();
     handleWalletSanctionCheck();
-  }, [
-    walletAddress,
-    dispatch,
-    chainId,
-    fetchUser,
-    createNewUser,
-    createOnfidoApplicant,
-  ]);
+  }, [walletAddress, dispatch, chainId, fetchUser]);
 
   return {
     isVerified,
