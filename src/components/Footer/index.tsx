@@ -21,8 +21,15 @@ import {
 type SocialLinkProps = {
   href: string;
   src: string;
+  width?: string;
+  height?: string;
 };
-export const SocialLink = ({ href, src }: SocialLinkProps) => {
+export const SocialLink = ({
+  href,
+  src,
+  width = "25px",
+  height = "25px",
+}: SocialLinkProps) => {
   return (
     <a
       href={href}
@@ -31,7 +38,7 @@ export const SocialLink = ({ href, src }: SocialLinkProps) => {
       key={src}
       aria-label={src}
     >
-      <SvgIcon src={src} width="25px" height="25px" />
+      <SvgIcon src={src} width={width} height={height} />
     </a>
   );
 };
@@ -108,6 +115,12 @@ const Footer = ({ t }: any) => {
               <SocialLink
                 href="https://www.linkedin.com/company/0xkyc/"
                 src="linkedin.svg"
+              />
+              <SocialLink
+                href="https://discord.com/invite/p58hBne2Ue"
+                src="discord.svg"
+                width="32px"
+                height="32px"
               />
               {/* crunchbase icon */}
             </FooterContainer>
