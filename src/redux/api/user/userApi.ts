@@ -3,7 +3,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ChainId } from "constans/chains";
 
 import { API_URL } from "../config";
-import { Applicant } from "../onfido/types";
 import { Wallet } from "./types";
 
 export const userApi = createApi({
@@ -19,25 +18,6 @@ export const userApi = createApi({
       query: ({ walletAddress, chainId }) =>
         `user/${walletAddress}/chainId/${chainId}`,
     }),
-
-    createUserWallet: builder.mutation<
-      Wallet,
-      { walletAddress: string; onfidoApplicantId: string }
-    >({
-      query: (userWalletData) => ({
-        url: `user/wallet`,
-        method: "POST",
-        body: userWalletData,
-      }),
-    }),
-    createApplicant: builder.mutation<Applicant, {}>({
-      query: (data) => ({
-        url: `onfido/applicant`,
-        method: "POST",
-        body: data,
-      }),
-    }),
-
     subscribeNewsletter: builder.mutation<string, { email: string }>({
       query: (data) => ({
         url: `user/newsletter/signup`,
@@ -48,9 +28,5 @@ export const userApi = createApi({
   }),
 });
 
-export const {
-  useGetUserWalletQuery,
-  useCreateUserWalletMutation,
-  useSubscribeNewsletterMutation,
-  useCreateApplicantMutation,
-} = userApi;
+export const { useGetUserWalletQuery, useSubscribeNewsletterMutation } =
+  userApi;

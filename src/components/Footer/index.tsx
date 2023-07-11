@@ -10,7 +10,6 @@ import {
   Extra,
   FooterContainer,
   FooterSection,
-  Language,
   Large,
   LogoContainer,
   NavLink,
@@ -22,8 +21,15 @@ import {
 type SocialLinkProps = {
   href: string;
   src: string;
+  width?: string;
+  height?: string;
 };
-export const SocialLink = ({ href, src }: SocialLinkProps) => {
+export const SocialLink = ({
+  href,
+  src,
+  width = "25px",
+  height = "25px",
+}: SocialLinkProps) => {
   return (
     <a
       href={href}
@@ -32,7 +38,7 @@ export const SocialLink = ({ href, src }: SocialLinkProps) => {
       key={src}
       aria-label={src}
     >
-      <SvgIcon src={src} width="25px" height="25px" />
+      <SvgIcon src={src} width={width} height={height} />
     </a>
   );
 };
@@ -43,7 +49,7 @@ const Footer = ({ t }: any) => {
         <Container padding={true}>
           <Row justify="end">
             <Col lg={7} md={7} sm={24} xs={24}>
-              <Language>{t("Contact")}</Language>
+              <Title>{t("Contact")}</Title>
               <Para>{t(`Do you have any questions?`)}</Para>
 
               <a href="mailto:support@0xkyc.id">
@@ -92,7 +98,7 @@ const Footer = ({ t }: any) => {
             className="footer-icons-row"
             justify="space-between"
             align="middle"
-            style={{ paddingTop: "3rem" }}
+            style={{ paddingTop: "1.8rem" }}
           >
             <NavLink to="/">
               <LogoContainer>
@@ -109,6 +115,12 @@ const Footer = ({ t }: any) => {
               <SocialLink
                 href="https://www.linkedin.com/company/0xkyc/"
                 src="linkedin.svg"
+              />
+              <SocialLink
+                href="https://discord.com/invite/p58hBne2Ue"
+                src="discord.svg"
+                width="32px"
+                height="32px"
               />
               {/* crunchbase icon */}
             </FooterContainer>
