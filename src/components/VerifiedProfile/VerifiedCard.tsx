@@ -55,7 +55,7 @@ export const VerifiedCard = ({
       ) : (
         <StyledLink
           chainId={chainId}
-          href={explorer + "tx/" + txHash}
+          href={explorer + txHash}
           target="_blank"
           rel="noreferrer"
         >
