@@ -99,9 +99,12 @@ export const useAuth = () => {
         }
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
         const isVerified = await hasSoul(chainId, walletAddress);
-
+        const hasUuid = userWallet.user?.uuid;
         if (isVerified) {
           dispatch(checkIfVerified(isVerified));
+        }
+        if (mockedWalletAddress && hasUuid) {
+          dispatch(checkIfVerified(true));
         }
       } catch (err) {
         dispatch(signTos(false));
@@ -113,7 +116,7 @@ export const useAuth = () => {
     };
     handleUserAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch, chainId, fetchUser]);
+  }, [walletAddress, dispatch, chainId, fetchUser, mockedWalletAddress]);
 
   return {
     isVerified,
