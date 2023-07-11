@@ -5,7 +5,7 @@ type BaseChainInfo = {
   readonly bridge?: string;
   readonly docs?: string;
   readonly explorer: string;
-  readonly explorerName?: string;
+  readonly explorerName: string;
   readonly logoUrl: string;
   readonly circleLogoUrl?: string;
   readonly label: string;
@@ -41,7 +41,8 @@ export const CHAIN_INFO = {
   // },
   [SupportedChainId.SEPOLIA]: {
     docs: "https://docs.uniswap.org/",
-    explorer: "https://sepolia.etherscan.io/",
+    explorer: "https://sepolia.etherscan.io/tx/",
+    explorerName: "Etherscan",
     infoLink: "https://info.uniswap.org/#/",
     label: "Ethereum Sepolia",
     logoUrl: "/img/ethereum-logo.png",
@@ -55,7 +56,7 @@ export const CHAIN_INFO = {
   [SupportedChainId.POLYGON]: {
     bridge: "https://wallet.polygon.technology/polygon/bridge",
     docs: "https://polygon.io/",
-    explorer: "https://polygonscan.com/",
+    explorer: "https://polygonscan.com/tx/",
     explorerName: "Polygonscan",
     infoLink: "https://info.uniswap.org/#/polygon/",
     label: "Polygon",
@@ -65,7 +66,7 @@ export const CHAIN_INFO = {
   [SupportedChainId.POLYGON_MUMBAI]: {
     bridge: "https://wallet.polygon.technology/bridge",
     docs: "https://polygon.io/",
-    explorer: "https://mumbai.polygonscan.com/",
+    explorer: "https://mumbai.polygonscan.com/tx/",
     explorerName: "Polygonscan",
     label: "Polygon Mumbai",
     logoUrl: "/img/svg/polygon-matic-logo.svg",
@@ -77,7 +78,7 @@ export const CHAIN_INFO = {
   },
 
   [SupportedChainId.SCROLL_ALPHA]: {
-    explorer: "https://blockscout.scroll.io/",
+    explorer: "https://blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
     label: "Scroll Alpha",
     logoUrl: "/img/svg/scroll.svg",
