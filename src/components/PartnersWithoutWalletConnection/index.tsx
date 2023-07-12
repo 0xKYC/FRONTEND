@@ -13,7 +13,7 @@ export const PartnersWithoutWalletConnectionScreen = () => {
         type="right"
         button={IntroContent.button}
         verifyTitle={VerifyContent.title}
-        verifyText={VerifyContent.content}
+        verifyText={VerifyContent.biometrics}
         icon="developer.svg"
       />
     </Container>
