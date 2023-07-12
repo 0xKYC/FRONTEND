@@ -54,7 +54,11 @@ export const Container = styled("div")`
 
 export const Heading = styled.h2`
   font-size: 2rem;
+
   @media screen and (min-width: 400px) {
+    font-size: 2.4rem;
+  }
+  @media screen and (min-width: 1200px) {
     font-size: 2.8rem;
   }
 `;

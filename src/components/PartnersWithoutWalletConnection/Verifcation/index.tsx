@@ -4,8 +4,8 @@ import { Col, Row } from "antd";
 
 import { Button } from "common/Button";
 import { LoadingCircle } from "common/Spinner";
-import { useHandleOnfidoRedirect } from "common/utils/handleOnfidoRedirect";
-import { TosModalWeb2 } from "components/TosModal/web2Sign";
+import { TosModalWeb2 } from "components/TosModal/PartnerSign";
+import { useHandleOnfidoRedirect } from "components/Verification/hooks/useHandleOnfidoRedirect";
 
 import { CardInfo } from "../../CardInfo";
 import {

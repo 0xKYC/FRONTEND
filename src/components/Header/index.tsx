@@ -18,8 +18,10 @@ import {
   HeaderSection,
   Image,
   ImgWrapper,
+  IsLogo,
   LogoContainer,
   LogoText,
+  LogoWithoutWalletConnection,
   MobileConnectBtn,
   MobileImage,
   NotHidden,
@@ -32,6 +34,7 @@ const Header = () => {
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
+      localStorage.clear();
     },
   });
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
@@ -92,18 +95,29 @@ const Header = () => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <Image
-              src="/img/icons/new-logo.png"
-              alt="logo"
-              width="180px"
-              height="54px"
-            />
-            <MobileImage
-              src="/img/icons/0xkyc-icon.png"
-              alt="logo"
-              width="54px"
-              height="54px"
-            />
+            {mockedWalletAddress ? (
+              <LogoWithoutWalletConnection
+                src="/img/icons/new-logo.png"
+                alt="logo"
+                width="180px"
+                height="54px"
+              />
+            ) : (
+              <>
+                <Image
+                  src="/img/icons/new-logo.png"
+                  alt="logo"
+                  width="180px"
+                  height="54px"
+                />
+                <MobileImage
+                  src="/img/icons/0xkyc-icon.png"
+                  alt="logo"
+                  width="54px"
+                  height="54px"
+                />
+              </>
+            )}
           </LogoContainer>
           {!mockedWalletAddress && (
             <MobileConnectBtn>
@@ -121,6 +135,14 @@ const Header = () => {
           <NotHidden>
             <MenuItem />
           </NotHidden>
+          {mockedWalletAddress && (
+            <IsLogo
+              width={26}
+              height={26}
+              src="/img/IS-logo-2.png"
+              alt="insert stonks"
+            />
+          )}
         </Row>
       </Container>
     </HeaderSection>

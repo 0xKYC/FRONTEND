@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { SupportedChainId } from "constans/chains";
+import { DEFAULT_CHAIN } from "constans/chains";
 import {
   selectIsMinting,
   selectIsMintingError,
@@ -23,7 +23,7 @@ export const useCheckMinting = (isVerified: boolean) => {
   const { address } = useAccount();
   const { chain } = useNetwork();
   const walletAddress = address || mockedWalletAddress;
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : DEFAULT_CHAIN;
 
   useEffect(() => {
     if (

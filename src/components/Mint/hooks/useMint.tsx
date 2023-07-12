@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
 
 import { getUserSbt } from "components/VerifiedProfile/utils";
-import { SupportedChainId } from "constans/chains";
-import { useGetUserQuery, userApi } from "redux/api/user/userApi";
+import { DEFAULT_CHAIN } from "constans/chains";
+import { useGetUserWalletQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,
   checkIfVerified,
@@ -33,44 +33,47 @@ export const useMint = () => {
   const { percent, setPercent, loadingText, handleCompleteLoading } =
     useLoadingBar();
 
-  const chainId = chain ? chain.id : SupportedChainId.POLYGON_MUMBAI;
+  const chainId = chain ? chain.id : DEFAULT_CHAIN;
   const walletAddress = address || mockedWalletAddress;
 
-  const { data: user, isLoading } = useGetUserQuery({
+  const { data: userWallet, isLoading } = useGetUserWalletQuery({
     walletAddress: walletAddress || "",
     chainId,
   });
 
-  const { refetch } = userApi.endpoints.getUser.useQuerySubscription({
+  const { refetch } = userApi.endpoints.getUserWallet.useQuerySubscription({
     walletAddress: walletAddress || "",
     chainId,
   });
 
   // flow for insert stonks users
   useEffect(() => {
-    if (mockedWalletAddress && user) {
-      refetch();
-      const sbt = getUserSbt(user);
+    if (mockedWalletAddress) {
+      if (!userWallet) {
+        refetch();
+      } else {
+        const sbt = getUserSbt(userWallet);
 
-      if (sbt?.onfidoStatus !== "declined" && user.user?.uuid) {
-        dispatch(
-          setMinting({
-            minting: false,
-            chainId: null,
-            walletAddress: mockedWalletAddress,
-            error: false,
-          }),
-        );
-        handleCompleteLoading();
-        setSuccess(true);
-        dispatch(checkIfVerified(true));
+        if (sbt?.onfidoStatus !== "declined" && userWallet.user?.uuid) {
+          dispatch(
+            setMinting({
+              minting: false,
+              chainId: null,
+              walletAddress: mockedWalletAddress,
+              error: false,
+            }),
+          );
+          handleCompleteLoading();
+          setSuccess(true);
+          dispatch(checkIfVerified(true));
 
-        navigate("/profile");
+          navigate("/profile");
+        }
       }
     }
   }, [
     mockedWalletAddress,
-    user,
+    userWallet,
     navigate,
     dispatch,
     handleCompleteLoading,
@@ -100,8 +103,8 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (user && !isLoading && user?.sbts?.length > 0) {
-      const sbt = getUserSbt(user);
+    if (userWallet && !isLoading && userWallet?.sbts?.length > 0) {
+      const sbt = getUserSbt(userWallet);
 
       if (sbt && sbt.onfidoStatus !== "approved") {
         setError(true);
@@ -116,7 +119,7 @@ export const useMint = () => {
         return navigate("/error");
       }
     }
-  }, [walletAddress, chainId, user, dispatch, navigate, isLoading]);
+  }, [walletAddress, chainId, userWallet, dispatch, navigate, isLoading]);
 
   useEffect(() => {
     if (!walletAddress || !chainId) {
@@ -156,10 +159,9 @@ export const useMint = () => {
 
           if (isVerified) {
             refetch();
-
-            if (user && user?.sbts?.length > 0) {
+            if (userWallet && userWallet?.sbts?.length > 0) {
               handleCompleteLoading();
-              const sbt = getUserSbt(user);
+              const sbt = getUserSbt(userWallet);
               if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
               dispatch(
                 setMinting({
@@ -191,7 +193,7 @@ export const useMint = () => {
     walletAddress,
     dispatch,
     chainId,
-    user,
+    userWallet,
     error,
     mintingChain,
     success,

@@ -64,4 +64,5 @@ const StyledBtn = styled("button")`
   background: inherit;
   border: none;
   cursor: pointer;
+  /* padding: 0; */
 `;

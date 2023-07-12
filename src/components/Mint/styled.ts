@@ -20,7 +20,7 @@ export const StyledBox = styled("div")`
 export const Text = styled("p")`
   color: #fb7324;
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0 3rem 0 2rem;
 `;
 

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useAccount, useNetwork } from "wagmi";
 
 import { getRedirectUrl } from "components/Verification/getRedirectUrl";
-import { SupportedChainId } from "constans/chains";
+import { DEFAULT_CHAIN } from "constans/chains";
+import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
@@ -12,7 +13,8 @@ import {
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { onfidoRedirect } from "service/onfido/onfido.service";
+
+import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 
 export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
@@ -21,32 +23,37 @@ export const useHandleOnfidoRedirect = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [onfidoRedirect] = useOnfidoRedirectMutation();
   const { address } = useAccount();
   const { chain } = useNetwork();
 
   const walletAddress = address || mockedWalletAddress;
-  const chainId = address ? chain?.id : SupportedChainId.POLYGON_MUMBAI;
+
+  const chainId = address ? chain?.id : DEFAULT_CHAIN;
 
   const redirectUrl = getRedirectUrl();
+  const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
   const handleOnfidoRedirect = async (email?: string) => {
-    try {
-      if (walletAddress && onfidoApplicantId && chainId) {
-        await onfidoRedirect({
-          applicantId: onfidoApplicantId,
-          chainId,
-          walletAddress,
-          callbackUrl: partnerCallbackUrl,
-          redirectUrl,
-          email,
-        });
+    if (walletAddress && chainId) {
+      let applicantId = onfidoApplicantId;
+
+      if (!applicantId) {
+        const applicant = await createOnfidoApplicant();
+        applicantId = applicant.id;
       }
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
+      await onfidoRedirect({
+        applicantId: applicantId,
+        chainId,
+        walletAddress,
+        callbackUrl: partnerCallbackUrl,
+        redirectUrl,
+        email,
+      })
+        .unwrap()
+        .then((responseUrl) => window.location.replace(responseUrl))
+        .catch((error) => console.error(error))
+        .finally(() => setIsLoading(false));
     }
   };
   const handleOnfidoRedirectWithTosCheck = async () => {

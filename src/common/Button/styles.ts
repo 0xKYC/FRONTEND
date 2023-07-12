@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledButton = styled("button")<any>`
+export const StyledButton = styled("button")<{ color?: string }>`
   background: ${(p) => p.color || "#fb7324"};
   color: ${(p) => (p.color ? "#fb7324" : "#fff")};
   font-size: 1rem;
@@ -24,5 +24,8 @@ export const StyledButton = styled("button")<any>`
 
   @media screen and (max-width: 890px) {
     padding: 0.7rem 1.4rem;
+  }
+  @media screen and (max-width: 330px) {
+    padding: 0.7rem 1rem;
   }
 `;

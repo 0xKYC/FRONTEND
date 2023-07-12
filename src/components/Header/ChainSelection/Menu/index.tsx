@@ -10,7 +10,10 @@ import { useErrorMessage } from "common/hooks/useErrorMessage";
 import { ConnectionInfoModal } from "components/ConnectionInfoModal";
 import {
   ChainId,
+  DEFAULT_CHAIN,
+  IS_MAINNET,
   NETWORK_SELECTOR_CHAINS,
+  ONLY_TESTNET_CHAINS,
   SupportedChainId,
   getChainInfo,
 } from "constans/chains";
@@ -81,24 +84,76 @@ export const ChainSelectionMenu = () => {
 
   const { label, logoUrl } = getChainInfo(chain?.id || chainId);
 
-  // get mocked chain (mumbai) for partner integration
-  const { label: mumbaiLabel, logoUrl: mumbaiLogoUrl } = getChainInfo(
-    SupportedChainId.POLYGON_MUMBAI,
-  );
-  const items: MenuProps["items"] = NETWORK_SELECTOR_CHAINS.map(
-    (chainId: SupportedChainId, index) => ({
-      key: index,
-      label: (
-        <ChainSelectorItem
-          onSelectChain={onSelectChain}
-          targetChain={chainId}
-          key={chainId}
-          isPending={chainId === pendingChainId && Boolean(!error) && isLoading}
-        />
-      ),
-    }),
-  );
+  // get mocked chain (polygon or mumbai) for partner integration
+  const { label: polygonLabel, logoUrl: polygonLogoUrl } =
+    getChainInfo(DEFAULT_CHAIN);
 
+  const mainnetNetworksOptions: MenuProps["items"] = [
+    {
+      key: "Mainnet",
+      label: "Mainnet",
+      disabled: true,
+    },
+    {
+      key: 0,
+      label: (
+        <>
+          <ChainSelectorItem
+            onSelectChain={onSelectChain}
+            targetChain={SupportedChainId.POLYGON}
+            key={SupportedChainId.POLYGON}
+            isPending={
+              SupportedChainId.POLYGON === pendingChainId &&
+              Boolean(!error) &&
+              isLoading
+            }
+          />
+        </>
+      ),
+    },
+    {
+      key: "Testnets",
+      label: "Testnets",
+      disabled: true,
+    },
+    ...NETWORK_SELECTOR_CHAINS.slice(1).map(
+      (chainId: SupportedChainId, index) => ({
+        key: index + 1,
+        label: (
+          <>
+            <ChainSelectorItem
+              onSelectChain={onSelectChain}
+              targetChain={chainId}
+              key={chainId}
+              isPending={
+                chainId === pendingChainId && Boolean(!error) && isLoading
+              }
+            />
+          </>
+        ),
+      }),
+    ),
+  ];
+  const testnetNetworksOptions: MenuProps["items"] = [
+    ...ONLY_TESTNET_CHAINS.map((chainId: SupportedChainId, index) => ({
+      key: index + 1,
+      label: (
+        <>
+          <ChainSelectorItem
+            onSelectChain={onSelectChain}
+            targetChain={chainId}
+            key={chainId}
+            isPending={
+              chainId === pendingChainId && Boolean(!error) && isLoading
+            }
+          />
+        </>
+      ),
+    })),
+  ];
+  const properNetworkOptions = IS_MAINNET
+    ? mainnetNetworksOptions
+    : testnetNetworksOptions;
   return (
     <>
       {contextHolder}
@@ -112,14 +167,19 @@ export const ChainSelectionMenu = () => {
       {mockedWalletAddress ? (
         <StyledButton
           icon={
-            <img width={20} height={20} src={mumbaiLogoUrl} alt={mumbaiLabel} />
+            <img
+              width={20}
+              height={20}
+              src={polygonLogoUrl}
+              alt={polygonLabel}
+            />
           }
         >
-          <StyledLabel>{mumbaiLabel}</StyledLabel>
+          <StyledLabel>{polygonLabel}</StyledLabel>
         </StyledButton>
       ) : (
         <Dropdown
-          menu={{ items, onClick: handleMenuClick }}
+          menu={{ items: properNetworkOptions, onClick: handleMenuClick }}
           placement="bottomRight"
           arrow
           trigger={["click"]}
