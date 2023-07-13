@@ -6,14 +6,14 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { publicProvider } from "wagmi/providers/public";
 
-import { IS_MAINNET, scrollAlpha } from "../constans/chains";
+import { IS_MAINNET } from "../constans/chains";
 import { ENV } from "../env";
 
 export const projectId = ENV.REACT_APP_WALLET_CONNECT_ID;
 
-const chains = [polygon, sepolia, polygonMumbai, scrollAlpha];
+const chains = [polygon, sepolia, polygonMumbai];
 
-const testnetChains = [polygonMumbai, sepolia, scrollAlpha];
+const testnetChains = [polygonMumbai, sepolia];
 
 export const properChains = IS_MAINNET ? chains : testnetChains;
 
