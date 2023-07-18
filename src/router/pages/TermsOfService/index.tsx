@@ -93,7 +93,7 @@ const TermsOfService = () => {
       </p>
       <p>
         &quot;<strong>Services</strong>&quot; refers collectively to the 0xKYC
-        zero knowledge identity check and verification services and 1Vote
+        zero knowledge identity check and verification services and Sunscreen
         services provided via the creation of a UUID (as defined below) for
         End-Users, and any other services which are made available from time to
         time by 0xKYC through the Site.
@@ -189,7 +189,7 @@ const TermsOfService = () => {
         check and verification of End-Users’ identity, the result of which is
         minted into a non-transferable identity verification “Soulbound” token
         (the “<strong>Identity Token</strong>”) and made available on the
-        decentralized blockchain network, and 1Vote, which is a service that
+        decentralized blockchain network, and Sunscreen, which is a service that
         lets End-Users get a UUID based on a selfie or another biometric
         verification method. In order for the 0xKYC identity verification
         services to be provided, End-User will be required to provide certain
@@ -198,11 +198,11 @@ const TermsOfService = () => {
         means of identification and a selfie photograph and End-User will be
         required respond to verification questions specifically about End-User’s
         country (and in the case of potentially sanctioned countries, End-User
-        may be asked to provide an address). With regard to 1Vote, the UUID is
+        may be asked to provide an address). With regard to Sunscreen, the UUID is
         generated on the basis of biometric verification (a selfie, a 3D scan or
-        otherwise). 1Vote is currently an integral part of the 0xKYC identity
+        otherwise). Sunscreen is currently an integral part of the 0xKYC identity
         verification service and may be provided as a standalone opt-in service
-        in the future. With 1Vote, we generate a UUID which is a string of
+        in the future. With Sunscreen, we generate a UUID which is a string of
         characters that can be used to identify a user across different Web3
         wallets on the basis of the UUID.
       </p>
