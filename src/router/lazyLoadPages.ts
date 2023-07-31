@@ -11,4 +11,4 @@ export const ThirdParties = lazy(() => import("./pages/ThirdParties"));
 export const About = lazy(() => import("./pages/About"));
 export const Mint = lazy(() => import("./pages/Mint"));
 export const Error = lazy(() => import("./pages/Error"));
-export const Wave = lazy(() => import("../core/UI/Footer/FooterWave"));
+export const Wave = lazy(() => import("../core/UI/Layout/Footer/FooterWave"));

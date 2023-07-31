@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "core/UI/CookieBanner";
 
-import Footer from "../core/UI/Footer";
-import Header from "../core/UI/Header";
+import Footer from "../core/UI/Layout/Footer";
+import Header from "../core/UI/Layout/Header";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
 import { Styles } from "../styles/styles";
@@ -23,7 +23,7 @@ import {
   Wave,
 } from "./lazyLoadPages";
 
-const Router = () => {
+export const Router = () => {
   const {
     isVerified: verified,
     isLoading,
@@ -104,5 +104,3 @@ const Router = () => {
     </BrowserRouter>
   );
 };
-
-export default Router;

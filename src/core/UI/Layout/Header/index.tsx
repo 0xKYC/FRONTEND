@@ -92,59 +92,61 @@ const Header = () => {
 
   return (
     <HeaderSection id="intro">
-      <Container>
-        <Row justify="space-between">
-          <LogoContainer to="/" aria-label="homepage">
-            {mockedWalletAddress ? (
-              <LogoWithoutWalletConnection
-                src="/img/icons/new-logo.png"
-                alt="logo"
-                width="180px"
-                height="54px"
-              />
-            ) : (
-              <>
-                <Image
+      <nav>
+        <Container>
+          <Row justify="space-between">
+            <LogoContainer to="/" aria-label="homepage">
+              {mockedWalletAddress ? (
+                <LogoWithoutWalletConnection
                   src="/img/icons/new-logo.png"
                   alt="logo"
                   width="180px"
                   height="54px"
                 />
-                <MobileImage
-                  src="/img/icons/0xkyc-icon.png"
-                  alt="logo"
-                  width="54px"
-                  height="54px"
-                />
-              </>
+              ) : (
+                <>
+                  <Image
+                    src="/img/icons/new-logo.png"
+                    alt="logo"
+                    width="180px"
+                    height="54px"
+                  />
+                  <MobileImage
+                    src="/img/icons/0xkyc-icon.png"
+                    alt="logo"
+                    width="54px"
+                    height="54px"
+                  />
+                </>
+              )}
+            </LogoContainer>
+            {!mockedWalletAddress && (
+              <MobileConnectBtn>
+                <Button
+                  color={address ? "#FFFFFFff" : ""}
+                  onClick={handleConnectionButtonClick}
+                >
+                  {" "}
+                  {isConnected ? "Disconnect" : "Connect"}
+                </Button>
+                <ChainSelectionMenu />
+              </MobileConnectBtn>
             )}
-          </LogoContainer>
-          {!mockedWalletAddress && (
-            <MobileConnectBtn>
-              <Button
-                color={address ? "#FFFFFFff" : ""}
-                onClick={handleConnectionButtonClick}
-              >
-                {" "}
-                {isConnected ? "Disconnect" : "Connect"}
-              </Button>
-              <ChainSelectionMenu />
-            </MobileConnectBtn>
-          )}
 
-          <NotHidden>
-            <MenuItem />
-          </NotHidden>
-          {mockedWalletAddress && (
-            <IsLogo
-              width={26}
-              height={26}
-              src="/img/IS-logo-2.png"
-              alt="insert stonks"
-            />
-          )}
-        </Row>
-      </Container>
+            <NotHidden>
+              <MenuItem />
+            </NotHidden>
+            {mockedWalletAddress && (
+              <IsLogo
+                width={26}
+                height={26}
+                src="/img/IS-logo-2.png"
+                alt="insert stonks"
+              />
+            )}
+          </Row>
+        </Container>
+      </nav>
     </HeaderSection>
   );
 };
