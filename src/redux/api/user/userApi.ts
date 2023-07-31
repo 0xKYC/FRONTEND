@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { ChainId } from "constans/chains";
+import { ChainId } from "core/constans/chains";
 
 import { API_URL } from "../config";
 import { Wallet } from "./types";

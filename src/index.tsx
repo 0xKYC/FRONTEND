@@ -9,8 +9,8 @@ import { WagmiConfig } from "wagmi";
 import "antd/dist/reset.css";
 import throttle from "lodash/throttle";
 
-import { WalletConnectionModal } from "./components/WalletModal";
-import { wagmiClient } from "./connection";
+import { WalletConnectionModal } from "./core/UI/Modals/WalletModal";
+import { wagmiClient } from "./core/web3/connection";
 import { saveState } from "./redux/localStorage";
 import { store } from "./redux/store";
 import Router from "./router";
