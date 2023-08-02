@@ -1,8 +1,9 @@
 import {
   selectIsConnectorsModalOpen,
   toggleConnectorsModal,
-} from "../../../../../redux/features/connection/connectionSlice";
-import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+} from "redux/features/connection/connectionSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+
 import { Options } from "../Options";
 import { StyledModal, Text } from "./styles";
 
