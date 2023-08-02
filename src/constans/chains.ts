@@ -27,7 +27,7 @@ export enum SupportedChainId {
   POLYGON = 137,
   POLYGON_MUMBAI = 80001,
 
-  // SCROLL_ALPHA = 534353,
+  SCROLL_ALPHA = 534353,
 }
 
 export const CHAIN_INFO = {
@@ -77,27 +77,27 @@ export const CHAIN_INFO = {
     },
   },
 
-  // [SupportedChainId.SCROLL_ALPHA]: {
-  //   explorer: "https://blockscout.scroll.io/tx/",
-  //   explorerName: "Blockscout",
-  //   label: "Scroll Alpha",
-  //   logoUrl: "/img/svg/scroll.svg",
-  //   nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
-  //   bridge: "https://scroll.io/alpha/bridge/",
-  // },
+  [SupportedChainId.SCROLL_ALPHA]: {
+    explorer: "https://blockscout.scroll.io/tx/",
+    explorerName: "Blockscout",
+    label: "Scroll Alpha",
+    logoUrl: "/img/svg/scroll.svg",
+    nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+    bridge: "https://scroll.io/alpha/bridge/",
+  },
 };
 export const CHAIN_IDS = [
   SupportedChainId.POLYGON,
 
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  // SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_ALPHA,
 ] as const;
 
 export const TESTNET_CHAINS_IDS = [
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  // SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_ALPHA,
 ] as const;
 
 export type ChainId = (typeof CHAIN_IDS)[number];
@@ -117,13 +117,13 @@ export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON,
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  // SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_ALPHA,
 ];
 
 export const ONLY_TESTNET_CHAINS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SEPOLIA,
-  // SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_ALPHA,
 ];
 
 export const DEFAULT_CHAIN = IS_MAINNET
