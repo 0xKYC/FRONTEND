@@ -1,13 +1,12 @@
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { CookieBanner } from "components/CookieBanner";
+import { CookieBanner } from "core/UI/CookieBanner";
 
-import { LoadingSpinner } from "../common/LoadingSpinner";
-import { ScrollToTop } from "../common/Scroll";
-import { useAuth } from "../common/hooks/useAuth";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../core/UI/Layout/Footer";
+import Header from "../core/UI/Layout/Header";
+import { LoadingSpinner } from "../core/UI/LoadingSpinner";
+import { useAuth } from "../core/hooks/useAuth";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
@@ -24,7 +23,7 @@ import {
   Wave,
 } from "./lazyLoadPages";
 
-const Router = () => {
+export const Router = () => {
   const {
     isVerified: verified,
     isLoading,
@@ -36,7 +35,6 @@ const Router = () => {
     <BrowserRouter>
       <Styles />
       <Header />
-      <ScrollToTop />
       <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
         <div className="wave_container">
           <Routes>
@@ -106,5 +104,3 @@ const Router = () => {
     </BrowserRouter>
   );
 };
-
-export default Router;

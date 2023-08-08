@@ -1,5 +1,5 @@
 import { TwitterOutlined } from "@ant-design/icons";
-import { GoBackArrow } from "common/GoBackArrow";
+import { GoBackArrow } from "core/UI/TextContainer/GoBackArrow";
 
 import {
   BlackText,
@@ -9,7 +9,7 @@ import {
   StyledOlList,
   StyledText,
   StyledTitle,
-} from "../../../common/TextContainer/style";
+} from "../../../core/UI/TextContainer/style";
 
 const About = () => {
   return (

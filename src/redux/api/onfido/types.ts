@@ -1,4 +1,4 @@
-import { ChainId } from "constans/chains";
+import { ChainId } from "core/constans/chains";
 
 export type Applicant = {
   id: string;
