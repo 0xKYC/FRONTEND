@@ -1,9 +1,18 @@
+import { InfoCircleOutlined } from "@ant-design/icons";
+
 import { StyledText } from "./styles";
 
 export const UniquenessFlowInformation = () => {
   return (
-    <StyledText>
-      Only the result of the check and your unique identifier (UUID) is shared.
-    </StyledText>
+    <>
+      <StyledText>
+        Only the result of the check and your unique identifier (UUID) is
+        shared.
+      </StyledText>
+      <StyledText style={{ fontWeight: "500" }}>
+        <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Troubles getting
+        verified? Try a different device!
+      </StyledText>
+    </>
   );
 };
