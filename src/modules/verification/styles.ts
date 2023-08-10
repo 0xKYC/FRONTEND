@@ -47,6 +47,7 @@ export const ButtonWrapper = styled("div")`
 
 export const Container = styled("div")`
   max-width: 540px;
+  margin-bottom: 7rem;
   @media only screen and (max-width: 768px) {
     margin: 0 auto;
   }
