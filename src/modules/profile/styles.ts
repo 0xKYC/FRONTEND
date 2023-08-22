@@ -61,3 +61,9 @@ export const PolygonLink = styled.a`
   display: inline-block;
   font-size: 1rem;
 `;
+
+export const ErrorText = styled.div`
+  min-height: 50vh;
+  text-align: center;
+  margin-top: 5rem;
+`;

@@ -1,6 +1,6 @@
 import { button } from "content/IntroContent.json";
 
-export type VerificationPageProps = {
+export type HomePageProps = {
   icon: string;
   title?: string;
   verifyTitle: string;

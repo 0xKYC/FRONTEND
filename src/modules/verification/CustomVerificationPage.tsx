@@ -1,6 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 
-import { Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 
 import { Button } from "core/UI/Button";
 import { InformationCard } from "core/UI/InformationCard/InformationCard";
@@ -9,13 +9,12 @@ import { LoadingCircle } from "core/UI/Spinner";
 import { useHandleOnfidoRedirect } from "modules/verification/hooks/useHandleOnfidoRedirect";
 
 import {
-  ButtonWrapper,
+  ButtonWrapper, // Card,
   Content,
-  ContentWrapper,
   Heading,
-  RightBlockContainer,
+  SectionWrapper,
 } from "./styles";
-import { VerificationPageProps } from "./types";
+import { HomePageProps } from "./types";
 
 const CustomVerificationPage = ({
   title,
@@ -23,7 +22,7 @@ const CustomVerificationPage = ({
   verifyTitle,
   content,
   button,
-}: VerificationPageProps) => {
+}: HomePageProps) => {
   const {
     handleOnfidoRedirectWithTosCheck,
     mockedWalletAddress,
@@ -39,13 +38,13 @@ const CustomVerificationPage = ({
 
   const contentText = mockedWalletAddress ? verifyText : content;
   return (
-    <RightBlockContainer>
+    <SectionWrapper>
       {mockedWalletAddress && !tosAccepted && <TosModalWeb2 />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle">
           <Col lg={11} md={11} sm={24} xs={24}>
-            <ContentWrapper>
+            <Card>
               <Heading>{header}</Heading>
               <Content>{contentText}</Content>
               <ButtonWrapper>
@@ -53,18 +52,18 @@ const CustomVerificationPage = ({
                   {isLoading ? <LoadingCircle /> : buttonText}
                 </Button>
               </ButtonWrapper>
-            </ContentWrapper>
+            </Card>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            <ContentWrapper>
+            <Card>
               <InformationCard
                 isUniquenessFlow={Boolean(mockedWalletAddress)}
               />
-            </ContentWrapper>
+            </Card>
           </Col>
         </Row>
       </Fade>
-    </RightBlockContainer>
+    </SectionWrapper>
   );
 };
 

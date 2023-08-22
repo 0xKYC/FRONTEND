@@ -45,7 +45,7 @@ export const useAuth = () => {
       localStorage.clear();
     },
   });
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const walletAddress = address || mockedWalletAddress;
   const isVerified = Boolean(walletAddress) && verified;
@@ -127,5 +127,6 @@ export const useAuth = () => {
     isLoading,
     isSanctioned,
     isMintingActive,
+    isConnected,
   };
 };

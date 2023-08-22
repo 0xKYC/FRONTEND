@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled("div")`
-  padding-bottom: 15rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 5rem;
 `;
 
 export const Heading = styled("h3")`

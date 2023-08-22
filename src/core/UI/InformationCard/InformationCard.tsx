@@ -3,13 +3,15 @@ import { StyledCard, StyledLink, StyledList, StyledText } from "./styles";
 
 type Props = {
   isUniquenessFlow?: boolean;
+  margin?: string;
 };
-export const InformationCard = ({ isUniquenessFlow }: Props) => {
+export const InformationCard = ({ isUniquenessFlow, margin }: Props) => {
   return (
     <StyledCard
       bordered={false}
       headStyle={{ backgroundColor: "#f1f2f3" }}
       bodyStyle={{
+        margin: margin,
         backgroundColor: "#f1f2f3",
         borderRadius: "0 0 40px",
       }}

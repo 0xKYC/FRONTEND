@@ -20,7 +20,7 @@ export type User = {
   isMintingActive: boolean;
   tosAccepted: boolean;
   isMintingError: boolean;
-
+  email: string;
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
@@ -38,6 +38,7 @@ const initialState: User = {
   isMintingActive: false,
   tosAccepted: false,
   isMintingError: false,
+  email: "",
   mockedWalletAddress: null,
   redirectUrl: null,
   callbackUrl: null,
@@ -91,6 +92,9 @@ export const userSlice = createSlice({
     setApiKey: (state, action: PayloadAction<string>) => {
       state.apiKey = action.payload;
     },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
   },
 });
 
@@ -104,6 +108,7 @@ export const {
   signTos,
   setPartnerParams,
   setApiKey,
+  setEmail,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -127,3 +132,4 @@ export const selectMintingWallet = (state: RootState) =>
   state.user.mintingWalletAddress;
 
 export const selectApiKey = (state: RootState) => state.user.apiKey;
+export const selectEmail = (state: RootState) => state.user.email;

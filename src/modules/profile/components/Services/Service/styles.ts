@@ -18,7 +18,7 @@ export const StyledTitle = styled("p")`
   font-weight: 400;
 `;
 export const StyledText = styled("p")`
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.51;
 `;
 export const StyledTag = styled("div")`
@@ -49,7 +49,9 @@ export const StyledLink = styled("a")`
 export const Box = styled("div")`
   height: 120px;
   display: flex;
-  align-items: center;
+
+  justify-content: center;
+  flex-direction: column;
   @media screen and (min-width: 990px) {
     padding: 0;
     height: 170px;
@@ -69,8 +71,8 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const ImageWrapper = styled.div`
-  width: 80px;
+export const ImageWrapper = styled.div<{ biggerImg?: boolean }>`
+  width: ${(props) => (props.biggerImg ? "120px" : "90px")};
 `;
 
 export const StyledImg = styled.img`

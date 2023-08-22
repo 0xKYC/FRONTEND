@@ -5,7 +5,7 @@ import { useAccount, useNetwork } from "wagmi";
 
 import { DEFAULT_CHAIN } from "core/constans/chains";
 import { hasSoul } from "core/web3/methods/hasSoul";
-import { getUserSbt } from "modules/profile/utils";
+import { getUserSbt } from "modules/profile/Web3/utils";
 import { useGetUserWalletQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,

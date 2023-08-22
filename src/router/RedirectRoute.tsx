@@ -4,15 +4,25 @@ export type RouteProps = {
   verified: boolean;
   sanctioned?: boolean;
   minting?: boolean;
+  connected?: boolean;
+
   children: JSX.Element;
 };
-const RedirectRoute = ({ verified, children, sanctioned, minting }: RouteProps) => {
+const RedirectRoute = ({
+  verified,
+  children,
+  sanctioned,
+  minting,
+  connected,
+}: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;
   } else if (sanctioned) {
     return <Navigate to="/error" replace />;
   } else if (minting) {
     return <Navigate to="/mint" replace />;
+  } else if (connected) {
+    return <Navigate to="/0xkyc" replace />;
   }
 
   return children;

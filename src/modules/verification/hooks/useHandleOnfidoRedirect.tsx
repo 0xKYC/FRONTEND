@@ -9,6 +9,7 @@ import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
   selectCallbackUrl,
+  selectEmail,
   selectMockedWalletAddress,
   selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
@@ -19,6 +20,7 @@ import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
+  const email = useAppSelector(selectEmail);
   const tosAccepted = useAppSelector(selectTosAcceptedWallet);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
@@ -34,7 +36,7 @@ export const useHandleOnfidoRedirect = () => {
   const redirectUrl = getRedirectUrl();
   const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
-  const handleOnfidoRedirect = async (email?: string) => {
+  const handleOnfidoRedirect = async () => {
     if (walletAddress && chainId) {
       let applicantId = onfidoApplicantId;
 
@@ -64,6 +66,7 @@ export const useHandleOnfidoRedirect = () => {
 
     await handleOnfidoRedirect();
   };
+  console.log(email);
   return {
     handleOnfidoRedirect,
     handleOnfidoRedirectWithTosCheck,

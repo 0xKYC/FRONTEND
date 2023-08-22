@@ -105,10 +105,14 @@ export const Burger = styled("div")`
   }
 `;
 
-export const NotHidden = styled("div")`
+export const DesktopButtons = styled("div")`
   @media only screen and (max-width: 890px) {
     display: none;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `;
 
 export const Menu = styled("h5")`

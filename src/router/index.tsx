@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "core/UI/CookieBanner";
+import { Header } from "core/UI/Layout/Header";
 
 import Footer from "../core/UI/Layout/Footer";
-import Header from "../core/UI/Layout/Header";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
 import { Styles } from "../styles/styles";
@@ -12,12 +12,16 @@ import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import {
   About,
+  DiscordServers,
   Error,
   Home,
   HomeWithoutWalletConnection,
+  InsertStonks,
   Mint,
   PrivacyPolicy,
   Profile,
+  SanctionsCheck,
+  Sunscreen,
   TermsOfService,
   ThirdParties,
   Wave,
@@ -29,10 +33,11 @@ export const Router = () => {
     isLoading,
     isSanctioned,
     isMintingActive,
+    isConnected,
   } = useAuth();
 
   return (
-    <BrowserRouter>
+    <>
       <Styles />
       <Header />
       <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
@@ -43,12 +48,37 @@ export const Router = () => {
                 <RedirectRoute
                   verified={verified}
                   sanctioned={isSanctioned}
+                  connected={isConnected}
                   minting={isMintingActive}
                 >
-                  <Home isLoading={isLoading} />
+                  <Home />
                 </RedirectRoute>
               }
               path="/"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <Sunscreen />
+                </RedirectRoute>
+              }
+              path="/sunscreen"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <SanctionsCheck isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/0xkyc"
             />
             <Route
               element={
@@ -68,8 +98,9 @@ export const Router = () => {
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
+                  connected={isConnected}
                 >
-                  <Home isLoading={isLoading} />
+                  <Home />
                 </RedirectRoute>
               }
               path="*"
@@ -91,6 +122,8 @@ export const Router = () => {
               path="/mint"
             />
             <Route element={<About />} path="/about" />
+            <Route element={<DiscordServers />} path="/discord-servers" />
+            <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<ThirdParties />} path="/third-parties" />
@@ -101,6 +134,6 @@ export const Router = () => {
         <CookieBanner />
         <Footer />
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };

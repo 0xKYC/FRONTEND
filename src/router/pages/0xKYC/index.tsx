@@ -6,17 +6,14 @@ import { LoadingSpinner } from "core/UI/LoadingSpinner";
 
 const Container = lazy(() => import("core/UI/Container"));
 const ScrollToTop = lazy(() => import("core/UI/ScrollToTop"));
-const ContentBlock = lazy(
-  () => import("modules/verification/VerificationPage"),
-);
+const ContentBlock = lazy(() => import("modules/verification/0xkyc"));
 
-const VerificationPage = ({ isLoading }: { isLoading: boolean }) => {
+const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
   return (
     <Container>
       <ScrollToTop />
       <ContentBlock
-        type="right"
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
@@ -28,4 +25,4 @@ const VerificationPage = ({ isLoading }: { isLoading: boolean }) => {
   );
 };
 
-export default VerificationPage;
+export default SanctionsCheck;

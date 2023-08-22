@@ -3,8 +3,8 @@ import PartnerContent from "content/VerifiedPartnerContent.json";
 import { ChainId, getChainInfo } from "core/constans/chains";
 import { Heading } from "modules/verification/styles";
 
-import { Box, Content, Flex } from "../../styles";
-import { Checkmark } from "../Checkmark";
+import { Checkmark } from "../../../components/Checkmark";
+import { Box, Content, Flex } from "../../../styles";
 import { StyledCard, StyledLink, StyledRedirectLink } from "./styles";
 
 type Props = {

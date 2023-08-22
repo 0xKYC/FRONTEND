@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   Box,
   Heading,
@@ -11,16 +13,22 @@ import {
 type Props = {
   title: string;
   description: string;
-  img?: string;
-  tags: string[];
+  img: string;
   href: string;
+  biggerImg?: boolean;
 };
-export const Service = ({ title, description, img = "", tags, href }: Props) => {
+export const Service = ({
+  title,
+  description,
+  img,
+  href,
+  biggerImg,
+}: Props) => {
   return (
-    <a href={href} target="_blank" rel="noreferrer">
+    <Link to={href}>
       <StyledCard>
         <Heading>
-          <ImageWrapper>
+          <ImageWrapper biggerImg={biggerImg}>
             <StyledImg src={img} alt={title} />
           </ImageWrapper>
           <StyledTitle>{title}</StyledTitle>
@@ -28,20 +36,7 @@ export const Service = ({ title, description, img = "", tags, href }: Props) => 
         <Box>
           <StyledText>{description}</StyledText>
         </Box>
-
-        {/* <TagContainer>
-        {tags.map((tag) => {
-          return (
-            <StyledTag key={tag}>
-              <Text>{tag}</Text>
-            </StyledTag>
-          );
-        })}
-        <StyledLink href={href} target="_blank" rel="noreferrer">
-          Read more
-        </StyledLink>
-      </TagContainer> */}
       </StyledCard>
-    </a>
+    </Link>
   );
 };
