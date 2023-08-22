@@ -41,7 +41,7 @@ const Footer = ({ t }: any) => {
               <StyledLink
                 href="https://0xkyc.id/pricing"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
               >
                 {t("Pricing")} &#8618;
               </StyledLink>
@@ -49,7 +49,7 @@ const Footer = ({ t }: any) => {
               <StyledLink
                 href="https://docs.0xkyc.id/"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
               >
                 {t("Documentation")} &#8618;
               </StyledLink>

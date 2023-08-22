@@ -39,7 +39,7 @@ export const FlowOptionsCards = () => {
           <Heading>Sunscreen</Heading>
           <Description>(Uniqueness Verification)</Description>
 
-          <StyledLink isDiscord={true} to="/discord-servers">
+          <StyledLink isDiscord={true} to="/discord-verification">
             Connect Discord
           </StyledLink>
         </Card>

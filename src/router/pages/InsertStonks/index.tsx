@@ -2,7 +2,7 @@ import Container from "core/UI/Container";
 import { Heading, SectionWrapper } from "modules/verification/styles";
 import styled from "styled-components";
 
-const DiscordServers = () => {
+const DiscordVerification = () => {
   return (
     <Container>
       <SectionWrapper style={{ minHeight: "50vh", textAlign: "center" }}>
@@ -10,11 +10,6 @@ const DiscordServers = () => {
           How to use our service if <br /> you are coming from Insert Stonks
         </Heading>
         <Box>
-          <Text>
-            If you're looking to become fully verified on the Insert Stonks
-            platform, follow these steps:
-          </Text>
-
           <Text>
             1. Go to{" "}
             <a href="https://insertstonks.io/user">
@@ -53,8 +48,7 @@ const DiscordServers = () => {
           </InfoText>
           <InfoText>
             If you encounter any further difficulties, don't hesitate to reach
-            out to <a href="mailto:support@0xkyc.id">our support team</a> for
-            assistance.
+            out to <a href="mailto:support@0xkyc.id">our support team</a>.
           </InfoText>
         </Box>
       </SectionWrapper>
@@ -62,7 +56,7 @@ const DiscordServers = () => {
   );
 };
 
-export default DiscordServers;
+export default DiscordVerification;
 
 const ImgBox = styled.div`
   width: 100%;

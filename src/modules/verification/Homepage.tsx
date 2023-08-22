@@ -1,7 +1,7 @@
 import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
 
-import { Services } from "modules/profile/components/Services";
+import { Services } from "modules/verification/components/Services";
 
 import { FlowOptionsCards } from "./components/FlowOptionsCards";
 import { SectionWrapper, Title } from "./styles";
