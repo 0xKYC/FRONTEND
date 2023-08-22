@@ -71,3 +71,9 @@ export const Title = styled.p`
     margin-top: 0;
   }
 `;
+
+export const CustomVerificationWrapper = styled(SectionWrapper)`
+  @media only screen and (min-width: 1024px) {
+    margin-top: 5rem;
+  }
+`;
