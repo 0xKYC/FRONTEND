@@ -93,31 +93,30 @@ export const Web3Header = () => {
       <nav>
         <Container>
           <Row justify="space-between">
-            <LogoContainer to="/" aria-label="homepage">
-              {mockedWalletAddress ? (
-                <LogoWithoutWalletConnection
+            {mockedWalletAddress ? (
+              <LogoWithoutWalletConnection
+                src="/img/icons/new-logo.png"
+                alt="logo"
+                width="180px"
+                height="54px"
+              />
+            ) : (
+              <LogoContainer to="/" aria-label="homepage">
+                <Image
                   src="/img/icons/new-logo.png"
                   alt="logo"
                   width="180px"
                   height="54px"
                 />
-              ) : (
-                <>
-                  <Image
-                    src="/img/icons/new-logo.png"
-                    alt="logo"
-                    width="180px"
-                    height="54px"
-                  />
-                  <MobileImage
-                    src="/img/icons/0xkyc-icon.png"
-                    alt="logo"
-                    width="54px"
-                    height="54px"
-                  />
-                </>
-              )}
-            </LogoContainer>
+                <MobileImage
+                  src="/img/icons/0xkyc-icon.png"
+                  alt="logo"
+                  width="54px"
+                  height="54px"
+                />
+              </LogoContainer>
+            )}
+
             {!mockedWalletAddress && (
               <MobileConnectBtn>
                 <Button

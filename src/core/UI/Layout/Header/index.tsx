@@ -4,8 +4,7 @@ import { DiscordHeader } from "./Discord";
 import { Web3Header } from "./Web3";
 
 export const Header = () => {
-  // const isDiscordOptionChoosen = useCurrentPath();
-  const isDiscordOptionChoosen = true;
+  const isDiscordOptionChoosen = useCurrentPath();
 
   return isDiscordOptionChoosen ? <DiscordHeader /> : <Web3Header />;
 };
