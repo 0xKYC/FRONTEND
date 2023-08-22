@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
+import { useScrollToTop } from "core/hooks/useScrollToTop";
 
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
@@ -35,7 +36,7 @@ export const Router = () => {
     isMintingActive,
     isConnected,
   } = useAuth();
-
+  useScrollToTop();
   return (
     <>
       <Styles />
