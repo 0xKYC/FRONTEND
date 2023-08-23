@@ -121,7 +121,7 @@ export const Web3Header = () => {
                 </>
               )}
             </Link>
-            {!mockedWalletAddress && (
+            {!mockedWalletAddress && !isInsertStonksInfoPage && (
               <MobileConnectBtn>
                 <Button
                   color={address ? "#FFFFFFff" : ""}
