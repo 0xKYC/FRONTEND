@@ -39,11 +39,10 @@ export const Container = styled("div")`
 `;
 
 export const Description = styled.p`
-  margin-bottom: 3rem;
   font-size: 1.2rem;
-  @media only screen and (max-width: 375px) {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
+  @media only screen and (min-width: 728px) {
+    margin-bottom: 3rem;
   }
 `;
 

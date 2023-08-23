@@ -25,14 +25,9 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
     border: ${(p) => (p.isDiscord ? "1px solid #5865f2" : "1px solid #fb7324")};
   }
 
-  @media only screen and (max-width: 1024px) {
-    margin: 2rem;
-    margin-bottom: 0;
-  }
-  @media only screen and (max-width: 375px) {
-    /* margin-bottom: 4rem; */
+  @media only screen and (max-width: 1023px) {
     padding: 1.5rem;
-    margin: 1rem;
+    margin: 1.2rem;
   }
 `;
 
@@ -57,6 +52,9 @@ export const ImgWrapper = styled.div`
 
     @media screen and (min-width: 1024px) {
       width: 50%;
+    }
+    @media screen and (min-width: 400px) {
+      width: 165px;
     }
   }
 `;
