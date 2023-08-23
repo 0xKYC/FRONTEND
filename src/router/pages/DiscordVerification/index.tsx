@@ -1,17 +1,21 @@
 import { Col, Row } from "antd";
 
 import Container from "core/UI/Container";
+import { useMediaQuery } from "core/hooks/useMediaQuery";
 import { Service } from "modules/verification/components/Services/Service";
 import { Heading, SectionWrapper } from "modules/verification/styles";
 import styled from "styled-components";
 
 const DiscordServers = () => {
+  const isMobile = useMediaQuery("(max-width:430px)");
   return (
     <Container>
       <SectionWrapper style={{ minHeight: "50vh", textAlign: "center" }}>
-        <Heading>How to get verified</Heading>
+        <Heading style={{ marginTop: isMobile ? "0rem" : "2rem" }}>
+          How to get verified
+        </Heading>
 
-        <Text style={{ marginTop: "3rem" }}>Follow the next steps:</Text>
+        <Text style={{ marginTop: "2rem" }}>Follow the next steps:</Text>
         <Text>
           1. Go to our Discord Server by clicking{" "}
           <StyledLink

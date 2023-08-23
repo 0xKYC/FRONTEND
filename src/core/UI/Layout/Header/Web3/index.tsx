@@ -1,3 +1,5 @@
+import { Link, useLocation } from "react-router-dom";
+
 import { Row } from "antd";
 import { useAccount, useDisconnect } from "wagmi";
 
@@ -17,7 +19,6 @@ import {
   Image,
   ImgWrapper,
   IsLogo,
-  LogoContainer,
   LogoText,
   LogoWithoutWalletConnection,
   MobileConnectBtn,
@@ -27,7 +28,9 @@ import { ChainSelectionMenu } from "./ChainSelection/Menu";
 
 export const Web3Header = () => {
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
 
+  const isInsertStonksInfoPage = pathname === "/insert-stonks";
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect({
     onSuccess() {
@@ -93,30 +96,31 @@ export const Web3Header = () => {
       <nav>
         <Container>
           <Row justify="space-between">
-            {mockedWalletAddress ? (
-              <LogoWithoutWalletConnection
-                src="/img/icons/new-logo.png"
-                alt="logo"
-                width="180px"
-                height="54px"
-              />
-            ) : (
-              <LogoContainer to="/" aria-label="homepage">
-                <Image
+            <Link to="/" aria-label="homepage">
+              {mockedWalletAddress ? (
+                <LogoWithoutWalletConnection
                   src="/img/icons/new-logo.png"
                   alt="logo"
                   width="180px"
                   height="54px"
                 />
-                <MobileImage
-                  src="/img/icons/0xkyc-icon.png"
-                  alt="logo"
-                  width="54px"
-                  height="54px"
-                />
-              </LogoContainer>
-            )}
-
+              ) : (
+                <>
+                  <Image
+                    src="/img/icons/new-logo.png"
+                    alt="logo"
+                    width="180px"
+                    height="54px"
+                  />
+                  <MobileImage
+                    src="/img/icons/0xkyc-icon.png"
+                    alt="logo"
+                    width="54px"
+                    height="54px"
+                  />
+                </>
+              )}
+            </Link>
             {!mockedWalletAddress && (
               <MobileConnectBtn>
                 <Button
@@ -129,10 +133,12 @@ export const Web3Header = () => {
                 <ChainSelectionMenu />
               </MobileConnectBtn>
             )}
+            {!isInsertStonksInfoPage && (
+              <DesktopButtons>
+                <MenuItem />
+              </DesktopButtons>
+            )}
 
-            <DesktopButtons>
-              <MenuItem />
-            </DesktopButtons>
             {mockedWalletAddress && (
               <IsLogo
                 width={26}

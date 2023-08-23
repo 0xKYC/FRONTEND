@@ -1,21 +1,18 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Avatar, Row } from "antd";
 
 import { UserOutlined } from "@ant-design/icons";
 import { DiscordButton } from "core/UI/Button/styles";
 import Container from "core/UI/Container";
+import { useMediaQuery } from "core/hooks/useMediaQuery";
 
-import {
-  DesktopButtons,
-  HeaderSection,
-  Image,
-  LogoContainer,
-  MobileConnectBtn,
-  MobileImage,
-} from "../styles";
+import { DesktopButtons, HeaderSection } from "../styles";
+import { Image, MobileConnectBtn, MobileImage } from "./styles";
 
 export const DiscordHeader = () => {
+  const isMobile = useMediaQuery("(max-width:480px)");
   const [loggedIn, setLoggedIn] = useState(false);
   const handleLogin = () => {
     setLoggedIn((prev) => !prev);
@@ -25,20 +22,20 @@ export const DiscordHeader = () => {
       <nav>
         <Container>
           <Row justify="space-between">
-            <LogoContainer to="/" aria-label="homepage">
+            <Link to="/" aria-label="homepage">
               <Image
-                src="/img/icons/new-logo.png"
+                src="/img/sunscreen-logo-crop.png"
                 alt="logo"
-                width="180px"
+                width={isMobile ? "180px" : "220px"}
                 height="54px"
               />
               <MobileImage
-                src="/img/icons/0xkyc-icon.png"
+                src="/img/sunscreen-small.png"
                 alt="logo"
-                width="54px"
-                height="54px"
+                width="60px"
+                height="60px"
               />
-            </LogoContainer>
+            </Link>
 
             <MobileConnectBtn>
               <DiscordButton onClick={handleLogin}>
