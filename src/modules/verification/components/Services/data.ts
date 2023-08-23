@@ -35,7 +35,7 @@ export const servicesData = [
     description:
       "The most popular online community-building tool, supported by 0xKYC and our Discord bot ⚡️",
     tag: "Sunscreen",
-    href: "/discord-servers",
+    href: "/discord-verification",
     img: "/img/discord.png",
   },
   // {
