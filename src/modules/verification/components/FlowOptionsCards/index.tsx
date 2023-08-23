@@ -1,11 +1,13 @@
 import { Col } from "antd";
 
 import { Button } from "core/UI/Button";
-import { SvgIcon } from "core/UI/SvgIcon";
+import METAMASK_ICON from "core/UI/Modals/assets/metamask-icon.svg";
+import WALLETCONNECT_ICON from "core/UI/Modals/assets/walletconnect.svg";
 import { Description, Heading } from "modules/verification/styles";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { useAppDispatch } from "redux/hooks";
 
+import DISCORD_LOGO from "./discord-logo-blue.svg";
 import { Card, CardsWrapper, LogosWrapper, StyledLink } from "./styles";
 
 export const FlowOptionsCards = () => {
@@ -22,8 +24,18 @@ export const FlowOptionsCards = () => {
       <Col lg={11} md={24} sm={24} xs={24}>
         <Card>
           <LogosWrapper>
-            <SvgIcon src="/metamask-icon.svg" width="50" height="30" />
-            <SvgIcon src="/walletconnect.svg" width="50" height="30" />
+            <img
+              src={METAMASK_ICON}
+              width="50"
+              height="30"
+              alt="Metamask Icon"
+            />
+            <img
+              src={WALLETCONNECT_ICON}
+              width="50"
+              height="30"
+              alt="Wallet Connect Icon"
+            />
           </LogosWrapper>
 
           <Heading>0xKYC</Heading>
@@ -34,7 +46,7 @@ export const FlowOptionsCards = () => {
       </Col>
       <Col lg={11} md={24} sm={24} xs={24}>
         <Card isDiscord={true}>
-          <SvgIcon src="/discord-logo-blue.svg" width="200" height="30" />
+          <img src={DISCORD_LOGO} width="200" height="30" alt="Discord logo" />
 
           <Heading>Sunscreen</Heading>
           <Description>(Uniqueness Verification)</Description>
