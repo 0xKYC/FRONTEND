@@ -47,7 +47,26 @@ export const CardsWrapper = styled(Row)`
     padding-bottom: 2rem;
   }
 `;
+export const ImgWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  img {
+    width: 65%;
+    height: 95px;
+    object-fit: contain;
 
+    @media screen and (min-width: 1024px) {
+      width: 50%;
+    }
+  }
+`;
+
+export const SecondImgWrapper = styled(ImgWrapper)`
+  img {
+    height: 100px;
+    width: 100%;
+  }
+`;
 export const StyledLink = styled(Link)<{ isDiscord?: boolean }>`
   //font family from antd
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
