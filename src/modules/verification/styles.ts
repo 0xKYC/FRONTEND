@@ -41,9 +41,7 @@ export const Container = styled("div")`
 export const Description = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  @media only screen and (min-width: 728px) {
-    margin-bottom: 3rem;
-  }
+  margin-top: 2rem;
 `;
 
 export const SectionWrapper = styled("section")`

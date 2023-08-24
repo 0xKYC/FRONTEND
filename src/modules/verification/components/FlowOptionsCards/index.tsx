@@ -30,6 +30,9 @@ export const FlowOptionsCards = () => {
     >
       <Col lg={11} md={24} sm={24} xs={24}>
         <Card>
+          <ImgWrapper>
+            <img src="/img/icons/new-logo.png" alt="0xKYC logo" />
+          </ImgWrapper>
           <LogosWrapper>
             <img
               src={METAMASK_ICON}
@@ -42,12 +45,9 @@ export const FlowOptionsCards = () => {
               width="35"
               height="30"
               alt="Wallet Connect Icon"
+              style={{ objectFit: "contain" }}
             />
           </LogosWrapper>
-
-          <ImgWrapper>
-            <img src="/img/icons/new-logo.png" alt="0xKYC logo" />
-          </ImgWrapper>
           <Description>Sanctions Check</Description>
 
           <Button onClick={handleWalletConnect}>Connect Wallet</Button>
@@ -55,11 +55,11 @@ export const FlowOptionsCards = () => {
       </Col>
       <Col lg={11} md={24} sm={24} xs={24}>
         <Card isDiscord={true}>
-          <img src={DISCORD_LOGO} width="150" height="25" alt="Discord logo" />
-
           <SecondImgWrapper>
             <img src="/img/sunscreen-logo.png" alt="Sunscreen logo" />
           </SecondImgWrapper>
+          <img src={DISCORD_LOGO} width="150" height="25" alt="Discord logo" />
+
           <Description>Uniqueness Verification</Description>
 
           <StyledLink isDiscord={true} to="/discord-verification">

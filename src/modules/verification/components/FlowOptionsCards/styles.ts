@@ -13,6 +13,7 @@ export const LogosWrapper = styled.div`
 export const Card = styled.div<{ isDiscord?: boolean }>`
   border-radius: 0.5rem;
   padding: 3rem;
+  padding-top: 0;
   display: flex;
   align-items: center;
   border: 1px solid rgb(220 220 220);
