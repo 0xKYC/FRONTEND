@@ -13,7 +13,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import {
   About,
-  DiscordVerification,
+  DiscordServers,
   Error,
   Home,
   HomeWithoutWalletConnection,
@@ -123,10 +123,7 @@ export const Router = () => {
               path="/mint"
             />
             <Route element={<About />} path="/about" />
-            <Route
-              element={<DiscordVerification />}
-              path="/discord-verification"
-            />
+            <Route element={<DiscordServers />} path="/discord-servers" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />

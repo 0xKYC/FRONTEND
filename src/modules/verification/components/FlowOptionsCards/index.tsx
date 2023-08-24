@@ -62,7 +62,7 @@ export const FlowOptionsCards = () => {
 
           <Description>Uniqueness Verification</Description>
 
-          <StyledLink isDiscord={true} to="/discord-verification">
+          <StyledLink isDiscord={true} to="/discord-servers">
             Connect Discord
           </StyledLink>
         </Card>
