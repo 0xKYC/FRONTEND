@@ -12,6 +12,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import {
   About,
+  BlackListError,
   Error,
   Home,
   HomeWithoutWalletConnection,
@@ -95,6 +96,7 @@ export const Router = () => {
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<ThirdParties />} path="/third-parties" />
             <Route element={<Error />} path="/error" />
+            <Route element={<BlackListError />} path="/verification-error" />
           </Routes>
           <Wave />
         </div>

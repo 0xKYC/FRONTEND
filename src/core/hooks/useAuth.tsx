@@ -37,6 +37,8 @@ export const useAuth = () => {
   const dispatch = useAppDispatch();
 
   const [fetchUser] = userApi.endpoints.getUserWallet.useLazyQuery();
+  const [checkWalletOnBlackList] =
+    userApi.endpoints.checkWalletOnBlackList.useLazyQuery();
 
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect({
@@ -70,6 +72,7 @@ export const useAuth = () => {
     const handleWalletSanctionCheck = async () => {
       if (walletAddress) {
         const isSanctioned = await isWalletSanctioned(walletAddress);
+
         if (isSanctioned) {
           setIsSanctioned(true);
         }
@@ -91,6 +94,11 @@ export const useAuth = () => {
           });
         if (!userWallet) return;
 
+        const isWalletOnBlackList = await checkWalletOnBlackList(walletAddress);
+
+        if (isWalletOnBlackList) {
+          return setIsSanctioned(true);
+        }
         if (userWallet.tosVersion !== tos.version) {
           dispatch(signTos(false));
         }
@@ -120,7 +128,14 @@ export const useAuth = () => {
     };
     handleUserAuth();
     handleWalletSanctionCheck();
-  }, [walletAddress, dispatch, chainId, fetchUser, mockedWalletAddress]);
+  }, [
+    walletAddress,
+    dispatch,
+    chainId,
+    fetchUser,
+    mockedWalletAddress,
+    checkWalletOnBlackList,
+  ]);
 
   return {
     isVerified,
