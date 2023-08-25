@@ -1,10 +1,12 @@
 import { useState } from "react";
 
+import { ENV } from "env";
 import { useAccount, useNetwork } from "wagmi";
 
 import { DEFAULT_CHAIN } from "core/constans/chains";
 import { getRedirectUrl } from "modules/verification/utils/getRedirectUrl";
 import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
+import { Flow } from "redux/api/onfido/types";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
@@ -34,7 +36,7 @@ export const useHandleOnfidoRedirect = () => {
   const redirectUrl = getRedirectUrl();
   const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
-  const handleOnfidoRedirect = async (email?: string) => {
+  const handleOnfidoRedirect = async (flow: Flow, email?: string) => {
     if (walletAddress && chainId) {
       let applicantId = onfidoApplicantId;
 
@@ -49,6 +51,8 @@ export const useHandleOnfidoRedirect = () => {
         callbackUrl: partnerCallbackUrl,
         redirectUrl,
         email,
+        flow,
+        environment: ENV.REACT_APP_ENVIRONMENT,
       })
         .unwrap()
         .then((responseUrl) => window.location.replace(responseUrl))
@@ -62,7 +66,7 @@ export const useHandleOnfidoRedirect = () => {
       return;
     }
 
-    await handleOnfidoRedirect();
+    await handleOnfidoRedirect("insertStonks");
   };
   return {
     handleOnfidoRedirect,

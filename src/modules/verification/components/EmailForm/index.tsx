@@ -5,6 +5,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "core/UI/Modals/ConfirmModal";
 import { LoadingCircle } from "core/UI/Spinner";
+import { Flow } from "redux/api/onfido/types";
 import { useSubscribeNewsletterMutation } from "redux/api/user/userApi";
 
 import { isCompanyEmail } from "./email-validator/validateEmail";
@@ -15,7 +16,7 @@ type FormValues = {
   newsletterChecked: boolean;
 };
 type Props = {
-  handleOnfidoRedirect: (email?: string) => Promise<void>;
+  handleOnfidoRedirect: (flow: Flow, email?: string) => Promise<void>;
 };
 
 export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
@@ -27,7 +28,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
     try {
       setIsLoading(true);
 
-      await handleOnfidoRedirect(values.email);
+      await handleOnfidoRedirect("0xkyc", values.email);
       if (values.newsletterChecked) {
         await subscribeNewsletter({ email: values.email });
       }
@@ -44,7 +45,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       content:
         "By skipping you might miss some important updates about your account (e.g. about your token expiry)",
       onCancel: () => {},
-      onOk: handleOnfidoRedirect,
+      onOk: () => handleOnfidoRedirect("0xkyc"),
       okText: "Skip",
       cancelText: "Go back",
     });

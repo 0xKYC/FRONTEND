@@ -28,7 +28,11 @@ export type OnfidoRedirectData = {
   applicantId: string;
   walletAddress: string;
   chainId: ChainId;
+  environment: "local" | "dev" | "sandbox" | "stage" | "prod";
+  flow: Flow;
   redirectUrl?: string | null;
   callbackUrl?: string | null;
   email?: string;
 };
+
+export type Flow = "0xkyc" | "insertStonks" | "discord";

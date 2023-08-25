@@ -5,7 +5,8 @@ import { ArrowLeftOutlined, ExclamationCircleFilled } from "@ant-design/icons";
 type Props = {
   title: string;
   content: string;
-  onOk: () => void | Promise<void>;
+
+  onOk: () => Promise<void>;
   onCancel: () => void;
   okText: string;
   cancelText: string;
