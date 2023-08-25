@@ -13,7 +13,7 @@ export const LogosWrapper = styled.div`
 export const Card = styled.div<{ isDiscord?: boolean }>`
   border-radius: 0.5rem;
   padding: 3rem;
-  padding-top: 0;
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   border: 1px solid rgb(220 220 220);
@@ -63,7 +63,7 @@ export const ImgWrapper = styled.div`
 export const SecondImgWrapper = styled(ImgWrapper)`
   img {
     height: 100px;
-    width: 100%;
+    width: 73%;
   }
 `;
 export const StyledLink = styled(Link)<{ isDiscord?: boolean }>`

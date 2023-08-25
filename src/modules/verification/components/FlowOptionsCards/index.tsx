@@ -1,18 +1,14 @@
 import { Col } from "antd";
 
 import { Button } from "core/UI/Button";
-import METAMASK_ICON from "core/UI/Modals/assets/metamask-icon.svg";
-import WALLETCONNECT_ICON from "core/UI/Modals/assets/walletconnect.svg";
 import { Description } from "modules/verification/styles";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { useAppDispatch } from "redux/hooks";
 
-import DISCORD_LOGO from "./discord-logo-blue.svg";
 import {
   Card,
   CardsWrapper,
   ImgWrapper,
-  LogosWrapper,
   SecondImgWrapper,
   StyledLink,
 } from "./styles";
@@ -33,21 +29,7 @@ export const FlowOptionsCards = () => {
           <ImgWrapper>
             <img src="/img/icons/new-logo.png" alt="0xKYC logo" />
           </ImgWrapper>
-          <LogosWrapper>
-            <img
-              src={METAMASK_ICON}
-              width="50"
-              height="30"
-              alt="Metamask Icon"
-            />
-            <img
-              src={WALLETCONNECT_ICON}
-              width="35"
-              height="30"
-              alt="Wallet Connect Icon"
-              style={{ objectFit: "contain" }}
-            />
-          </LogosWrapper>
+
           <Description>Sanctions Check</Description>
 
           <Button onClick={handleWalletConnect}>Connect Wallet</Button>
@@ -56,9 +38,8 @@ export const FlowOptionsCards = () => {
       <Col lg={11} md={24} sm={24} xs={24}>
         <Card isDiscord={true}>
           <SecondImgWrapper>
-            <img src="/img/sunscreen-logo.png" alt="Sunscreen logo" />
+            <img src="/img/sunscreen-black.png" alt="Sunscreen logo" />
           </SecondImgWrapper>
-          <img src={DISCORD_LOGO} width="150" height="25" alt="Discord logo" />
 
           <Description>Uniqueness Verification</Description>
 

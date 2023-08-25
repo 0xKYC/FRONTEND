@@ -41,7 +41,6 @@ export const Container = styled("div")`
 export const Description = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  margin-top: 2rem;
 `;
 
 export const SectionWrapper = styled("section")`
