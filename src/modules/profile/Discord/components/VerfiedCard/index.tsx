@@ -8,7 +8,7 @@ import { Box, Heading, StyledList } from "./styles";
 
 export const VerifiedCard = () => {
   return (
-    <StyledCard>
+    <StyledCard style={{ margin: "0 auto" }}>
       <Box>
         <Heading>{vContent.title}</Heading>
         <Flex>

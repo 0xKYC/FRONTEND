@@ -67,3 +67,15 @@ export const ErrorText = styled.div`
   text-align: center;
   margin-top: 5rem;
 `;
+
+export const StyledList = styled.ul`
+  list-style: none;
+  padding: 0rem;
+
+  li {
+    position: relative;
+    font-size: 1.1rem;
+    color: #18216d;
+    margin: 0.5rem 0;
+  }
+`;

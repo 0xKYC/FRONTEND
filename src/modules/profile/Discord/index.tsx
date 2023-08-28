@@ -9,7 +9,7 @@ import { VerifiedCard } from "./components/VerfiedCard";
 
 export const DiscordProfilePage = () => {
   return (
-    <BlockWrapper>
+    <BlockWrapper style={{ padding: 0, minHeight: 0 }}>
       <Fade triggerOnce direction="right">
         <Row justify="space-between" align="middle">
           <Col lg={13} md={12} sm={24} xs={24}>

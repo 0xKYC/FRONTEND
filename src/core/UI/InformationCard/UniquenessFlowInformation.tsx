@@ -6,14 +6,15 @@ import { StyledText } from "./styles";
 
 export const UniquenessFlowInformation = () => {
   const { pathname } = useLocation();
-  const isProfilePage = pathname === "/profile";
+  const isAuth = true;
+  const isVerified = pathname === "/profile" || isAuth;
   return (
     <>
       <StyledText>
         Only the result of the check and your unique identifier (UUID) is
         shared.
       </StyledText>
-      {!isProfilePage && (
+      {!isVerified && (
         <StyledText style={{ fontWeight: "500" }}>
           <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Troubles getting
           verified? Try a different device!
