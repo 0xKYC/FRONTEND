@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   selectIsTosModalOpen,
@@ -6,7 +7,7 @@ import {
 } from "redux/features/modal/tosSlice";
 import {
   selectMockedWalletAddress,
-  selectTosAcceptedWallet,
+  selectTosAccepted,
   signTos,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -14,12 +15,12 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { ModalContent } from "../ModalContent";
 import { StyledModal } from "../styles";
 
-export const TosModalWeb2 = () => {
+export const TosModalWeb2 = ({ redirect }: { redirect?: boolean }) => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const tosAccepted = useAppSelector(selectTosAccepted);
   const isTosModalOpen = useAppSelector(selectIsTosModalOpen);
-
+  const navigate = useNavigate();
   const closeModal = () => {
     dispatch(toggleTosModal(false));
 
@@ -44,6 +45,9 @@ export const TosModalWeb2 = () => {
   const handleSignTos = () => {
     dispatch(toggleTosModal(false));
     dispatch(signTos(true));
+    if (redirect) {
+      navigate("/discord-servers");
+    }
   };
 
   return (

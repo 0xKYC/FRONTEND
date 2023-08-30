@@ -11,7 +11,7 @@ import {
   selectCallbackUrl,
   selectEmail,
   selectMockedWalletAddress,
-  selectTosAcceptedWallet,
+  selectTosAccepted,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
@@ -21,7 +21,7 @@ export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const email = useAppSelector(selectEmail);
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const tosAccepted = useAppSelector(selectTosAccepted);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +66,7 @@ export const useHandleOnfidoRedirect = () => {
 
     await handleOnfidoRedirect();
   };
-  console.log(email);
+
   return {
     handleOnfidoRedirect,
     handleOnfidoRedirectWithTosCheck,

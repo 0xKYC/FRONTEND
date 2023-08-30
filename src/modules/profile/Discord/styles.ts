@@ -54,3 +54,7 @@ export const StyledLink = styled.a`
   padding: 0.1em;
   font-weight: 700;
 `;
+
+export const Info = styled.p`
+  font-size: 0.95rem;
+`;

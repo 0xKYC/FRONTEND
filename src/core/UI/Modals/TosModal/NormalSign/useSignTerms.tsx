@@ -4,7 +4,7 @@ import { useAccount, useDisconnect } from "wagmi";
 
 import {
   reset,
-  selectTosAcceptedWallet,
+  selectTosAccepted,
   signTos,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const tosAccepted = useAppSelector(selectTosAccepted);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();

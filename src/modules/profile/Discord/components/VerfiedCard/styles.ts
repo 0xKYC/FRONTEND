@@ -27,7 +27,7 @@ export const StyledList = styled.ul`
     position: relative;
     font-size: 1.1rem;
     color: #18216d;
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
     /* & > * {
       display: inline-block;
       vertical-align: top;

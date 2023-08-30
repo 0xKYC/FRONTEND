@@ -126,8 +126,7 @@ export const selectIsMintingError = (state: RootState) =>
 export const selectIsMintingActive = (state: RootState) =>
   state.user.isMintingActive;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
-export const selectTosAcceptedWallet = (state: RootState) =>
-  state.user.tosAccepted;
+export const selectTosAccepted = (state: RootState) => state.user.tosAccepted;
 export const selectMintingWallet = (state: RootState) =>
   state.user.mintingWalletAddress;
 

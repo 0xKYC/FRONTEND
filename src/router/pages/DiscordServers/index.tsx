@@ -5,18 +5,16 @@ import { useMediaQuery } from "core/hooks/useMediaQuery";
 import { DiscordProfilePage } from "modules/profile/Discord";
 import { NotVerifiedDiscordPage } from "modules/profile/Discord/NotVerifiedDiscordPage";
 import { Service } from "modules/verification/components/Services/Service";
-import { Heading, SectionWrapper } from "modules/verification/styles";
+import { Heading } from "modules/verification/styles";
 import styled from "styled-components";
 
 const DiscordServers = () => {
   const isMobile = useMediaQuery("(max-width:430px)");
 
-  const isVerified = false;
+  const isVerified = true;
   return (
     <Container>
-      <SectionWrapper
-        style={{ minHeight: "50vh", textAlign: isVerified ? "left" : "center" }}
-      >
+      <SectionWrapper>
         <Heading style={{ marginTop: isMobile ? "0rem" : "2rem" }}>
           {!isVerified && "How to get verified"}
         </Heading>
@@ -24,6 +22,7 @@ const DiscordServers = () => {
         {isVerified ? <DiscordProfilePage /> : <NotVerifiedDiscordPage />}
 
         <H3>Other Discord Servers you can verify with:</H3>
+
         <Row style={{ marginTop: "2rem", textAlign: "center" }}>
           <Col lg={8} md={12} xs={24}>
             <Service
@@ -63,9 +62,18 @@ export default DiscordServers;
 
 const H3 = styled.h3`
   font-size: 1.7rem;
-  margin-top: 3rem;
+  margin-top: 0rem;
   text-align: center;
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 724px) {
     margin-top: 5rem;
+  }
+`;
+
+const SectionWrapper = styled.section`
+  margin: 0 auto;
+  padding-bottom: 15rem;
+
+  @media screen and (min-width: 1024px) {
+    padding-top: 3rem;
   }
 `;
