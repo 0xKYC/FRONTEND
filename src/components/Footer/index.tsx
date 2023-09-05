@@ -63,18 +63,19 @@ const Footer = ({ t }: any) => {
               </Large>
 
               <StyledLink
-                href="https://github.com/0xKYC/.docs/blob/main/IMPLEMENTATION.md"
+                href="https://0xkyc.id/pricing"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
+              >
+                {t("Pricing")} &#8618;
+              </StyledLink>
+
+              <StyledLink
+                href="https://docs.0xkyc.id/"
+                target="_blank"
+                rel="noreferrer"
               >
                 {t("Documentation")} &#8618;
-              </StyledLink>
-              <StyledLink
-                href="https://www.notion.so/0xkyc/How-to-get-verified-on-0xKYC-dApp-5a2e8532c564491189db9f816b5ee046"
-                target="_blank"
-                rel="noopener"
-              >
-                {t("How to get verified")} &#8618;
               </StyledLink>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
