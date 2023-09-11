@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar, Row } from "antd";
@@ -7,16 +6,22 @@ import { UserOutlined } from "@ant-design/icons";
 import { DiscordButton } from "core/UI/Button/styles";
 import Container from "core/UI/Container";
 import { useMediaQuery } from "core/hooks/useMediaQuery";
+import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
 import { DesktopButtons, HeaderSection } from "../styles";
+import { getUserAvatar } from "./getDiscordAvatar";
 import { Image, MobileConnectBtn, MobileImage } from "./styles";
+import { useToggleAuth } from "./useToggleAuth";
 
 export const DiscordHeader = () => {
   const isMobile = useMediaQuery("(max-width:480px)");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const handleLogin = () => {
-    setLoggedIn((prev) => !prev);
-  };
+  const { data, isLoading } = useGetDiscordUserQuery();
+  console.log(data);
+
+  const userAvatarUrl = getUserAvatar(data);
+
+  const { toggleAuth } = useToggleAuth(data);
+
   return (
     <HeaderSection id="intro">
       <nav>
@@ -38,20 +43,32 @@ export const DiscordHeader = () => {
             </Link>
 
             <MobileConnectBtn>
-              <DiscordButton onClick={handleLogin}>
-                {loggedIn ? "Disconnect" : "Connect Discord"}{" "}
+              <DiscordButton onClick={toggleAuth}>
+                {isLoading
+                  ? "Loading"
+                  : data
+                  ? "Disconnect"
+                  : "Connect Discord"}
               </DiscordButton>
             </MobileConnectBtn>
 
             <DesktopButtons>
-              {loggedIn && (
+              {data && (
                 <div>
-                  <Avatar size={54} icon={<UserOutlined />} />
+                  <Avatar
+                    size={54}
+                    src={userAvatarUrl}
+                    icon={<UserOutlined />}
+                  />
                 </div>
               )}
 
-              <DiscordButton onClick={handleLogin}>
-                {loggedIn ? "Disconnect" : "Connect Discord"}
+              <DiscordButton onClick={toggleAuth}>
+                {isLoading
+                  ? "Loading"
+                  : data
+                  ? "Disconnect"
+                  : "Connect Discord"}
               </DiscordButton>
             </DesktopButtons>
           </Row>

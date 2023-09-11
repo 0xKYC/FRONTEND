@@ -11,9 +11,9 @@ import {
   selectCallbackUrl,
   selectEmail,
   selectMockedWalletAddress,
-  selectTosAccepted,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { loadLocalStorageTos } from "redux/localStorage";
 
 import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 
@@ -21,7 +21,7 @@ export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const email = useAppSelector(selectEmail);
-  const tosAccepted = useAppSelector(selectTosAccepted);
+  const tosAccepted = loadLocalStorageTos();
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);

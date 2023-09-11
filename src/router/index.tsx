@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
+import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
@@ -37,6 +38,8 @@ export const Router = () => {
     isConnected,
   } = useAuth();
   useScrollToTop();
+  const { data } = useGetDiscordUserQuery();
+
   return (
     <>
       <Styles />
@@ -51,6 +54,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
+                  discordConnected={Boolean(data)}
                 >
                   <Home />
                 </RedirectRoute>
@@ -67,7 +71,7 @@ export const Router = () => {
                   <Sunscreen />
                 </RedirectRoute>
               }
-              path="/sunscreen"
+              path="/sunscreen/*"
             />
             <Route
               element={

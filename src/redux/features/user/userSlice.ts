@@ -18,7 +18,6 @@ export type User = {
   mintingChain: ChainId | null;
   mintingWalletAddress: string | null;
   isMintingActive: boolean;
-  tosAccepted: boolean;
   isMintingError: boolean;
   email: string;
   // when user comes from partner's website
@@ -36,7 +35,6 @@ const initialState: User = {
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,
-  tosAccepted: false,
   isMintingError: false,
   email: "",
   mockedWalletAddress: null,
@@ -82,9 +80,7 @@ export const userSlice = createSlice({
       state.mintingWalletAddress = action.payload.walletAddress;
       state.isMintingError = action.payload.error;
     },
-    signTos: (state, action: PayloadAction<boolean>) => {
-      state.tosAccepted = action.payload;
-    },
+
     setMintingActive: (state, action: PayloadAction<boolean>) => {
       state.isMintingActive = action.payload;
     },
@@ -105,7 +101,6 @@ export const {
   setMinting,
   reset,
   setMintingActive,
-  signTos,
   setPartnerParams,
   setApiKey,
   setEmail,
@@ -126,7 +121,7 @@ export const selectIsMintingError = (state: RootState) =>
 export const selectIsMintingActive = (state: RootState) =>
   state.user.isMintingActive;
 export const selectMintingChain = (state: RootState) => state.user.mintingChain;
-export const selectTosAccepted = (state: RootState) => state.user.tosAccepted;
+
 export const selectMintingWallet = (state: RootState) =>
   state.user.mintingWalletAddress;
 

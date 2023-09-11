@@ -35,7 +35,6 @@ export const Web3Header = () => {
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
-      localStorage.clear();
     },
   });
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);

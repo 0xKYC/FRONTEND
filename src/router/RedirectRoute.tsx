@@ -5,7 +5,7 @@ export type RouteProps = {
   sanctioned?: boolean;
   minting?: boolean;
   connected?: boolean;
-
+  discordConnected?: boolean;
   children: JSX.Element;
 };
 const RedirectRoute = ({
@@ -14,6 +14,7 @@ const RedirectRoute = ({
   sanctioned,
   minting,
   connected,
+  discordConnected,
 }: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;
@@ -23,6 +24,8 @@ const RedirectRoute = ({
     return <Navigate to="/mint" replace />;
   } else if (connected) {
     return <Navigate to="/0xkyc" replace />;
+  } else if (discordConnected) {
+    return <Navigate to="/sunscreen" replace />;
   }
 
   return children;

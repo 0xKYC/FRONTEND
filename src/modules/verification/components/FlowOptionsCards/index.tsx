@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
-
 import { Col } from "antd";
+import { ENV } from "env";
 
 import { Button } from "core/UI/Button";
 import { DiscordButton } from "core/UI/Button/styles";
@@ -8,15 +7,15 @@ import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
 import { Description } from "modules/verification/styles";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
-import { selectTosAccepted } from "redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { useAppDispatch } from "redux/hooks";
+import { loadLocalStorageTos } from "redux/localStorage";
 
 import { Card, CardsWrapper, ImgWrapper, SecondImgWrapper } from "./styles";
 
 export const FlowOptionsCards = () => {
   const dispatch = useAppDispatch();
-  const tosSigned = useAppSelector(selectTosAccepted);
-  const navigate = useNavigate();
+  const tosSigned = loadLocalStorageTos();
+
   const handleWalletConnect = () => {
     dispatch(toggleConnectorsModal());
   };
@@ -25,7 +24,7 @@ export const FlowOptionsCards = () => {
     if (!tosSigned) {
       dispatch(toggleTosModal(true));
     } else {
-      navigate("/discord-servers");
+      window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
   return (

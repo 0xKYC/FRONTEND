@@ -20,9 +20,9 @@ import {
   selectIsMintingActive,
   selectMockedWalletAddress,
   selectVerifiedUser,
-  signTos,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { saveTosToLocalStorage } from "redux/localStorage";
 
 import { useCheckMinting } from "./useCheckMinting";
 
@@ -42,7 +42,6 @@ export const useAuth = () => {
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
-      localStorage.clear();
     },
   });
   const { address, isConnected } = useAccount();
@@ -92,10 +91,10 @@ export const useAuth = () => {
         if (!userWallet) return;
 
         if (userWallet.tosVersion !== tos.version) {
-          dispatch(signTos(false));
+          saveTosToLocalStorage(false);
         }
         if (userWallet.signature) {
-          dispatch(signTos(true));
+          saveTosToLocalStorage(true);
         }
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
@@ -111,7 +110,7 @@ export const useAuth = () => {
           dispatch(checkIfVerified(true));
         }
       } catch (err) {
-        dispatch(signTos(false));
+        saveTosToLocalStorage(false);
         setIsLoading(false);
         console.error(err);
       } finally {
