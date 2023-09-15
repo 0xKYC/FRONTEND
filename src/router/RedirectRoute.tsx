@@ -2,11 +2,12 @@ import { Navigate } from "react-router-dom";
 
 export type RouteProps = {
   verified: boolean;
+  children: JSX.Element;
   sanctioned?: boolean;
   minting?: boolean;
   connected?: boolean;
   discordConnected?: boolean;
-  children: JSX.Element;
+  discordVerified?: boolean | null | undefined;
 };
 const RedirectRoute = ({
   verified,
@@ -15,6 +16,7 @@ const RedirectRoute = ({
   minting,
   connected,
   discordConnected,
+  discordVerified,
 }: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;
@@ -24,6 +26,8 @@ const RedirectRoute = ({
     return <Navigate to="/mint" replace />;
   } else if (connected) {
     return <Navigate to="/0xkyc" replace />;
+  } else if (discordVerified) {
+    return <Navigate to="/discord-servers" replace />;
   } else if (discordConnected) {
     return <Navigate to="/sunscreen" replace />;
   }

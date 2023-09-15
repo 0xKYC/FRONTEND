@@ -7,10 +7,6 @@ import styled from "styled-components";
 
 import { BlockWrapper, ContentWrapper } from "../styles";
 import { VerifiedCard } from "./components/VerfiedCard";
-import {
-  MobileWalletConnection,
-  WalletConnection,
-} from "./components/WalletConnection";
 
 export const DiscordProfilePage = () => {
   return (
@@ -24,11 +20,7 @@ export const DiscordProfilePage = () => {
           </Col>
           <Col lg={10} md={24} sm={24} xs={24}>
             <ContentWrapper style={{ marginBottom: "1.7rem" }}>
-              <MobileWalletConnection />
-
               <InformationCard isUniquenessFlow={true} />
-
-              <WalletConnection />
             </ContentWrapper>
           </Col>
         </Row>

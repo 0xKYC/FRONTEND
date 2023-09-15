@@ -10,6 +10,18 @@ export const LogosWrapper = styled.div`
   gap: 2rem;
 `;
 
+export const CardsWrapper = styled(Row)`
+  background-color: rgb(251, 251, 253);
+
+  -webkit-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
+  -moz-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
+  box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
+
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 2rem;
+  }
+`;
+
 export const Card = styled.div<{ isDiscord?: boolean }>`
   border-radius: 0.5rem;
   padding: 3rem;
@@ -32,17 +44,6 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
   }
 `;
 
-export const CardsWrapper = styled(Row)`
-  background-color: rgb(251, 251, 253);
-
-  -webkit-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
-  -moz-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
-  box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
-
-  @media screen and (max-width: 1024px) {
-    padding-bottom: 2rem;
-  }
-`;
 export const ImgWrapper = styled.div`
   width: 100%;
   height: 100%;

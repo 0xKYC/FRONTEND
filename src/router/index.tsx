@@ -38,7 +38,7 @@ export const Router = () => {
     isConnected,
   } = useAuth();
   useScrollToTop();
-  const { data } = useGetDiscordUserQuery();
+  const { data: discordUser, isLoading: loading } = useGetDiscordUserQuery();
 
   return (
     <>
@@ -54,7 +54,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
-                  discordConnected={Boolean(data)}
+                  discordConnected={Boolean(discordUser)}
                 >
                   <Home />
                 </RedirectRoute>
@@ -67,6 +67,7 @@ export const Router = () => {
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
+                  discordVerified={discordUser?.isVerified}
                 >
                   <Sunscreen />
                 </RedirectRoute>
@@ -126,8 +127,17 @@ export const Router = () => {
               }
               path="/mint"
             />
+            <Route
+              element={
+                <DiscordServers
+                  isVerified={discordUser?.isVerified}
+                  isLoading={loading}
+                />
+              }
+              path="/discord-servers"
+            />
+
             <Route element={<About />} path="/about" />
-            <Route element={<DiscordServers />} path="/discord-servers" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />

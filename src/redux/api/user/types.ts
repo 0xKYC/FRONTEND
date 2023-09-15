@@ -57,7 +57,7 @@ export type UserNotFoundError = {
   };
 };
 
-export type DiscordUser = {
+export type DiscordUserResponse = {
   id: string;
   username: string;
   discriminator: string;
@@ -73,4 +73,19 @@ export type DiscordUser = {
   flags?: number;
   premium_type?: number;
   public_flags?: number;
+};
+
+type DiscordGuild = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  guildId: string;
+  name: string;
+  discordAccountId: number | null;
+};
+export type DiscordUser = DiscordUserResponse & {
+  accountId: string;
+  isVerified: boolean | null;
+  unique: boolean | null;
+  discordGuilds: DiscordGuild[];
 };
