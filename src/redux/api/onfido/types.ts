@@ -35,4 +35,9 @@ export type OnfidoRedirectData = {
   email?: string;
 };
 
-export type Flow = "0xkyc" | "insertStonks" | "discord";
+export type Flow =
+  | "0xkyc"
+  | "insertStonks"
+  | "discord"
+  | "hinkal"
+  | "sunscreen";
