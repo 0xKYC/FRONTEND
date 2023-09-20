@@ -29,7 +29,6 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
     if (!tosAccepted) {
       dispatch(toggleTosModal(true));
     } else {
-      console.log("ee");
       window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
@@ -59,12 +58,6 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
                 </CommonSection>
               </>
             )}
-            {/* <CommonSection
-              header="Verify your uniqueness with our Sunscreen service"
-              contentText="Sunscreen is a verification check which prevents bots and duplicate accounts in Discord servers"
-            >
-              <DiscordButton>Connect Discord</DiscordButton>
-            </CommonSection> */}
           </Col>
           <Col lg={24} md={24} sm={24} xs={24}>
             <InformationCard margin="5rem 0 0 0" isUniquenessFlow={true} />

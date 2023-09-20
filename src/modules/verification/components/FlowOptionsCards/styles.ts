@@ -34,6 +34,7 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
   background-color: white;
   margin: 2rem;
   transition: 0.2s all ease-in;
+  /* height: 310px; */
   &:hover {
     border: ${(p) => (p.isDiscord ? "1px solid #5865f2" : "1px solid #fb7324")};
   }

@@ -1,19 +1,27 @@
 export const servicesData = [
   {
     title: "Hinkal",
-    description: "Some description about the service",
+    description:
+      "Blockchain protocol designed for private transactions and enhanced user privacy and security",
     tag: "0xKYC",
     href: "/0xkyc",
-    img: "/img/blue.svg",
+    img: "/img/hinkal-log.png",
   },
+  // {
+  //   title: "Soil",
+  //   description: "Debt marketplace",
+  //   tag: "Sunscreen",
+  //   href: "/uniqueness",
+  //   img: "/img/soil-logo2.png",
+  // },
 
-  {
-    title: "Januus",
-    description: "Some description about the service",
-    tag: "0xKYC",
-    href: "/0xkyc",
-    img: "/img/cryptum-logo-new.png",
-  },
+  // {
+  //   title: "Januus",
+  //   description: "Some description about the service",
+  //   tag: "0xKYC",
+  //   href: "/0xkyc",
+  //   img: "/img/cryptum-logo-new.png",
+  // },
   {
     title: "Insert Stonks",
     description: "Web3 gaming platform",
@@ -30,14 +38,14 @@ export const servicesData = [
     href: "https://aragon.org/",
     img: "/img/aragon.png",
   },
-  {
-    title: "0xKYC Discord",
-    description:
-      "The most popular online community-building tool, supported by 0xKYC and our Discord bot ⚡️",
-    tag: "Sunscreen",
-    href: "/discord-servers",
-    img: "/img/discord.png",
-  },
+  // {
+  //   title: "0xKYC Discord",
+  //   description:
+  //     "The most popular online community-building tool, supported by 0xKYC and our Discord bot ⚡️",
+  //   tag: "Sunscreen",
+  //   href: "/discord-servers",
+  //   img: "/img/discord.png",
+  // },
   // {
   //   title: "CodeMonk",
   //   description:

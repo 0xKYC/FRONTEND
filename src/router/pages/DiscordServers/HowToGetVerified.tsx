@@ -1,9 +1,9 @@
 import { useMediaQuery } from "core/hooks/useMediaQuery";
 import { Heading } from "modules/verification/styles";
 
-import { Box, StyledLink, Text } from "./styles";
+import { Box, StyledLink, Text } from "../../../modules/profile/Discord/styles";
 
-export const NotVerifiedDiscordPage = () => {
+export const HowToGetVerified = () => {
   const isMobile = useMediaQuery("(max-width:430px)");
   return (
     <Box>

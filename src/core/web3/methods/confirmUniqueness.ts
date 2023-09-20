@@ -3,7 +3,10 @@ import { ABI } from "core/web3/abis/OxKYC";
 import { web3Factory } from "core/web3/web3Factory";
 import { AbiItem } from "web3-utils";
 
-export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
+export const confirmUniqueness = async (
+  chainId: ChainId,
+  walletAddress: string,
+) => {
   const { web3, soulboundContract } = web3Factory(chainId);
 
   try {
@@ -11,11 +14,11 @@ export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
       ABI as AbiItem[],
       soulboundContract,
     );
-    const hasSoul: boolean = await soulbound.methods
-      .hasSoul(walletAddress)
+    const uniquenessConfirmed: boolean = await soulbound.methods
+      .confirmUniqueness(walletAddress)
       .call();
 
-    return hasSoul;
+    return uniquenessConfirmed;
   } catch (err) {
     console.error(err);
   }

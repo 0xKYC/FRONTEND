@@ -1,25 +1,16 @@
 import { Col, Row } from "antd";
 
 import Container from "core/UI/Container";
-import { LoadingSpinner } from "core/UI/LoadingSpinner";
-import { DiscordProfilePage } from "modules/profile/Discord";
-import { NotVerifiedDiscordPage } from "modules/profile/Discord/NotVerifiedDiscordPage";
 import { Service } from "modules/verification/components/Services/Service";
 import styled from "styled-components";
 
-const DiscordServers = ({
-  isLoading,
-  isVerified,
-}: {
-  isLoading: boolean;
-  isVerified: boolean | null | undefined;
-}) => {
-  if (isLoading) return <LoadingSpinner tip="Loading..." height="85vh" />;
+import { HowToGetVerified } from "./HowToGetVerified";
 
+const DiscordServers = () => {
   return (
     <Container>
       <SectionWrapper>
-        {isVerified ? <DiscordProfilePage /> : <NotVerifiedDiscordPage />}
+        <HowToGetVerified />
 
         <H3>Other Discord Servers you can verify with:</H3>
 

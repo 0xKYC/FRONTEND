@@ -9,6 +9,7 @@ import {
   IS_MAINNET,
   TESTNET_CHAINS_IDS,
 } from "core/constans/chains";
+import { confirmUniqueness } from "core/web3/methods/confirmUniqueness";
 import { hasSoul } from "core/web3/methods/hasSoul";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
 import { UserNotFoundError } from "redux/api/user/types";
@@ -74,7 +75,6 @@ export const useAuth = () => {
         }
       }
     };
-
     const handleUserAuth = async () => {
       if (!walletAddress) return;
 
@@ -99,13 +99,20 @@ export const useAuth = () => {
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
 
-        const isVerified = await hasSoul(chainId, walletAddress);
-        const hasUuid = userWallet.user?.uuid;
+        if (userWallet.flow === "sanctionedCheck") {
+          const isVerified = await hasSoul(chainId, walletAddress);
 
-        if (isVerified) {
-          dispatch(checkIfVerified(isVerified));
+          if (isVerified) {
+            dispatch(checkIfVerified(isVerified));
+          }
+        } else if (userWallet.flow === "sunscreen") {
+          const isVerified = await confirmUniqueness(chainId, walletAddress);
+
+          if (isVerified) {
+            dispatch(checkIfVerified(isVerified));
+          }
         }
-
+        const hasUuid = userWallet.user?.uuid;
         if (mockedWalletAddress && hasUuid) {
           dispatch(checkIfVerified(true));
         }

@@ -18,12 +18,13 @@ import { useHandleOnfidoRedirect } from "../hooks/useHandleOnfidoRedirect";
 import { HomePageProps } from "../types";
 import { CustomSectionWrapper } from "./styles";
 
-const SanctionsCheck = ({
+const VerificationProcess = ({
   title,
   verifyText,
   verifyTitle,
   content,
   button,
+  uniqueness,
 }: HomePageProps) => {
   const dispatch = useAppDispatch();
 
@@ -81,7 +82,7 @@ const SanctionsCheck = ({
             )}
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            <InformationCard />
+            <InformationCard isUniquenessFlow={uniqueness} />
           </Col>
         </Row>
       </Fade>
@@ -89,4 +90,4 @@ const SanctionsCheck = ({
   );
 };
 
-export default SanctionsCheck;
+export default VerificationProcess;

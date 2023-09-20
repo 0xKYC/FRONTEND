@@ -18,7 +18,7 @@ export const DiscordHeader = () => {
   const { data, isLoading } = useGetDiscordUserQuery();
   console.log(data);
 
-  const userAvatarUrl = getUserAvatar(data);
+  const userAvatarUrl = getUserAvatar(data?.discordUser);
 
   const { toggleAuth } = useToggleAuth(data);
 

@@ -40,7 +40,9 @@ export const FlowOptionsCards = () => {
             <img src="/img/icons/new-logo.png" alt="0xKYC logo" />
           </ImgWrapper>
 
-          <Description>Sanctions Check</Description>
+          <Description style={{ padding: "1.45rem 0" }}>
+            Sanctions Check
+          </Description>
 
           <Button onClick={handleWalletConnect}>Connect Wallet</Button>
         </Card>
@@ -51,9 +53,12 @@ export const FlowOptionsCards = () => {
             <img src="/img/sunscreen-black.png" alt="Sunscreen logo" />
           </SecondImgWrapper>
 
-          <Description>Uniqueness Verification</Description>
+          <Description>
+            Uniqueness Verification
+            <p style={{ fontSize: "1.1rem" }}>(cooming soon)</p>
+          </Description>
 
-          <DiscordButton onClick={handleDiscordConnect}>
+          <DiscordButton onClick={handleDiscordConnect} disabled>
             Connect Discord
           </DiscordButton>
         </Card>

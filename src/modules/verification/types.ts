@@ -5,6 +5,7 @@ export type HomePageProps = {
   title?: string;
   verifyTitle: string;
   verifyText: string;
+  uniqueness: boolean;
   content?: string;
   section?: any;
   button?: typeof button;

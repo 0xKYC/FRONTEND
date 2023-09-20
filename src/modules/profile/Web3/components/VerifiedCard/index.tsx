@@ -1,7 +1,8 @@
+import UniquenessContent from "content/UniquenessVerified.json";
 import vContent from "content/VerifiedContent.json";
-import PartnerContent from "content/VerifiedPartnerContent.json";
 import { ChainId, getChainInfo } from "core/constans/chains";
 import { Heading } from "modules/verification/styles";
+import { Flow } from "redux/api/user/types";
 
 import { Checkmark } from "../../../components/Checkmark";
 import { Box, Content, Flex } from "../../../styles";
@@ -11,11 +12,13 @@ type Props = {
   redirectUrlFromPartner: string | null;
   chainId: ChainId;
   txHash: string | null | undefined;
+  flow: Flow;
 };
 export const VerifiedCard = ({
   redirectUrlFromPartner,
   chainId,
   txHash,
+  flow,
 }: Props) => {
   const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
   return (
@@ -34,8 +37,8 @@ export const VerifiedCard = ({
           />
         </Flex>
       </Box>
-      {redirectUrlFromPartner
-        ? PartnerContent.info.map(({ text, id }) => {
+      {redirectUrlFromPartner || flow === "sunscreen"
+        ? UniquenessContent.info.map(({ text, id }) => {
             return <Content key={id}>{text}</Content>;
           })
         : vContent.info.map(({ text, id }) => {

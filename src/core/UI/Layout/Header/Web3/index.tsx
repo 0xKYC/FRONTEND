@@ -16,21 +16,22 @@ import {
   Box,
   DesktopButtons,
   HeaderSection,
-  Image,
   ImgWrapper,
   IsLogo,
   LogoText,
   LogoWithoutWalletConnection,
   MobileConnectBtn,
-  MobileImage,
 } from "../styles";
 import { ChainSelectionMenu } from "./ChainSelection/Menu";
+import { Logo } from "./Logo";
 
 export const Web3Header = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
 
   const isInsertStonksInfoPage = pathname === "/insert-stonks";
+  const isUniquenessPage = pathname === "/uniqueness";
+
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect({
     onSuccess() {
@@ -95,7 +96,10 @@ export const Web3Header = () => {
       <nav>
         <Container>
           <Row justify="space-between">
-            <Link to="/" aria-label="homepage">
+            <Link
+              to={isUniquenessPage ? "/uniqueness" : "/"}
+              aria-label="homepage"
+            >
               {mockedWalletAddress ? (
                 <LogoWithoutWalletConnection
                   src="/img/icons/new-logo.png"
@@ -104,20 +108,7 @@ export const Web3Header = () => {
                   height="54px"
                 />
               ) : (
-                <>
-                  <Image
-                    src="/img/icons/new-logo.png"
-                    alt="logo"
-                    width="180px"
-                    height="54px"
-                  />
-                  <MobileImage
-                    src="/img/icons/0xkyc-icon.png"
-                    alt="logo"
-                    width="54px"
-                    height="54px"
-                  />
-                </>
+                <Logo />
               )}
             </Link>
             {!mockedWalletAddress && !isInsertStonksInfoPage && (

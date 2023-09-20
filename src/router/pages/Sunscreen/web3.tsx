@@ -6,24 +6,25 @@ import { LoadingSpinner } from "core/UI/LoadingSpinner";
 
 const Container = lazy(() => import("core/UI/Container"));
 const ScrollToTop = lazy(() => import("core/UI/ScrollToTop"));
-const ContentBlock = lazy(() => import("modules/verification/0xkyc"));
+const Verification = lazy(() => import("modules/verification/0xkyc"));
 
-const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
+const SunscreenWeb3 = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
+
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
-        uniqueness={false}
-        title={IntroContent.title}
-        content={IntroContent.text}
+      <Verification
+        uniqueness={true}
+        title="Verify your uniqueness with our Sunscreen service"
+        content="Sunscreen is a verification check which prevents bots and duplicate accounts"
         button={IntroContent.button}
         verifyTitle={VerifyContent.title}
-        verifyText={VerifyContent.content}
+        verifyText={VerifyContent.biometrics}
         icon="developer.svg"
       />
     </Container>
   );
 };
 
-export default SanctionsCheck;
+export default SunscreenWeb3;

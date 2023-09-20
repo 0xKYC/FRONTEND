@@ -5,6 +5,7 @@ export const HomeWithoutWalletConnection = lazy(
   () => import("./pages/CustomVerification"),
 );
 export const Sunscreen = lazy(() => import("./pages/Sunscreen"));
+export const SunscreenWeb3 = lazy(() => import("./pages/Sunscreen/web3"));
 export const SanctionsCheck = lazy(() => import("./pages/0xKYC"));
 export const Profile = lazy(() => import("./pages/Profile"));
 export const TermsOfService = lazy(() => import("./pages/TermsOfService"));

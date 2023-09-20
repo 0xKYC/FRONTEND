@@ -1,12 +1,11 @@
 import vContent from "content/VerifiedContent.json";
-import { Button } from "core/UI/Button";
 import { SvgIcon } from "core/UI/SvgIcon";
 import { StyledCard } from "modules/profile/Web3/components/VerifiedCard/styles";
 import { Checkmark } from "modules/profile/components/Checkmark";
 import { Content, Flex } from "modules/profile/styles";
 import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
-import { Box, Heading, StyledList } from "./styles";
+import { Box, Heading, RedirectDiscordLink, StyledList } from "./styles";
 
 export const VerifiedCard = () => {
   const { data: user, isLoading } = useGetDiscordUserQuery();
@@ -21,7 +20,8 @@ export const VerifiedCard = () => {
           <SvgIcon src="discord-logo-blue.svg" width="120" height="52" />
         </Flex>
       </Box>
-      {user.discordGuilds.length > 0 ? (
+
+      {user.discordAccount.discordGuilds.length > 0 ? (
         <>
           <Content>Discord servers you are verified on:</Content>
 
@@ -32,7 +32,13 @@ export const VerifiedCard = () => {
           </StyledList>
         </>
       ) : (
-        <Button>Join our Discord Server!</Button>
+        <RedirectDiscordLink
+          href="https://discord.com/invite/p58hBne2Ue"
+          target="_blank"
+          rel="noopener"
+        >
+          Join our Discord Server!
+        </RedirectDiscordLink>
       )}
     </StyledCard>
   );

@@ -1,3 +1,4 @@
+import { StyledRedirectLink } from "modules/profile/Web3/components/VerifiedCard/styles";
 import styled from "styled-components";
 
 export const Box = styled("div")`
@@ -43,5 +44,21 @@ export const StyledList = styled.ul`
       font-family: arial;
       transform: scaleX(-1) rotate(-35deg);
     } */
+  }
+`;
+
+export const RedirectDiscordLink = styled(StyledRedirectLink)`
+  background-color: #5865f2;
+
+  border: 1px solid #edf3f5;
+  box-shadow: 0 16px 30px rgb(23 31 114 / 20%);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    border: 1px solid rgb(88, 101, 290);
+    border: 1px solid #5865f2;
+    background-color: #5865f2;
   }
 `;

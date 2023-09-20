@@ -1,12 +1,12 @@
 import { ENV } from "env";
 
-import { DiscordUser } from "redux/api/user/types";
+import { DiscordUserObject } from "redux/api/user/types";
 import { useLogoutMutation, userApi } from "redux/api/user/userApi";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 import { loadLocalStorageTos } from "redux/localStorage";
 
-export const useToggleAuth = (data: DiscordUser | undefined) => {
+export const useToggleAuth = (data: DiscordUserObject | undefined) => {
   const dispatch = useAppDispatch();
   const tosSigned = loadLocalStorageTos();
 

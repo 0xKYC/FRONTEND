@@ -18,7 +18,7 @@ import { VerifiedCard } from "./components/VerifiedCard";
 import { useRedirectUser } from "./hooks/useRedirectUser";
 import { getUserSbt } from "./utils";
 
-export const Web3ProfilePage = () => {
+const Web3ProfilePage = () => {
   const { chain } = useNetwork();
   const { address } = useAccount();
   const redirectUrlFromPartner = useAppSelector(selectRedirectUrl);
@@ -45,6 +45,7 @@ export const Web3ProfilePage = () => {
           <Col lg={13} md={12} sm={24} xs={24}>
             <ContentWrapper>
               <VerifiedCard
+                flow={user.flow}
                 txHash={txHash}
                 chainId={chainId}
                 redirectUrlFromPartner={redirectUrlFromPartner}
@@ -63,3 +64,5 @@ export const Web3ProfilePage = () => {
     </BlockWrapper>
   );
 };
+
+export default Web3ProfilePage;

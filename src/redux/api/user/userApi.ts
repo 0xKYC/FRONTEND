@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ChainId } from "core/constans/chains";
 
 import { API_URL } from "../config";
-import { DiscordUser, Wallet } from "./types";
+import { DiscordUserObject, Wallet } from "./types";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -35,7 +35,7 @@ export const userApi = createApi({
       invalidatesTags: ["user"],
     }),
 
-    getDiscordUser: builder.query<DiscordUser, void>({
+    getDiscordUser: builder.query<DiscordUserObject, void>({
       query: () => `discord/auth/me`,
       providesTags: ["user"],
     }),
@@ -45,7 +45,6 @@ export const userApi = createApi({
 export const {
   useGetUserWalletQuery,
   useSubscribeNewsletterMutation,
-
   useGetDiscordUserQuery,
   useLogoutMutation,
 } = userApi;

@@ -23,7 +23,7 @@ import {
   PrivacyPolicy,
   Profile,
   SanctionsCheck,
-  Sunscreen,
+  SunscreenWeb3,
   TermsOfService,
   ThirdParties,
   Wave,
@@ -38,7 +38,7 @@ export const Router = () => {
     isConnected,
   } = useAuth();
   useScrollToTop();
-  const { data: discordUser, isLoading: loading } = useGetDiscordUserQuery();
+  const { data } = useGetDiscordUserQuery();
 
   return (
     <>
@@ -54,26 +54,25 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
-                  discordConnected={Boolean(discordUser)}
+                  discordConnected={Boolean(data)}
                 >
                   <Home />
                 </RedirectRoute>
               }
               path="/"
             />
-            <Route
+            {/* <Route
               element={
                 <RedirectRoute
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
-                  discordVerified={discordUser?.isVerified}
                 >
                   <Sunscreen />
                 </RedirectRoute>
               }
               path="/sunscreen/*"
-            />
+            /> */}
             <Route
               element={
                 <RedirectRoute
@@ -85,6 +84,18 @@ export const Router = () => {
                 </RedirectRoute>
               }
               path="/0xkyc"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <SunscreenWeb3 isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/uniqueness"
             />
             <Route
               element={
@@ -127,15 +138,7 @@ export const Router = () => {
               }
               path="/mint"
             />
-            <Route
-              element={
-                <DiscordServers
-                  isVerified={discordUser?.isVerified}
-                  isLoading={loading}
-                />
-              }
-              path="/discord-servers"
-            />
+            <Route element={<DiscordServers />} path="/discord-servers" />
 
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />

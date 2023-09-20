@@ -12,7 +12,10 @@ export type Wallet = {
   sbts: Sbt[];
   user: UserObject | null;
   tosVersion: string | null;
+  flow: Flow;
 };
+
+export type Flow = "sanctionedCheck" | "sunscreen";
 export type Sbt = {
   id: number;
   createdAt: Date;
@@ -83,9 +86,22 @@ type DiscordGuild = {
   name: string;
   discordAccountId: number | null;
 };
-export type DiscordUser = DiscordUserResponse & {
+
+type DiscordAccount = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number | null;
   accountId: string;
-  isVerified: boolean | null;
+  name: string;
   unique: boolean | null;
+  isVerified: boolean | null;
+  onfidoApplicantId: string;
+  onfidoStatus: OnfidoStatus | null;
   discordGuilds: DiscordGuild[];
+};
+
+export type DiscordUserObject = {
+  discordAccount: DiscordAccount;
+  discordUser: DiscordUserResponse;
 };

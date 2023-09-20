@@ -44,14 +44,17 @@ export const DiscordButton = styled.button`
   transition: all 0.3s ease-in-out;
   box-shadow: 0 16px 30px rgb(23 31 114 / 20%);
 
-  &:hover,
+  /* &:hover,
   &:active,
   &:focus {
     color: #fff;
     border: 1px solid rgb(88, 101, 290);
     border: 1px solid #5865f2;
+  } */
+  :disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
-
   @media screen and (max-width: 890px) {
     padding: 0.7rem 1.4rem;
   }
