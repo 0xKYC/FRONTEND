@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from "react";
 
-import { ENV } from "env";
-
+// import { ENV } from "env";
 import {
   selectIsTosModalOpen,
   toggleTosModal,
@@ -44,9 +43,9 @@ export const TosModalWeb2 = ({ redirect }: { redirect?: boolean }) => {
   const handleSignTos = () => {
     dispatch(toggleTosModal(false));
     saveTosToLocalStorage(true);
-    if (redirect) {
-      window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
-    }
+    // if (redirect) {
+    //   window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
+    // }
   };
 
   return (

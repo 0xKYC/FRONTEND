@@ -1,5 +1,4 @@
-import { ENV } from "env";
-
+// import { ENV } from "env";
 import { DiscordUserObject } from "redux/api/user/types";
 import { useLogoutMutation, userApi } from "redux/api/user/userApi";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
@@ -24,7 +23,7 @@ export const useToggleAuth = (data: DiscordUserObject | undefined) => {
     } else if (!tosSigned) {
       dispatch(toggleTosModal(true));
     } else {
-      window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
+      // window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
   return { toggleAuth };

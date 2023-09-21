@@ -1,6 +1,6 @@
 import { Col } from "antd";
-import { ENV } from "env";
 
+// import { ENV } from "env";
 import { Button } from "core/UI/Button";
 import { DiscordButton } from "core/UI/Button/styles";
 import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
