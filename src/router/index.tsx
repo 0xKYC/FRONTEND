@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
-import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
+// import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
@@ -38,7 +38,7 @@ export const Router = () => {
     isConnected,
   } = useAuth();
   useScrollToTop();
-  const { data } = useGetDiscordUserQuery();
+  // const { data } = useGetDiscordUserQuery();
 
   return (
     <>
