@@ -16,11 +16,11 @@ import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
 import {
   addApplicantId,
-  checkIfVerified,
   reset,
   selectIsMintingActive,
+  selectIsVerified,
   selectMockedWalletAddress,
-  selectVerifiedUser,
+  setVerified,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { saveTosToLocalStorage } from "redux/localStorage";
@@ -30,7 +30,7 @@ import { useCheckMinting } from "./useCheckMinting";
 const supportedChains = IS_MAINNET ? CHAIN_IDS : TESTNET_CHAINS_IDS;
 
 export const useAuth = () => {
-  const verified = useAppSelector(selectVerifiedUser);
+  const verified = useAppSelector(selectIsVerified);
   const isMintingActive = useAppSelector(selectIsMintingActive);
 
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
@@ -103,18 +103,18 @@ export const useAuth = () => {
           const isVerified = await hasSoul(chainId, walletAddress);
 
           if (isVerified) {
-            dispatch(checkIfVerified(isVerified));
+            dispatch(setVerified(isVerified));
           }
         } else if (userWallet.flow === "sunscreen") {
           const isVerified = await confirmUniqueness(chainId, walletAddress);
 
           if (isVerified) {
-            dispatch(checkIfVerified(isVerified));
+            dispatch(setVerified(isVerified));
           }
         }
         const hasUuid = userWallet.user?.uuid;
         if (mockedWalletAddress && hasUuid) {
-          dispatch(checkIfVerified(true));
+          dispatch(setVerified(true));
         }
       } catch (err) {
         saveTosToLocalStorage(false);

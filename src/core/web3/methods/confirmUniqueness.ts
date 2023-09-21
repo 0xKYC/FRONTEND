@@ -21,5 +21,6 @@ export const confirmUniqueness = async (
     return uniquenessConfirmed;
   } catch (err) {
     console.error(err);
+    return false;
   }
 };

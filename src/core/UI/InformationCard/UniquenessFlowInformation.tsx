@@ -1,14 +1,14 @@
 import { useLocation } from "react-router-dom";
 
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { selectVerifiedUser } from "redux/features/user/userSlice";
+import { selectIsVerified } from "redux/features/user/userSlice";
 import { useAppSelector } from "redux/hooks";
 
 import { StyledText } from "./styles";
 
 export const UniquenessFlowInformation = () => {
   const { pathname } = useLocation();
-  const isAuth = useAppSelector(selectVerifiedUser);
+  const isAuth = useAppSelector(selectIsVerified);
   const isVerified = pathname === "/profile" || isAuth;
   return (
     <>

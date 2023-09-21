@@ -60,7 +60,7 @@ export const userSlice = createSlice({
       state.redirectUrl = action.payload.redirectUrl;
       state.callbackUrl = action.payload.callbackUrl;
     },
-    checkIfVerified: (state, action: PayloadAction<boolean>) => {
+    setVerified: (state, action: PayloadAction<boolean>) => {
       state.verified = action.payload;
     },
     addTxHash: (state, action: PayloadAction<string>) => {
@@ -96,7 +96,7 @@ export const userSlice = createSlice({
 
 export const {
   addApplicantId,
-  checkIfVerified,
+  setVerified,
   addTxHash,
   setMinting,
   reset,
@@ -113,7 +113,7 @@ export const selectRedirectUrl = (state: RootState) => state.user.redirectUrl;
 export const selectCallbackUrl = (state: RootState) => state.user.callbackUrl;
 export const selectMockedWalletAddress = (state: RootState) =>
   state.user.mockedWalletAddress;
-export const selectVerifiedUser = (state: RootState) => state.user.verified;
+export const selectIsVerified = (state: RootState) => state.user.verified;
 export const selectTxHash = (state: RootState) => state.user.txHash;
 export const selectIsMinting = (state: RootState) => state.user.isMinting;
 export const selectIsMintingError = (state: RootState) =>

@@ -54,7 +54,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
-                  discordConnected={Boolean(data)}
+                  // discordConnected={Boolean(data)}
                 >
                   <Home />
                 </RedirectRoute>

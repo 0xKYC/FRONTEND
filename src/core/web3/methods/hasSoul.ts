@@ -18,5 +18,6 @@ export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
     return hasSoul;
   } catch (err) {
     console.error(err);
+    return false;
   }
 };

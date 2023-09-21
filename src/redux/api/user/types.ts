@@ -16,6 +16,7 @@ export type Wallet = {
 };
 
 export type Flow = "sanctionedCheck" | "sunscreen";
+
 export type Sbt = {
   id: number;
   createdAt: Date;
