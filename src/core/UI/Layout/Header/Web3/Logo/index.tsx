@@ -1,16 +1,20 @@
 import { useLocation } from "react-router-dom";
 
 import { useMediaQuery } from "core/hooks/useMediaQuery";
+import { selectUserFlow } from "redux/features/user/userSlice";
+import { useAppSelector } from "redux/hooks";
 
 import { Image, MobileImage } from "../../styles";
 
 export const Logo = () => {
   const isMobile = useMediaQuery("(max-width:540px)");
   const { pathname } = useLocation();
+  const userFlow = useAppSelector(selectUserFlow);
+  const isSunscreenFlow = userFlow === "sunscreen";
   const isUniquenessPage = pathname === "/uniqueness";
   return (
     <>
-      {isUniquenessPage ? (
+      {isUniquenessPage || isSunscreenFlow ? (
         <>
           {isMobile ? (
             <Image

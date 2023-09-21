@@ -1,6 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { ChainId } from "core/constans/chains";
+import { Flow } from "redux/api/user/types";
 
 import { RootState } from "../../store";
 
@@ -20,6 +21,7 @@ export type User = {
   isMintingActive: boolean;
   isMintingError: boolean;
   email: string;
+  flow: Flow | null;
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
@@ -32,6 +34,7 @@ const initialState: User = {
   verified: false,
   txHash: "",
   isMinting: false,
+  flow: null,
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,
@@ -91,6 +94,9 @@ export const userSlice = createSlice({
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
+    setFlow: (state, action: PayloadAction<Flow>) => {
+      state.flow = action.payload;
+    },
   },
 });
 
@@ -104,6 +110,7 @@ export const {
   setPartnerParams,
   setApiKey,
   setEmail,
+  setFlow,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -127,3 +134,4 @@ export const selectMintingWallet = (state: RootState) =>
 
 export const selectApiKey = (state: RootState) => state.user.apiKey;
 export const selectEmail = (state: RootState) => state.user.email;
+export const selectUserFlow = (state: RootState) => state.user.flow;

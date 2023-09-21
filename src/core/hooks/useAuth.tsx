@@ -9,9 +9,8 @@ import {
   IS_MAINNET,
   TESTNET_CHAINS_IDS,
 } from "core/constans/chains";
-import { confirmUniqueness } from "core/web3/methods/confirmUniqueness";
-import { hasSoul } from "core/web3/methods/hasSoul";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
+import { checkIfVerified } from "modules/mint/utils/checkIfVerified";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
 import {
@@ -20,6 +19,7 @@ import {
   selectIsMintingActive,
   selectIsVerified,
   selectMockedWalletAddress,
+  setFlow,
   setVerified,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -99,19 +99,14 @@ export const useAuth = () => {
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
 
-        if (userWallet.flow === "sanctionedCheck") {
-          const isVerified = await hasSoul(chainId, walletAddress);
+        const isUserVerified = await checkIfVerified({
+          flow: userWallet.flow,
+          chainId,
+          walletAddress,
+        });
+        dispatch(setVerified(isUserVerified));
+        dispatch(setFlow(userWallet.flow));
 
-          if (isVerified) {
-            dispatch(setVerified(isVerified));
-          }
-        } else if (userWallet.flow === "sunscreen") {
-          const isVerified = await confirmUniqueness(chainId, walletAddress);
-
-          if (isVerified) {
-            dispatch(setVerified(isVerified));
-          }
-        }
         const hasUuid = userWallet.user?.uuid;
         if (mockedWalletAddress && hasUuid) {
           dispatch(setVerified(true));

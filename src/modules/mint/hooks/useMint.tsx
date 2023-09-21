@@ -10,6 +10,7 @@ import {
   addTxHash,
   selectMintingChain,
   selectMockedWalletAddress,
+  setFlow,
   setMinting,
   setVerified,
 } from "redux/features/user/userSlice";
@@ -181,6 +182,7 @@ export const useMint = () => {
               );
 
               setSuccess(true);
+              dispatch(setFlow(userWallet.flow));
               dispatch(setVerified(isVerified));
 
               navigate("/profile");
