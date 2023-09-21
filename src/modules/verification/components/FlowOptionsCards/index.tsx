@@ -24,7 +24,7 @@ export const FlowOptionsCards = () => {
     if (!tosSigned) {
       dispatch(toggleTosModal(true));
     } else {
-      window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
+      // window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
   return (

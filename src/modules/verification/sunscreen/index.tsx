@@ -1,7 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 
 import { Col, Row } from "antd";
-import { ENV } from "env";
 
 import verifyContent from "content/VerifyContent.json";
 import { DiscordButton } from "core/UI/Button/styles";
@@ -29,7 +28,7 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
     if (!tosAccepted) {
       dispatch(toggleTosModal(true));
     } else {
-      window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
+      // window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
 
