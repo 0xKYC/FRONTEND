@@ -55,7 +55,9 @@ const Web3ProfilePage = () => {
           <Col lg={10} md={11} sm={24} xs={24}>
             <ContentWrapper>
               <InformationCard
-                isUniquenessFlow={Boolean(mockedWalletAddress)}
+                isUniquenessFlow={
+                  Boolean(mockedWalletAddress) || user.flow === "sunscreen"
+                }
               />
             </ContentWrapper>
           </Col>
