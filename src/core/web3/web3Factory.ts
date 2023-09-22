@@ -32,12 +32,12 @@ export const web3Factory = (
       soulboundContract: ENV.REACT_APP_SCROLL_SEPOLIA_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.BNB]: {
-      provider: "todo",
-      soulboundContract: "todo",
+      provider: "https://bsc-dataseed.bnbchain.org",
+      soulboundContract: ENV.REACT_APP_BNB_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.BNB_TESTNET]: {
-      provider: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      soulboundContract: "0x8aC257D93CE9ba102bA9bD594de252D34108eb3A",
+      provider: "https://bsc-testnet-dataseed.bnbchain.org",
+      soulboundContract: ENV.REACT_APP_BNB_TESTNET_SOULBOUND_CONTRACT,
     },
   };
 
