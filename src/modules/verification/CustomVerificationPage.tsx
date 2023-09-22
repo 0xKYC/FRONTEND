@@ -24,7 +24,7 @@ const CustomVerificationPage = ({
   button,
 }: HomePageProps) => {
   const {
-    handleOnfidoRedirectWithTosCheck,
+    handleOnfidoRedirectForInsertStonks,
     mockedWalletAddress,
     tosAccepted,
     isLoading,
@@ -47,7 +47,7 @@ const CustomVerificationPage = ({
             <Heading>{header}</Heading>
             <Content>{contentText}</Content>
             <ButtonWrapper>
-              <Button onClick={handleOnfidoRedirectWithTosCheck}>
+              <Button onClick={handleOnfidoRedirectForInsertStonks}>
                 {isLoading ? <LoadingCircle /> : buttonText}
               </Button>
             </ButtonWrapper>

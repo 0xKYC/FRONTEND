@@ -22,6 +22,7 @@ const CustomVerification = ({ isLoading }: { isLoading: boolean }) => {
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.biometrics}
         icon="developer.svg"
+        flow="insertStonks"
       />
     </Container>
   );

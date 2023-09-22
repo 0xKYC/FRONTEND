@@ -31,7 +31,9 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
       // window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     }
   };
-
+  const onfidoRedirect = async () => {
+    await handleOnfidoRedirect("discord");
+  };
   return (
     <StyledSection>
       <Fade>
@@ -40,7 +42,7 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
             {userData ? (
               <>
                 <CommonSection header={title} contentText={biometrics}>
-                  <DiscordButton onClick={handleOnfidoRedirect}>
+                  <DiscordButton onClick={onfidoRedirect}>
                     Verify yourself
                   </DiscordButton>
                 </CommonSection>

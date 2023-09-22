@@ -1,3 +1,5 @@
+import { Flow } from "../onfido/types";
+
 type UserObject = {
   uuid: string | null;
 };
@@ -14,8 +16,6 @@ export type Wallet = {
   tosVersion: string | null;
   flow: Flow;
 };
-
-export type Flow = "sanctionedCheck" | "sunscreen";
 
 export type Sbt = {
   id: number;

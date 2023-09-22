@@ -2,7 +2,7 @@ import UniquenessContent from "content/UniquenessVerified.json";
 import vContent from "content/VerifiedContent.json";
 import { ChainId, getChainInfo } from "core/constans/chains";
 import { Heading } from "modules/verification/styles";
-import { Flow } from "redux/api/user/types";
+import { Flow } from "redux/api/onfido/types";
 
 import { Checkmark } from "../../../components/Checkmark";
 import { Box, Content, Flex } from "../../../styles";

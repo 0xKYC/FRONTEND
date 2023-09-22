@@ -1,7 +1,7 @@
 import { SupportedChainId } from "core/constans/chains";
 import { confirmUniqueness } from "core/web3/methods/confirmUniqueness";
 import { hasSoul } from "core/web3/methods/hasSoul";
-import { Flow } from "redux/api/user/types";
+import { Flow } from "redux/api/onfido/types";
 
 type Args = {
   flow: Flow;
@@ -13,7 +13,7 @@ export const checkIfVerified = async ({
   chainId,
   walletAddress,
 }: Args): Promise<boolean> => {
-  if (flow === "sanctionedCheck") {
+  if (flow === "0xkyc") {
     return await hasSoul(chainId, walletAddress);
   } else if (flow === "sunscreen") {
     return await confirmUniqueness(chainId, walletAddress);

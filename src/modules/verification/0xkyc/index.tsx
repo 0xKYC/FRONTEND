@@ -25,6 +25,7 @@ const VerificationProcess = ({
   content,
   button,
   uniqueness,
+  flow,
 }: HomePageProps) => {
   const dispatch = useAppDispatch();
 
@@ -47,7 +48,9 @@ const VerificationProcess = ({
   const handleStepBack = () => {
     setEmailSubmitted(false);
   };
-
+  const onfidoRedirect = async () => {
+    await handleOnfidoRedirect(flow);
+  };
   return (
     <CustomSectionWrapper>
       {!tosAccepted && <TosModalNormal />}
@@ -75,7 +78,7 @@ const VerificationProcess = ({
             {isConnected && isEmailSubmitted && (
               <CommonSection header={verifyTitle} contentText={verifyText}>
                 <GoBackArrow handleStepBack={handleStepBack} />
-                <Button onClick={handleOnfidoRedirect}>
+                <Button onClick={onfidoRedirect}>
                   {isLoading ? <LoadingCircle /> : button?.enabled.title}
                 </Button>
               </CommonSection>

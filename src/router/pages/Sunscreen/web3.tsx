@@ -22,6 +22,7 @@ const SunscreenWeb3 = ({ isLoading }: { isLoading: boolean }) => {
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.biometrics}
         icon="developer.svg"
+        flow="sunscreen"
       />
     </Container>
   );

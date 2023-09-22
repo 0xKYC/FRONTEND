@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { ChainId } from "core/constans/chains";
-import { Flow } from "redux/api/user/types";
+import { Flow } from "redux/api/onfido/types";
 
 import { RootState } from "../../store";
 
@@ -34,7 +34,7 @@ const initialState: User = {
   verified: false,
   txHash: "",
   isMinting: false,
-  flow: "sanctionedCheck",
+  flow: "0xkyc",
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,
