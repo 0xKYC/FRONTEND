@@ -27,7 +27,10 @@ export enum SupportedChainId {
   POLYGON = 137,
   POLYGON_MUMBAI = 80001,
 
-  SCROLL_ALPHA = 534353,
+  SCROLL_SEPOLIA = 534351,
+
+  BNB_TESTNET = 97,
+  BNB = 56,
 }
 
 export const CHAIN_INFO = {
@@ -77,13 +80,31 @@ export const CHAIN_INFO = {
     },
   },
 
-  [SupportedChainId.SCROLL_ALPHA]: {
-    explorer: "https://blockscout.scroll.io/tx/",
+  [SupportedChainId.SCROLL_SEPOLIA]: {
+    explorer: "https://sepolia-blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
-    label: "Scroll Alpha",
+    label: "Scroll Sepolia",
     logoUrl: "/img/svg/scroll.svg",
     nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
     bridge: "https://scroll.io/alpha/bridge/",
+  },
+  [SupportedChainId.BNB]: {
+    bridge: "https://cbridge.celer.network/1/56",
+    docs: "https://docs.bnbchain.org/",
+    explorer: "https://bscscan.com/tx",
+    explorerName: "Bsc explorer",
+    label: "BNB Chain",
+    logoUrl: "/img/svg/bnb.svg",
+    nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
+  },
+  [SupportedChainId.BNB_TESTNET]: {
+    bridge: "https://cbridge.celer.network/1/56",
+    docs: "https://docs.bnbchain.org/",
+    explorer: "https://testnet.bscscan.com/tx",
+    explorerName: "Bsc testnet explorer",
+    label: "BNB Testnet",
+    logoUrl: "/img/svg/bnb.svg",
+    nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
   },
 };
 export const CHAIN_IDS = [
@@ -91,13 +112,17 @@ export const CHAIN_IDS = [
 
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_SEPOLIA,
+
+  SupportedChainId.BNB_TESTNET,
+  SupportedChainId.BNB,
 ] as const;
 
 export const TESTNET_CHAINS_IDS = [
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_SEPOLIA,
+  SupportedChainId.BNB_TESTNET,
 ] as const;
 
 export type ChainId = (typeof CHAIN_IDS)[number];
@@ -115,38 +140,48 @@ export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
 }
 export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON,
+  SupportedChainId.BNB,
+
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
-  SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_SEPOLIA,
+  SupportedChainId.BNB_TESTNET,
 ];
 
 export const ONLY_TESTNET_CHAINS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SEPOLIA,
-  SupportedChainId.SCROLL_ALPHA,
+  SupportedChainId.SCROLL_SEPOLIA,
+  SupportedChainId.BNB_TESTNET,
 ];
 
 export const DEFAULT_CHAIN = IS_MAINNET
   ? SupportedChainId.POLYGON
   : SupportedChainId.POLYGON_MUMBAI;
 
-export const scrollAlpha = {
-  id: 534353,
-  name: "Scroll Alpha",
-  network: "Scroll",
+export const scrollSepolia = {
+  id: 534351,
+  name: "Scroll Sepolia",
+  network: "scroll-sepolia",
   nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
-    public: { http: ["https://alpha-rpc.scroll.io/l2"] },
-    default: { http: ["https://alpha-rpc.scroll.io/l2"] },
+    public: { http: ["https://sepolia-rpc.scroll.io/"] },
+    default: { http: ["https://sepolia-rpc.scroll.io/"] },
   },
   blockExplorers: {
-    etherscan: { name: "BlockScout", url: "https://blockscout.scroll.io/" },
-    default: { name: "BlockScout", url: "https://blockscout.scroll.io/" },
+    etherscan: {
+      name: "BlockScout",
+      url: "https://sepolia-blockscout.scroll.io",
+    },
+    default: {
+      name: "BlockScout",
+      url: "https://sepolia-blockscout.scroll.io",
+    },
   },
   contracts: {
     multicall3: {
       address: "0xca11bde05977b3631167028862be2a173976ca11",
-      blockCreated: 11_907_934,
+      blockCreated: 9473,
     },
   },
 } as const satisfies Chain;

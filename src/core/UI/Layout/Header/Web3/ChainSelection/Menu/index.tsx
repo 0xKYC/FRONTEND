@@ -112,13 +112,30 @@ export const ChainSelectionMenu = () => {
       ),
     },
     {
+      key: 1,
+      label: (
+        <>
+          <ChainSelectorItem
+            onSelectChain={onSelectChain}
+            targetChain={SupportedChainId.BNB}
+            key={SupportedChainId.BNB}
+            isPending={
+              SupportedChainId.BNB === pendingChainId &&
+              Boolean(!error) &&
+              isLoading
+            }
+          />
+        </>
+      ),
+    },
+    {
       key: "Testnets",
       label: "Testnets",
       disabled: true,
     },
-    ...NETWORK_SELECTOR_CHAINS.slice(1).map(
+    ...NETWORK_SELECTOR_CHAINS.slice(2).map(
       (chainId: SupportedChainId, index) => ({
-        key: index + 1,
+        key: index + 2,
         label: (
           <>
             <ChainSelectorItem
