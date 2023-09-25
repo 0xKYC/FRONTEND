@@ -21,7 +21,7 @@ const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.content}
         icon="developer.svg"
-        flow="0xkyc"
+        flow="sanctionsCheck"
       />
     </Container>
   );

@@ -13,7 +13,7 @@ export const checkIfVerified = async ({
   chainId,
   walletAddress,
 }: Args): Promise<boolean> => {
-  if (flow === "0xkyc") {
+  if (flow === "sanctionsCheck") {
     return await hasSoul(chainId, walletAddress);
   } else if (flow === "sunscreen") {
     return await confirmUniqueness(chainId, walletAddress);
