@@ -21,7 +21,7 @@ export type User = {
   isMintingActive: boolean;
   isMintingError: boolean;
   email: string;
-  flow: Flow;
+  flow: Flow | null;
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
@@ -34,7 +34,7 @@ const initialState: User = {
   verified: false,
   txHash: "",
   isMinting: false,
-  flow: "0xkyc",
+  flow: null,
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,

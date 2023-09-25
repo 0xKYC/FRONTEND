@@ -13,7 +13,8 @@ const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
+      <div style={{ height: "100vh" }}>eeee</div>
+      {/* <ContentBlock
         uniqueness={false}
         title={IntroContent.title}
         content={IntroContent.text}
@@ -22,7 +23,7 @@ const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
         verifyText={VerifyContent.content}
         icon="developer.svg"
         flow="0xkyc"
-      />
+      /> */}
     </Container>
   );
 };

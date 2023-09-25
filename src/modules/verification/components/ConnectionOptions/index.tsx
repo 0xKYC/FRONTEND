@@ -12,7 +12,7 @@ import { loadLocalStorageTos } from "redux/localStorage";
 
 import { Card, CardsWrapper, ImgWrapper, SecondImgWrapper } from "./styles";
 
-export const FlowOptionsCards = () => {
+export const ConnectionOptions = () => {
   const dispatch = useAppDispatch();
   const tosSigned = loadLocalStorageTos();
 
