@@ -42,9 +42,9 @@ const DiscordVerification = () => {
             <p>
               - Switch to a desktop device if you were using a mobile device.
             </p>
-            <p>
+            {/* <p>
               - Click the designated button to switch the verification flow.
-            </p>
+            </p> */}
           </InfoText>
           <InfoText>
             If you encounter any further difficulties, don't hesitate to reach

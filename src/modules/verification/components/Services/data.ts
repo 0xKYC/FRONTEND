@@ -1,12 +1,12 @@
 export const servicesData = [
-  {
-    title: "Hinkal",
-    description:
-      "Blockchain protocol designed for private transactions and enhanced user privacy and security",
-    tag: "0xKYC",
-    href: "/0xkyc",
-    img: "/img/hinkal-log.png",
-  },
+  // {
+  //   title: "Hinkal",
+  //   description:
+  //     "Blockchain protocol designed for private transactions and enhanced user privacy and security",
+  //   tag: "0xKYC",
+  //   href: "/0xkyc",
+  //   img: "/img/hinkal-log.png",
+  // },
   // {
   //   title: "Soil",
   //   description: "Debt marketplace",
@@ -25,7 +25,7 @@ export const servicesData = [
   {
     title: "Insert Stonks",
     description: "Web3 gaming platform",
-    tag: "API",
+    tags: ["API"],
     href: "insert-stonks",
     img: "/img/IS-logo-nobg.png",
     biggerImg: true,
@@ -34,9 +34,10 @@ export const servicesData = [
     title: "Aragon",
     description:
       "DAO creation and management platform with no coding required.",
-    tag: "API",
-    href: "https://aragon.org/",
+    tags: ["API", "0xKYC"],
+    href: "https://github.com/0xKYC/0xkyc-1vote-aragon-plugin",
     img: "/img/aragon.png",
+    redirect: true,
   },
   // {
   //   title: "0xKYC Discord",
@@ -72,6 +73,6 @@ export const servicesData = [
   // },
 ];
 
-const tags = servicesData.map((service) => service.tag);
+const tags = ["0xKYC", "API"];
 const uniqueTags = [...new Set(tags)];
 export const TagsOptions = ["All", ...uniqueTags];

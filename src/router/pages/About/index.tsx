@@ -2,6 +2,7 @@ import { TwitterOutlined } from "@ant-design/icons";
 import { GoBackArrow } from "core/UI/TextContainer/GoBackArrow";
 
 import {
+  Anchor,
   BlackText,
   Img,
   StyledContainer,
@@ -9,6 +10,7 @@ import {
   StyledOlList,
   StyledText,
   StyledTitle,
+  TwitterLinksWrapper,
 } from "../../../core/UI/TextContainer/style";
 
 const About = () => {
@@ -26,30 +28,52 @@ const About = () => {
       </StyledText>
 
       <Img
-        src="img/Adam-and-Dylan-of-0xKYC.jpg"
-        alt="Adam and Dylan of 0xKYC"
+        src="img/team-photo.jpg"
+        alt="0xKYC team picture"
         height="620px"
         objectFit="cover"
-        objectPosition="top"
+        objectPosition="bottom"
       />
 
-      <BlackText> Co-Founders of 0xKYC: Adam (CEO) and Dylan (CTO)</BlackText>
-
-      <a
-        href="https://twitter.com/adag1oeth"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ marginRight: "1rem" }}
-      >
-        <TwitterOutlined /> adag1oeth{" "}
-      </a>
-      <a
+      <BlackText> 0xKYC Team</BlackText>
+      <TwitterLinksWrapper>
+        <Anchor
+          href="https://twitter.com/DesCryptShion"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ marginRight: "1rem" }}
+        >
+          <TwitterOutlined /> DesCryptShion{" "}
+        </Anchor>
+        <Anchor
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://twitter.com/sebastian_oldak"
+        >
+          <TwitterOutlined /> sebastian_oldak{" "}
+        </Anchor>
+      </TwitterLinksWrapper>
+      <Anchor
         target="_blank"
         rel="noopener noreferrer"
         href="https://twitter.com/wysock_"
       >
-        <TwitterOutlined /> wysock_{" "}
-      </a>
+        <TwitterOutlined /> wysock_ (CTO){" "}
+      </Anchor>
+      <Anchor
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/adag1oeth"
+      >
+        <TwitterOutlined /> adag1oeth (CEO){" "}
+      </Anchor>
+      <Anchor
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/philip_nomad"
+      >
+        <TwitterOutlined /> MG{" "}
+      </Anchor>
       <StyledText style={{ marginTop: "1.5rem" }}>
         We've designed a decentralized app (dApp) that provides users the
         ability to secure unique, soulbound tokens across Ethereum, Polygon,

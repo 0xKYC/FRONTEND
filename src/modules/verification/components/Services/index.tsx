@@ -19,7 +19,7 @@ export const Services = () => {
 
   const filteredServices = servicesData.filter((service) => {
     if (choosenServices !== "All") {
-      return service.tag === choosenServices;
+      return service.tags.includes(choosenServices);
     } else {
       return servicesData;
     }
@@ -49,6 +49,7 @@ export const Services = () => {
                   img={service.img}
                   href={service.href}
                   biggerImg={service.biggerImg}
+                  redirect={service?.redirect}
                 />
               </Fade>
             </Col>
