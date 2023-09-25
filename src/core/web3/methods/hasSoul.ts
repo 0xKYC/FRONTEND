@@ -1,5 +1,5 @@
 import { ChainId } from "core/constans/chains";
-import { sbtABI } from "core/web3/abis/soulbound";
+import { ABI } from "core/web3/abis/OxKYC";
 import { web3Factory } from "core/web3/web3Factory";
 import { AbiItem } from "web3-utils";
 
@@ -8,7 +8,7 @@ export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
 
   try {
     const soulbound = new web3.eth.Contract(
-      sbtABI as AbiItem[],
+      ABI as AbiItem[],
       soulboundContract,
     );
     const hasSoul: boolean = await soulbound.methods
@@ -18,5 +18,6 @@ export const hasSoul = async (chainId: ChainId, walletAddress: string) => {
     return hasSoul;
   } catch (err) {
     console.error(err);
+    return false;
   }
 };

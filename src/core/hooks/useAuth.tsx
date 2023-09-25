@@ -9,27 +9,28 @@ import {
   IS_MAINNET,
   TESTNET_CHAINS_IDS,
 } from "core/constans/chains";
-import { hasSoul } from "core/web3/methods/hasSoul";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
+import { checkIfVerified } from "modules/mint/utils/checkIfVerified";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
 import {
   addApplicantId,
-  checkIfVerified,
   reset,
   selectIsMintingActive,
+  selectIsVerified,
   selectMockedWalletAddress,
-  selectVerifiedUser,
-  signTos,
+  setFlow,
+  setVerified,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { saveTosToLocalStorage } from "redux/localStorage";
 
 import { useCheckMinting } from "./useCheckMinting";
 
 const supportedChains = IS_MAINNET ? CHAIN_IDS : TESTNET_CHAINS_IDS;
 
 export const useAuth = () => {
-  const verified = useAppSelector(selectVerifiedUser);
+  const verified = useAppSelector(selectIsVerified);
   const isMintingActive = useAppSelector(selectIsMintingActive);
 
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
@@ -44,10 +45,9 @@ export const useAuth = () => {
   const { disconnect } = useDisconnect({
     onSuccess() {
       dispatch(reset());
-      localStorage.clear();
     },
   });
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const walletAddress = address || mockedWalletAddress;
   const isVerified = Boolean(walletAddress) && verified;
@@ -78,7 +78,6 @@ export const useAuth = () => {
         }
       }
     };
-
     const handleUserAuth = async () => {
       if (!walletAddress) return;
 
@@ -100,26 +99,28 @@ export const useAuth = () => {
           return setIsSanctioned(true);
         }
         if (userWallet.tosVersion !== tos.version) {
-          dispatch(signTos(false));
+          saveTosToLocalStorage(false);
         }
         if (userWallet.signature) {
-          dispatch(signTos(true));
+          saveTosToLocalStorage(true);
         }
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
 
-        const isVerified = await hasSoul(chainId, walletAddress);
+        const isUserVerified = await checkIfVerified({
+          flow: userWallet.flow,
+          chainId,
+          walletAddress,
+        });
+        dispatch(setVerified(isUserVerified));
+        dispatch(setFlow(userWallet.flow));
+
         const hasUuid = userWallet.user?.uuid;
-
-        if (isVerified) {
-          dispatch(checkIfVerified(isVerified));
-        }
-
         if (mockedWalletAddress && hasUuid) {
-          dispatch(checkIfVerified(true));
+          dispatch(setVerified(true));
         }
       } catch (err) {
-        dispatch(signTos(false));
+        saveTosToLocalStorage(false);
         setIsLoading(false);
         console.error(err);
       } finally {
@@ -142,5 +143,6 @@ export const useAuth = () => {
     isLoading,
     isSanctioned,
     isMintingActive,
+    isConnected,
   };
 };

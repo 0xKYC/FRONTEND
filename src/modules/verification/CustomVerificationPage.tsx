@@ -11,11 +11,10 @@ import { useHandleOnfidoRedirect } from "modules/verification/hooks/useHandleOnf
 import {
   ButtonWrapper,
   Content,
-  ContentWrapper,
+  CustomVerificationWrapper,
   Heading,
-  RightBlockContainer,
 } from "./styles";
-import { VerificationPageProps } from "./types";
+import { HomePageProps } from "./types";
 
 const CustomVerificationPage = ({
   title,
@@ -23,9 +22,9 @@ const CustomVerificationPage = ({
   verifyTitle,
   content,
   button,
-}: VerificationPageProps) => {
+}: HomePageProps) => {
   const {
-    handleOnfidoRedirectWithTosCheck,
+    handleOnfidoRedirectForInsertStonks,
     mockedWalletAddress,
     tosAccepted,
     isLoading,
@@ -39,32 +38,26 @@ const CustomVerificationPage = ({
 
   const contentText = mockedWalletAddress ? verifyText : content;
   return (
-    <RightBlockContainer>
+    <CustomVerificationWrapper>
       {mockedWalletAddress && !tosAccepted && <TosModalWeb2 />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle">
           <Col lg={11} md={11} sm={24} xs={24}>
-            <ContentWrapper>
-              <Heading>{header}</Heading>
-              <Content>{contentText}</Content>
-              <ButtonWrapper>
-                <Button onClick={handleOnfidoRedirectWithTosCheck}>
-                  {isLoading ? <LoadingCircle /> : buttonText}
-                </Button>
-              </ButtonWrapper>
-            </ContentWrapper>
+            <Heading>{header}</Heading>
+            <Content>{contentText}</Content>
+            <ButtonWrapper>
+              <Button onClick={handleOnfidoRedirectForInsertStonks}>
+                {isLoading ? <LoadingCircle /> : buttonText}
+              </Button>
+            </ButtonWrapper>
           </Col>
           <Col lg={11} md={11} sm={24} xs={24}>
-            <ContentWrapper>
-              <InformationCard
-                isUniquenessFlow={Boolean(mockedWalletAddress)}
-              />
-            </ContentWrapper>
+            <InformationCard isUniquenessFlow={Boolean(mockedWalletAddress)} />
           </Col>
         </Row>
       </Fade>
-    </RightBlockContainer>
+    </CustomVerificationWrapper>
   );
 };
 

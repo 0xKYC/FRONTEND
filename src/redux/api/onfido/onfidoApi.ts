@@ -20,6 +20,8 @@ export const onfidoApi = createApi({
         walletAddress,
         chainId,
         redirectUrl,
+        flow,
+        environment,
         email,
         callbackUrl,
       }) => ({
@@ -30,6 +32,8 @@ export const onfidoApi = createApi({
           walletAddress,
           chainId,
           redirectUrl: redirectUrl || window.location.href,
+          flow,
+          environment,
           email: email || "",
           callbackUrl: callbackUrl || "",
         },

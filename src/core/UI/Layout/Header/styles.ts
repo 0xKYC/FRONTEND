@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { MenuOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
@@ -15,7 +13,9 @@ export const LogoText = styled.p`
   color: black;
   font-weight: bold;
 `;
+
 export const Image = styled.img`
+  object-fit: contain;
   display: none;
   @media screen and (min-width: 520px) {
     display: block;
@@ -51,10 +51,6 @@ export const HeaderSection = styled("header")`
     align-items: center;
     text-align: center;
   }
-`;
-
-export const LogoContainer = styled(Link)`
-  display: flex;
 `;
 
 export const NavLink = styled("div")`
@@ -105,10 +101,14 @@ export const Burger = styled("div")`
   }
 `;
 
-export const NotHidden = styled("div")`
+export const DesktopButtons = styled("div")`
   @media only screen and (max-width: 890px) {
     display: none;
   }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `;
 
 export const Menu = styled("h5")`

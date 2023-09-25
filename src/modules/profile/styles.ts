@@ -48,7 +48,12 @@ export const BlockWrapper = styled("section")`
 
 export const Flex = styled.div`
   display: flex;
+
   gap: 10px;
+
+  @media only screen and (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
 
 export const P = styled.p`
@@ -60,4 +65,22 @@ export const PolygonLink = styled.a`
   text-decoration: underline;
   display: inline-block;
   font-size: 1rem;
+`;
+
+export const ErrorText = styled.div`
+  min-height: 50vh;
+  text-align: center;
+  margin-top: 5rem;
+`;
+
+export const StyledList = styled.ul`
+  list-style: none;
+  padding: 0rem;
+
+  li {
+    position: relative;
+    font-size: 1.1rem;
+    color: #18216d;
+    margin: 0.5rem 0;
+  }
 `;

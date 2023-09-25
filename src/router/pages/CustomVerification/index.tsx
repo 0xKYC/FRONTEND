@@ -16,11 +16,13 @@ const CustomVerification = ({ isLoading }: { isLoading: boolean }) => {
   return (
     <Container>
       <ContentBlock
+        uniqueness={true}
         type="right"
         button={IntroContent.button}
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.biometrics}
         icon="developer.svg"
+        flow="insertStonks"
       />
     </Container>
   );

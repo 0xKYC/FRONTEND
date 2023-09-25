@@ -27,9 +27,17 @@ export const web3Factory = (
       provider: ENV.REACT_APP_MUMBAI_INFURA_URL,
       soulboundContract: ENV.REACT_APP_MUMBAI_SOULBOUND_CONTRACT,
     },
-    [SupportedChainId.SCROLL_ALPHA]: {
+    [SupportedChainId.SCROLL_SEPOLIA]: {
       provider: "https://alpha-rpc.scroll.io/l2",
-      soulboundContract: ENV.REACT_APP_SCROLL_SOULBOUND_CONTRACT,
+      soulboundContract: ENV.REACT_APP_SCROLL_SEPOLIA_SOULBOUND_CONTRACT,
+    },
+    [SupportedChainId.BNB]: {
+      provider: "https://bsc-dataseed.bnbchain.org",
+      soulboundContract: ENV.REACT_APP_BNB_SOULBOUND_CONTRACT,
+    },
+    [SupportedChainId.BNB_TESTNET]: {
+      provider: "https://bsc-testnet-dataseed.bnbchain.org",
+      soulboundContract: ENV.REACT_APP_BNB_TESTNET_SOULBOUND_CONTRACT,
     },
   };
 

@@ -2,17 +2,14 @@ import { useLayoutEffect, useState } from "react";
 
 import { useAccount, useDisconnect } from "wagmi";
 
-import {
-  reset,
-  selectTosAcceptedWallet,
-  signTos,
-} from "redux/features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { reset } from "redux/features/user/userSlice";
+import { useAppDispatch } from "redux/hooks";
+import { loadLocalStorageTos, saveTosToLocalStorage } from "redux/localStorage";
 
 export const useSignTerms = () => {
   const { isConnected } = useAccount();
   const dispatch = useAppDispatch();
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const tosAccepted = loadLocalStorageTos();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { disconnect } = useDisconnect();
@@ -23,12 +20,12 @@ export const useSignTerms = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     disconnect();
-    dispatch(signTos(false));
+    localStorage.clear();
     dispatch(reset());
   };
 
   const sign = () => {
-    dispatch(signTos(true));
+    saveTosToLocalStorage(true);
     setIsModalOpen(false);
   };
 

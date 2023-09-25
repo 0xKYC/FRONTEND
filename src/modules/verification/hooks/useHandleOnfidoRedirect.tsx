@@ -1,25 +1,29 @@
 import { useState } from "react";
 
+import { ENV } from "env";
 import { useAccount, useNetwork } from "wagmi";
 
 import { DEFAULT_CHAIN } from "core/constans/chains";
 import { getRedirectUrl } from "modules/verification/utils/getRedirectUrl";
 import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
+import { Flow } from "redux/api/onfido/types";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
   selectCallbackUrl,
+  selectEmail,
   selectMockedWalletAddress,
-  selectTosAcceptedWallet,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { loadLocalStorageTos } from "redux/localStorage";
 
 import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 
 export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
-  const tosAccepted = useAppSelector(selectTosAcceptedWallet);
+  const email = useAppSelector(selectEmail);
+  const tosAccepted = loadLocalStorageTos();
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +38,7 @@ export const useHandleOnfidoRedirect = () => {
   const redirectUrl = getRedirectUrl();
   const { createOnfidoApplicant } = useCreateOnfidoApplicant();
 
-  const handleOnfidoRedirect = async (email?: string) => {
+  const handleOnfidoRedirect = async (flow: Flow) => {
     if (walletAddress && chainId) {
       let applicantId = onfidoApplicantId;
 
@@ -49,6 +53,8 @@ export const useHandleOnfidoRedirect = () => {
         callbackUrl: partnerCallbackUrl,
         redirectUrl,
         email,
+        flow,
+        environment: ENV.REACT_APP_ENVIRONMENT,
       })
         .unwrap()
         .then((responseUrl) => window.location.replace(responseUrl))
@@ -56,17 +62,18 @@ export const useHandleOnfidoRedirect = () => {
         .finally(() => setIsLoading(false));
     }
   };
-  const handleOnfidoRedirectWithTosCheck = async () => {
+  const handleOnfidoRedirectForInsertStonks = async () => {
     if (mockedWalletAddress && !tosAccepted) {
       dispatch(toggleTosModal(true));
       return;
     }
 
-    await handleOnfidoRedirect();
+    await handleOnfidoRedirect("insertStonks");
   };
+
   return {
     handleOnfidoRedirect,
-    handleOnfidoRedirectWithTosCheck,
+    handleOnfidoRedirectForInsertStonks,
     isLoading,
     mockedWalletAddress,
     walletAddress,

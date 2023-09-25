@@ -1,4 +1,4 @@
-import METAMASK_ICON_URL from "../assets/metamask-icon.svg";
+import METAMASK_ICON_URL from "../../../assets/metamask-icon.svg";
 import { ImageBox, StyledOptionLink, TextBox } from "./styles";
 
 export const InstallMetamaskOption = ({

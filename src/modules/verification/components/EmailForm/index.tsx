@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { Button, Checkbox, Form, Input } from "antd";
 
@@ -6,6 +7,7 @@ import { MailOutlined } from "@ant-design/icons";
 import { useConfirmModal } from "core/UI/Modals/ConfirmModal";
 import { LoadingCircle } from "core/UI/Spinner";
 import { useSubscribeNewsletterMutation } from "redux/api/user/userApi";
+import { setEmail } from "redux/features/user/userSlice";
 
 import { isCompanyEmail } from "./email-validator/validateEmail";
 import { ErrorText, Flex } from "./styles";
@@ -15,22 +17,26 @@ type FormValues = {
   newsletterChecked: boolean;
 };
 type Props = {
-  handleOnfidoRedirect: (email?: string) => Promise<void>;
+  handleNextStep: () => void;
 };
 
-export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
+export const EmailForm = ({ handleNextStep }: Props) => {
   const [error, setError] = useState(false);
   const { showConfirm } = useConfirmModal();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const [subscribeNewsletter] = useSubscribeNewsletterMutation();
   const handleSubmit = async (values: FormValues) => {
     try {
       setIsLoading(true);
 
-      await handleOnfidoRedirect(values.email);
+      // await handleOnfidoRedirect(values.email);
       if (values.newsletterChecked) {
         await subscribeNewsletter({ email: values.email });
       }
+      dispatch(setEmail(values.email));
+      handleNextStep();
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
       setError(true);
@@ -44,7 +50,7 @@ export const EmailForm = ({ handleOnfidoRedirect }: Props) => {
       content:
         "By skipping you might miss some important updates about your account (e.g. about your token expiry)",
       onCancel: () => {},
-      onOk: handleOnfidoRedirect,
+      onOk: handleNextStep,
       okText: "Skip",
       cancelText: "Go back",
     });

@@ -1,3 +1,5 @@
+import { Flow } from "../onfido/types";
+
 type UserObject = {
   uuid: string | null;
 };
@@ -12,7 +14,9 @@ export type Wallet = {
   sbts: Sbt[];
   user: UserObject | null;
   tosVersion: string | null;
+  flow: Flow;
 };
+
 export type Sbt = {
   id: number;
   createdAt: Date;
@@ -55,4 +59,50 @@ export type UserNotFoundError = {
   data: {
     address: string;
   };
+};
+
+export type DiscordUserResponse = {
+  id: string;
+  username: string;
+  discriminator: string;
+  avatar?: string;
+  bot?: boolean;
+  system?: boolean;
+  mfa_enabled?: boolean;
+  banner?: string;
+  accent_color?: number;
+  locale?: string;
+  verified?: boolean;
+  email?: string;
+  flags?: number;
+  premium_type?: number;
+  public_flags?: number;
+};
+
+type DiscordGuild = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  guildId: string;
+  name: string;
+  discordAccountId: number | null;
+};
+
+type DiscordAccount = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number | null;
+  accountId: string;
+  name: string;
+  unique: boolean | null;
+  isVerified: boolean | null;
+  onfidoApplicantId: string;
+  onfidoStatus: OnfidoStatus | null;
+  discordGuilds: DiscordGuild[];
+};
+
+export type DiscordUserObject = {
+  discordAccount: DiscordAccount;
+  discordUser: DiscordUserResponse;
 };

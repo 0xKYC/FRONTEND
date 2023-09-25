@@ -1,23 +1,5 @@
 import styled from "styled-components";
 
-export const RightBlockContainer = styled("section")`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 90vh;
-  margin: 0 auto;
-
-  @media only screen and (max-width: 1024px) {
-    padding: 4rem 0 10rem;
-  }
-
-  @media only screen and (max-width: 768px) {
-    padding: 2rem 0 10rem;
-  }
-`;
-
 export const Content = styled("p")`
   margin: 1.5rem 0 2rem 0;
   font-size: 1.1rem;
@@ -27,17 +9,20 @@ export const Content = styled("p")`
   }
 `;
 
-export const ContentWrapper = styled("div")`
-  position: relative;
-  margin-right: 2rem;
-  padding-bottom: 10rem;
-  @media only screen and (max-width: 575px) {
-    padding-bottom: 4rem;
+export const Heading = styled.h2`
+  font-size: 1.8rem;
+  margin-bottom: 0;
+
+  /* margin-top: 1.8rem; */
+  @media screen and (min-width: 360px) {
+    font-size: 2rem;
   }
-  @media only screen and (max-width: 768px) {
-    padding: 0 0 5rem;
-    margin: 0 auto;
-    max-width: 540px;
+  @media screen and (min-width: 400px) {
+    font-size: 2.4rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 2.2rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -53,13 +38,38 @@ export const Container = styled("div")`
   }
 `;
 
-export const Heading = styled.h2`
-  font-size: 2rem;
+export const Description = styled.p`
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+`;
 
-  @media screen and (min-width: 400px) {
-    font-size: 2.4rem;
+export const SectionWrapper = styled("section")`
+  margin: 0 auto;
+  padding-bottom: 15rem;
+  @media only screen and (max-width: 1024px) {
+    padding: 4rem 0 10rem;
   }
-  @media screen and (min-width: 1200px) {
-    font-size: 2.8rem;
+
+  @media only screen and (max-width: 768px) {
+    padding: 2rem 0 10rem;
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  font-weight: bold;
+  text-align: center;
+  @media screen and (max-width: 1024px) {
+    font-size: 1.8rem;
+    margin: 0 2rem 2.5rem;
+    margin-top: 0;
+  }
+`;
+
+export const CustomVerificationWrapper = styled(SectionWrapper)`
+  @media only screen and (min-width: 1024px) {
+    margin-top: 5rem;
   }
 `;

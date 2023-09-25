@@ -4,18 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
 
 import { DEFAULT_CHAIN } from "core/constans/chains";
-import { hasSoul } from "core/web3/methods/hasSoul";
-import { getUserSbt } from "modules/profile/utils";
+import { getUserSbt } from "modules/profile/Web3/utils";
 import { useGetUserWalletQuery, userApi } from "redux/api/user/userApi";
 import {
   addTxHash,
-  checkIfVerified,
   selectMintingChain,
   selectMockedWalletAddress,
+  setFlow,
   setMinting,
+  setVerified,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
+import { checkIfVerified } from "../utils/checkIfVerified";
 import { useLoadingBar } from "./useLoadingBar";
 
 const apiRequestsToCall = 200;
@@ -65,7 +66,7 @@ export const useMint = () => {
           );
           handleCompleteLoading();
           setSuccess(true);
-          dispatch(checkIfVerified(true));
+          dispatch(setVerified(true));
 
           navigate("/profile");
         }
@@ -141,7 +142,15 @@ export const useMint = () => {
       const interval = setInterval(async () => {
         try {
           setApiCalls((currentApiCalls) => currentApiCalls + 1);
-          const isVerified = await hasSoul(chainId, walletAddress);
+
+          if (!userWallet) {
+            return refetch();
+          }
+          const isVerified = await checkIfVerified({
+            flow: userWallet.flow,
+            chainId,
+            walletAddress,
+          });
 
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
@@ -173,7 +182,8 @@ export const useMint = () => {
               );
 
               setSuccess(true);
-              dispatch(checkIfVerified(isVerified));
+              dispatch(setFlow(userWallet.flow));
+              dispatch(setVerified(isVerified));
 
               navigate("/profile");
             } else {

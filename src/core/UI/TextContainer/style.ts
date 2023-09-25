@@ -55,6 +55,17 @@ export const StyledOlList = styled("ol")`
   margin: 2rem 3em;
 `;
 
+export const Anchor = styled.a`
+  margin-right: 1rem;
+`;
+export const TwitterLinksWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  @media screen and (min-width: 800px) {
+    display: inline;
+  }
+`;
 export const Img = styled("img")<{
   objectPosition: string;
   objectFit: string;

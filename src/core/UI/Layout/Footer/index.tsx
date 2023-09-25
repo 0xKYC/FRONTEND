@@ -39,9 +39,17 @@ const Footer = ({ t }: any) => {
               </Large>
 
               <StyledLink
+                href="https://0xkyc.id/pricing"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t("Pricing")} &#8618;
+              </StyledLink>
+
+              <StyledLink
                 href="https://docs.0xkyc.id/"
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer"
               >
                 {t("Documentation")} &#8618;
               </StyledLink>
@@ -53,6 +61,9 @@ const Footer = ({ t }: any) => {
               </Large>
               <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
+              </Large>
+              <Large left="true" to="/third-parties">
+                {t("Third Parties")}
               </Large>
             </Col>
           </Row>
