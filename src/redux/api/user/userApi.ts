@@ -20,6 +20,9 @@ export const userApi = createApi({
       query: ({ walletAddress, chainId }) =>
         `user/${walletAddress}/chainId/${chainId}`,
     }),
+    checkWalletOnBlackList: builder.query<boolean, string>({
+      query: (walletAddress) => `user/isBlack/${walletAddress}`,
+    }),
     subscribeNewsletter: builder.mutation<string, { email: string }>({
       query: (data) => ({
         url: `user/newsletter/signup`,
@@ -47,4 +50,5 @@ export const {
   useSubscribeNewsletterMutation,
   useGetDiscordUserQuery,
   useLogoutMutation,
+  useCheckWalletOnBlackListQuery,
 } = userApi;

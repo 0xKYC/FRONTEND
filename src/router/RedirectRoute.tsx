@@ -21,7 +21,7 @@ const RedirectRoute = ({
   if (verified) {
     return <Navigate to="/profile" replace />;
   } else if (sanctioned) {
-    return <Navigate to="/error" replace />;
+    return <Navigate to="/verification-error" replace />;
   } else if (minting) {
     return <Navigate to="/mint" replace />;
   } else if (connected) {
