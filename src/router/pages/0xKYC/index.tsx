@@ -10,11 +10,12 @@ const ContentBlock = lazy(() => import("modules/verification/0xkyc"));
 
 const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
+
   return (
     <Container>
       <ScrollToTop />
-      <div style={{ height: "100vh" }}>eeee</div>
-      {/* <ContentBlock
+
+      <ContentBlock
         uniqueness={false}
         title={IntroContent.title}
         content={IntroContent.text}
@@ -22,8 +23,8 @@ const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
         verifyTitle={VerifyContent.title}
         verifyText={VerifyContent.content}
         icon="developer.svg"
-        flow="0xkyc"
-      /> */}
+        flow="sanctionsCheck"
+      />
     </Container>
   );
 };

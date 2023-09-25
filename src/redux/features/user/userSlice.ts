@@ -54,6 +54,7 @@ export const userSlice = createSlice({
       state.verified = false;
       state.txHash = "";
       state.mockedWalletAddress = null;
+      state.flow = null;
     },
     addApplicantId: (state, action: PayloadAction<string | null>) => {
       state.applicantId = action.payload;

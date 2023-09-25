@@ -36,7 +36,7 @@ export type OnfidoRedirectData = {
 };
 
 export type Flow =
-  | "0xkyc"
+  | "sanctionsCheck"
   | "insertStonks"
   | "discord"
   | "hinkal"

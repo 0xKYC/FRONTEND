@@ -4,8 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
-import { selectUserFlow } from "redux/features/user/userSlice";
-import { useAppSelector } from "redux/hooks";
 
 // import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 import Footer from "../core/UI/Layout/Footer";
@@ -38,10 +36,12 @@ export const Router = () => {
     isSanctioned,
     isMintingActive,
     isConnected,
+    flow,
   } = useAuth();
   useScrollToTop();
   // const { data } = useGetDiscordUserQuery();
-  const flow = useAppSelector(selectUserFlow);
+
+  console.log(flow);
   return (
     <>
       <Styles />
@@ -56,7 +56,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
-                  flow={flow}
+                  // flow={flow}
                   // discordConnected={Boolean(data)}
                 >
                   <Home />
@@ -82,7 +82,6 @@ export const Router = () => {
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
-                  flow={flow}
                 >
                   <SanctionsCheck isLoading={isLoading} />
                 </RedirectRoute>
@@ -95,7 +94,6 @@ export const Router = () => {
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
-                  flow={flow}
                 >
                   <SunscreenWeb3 isLoading={isLoading} />
                 </RedirectRoute>

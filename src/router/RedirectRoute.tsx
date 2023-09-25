@@ -30,7 +30,7 @@ const RedirectRoute = ({
     return <Navigate to="/mint" replace />;
   } else if (flow === "sunscreen") {
     return <Navigate to="/uniqueness" replace />;
-  } else if (flow === "0xkyc") {
+  } else if (flow === "sanctionsCheck") {
     return <Navigate to="/0xkyc" replace />;
   } else if (discordVerified) {
     return <Navigate to="/discord-servers" replace />;
