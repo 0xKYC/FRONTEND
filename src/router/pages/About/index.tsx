@@ -28,7 +28,7 @@ const About = () => {
       </StyledText>
 
       <Img
-        src="img/team-photo.jpg"
+        src="img/team-photo1.jpg"
         alt="0xKYC team picture"
         height="620px"
         objectFit="cover"
