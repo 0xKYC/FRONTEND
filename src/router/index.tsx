@@ -14,7 +14,6 @@ import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import {
   About,
-  DiscordServers,
   BlackListError,
   Error,
   Home,
@@ -139,7 +138,7 @@ export const Router = () => {
               }
               path="/mint"
             />
-            <Route element={<DiscordServers />} path="/discord-servers" />
+            {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
 
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
