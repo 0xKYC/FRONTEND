@@ -93,11 +93,11 @@ export const useAuth = () => {
           });
         if (!userWallet) return;
 
-        const isWalletOnBlackList = await checkWalletOnBlackList(walletAddress);
+        // const isWalletOnBlackList = await checkWalletOnBlackList(walletAddress);
 
-        if (isWalletOnBlackList) {
-          return setIsSanctioned(true);
-        }
+        // if (isWalletOnBlackList) {
+        //   return setIsSanctioned(true);
+        // }
         if (userWallet.tosVersion !== tos.version) {
           saveTosToLocalStorage(false);
         }
