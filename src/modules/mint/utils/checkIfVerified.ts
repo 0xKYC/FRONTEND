@@ -4,7 +4,7 @@ import { hasSoul } from "core/web3/methods/hasSoul";
 import { Flow } from "redux/api/onfido/types";
 
 type Args = {
-  flow: Flow;
+  flow: Flow | null;
   chainId: SupportedChainId;
   walletAddress: string;
 };

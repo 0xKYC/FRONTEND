@@ -14,7 +14,7 @@ export type Wallet = {
   sbts: Sbt[];
   user: UserObject | null;
   tosVersion: string | null;
-  flow: Flow;
+  flow: Flow | null;
 };
 
 export type Sbt = {

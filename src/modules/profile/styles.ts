@@ -48,12 +48,9 @@ export const BlockWrapper = styled("section")`
 
 export const Flex = styled.div`
   display: flex;
-
+  align-items: center;
   gap: 10px;
-
-  @media only screen and (max-width: 768px) {
-    margin-left: 10px;
-  }
+  margin-bottom: 1rem;
 `;
 
 export const P = styled.p`

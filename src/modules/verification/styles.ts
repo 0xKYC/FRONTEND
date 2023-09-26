@@ -22,7 +22,7 @@ export const Heading = styled.h2`
   }
   @media screen and (min-width: 1200px) {
     font-size: 2.2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 `;
 
