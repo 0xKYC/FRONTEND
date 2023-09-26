@@ -113,7 +113,12 @@ export const useAuth = () => {
           walletAddress,
         });
         dispatch(setVerified(isUserVerified));
-        dispatch(setFlow(userWallet.flow));
+
+        if (!userWallet?.flow) {
+          dispatch(setFlow("sanctionsCheck"));
+        } else {
+          dispatch(setFlow(userWallet.flow));
+        }
 
         const hasUuid = userWallet.user?.uuid;
         if (mockedWalletAddress && hasUuid) {
