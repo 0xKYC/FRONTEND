@@ -21,7 +21,7 @@ export const userApi = createApi({
         `user/${walletAddress}/chainId/${chainId}`,
     }),
     checkWalletOnBlackList: builder.query<boolean, string>({
-      query: (walletAddress) => `user/isBlack/${walletAddress}`,
+      query: (walletAddress) => `user/isBlack?walletAddress=${walletAddress}`,
     }),
     subscribeNewsletter: builder.mutation<string, { email: string }>({
       query: (data) => ({
