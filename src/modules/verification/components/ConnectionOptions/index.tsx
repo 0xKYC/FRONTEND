@@ -4,13 +4,13 @@ import { Col } from "antd";
 import { Button } from "core/UI/Button";
 import { DiscordButton } from "core/UI/Button/styles";
 import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
-import { Description } from "modules/verification/styles";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 import { loadLocalStorageTos } from "redux/localStorage";
 
-import { Card, CardsWrapper, ImgWrapper, SecondImgWrapper } from "./styles";
+import discordLogo from "./discord-logo-blue.svg";
+import { Card, CardsWrapper, ImgWrapper, LogosWrapper } from "./styles";
 
 export const ConnectionOptions = () => {
   const dispatch = useAppDispatch();
@@ -34,29 +34,31 @@ export const ConnectionOptions = () => {
       style={{ borderRadius: ".5rem" }}
     >
       <TosModalWeb2 redirect={true} />
-      <Col lg={11} md={24} sm={24} xs={24}>
+      <Col lg={11} md={11} sm={24} xs={24}>
         <Card>
-          <ImgWrapper>
-            <img src="/img/icons/new-logo.png" alt="0xKYC logo" />
-          </ImgWrapper>
+          <LogosWrapper>
+            <img src="/img/svg/metamask-icon.svg" alt="0xKYC logo" />
+            {/* <SvgIcon src="metamask-icon.svg" width="80" height="40" /> */}
+            <img src="/img/svg/walletconnect.svg" alt="0xKYC logo" />
+          </LogosWrapper>
 
-          <Description style={{ padding: "1.45rem 0" }}>
+          {/* <Description style={{ padding: "1.45rem 0" }}>
             Sanctions Check
-          </Description>
+          </Description> */}
 
           <Button onClick={handleWalletConnect}>Connect Wallet</Button>
         </Card>
       </Col>
-      <Col lg={11} md={24} sm={24} xs={24}>
+      <Col lg={11} md={11} sm={24} xs={24}>
         <Card isDiscord={true}>
-          <SecondImgWrapper>
-            <img src="/img/sunscreen-black.png" alt="Sunscreen logo" />
-          </SecondImgWrapper>
+          <ImgWrapper>
+            <img src={discordLogo} alt="Discord logo" />
+          </ImgWrapper>
 
-          <Description>
+          {/* <Description>
             Uniqueness Verification
             <p style={{ fontSize: "1.1rem" }}>(cooming soon)</p>
-          </Description>
+          </Description> */}
 
           <DiscordButton onClick={handleDiscordConnect} disabled>
             Connect Discord

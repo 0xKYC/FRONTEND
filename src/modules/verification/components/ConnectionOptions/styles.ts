@@ -4,13 +4,14 @@ import { Row } from "antd";
 
 import styled from "styled-components";
 
-export const LogosWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-`;
+// export const LogosWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 2rem;
+// `;
 
 export const CardsWrapper = styled(Row)`
+  margin: 2rem auto;
   background-color: rgb(251, 251, 253);
 
   -webkit-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
@@ -32,7 +33,7 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
   flex-direction: column;
   text-align: center;
   background-color: white;
-  margin: 2rem;
+  margin: 2rem 1rem;
   transition: 0.2s all ease-in;
   /* height: 310px; */
   &:hover {
@@ -45,6 +46,19 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
   }
 `;
 
+export const LogosWrapper = styled.div`
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  img {
+    /* width: 60%; */
+    height: 40px;
+    object-fit: contain;
+  }
+`;
 export const ImgWrapper = styled.div`
   width: 100%;
   height: 100%;

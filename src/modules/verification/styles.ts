@@ -55,16 +55,17 @@ export const SectionWrapper = styled("section")`
   }
 `;
 
-export const Title = styled.p`
+export const Title = styled.h1`
   font-size: 2.5rem;
-  margin-top: 3rem;
-  margin-bottom: 4rem;
+
   font-weight: bold;
   text-align: center;
   @media screen and (max-width: 1024px) {
     font-size: 1.8rem;
-    margin: 0 2rem 2.5rem;
-    margin-top: 0;
+  }
+  @media screen and (min-width: 1025px) {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
   }
 `;
 

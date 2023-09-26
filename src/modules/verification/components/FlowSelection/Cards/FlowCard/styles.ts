@@ -1,9 +1,13 @@
+import { StyledButton } from "core/UI/Button/styles";
 import styled from "styled-components";
 
 export const Wrapper = styled.div<{ isOutlined?: boolean }>`
   display: flex;
   flex-direction: column;
-
+  width: 300px;
+  max-width: 400px;
+  align-items: center;
+  margin: 1rem 0.5rem;
   /* box-shadow: ${(p) =>
     p.isOutlined ? "var(--shadow-lg)" : "var(--shadow-md)"}; */
   transform: ${(p) => (p.isOutlined ? "scale(1.1)" : "scale(1.0)")};
@@ -15,19 +19,20 @@ export const Wrapper = styled.div<{ isOutlined?: boolean }>`
 `;
 
 export const Title = styled.h3`
-  font-size: 4rem;
+  font-size: 2.3rem;
   text-transform: capitalize;
+  margin: 1rem;
 `;
 
 export const Description = styled.p`
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 export const PriceContainer = styled.div`
   margin: auto;
 
   & > *:not(:first-child) {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 `;
 
@@ -35,18 +40,18 @@ export const Price = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1;
   font-weight: bold;
 
   span {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: normal;
   }
 `;
 
 export const RichText = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   opacity: 0.8;
   line-height: 1.6;
 
@@ -78,16 +83,7 @@ export const RichText = styled.div`
   }
 `;
 
-// export const CustomButton = styled(Button)`
-//   width: 100%;
-//   margin: 0 auto;
-
-//   @media screen and (min-width: 1080px) {
-//     width: 80%;
-//   }
-// `;
-/* ${media("<=desktop")} {
-    box-shadow: var(--shadow-md);
-    transform: none;
-    order: ${(p) => (p.isOutlined ? -1 : 0)};
-  } */
+export const StyledBtn = styled(StyledButton)`
+  width: 80%;
+  padding: 1.2rem 2.5rem;
+`;
