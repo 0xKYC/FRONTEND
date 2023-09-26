@@ -47,7 +47,7 @@ export const StyledCard = styled(Card)`
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   @media screen and (min-width: 1100px) {
     width: 570px;
-    padding: 2rem 1.4rem;
+    padding: 0.5rem 1.4rem;
   }
 `;
 

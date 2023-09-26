@@ -12,7 +12,7 @@ type Props = {
   redirectUrlFromPartner: string | null;
   chainId: ChainId;
   txHash: string | null | undefined;
-  flow: Flow;
+  flow: Flow | null;
 };
 export const VerifiedCard = ({
   redirectUrlFromPartner,
@@ -24,8 +24,8 @@ export const VerifiedCard = ({
   return (
     <StyledCard>
       <Box>
-        <Heading>{vContent.title}</Heading>
         <Flex>
+          <Heading>{vContent.title}</Heading>
           <Checkmark />
 
           <img

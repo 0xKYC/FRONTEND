@@ -34,7 +34,7 @@ const initialState: User = {
   verified: false,
   txHash: "",
   isMinting: false,
-  flow: null,
+  flow: "sanctionsCheck",
   mintingChain: null,
   mintingWalletAddress: null,
   isMintingActive: false,

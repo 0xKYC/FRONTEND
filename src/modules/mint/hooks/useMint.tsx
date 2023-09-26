@@ -182,7 +182,8 @@ export const useMint = () => {
               );
 
               setSuccess(true);
-              dispatch(setFlow(userWallet.flow));
+
+              // dispatch(setFlow(userWallet.flow));
               dispatch(setVerified(isVerified));
 
               navigate("/profile");
