@@ -41,7 +41,6 @@ export const Router = () => {
   useScrollToTop();
   // const { data } = useGetDiscordUserQuery();
 
-  console.log(flow);
   return (
     <>
       <Styles />

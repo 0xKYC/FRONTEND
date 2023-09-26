@@ -17,7 +17,7 @@ export const BtnGroup = styled.div`
 export const StyledBtn = styled.button<{ selected: boolean }>`
   text-transform: uppercase;
   border-radius: 2rem;
-  padding: 0.8rem 1.3rem;
+  padding: 0.7rem;
   border: none;
   width: 100%;
   font-size: 0.85rem;

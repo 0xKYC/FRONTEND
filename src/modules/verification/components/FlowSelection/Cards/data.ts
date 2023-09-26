@@ -15,7 +15,7 @@ export const FLOWS: FlowType[] = [
     description: "Uniqueness Verification",
     title: "Sunscreen",
     src: "/img/sunscreen-black.png",
-    redirectUrl: "0xkyc",
+    redirectUrl: "uniqueness",
   },
   {
     index: 1,
@@ -23,6 +23,6 @@ export const FLOWS: FlowType[] = [
     description: "Sanctions Check",
     title: "0xKYC",
     src: "/img/icons/new-logo.png",
-    redirectUrl: "uniqueness",
+    redirectUrl: "0xkyc",
   },
 ];
