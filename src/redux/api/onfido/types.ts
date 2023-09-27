@@ -1,4 +1,4 @@
-import { ChainId } from "constans/chains";
+import { ChainId } from "core/constans/chains";
 
 export type Applicant = {
   id: string;
@@ -31,4 +31,13 @@ export type OnfidoRedirectData = {
   redirectUrl?: string | null;
   callbackUrl?: string | null;
   email?: string;
+  environment: "local" | "dev" | "sandbox" | "stage" | "prod";
+  flow: Flow;
 };
+
+export type Flow =
+  | "sanctionsCheck"
+  | "insertStonks"
+  | "discord"
+  | "hinkal"
+  | "sunscreen";
