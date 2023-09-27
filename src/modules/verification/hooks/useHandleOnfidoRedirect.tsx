@@ -7,7 +7,10 @@ import { DEFAULT_CHAIN } from "core/constans/chains";
 import { getRedirectUrl } from "modules/verification/utils/getRedirectUrl";
 import { useOnfidoRedirectMutation } from "redux/api/onfido/onfidoApi";
 import { Flow } from "redux/api/onfido/types";
-import { toggleTosModal } from "redux/features/modal/tosSlice";
+import {
+  selectIsTosSigned,
+  toggleTosModal,
+} from "redux/features/modal/tosSlice";
 import {
   selectApplicantId,
   selectCallbackUrl,
@@ -15,7 +18,6 @@ import {
   selectMockedWalletAddress,
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { loadLocalStorageTos } from "redux/localStorage";
 
 import { useCreateOnfidoApplicant } from "./useCreateOnfidoApplicant";
 
@@ -23,7 +25,7 @@ export const useHandleOnfidoRedirect = () => {
   const dispatch = useAppDispatch();
   const onfidoApplicantId = useAppSelector(selectApplicantId);
   const email = useAppSelector(selectEmail);
-  const tosAccepted = loadLocalStorageTos();
+  const tosAccepted = useAppSelector(selectIsTosSigned);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const partnerCallbackUrl = useAppSelector(selectCallbackUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +48,8 @@ export const useHandleOnfidoRedirect = () => {
         const applicant = await createOnfidoApplicant();
         applicantId = applicant.id;
       }
+
+      setIsLoading(true);
       await onfidoRedirect({
         applicantId: applicantId,
         chainId,
@@ -62,6 +66,7 @@ export const useHandleOnfidoRedirect = () => {
         .finally(() => setIsLoading(false));
     }
   };
+
   const handleOnfidoRedirectForInsertStonks = async () => {
     if (mockedWalletAddress && !tosAccepted) {
       dispatch(toggleTosModal(true));

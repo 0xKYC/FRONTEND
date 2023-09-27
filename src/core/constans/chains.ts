@@ -29,8 +29,8 @@ export enum SupportedChainId {
 
   SCROLL_SEPOLIA = 534351,
 
-  BNB_TESTNET = 97,
   BNB = 56,
+  BNB_TESTNET = 97,
 }
 
 export const CHAIN_INFO = {
@@ -80,6 +80,14 @@ export const CHAIN_INFO = {
     },
   },
 
+  // [SupportedChainId.SCROLL_ALPHA]: {
+  //   explorer: "https://blockscout.scroll.io/tx/",
+  //   explorerName: "Blockscout",
+  //   label: "Scroll Alpha",
+  //   logoUrl: "/img/svg/scroll.svg",
+  //   nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+  //   bridge: "https://scroll.io/alpha/bridge/",
+  // },
   [SupportedChainId.SCROLL_SEPOLIA]: {
     explorer: "https://sepolia-blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
