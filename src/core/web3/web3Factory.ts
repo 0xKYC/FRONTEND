@@ -27,6 +27,10 @@ export const web3Factory = (
       provider: ENV.REACT_APP_MUMBAI_INFURA_URL,
       soulboundContract: ENV.REACT_APP_MUMBAI_SOULBOUND_CONTRACT,
     },
+    // [SupportedChainId.SCROLL_ALPHA]: {
+    //   provider: "https://alpha-rpc.scroll.io/l2",
+    //   soulboundContract: ENV.REACT_APP_SCROLL_SOULBOUND_CONTRACT,
+    // },
     [SupportedChainId.SCROLL_SEPOLIA]: {
       provider: "https://alpha-rpc.scroll.io/l2",
       soulboundContract: ENV.REACT_APP_SCROLL_SEPOLIA_SOULBOUND_CONTRACT,

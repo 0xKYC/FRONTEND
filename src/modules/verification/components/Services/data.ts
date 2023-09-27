@@ -34,9 +34,9 @@ export const servicesData = [
     title: "Aragon",
     description:
       "DAO creation and management platform with no coding required.",
-    tags: ["API", "0xKYC"],
+    tags: ["0xKYC"],
     href: "https://github.com/0xKYC/0xkyc-1vote-aragon-plugin",
-    img: "/img/aragon.png",
+    img: "/img/aragon-bg.png",
     redirect: true,
   },
   // {
