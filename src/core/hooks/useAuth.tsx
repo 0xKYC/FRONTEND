@@ -9,8 +9,8 @@ import {
   IS_MAINNET,
   TESTNET_CHAINS_IDS,
 } from "core/constans/chains";
+import { checkIfVerified } from "core/utils/checkIfVerified";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
-import { checkIfVerified } from "modules/mint/utils/checkIfVerified";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
 import {

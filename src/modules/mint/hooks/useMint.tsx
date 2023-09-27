@@ -16,7 +16,7 @@ import {
 } from "redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
-import { checkIfVerified } from "../utils/checkIfVerified";
+import { checkIfVerified } from "../../../core/utils/checkIfVerified";
 import { useLoadingBar } from "./useLoadingBar";
 
 const apiRequestsToCall = 200;
@@ -183,7 +183,7 @@ export const useMint = () => {
 
               setSuccess(true);
 
-              // dispatch(setFlow(userWallet.flow));
+              dispatch(setFlow(userWallet.flow || "sanctionsCheck"));
               dispatch(setVerified(isVerified));
 
               navigate("/profile");
