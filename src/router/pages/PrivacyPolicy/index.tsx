@@ -1,4 +1,4 @@
-import TextContainer from "../../../common/TextContainer";
+import TextContainer from "../../../core/UI/TextContainer";
 
 const PrivacyPolicy = () => {
   return (

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ChainId, DEFAULT_CHAIN } from "constans/chains";
+import { ChainId, DEFAULT_CHAIN } from "core/constans/chains";
 
 import { RootState } from "../../store";
 

@@ -1,7 +1,7 @@
-import { MintContent } from "../../../components/Mint";
+import { MintPage } from "modules/mint/MintPage";
 
 const Mint = () => {
-  return <MintContent />;
+  return <MintPage />;
 };
 
 export default Mint;
