@@ -216,12 +216,14 @@ export const Styles = createGlobalStyle`
     margin-bottom: .7rem;
 }
 .wave {
+    margin-top: 10rem;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
     line-height: 0;
+ 
 }
 
 .wave svg {
@@ -237,6 +239,7 @@ export const Styles = createGlobalStyle`
 
 .wave_container{
     position:relative;
+    
 }
 
 .ant-modal-footer .ant-btn {

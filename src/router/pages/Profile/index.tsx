@@ -1,16 +1,14 @@
 import { lazy } from "react";
 
-const Container = lazy(() => import("../../../common/Container"));
-const ScrollToTop = lazy(() => import("../../../common/ScrollToTop"));
-const Content = lazy(() => import("../../../components/VerifiedProfile"));
-// const Services = lazy(() => import("../../components/Services"));
+const Container = lazy(() => import("../../../core/UI/Container"));
+const ScrollToTop = lazy(() => import("../../../core/UI/ScrollToTop"));
+const Content = lazy(() => import("../../../modules/profile/Web3/index"));
 
 const Profile = () => {
   return (
     <Container>
       <ScrollToTop />
       <Content />
-      {/* <Services /> */}
     </Container>
   );
 };
