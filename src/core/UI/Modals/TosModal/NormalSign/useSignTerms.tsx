@@ -2,6 +2,7 @@ import { useLayoutEffect, useState } from "react";
 
 import { useAccount, useDisconnect } from "wagmi";
 
+import { signTosAction } from "redux/features/modal/tosSlice";
 import { reset } from "redux/features/user/userSlice";
 import { useAppDispatch } from "redux/hooks";
 import { loadLocalStorageTos, saveTosToLocalStorage } from "redux/localStorage";
@@ -26,6 +27,7 @@ export const useSignTerms = () => {
 
   const sign = () => {
     saveTosToLocalStorage(true);
+    dispatch(signTosAction(true));
     setIsModalOpen(false);
   };
 

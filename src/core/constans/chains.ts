@@ -27,8 +27,6 @@ export enum SupportedChainId {
   POLYGON = 137,
   POLYGON_MUMBAI = 80001,
 
-  // SCROLL_SEPOLIA = 534351,
-
   SCROLL_SEPOLIA = 534351,
 
   BNB = 56,

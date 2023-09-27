@@ -6,15 +6,17 @@ import { DiscordButton } from "core/UI/Button/styles";
 import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
 import { Description } from "modules/verification/styles";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
-import { toggleTosModal } from "redux/features/modal/tosSlice";
-import { useAppDispatch } from "redux/hooks";
-import { loadLocalStorageTos } from "redux/localStorage";
+import {
+  selectIsTosSigned,
+  toggleTosModal,
+} from "redux/features/modal/tosSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 import { Card, CardsWrapper, ImgWrapper, SecondImgWrapper } from "./styles";
 
 export const FlowOptionsCards = () => {
   const dispatch = useAppDispatch();
-  const tosSigned = loadLocalStorageTos();
+  const tosSigned = useAppSelector(selectIsTosSigned);
 
   const handleWalletConnect = () => {
     dispatch(toggleConnectorsModal());
