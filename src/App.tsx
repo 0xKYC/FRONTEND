@@ -10,7 +10,7 @@ import { WagmiConfig } from "wagmi";
 
 import { WalletConnectionModal } from "core/UI/Modals/WalletModal";
 import { wagmiClient } from "core/web3/connection";
-import { saveState } from "redux/localStorage";
+import { saveState, saveTosToLocalStorage } from "redux/localStorage";
 import { store } from "redux/store";
 import { Router } from "router/index";
 
@@ -19,6 +19,7 @@ store.subscribe(
     saveState({
       user: store.getState().user,
     });
+    saveTosToLocalStorage(store.getState().modal.tosSigned);
   }, 1000),
 );
 
