@@ -20,6 +20,7 @@ import {
   selectIsMintingActive,
   selectIsVerified,
   selectMockedWalletAddress,
+  selectUserFlow,
   setFlow,
   setVerified,
 } from "redux/features/user/userSlice";
@@ -33,7 +34,7 @@ const supportedChains = IS_MAINNET ? CHAIN_IDS : TESTNET_CHAINS_IDS;
 export const useAuth = () => {
   const verified = useAppSelector(selectIsVerified);
   const isMintingActive = useAppSelector(selectIsMintingActive);
-
+  const flow = useAppSelector(selectUserFlow);
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
 
   const dispatch = useAppDispatch();
@@ -119,7 +120,8 @@ export const useAuth = () => {
         });
         dispatch(setVerified(isUserVerified));
 
-        if (!userWallet?.flow) {
+        if (!userWallet.flow) {
+          // set default flow to 0xkyc for old users
           dispatch(setFlow("sanctionsCheck"));
         } else {
           dispatch(setFlow(userWallet.flow));
@@ -130,7 +132,6 @@ export const useAuth = () => {
           dispatch(setVerified(true));
         }
       } catch (err) {
-        saveTosToLocalStorage(false);
         setIsLoading(false);
         console.error(err);
       } finally {
@@ -154,5 +155,6 @@ export const useAuth = () => {
     isSanctioned,
     isMintingActive,
     isConnected,
+    flow,
   };
 };
