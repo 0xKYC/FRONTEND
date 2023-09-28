@@ -7,7 +7,9 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
   display: block;
   text-align: center;
   background: ${(props) =>
-    props.chainId === SupportedChainId.SEPOLIA
+    props.chainId === SupportedChainId.SEPOLIA ||
+    SupportedChainId.BNB ||
+    SupportedChainId.BNB_TESTNET
       ? "#0077be"
       : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
         SupportedChainId.POLYGON
