@@ -21,3 +21,26 @@ export const saveState = (state: any) => {
     console.error(err);
   }
 };
+
+export const saveTosToLocalStorage = (state: any) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("tos", serializedState);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const loadLocalStorageTos = () => {
+  try {
+    const serializedState = localStorage.getItem("tos");
+
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
+};

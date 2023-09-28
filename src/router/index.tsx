@@ -1,42 +1,49 @@
 import { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { CookieBanner } from "components/CookieBanner";
+import { CookieBanner } from "core/UI/CookieBanner";
+import { Header } from "core/UI/Layout/Header";
+import { useScrollToTop } from "core/hooks/useScrollToTop";
 
-import { LoadingSpinner } from "../common/LoadingSpinner";
-import { ScrollToTop } from "../common/Scroll";
-import { useAuth } from "../common/hooks/useAuth";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+// import { useGetDiscordUserQuery } from "redux/api/user/userApi";
+import Footer from "../core/UI/Layout/Footer";
+import { LoadingSpinner } from "../core/UI/LoadingSpinner";
+import { useAuth } from "../core/hooks/useAuth";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
 import {
   About,
+  BlackListError,
   Error,
   Home,
   HomeWithoutWalletConnection,
+  InsertStonks,
   Mint,
   PrivacyPolicy,
   Profile,
+  SanctionsCheck,
+  SunscreenWeb3,
   TermsOfService,
   ThirdParties,
   Wave,
 } from "./lazyLoadPages";
 
-const Router = () => {
+export const Router = () => {
   const {
     isVerified: verified,
     isLoading,
     isSanctioned,
     isMintingActive,
+    isConnected,
   } = useAuth();
+  useScrollToTop();
+  // const { data } = useGetDiscordUserQuery();
 
   return (
-    <BrowserRouter>
+    <>
       <Styles />
       <Header />
-      <ScrollToTop />
       <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
         <div className="wave_container">
           <Routes>
@@ -45,12 +52,50 @@ const Router = () => {
                 <RedirectRoute
                   verified={verified}
                   sanctioned={isSanctioned}
+                  connected={isConnected}
                   minting={isMintingActive}
+                  // discordConnected={Boolean(data)}
                 >
-                  <Home isLoading={isLoading} />
+                  <Home />
                 </RedirectRoute>
               }
               path="/"
+            />
+            {/* <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <Sunscreen />
+                </RedirectRoute>
+              }
+              path="/sunscreen/*"
+            /> */}
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <SanctionsCheck isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/0xkyc"
+            />
+            <Route
+              element={
+                <RedirectRoute
+                  verified={verified}
+                  sanctioned={isSanctioned}
+                  minting={isMintingActive}
+                >
+                  <SunscreenWeb3 isLoading={isLoading} />
+                </RedirectRoute>
+              }
+              path="/uniqueness"
             />
             <Route
               element={
@@ -70,8 +115,9 @@ const Router = () => {
                   verified={verified}
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
+                  connected={isConnected}
                 >
-                  <Home isLoading={isLoading} />
+                  <Home />
                 </RedirectRoute>
               }
               path="*"
@@ -92,19 +138,21 @@ const Router = () => {
               }
               path="/mint"
             />
+            {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
+
             <Route element={<About />} path="/about" />
+            <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<ThirdParties />} path="/third-parties" />
             <Route element={<Error />} path="/error" />
+            <Route element={<BlackListError />} path="/verification-error" />
           </Routes>
           <Wave />
         </div>
         <CookieBanner />
         <Footer />
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };
-
-export default Router;
