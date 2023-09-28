@@ -36,6 +36,7 @@ export const Router = () => {
     isSanctioned,
     isMintingActive,
     isConnected,
+    flow,
   } = useAuth();
   useScrollToTop();
   // const { data } = useGetDiscordUserQuery();
@@ -54,6 +55,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   connected={isConnected}
                   minting={isMintingActive}
+                  // flow={flow}
                   // discordConnected={Boolean(data)}
                 >
                   <Home />
@@ -116,6 +118,7 @@ export const Router = () => {
                   sanctioned={isSanctioned}
                   minting={isMintingActive}
                   connected={isConnected}
+                  flow={flow}
                 >
                   <Home />
                 </RedirectRoute>
