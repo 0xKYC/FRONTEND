@@ -99,8 +99,8 @@ export const CHAIN_INFO = {
   [SupportedChainId.BNB]: {
     bridge: "https://cbridge.celer.network/1/56",
     docs: "https://docs.bnbchain.org/",
-    explorer: "https://bscscan.com/tx",
-    explorerName: "Bsc explorer",
+    explorer: "https://bscscan.com/tx/",
+    explorerName: "BNB Explorer",
     label: "BNB Chain",
     logoUrl: "/img/svg/bnb.svg",
     nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
@@ -108,8 +108,8 @@ export const CHAIN_INFO = {
   [SupportedChainId.BNB_TESTNET]: {
     bridge: "https://cbridge.celer.network/1/56",
     docs: "https://docs.bnbchain.org/",
-    explorer: "https://testnet.bscscan.com/tx",
-    explorerName: "Bsc testnet explorer",
+    explorer: "https://testnet.bscscan.com/tx/",
+    explorerName: "BNB Testnet Explorer",
     label: "BNB Testnet",
     logoUrl: "/img/svg/bnb.svg",
     nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
