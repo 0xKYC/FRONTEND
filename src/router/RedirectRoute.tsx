@@ -1,8 +1,11 @@
 import { Navigate } from "react-router-dom";
 
+import { Flow } from "redux/api/onfido/types";
+
 export type RouteProps = {
   verified: boolean;
   children: JSX.Element;
+  flow?: Flow | null;
   sanctioned?: boolean;
   minting?: boolean;
   connected?: boolean;
@@ -17,6 +20,7 @@ const RedirectRoute = ({
   connected,
   discordConnected,
   discordVerified,
+  flow,
 }: RouteProps) => {
   if (verified) {
     return <Navigate to="/profile" replace />;
@@ -24,7 +28,9 @@ const RedirectRoute = ({
     return <Navigate to="/verification-error" replace />;
   } else if (minting) {
     return <Navigate to="/mint" replace />;
-  } else if (connected) {
+  } else if (flow === "sunscreen") {
+    return <Navigate to="/uniqueness" replace />;
+  } else if (flow === "sanctionsCheck") {
     return <Navigate to="/0xkyc" replace />;
   } else if (discordVerified) {
     return <Navigate to="/discord-servers" replace />;

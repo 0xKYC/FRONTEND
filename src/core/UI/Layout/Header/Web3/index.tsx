@@ -30,7 +30,6 @@ export const Web3Header = () => {
   const { pathname } = useLocation();
 
   const isInsertStonksInfoPage = pathname === "/insert-stonks";
-  const isUniquenessPage = pathname === "/uniqueness";
 
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect({
@@ -96,10 +95,7 @@ export const Web3Header = () => {
       <nav>
         <Container>
           <Row justify="space-between">
-            <Link
-              to={isUniquenessPage ? "/uniqueness" : "/"}
-              aria-label="homepage"
-            >
+            <Link to="/" aria-label="homepage">
               {mockedWalletAddress ? (
                 <LogoWithoutWalletConnection
                   src="/img/icons/new-logo.png"
