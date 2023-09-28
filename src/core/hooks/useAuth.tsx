@@ -132,7 +132,6 @@ export const useAuth = () => {
           dispatch(setVerified(true));
         }
       } catch (err) {
-        saveTosToLocalStorage(false);
         setIsLoading(false);
         console.error(err);
       } finally {
