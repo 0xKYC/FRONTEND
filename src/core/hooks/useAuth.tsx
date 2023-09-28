@@ -9,10 +9,11 @@ import {
   IS_MAINNET,
   TESTNET_CHAINS_IDS,
 } from "core/constans/chains";
+import { checkIfVerified } from "core/utils/checkIfVerified";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
-import { checkIfVerified } from "modules/mint/utils/checkIfVerified";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
+import { signTosAction } from "redux/features/modal/tosSlice";
 import {
   addApplicantId,
   reset,
@@ -103,9 +104,11 @@ export const useAuth = () => {
         }
         if (userWallet.tosVersion !== tos.version) {
           saveTosToLocalStorage(false);
+          dispatch(signTosAction(false));
         }
         if (userWallet.signature) {
           saveTosToLocalStorage(true);
+          dispatch(signTosAction(true));
         }
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));

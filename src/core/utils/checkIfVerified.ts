@@ -13,12 +13,11 @@ export const checkIfVerified = async ({
   chainId,
   walletAddress,
 }: Args): Promise<boolean> => {
-  return await hasSoul(chainId, walletAddress);
-  // if (flow === "sanctionsCheck") {
-  //   return await hasSoul(chainId, walletAddress);
-  // } else if (flow === "sunscreen") {
-  //   return await confirmUniqueness(chainId, walletAddress);
-  // } else {
-  //   throw Error("Wrong flow choosen!");
-  // }
+  if (flow === "sanctionsCheck") {
+    return await hasSoul(chainId, walletAddress);
+  } else if (flow === "sunscreen") {
+    return await confirmUniqueness(chainId, walletAddress);
+  } else {
+    throw Error("Wrong flow choosen!");
+  }
 };

@@ -3,6 +3,7 @@ import { useCallback, useEffect } from "react";
 // import { ENV } from "env";
 import {
   selectIsTosModalOpen,
+  signTosAction,
   toggleTosModal,
 } from "redux/features/modal/tosSlice";
 import { selectMockedWalletAddress } from "redux/features/user/userSlice";
@@ -42,7 +43,9 @@ export const TosModalWeb2 = ({ redirect }: { redirect?: boolean }) => {
 
   const handleSignTos = () => {
     dispatch(toggleTosModal(false));
+    dispatch(signTosAction(true));
     saveTosToLocalStorage(true);
+
     // if (redirect) {
     //   window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
     // }

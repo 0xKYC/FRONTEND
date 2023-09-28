@@ -29,8 +29,8 @@ export enum SupportedChainId {
 
   SCROLL_SEPOLIA = 534351,
 
-  BNB_TESTNET = 97,
   BNB = 56,
+  BNB_TESTNET = 97,
 }
 
 export const CHAIN_INFO = {
@@ -80,6 +80,14 @@ export const CHAIN_INFO = {
     },
   },
 
+  // [SupportedChainId.SCROLL_ALPHA]: {
+  //   explorer: "https://blockscout.scroll.io/tx/",
+  //   explorerName: "Blockscout",
+  //   label: "Scroll Alpha",
+  //   logoUrl: "/img/svg/scroll.svg",
+  //   nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+  //   bridge: "https://scroll.io/alpha/bridge/",
+  // },
   [SupportedChainId.SCROLL_SEPOLIA]: {
     explorer: "https://sepolia-blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
@@ -91,8 +99,8 @@ export const CHAIN_INFO = {
   [SupportedChainId.BNB]: {
     bridge: "https://cbridge.celer.network/1/56",
     docs: "https://docs.bnbchain.org/",
-    explorer: "https://bscscan.com/tx",
-    explorerName: "Bsc explorer",
+    explorer: "https://bscscan.com/tx/",
+    explorerName: "BNB Explorer",
     label: "BNB Chain",
     logoUrl: "/img/svg/bnb.svg",
     nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
@@ -100,8 +108,8 @@ export const CHAIN_INFO = {
   [SupportedChainId.BNB_TESTNET]: {
     bridge: "https://cbridge.celer.network/1/56",
     docs: "https://docs.bnbchain.org/",
-    explorer: "https://testnet.bscscan.com/tx",
-    explorerName: "Bsc testnet explorer",
+    explorer: "https://testnet.bscscan.com/tx/",
+    explorerName: "BNB Testnet Explorer",
     label: "BNB Testnet",
     logoUrl: "/img/svg/bnb.svg",
     nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
