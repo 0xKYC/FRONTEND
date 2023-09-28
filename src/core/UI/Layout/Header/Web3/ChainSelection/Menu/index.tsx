@@ -90,8 +90,8 @@ export const ChainSelectionMenu = () => {
 
   const mainnetNetworksOptions: MenuProps["items"] = [
     {
-      key: "Mainnet",
-      label: "Mainnet",
+      key: "Mainnets",
+      label: "Mainnets",
       disabled: true,
     },
     {

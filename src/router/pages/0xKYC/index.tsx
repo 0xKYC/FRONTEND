@@ -10,9 +10,11 @@ const ContentBlock = lazy(() => import("modules/verification/0xkyc"));
 
 const SanctionsCheck = ({ isLoading }: { isLoading: boolean }) => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
+
   return (
     <Container>
       <ScrollToTop />
+
       <ContentBlock
         uniqueness={false}
         title={IntroContent.title}

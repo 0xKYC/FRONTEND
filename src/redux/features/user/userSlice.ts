@@ -21,7 +21,7 @@ export type User = {
   isMintingActive: boolean;
   isMintingError: boolean;
   email: string;
-  flow: Flow;
+  flow: Flow | null;
   // when user comes from partner's website
   redirectUrl: string | null;
   mockedWalletAddress: string | null;
@@ -54,6 +54,7 @@ export const userSlice = createSlice({
       state.verified = false;
       state.txHash = "";
       state.mockedWalletAddress = null;
+      state.flow = null;
     },
     addApplicantId: (state, action: PayloadAction<string | null>) => {
       state.applicantId = action.payload;
