@@ -16,7 +16,6 @@ import { useToggleAuth } from "./useToggleAuth";
 export const DiscordHeader = () => {
   const isMobile = useMediaQuery("(max-width:480px)");
   const { data, isLoading } = useGetDiscordUserQuery();
-  console.log(data);
 
   const userAvatarUrl = getUserAvatar(data?.discordUser);
 

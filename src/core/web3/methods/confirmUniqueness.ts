@@ -15,7 +15,7 @@ export const confirmUniqueness = async (
       soulboundContract,
     );
     const uniquenessConfirmed: boolean = await soulbound.methods
-      .confirmUniqueness(walletAddress)
+      .uniquenessConfirmed(walletAddress)
       .call();
 
     return uniquenessConfirmed;
