@@ -94,6 +94,7 @@ export const CardsMobile = ({ handleFlowSelect }: Props) => {
           return (
             selectedFlow === flow.index && (
               <FlowCard
+                key={flow.index}
                 handleFlowSelect={handleFlowSelect}
                 redirectUrl={flow.redirectUrl}
                 src={flow.src}

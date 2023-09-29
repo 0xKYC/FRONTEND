@@ -10,7 +10,9 @@ export const Logo = () => {
   const isMobile = useMediaQuery("(max-width:540px)");
   const { pathname } = useLocation();
   const userFlow = useAppSelector(selectUserFlow);
-  const isSunscreenFlow = userFlow === "sunscreen";
+
+  const isSunscreenFlow =
+    userFlow === "sunscreen" || userFlow === "insertStonks";
   const isUniquenessPage = pathname === "/uniqueness";
   return (
     <>

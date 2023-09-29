@@ -10,6 +10,7 @@ type BaseChainInfo = {
   readonly circleLogoUrl?: string;
   readonly label: string;
   readonly helpCenterUrl?: string;
+  readonly color: string;
   readonly nativeCurrency: {
     name: string; // e.g. 'Goerli ETH',
     symbol: string; // e.g. 'gorETH',
@@ -49,6 +50,7 @@ export const CHAIN_INFO = {
     infoLink: "https://info.uniswap.org/#/",
     label: "Ethereum Sepolia",
     logoUrl: "/img/ethereum-logo.png",
+    color: "#0077be",
     nativeCurrency: {
       name: "Sepolia Ether",
       symbol: "SepoliaETH",
@@ -64,6 +66,7 @@ export const CHAIN_INFO = {
     infoLink: "https://info.uniswap.org/#/polygon/",
     label: "Polygon",
     logoUrl: "/img/svg/polygon-matic-logo.svg",
+    color: "#8247e5",
     nativeCurrency: { name: "Polygon Matic", symbol: "MATIC", decimals: 18 },
   },
   [SupportedChainId.POLYGON_MUMBAI]: {
@@ -73,6 +76,7 @@ export const CHAIN_INFO = {
     explorerName: "Polygonscan",
     label: "Polygon Mumbai",
     logoUrl: "/img/svg/polygon-matic-logo.svg",
+    color: "#8247e5",
     nativeCurrency: {
       name: "Polygon Mumbai Matic",
       symbol: "mMATIC",
@@ -94,6 +98,7 @@ export const CHAIN_INFO = {
     label: "Scroll Sepolia",
     logoUrl: "/img/svg/scroll.svg",
     nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+    color: "#3B226A",
     bridge: "https://scroll.io/alpha/bridge/",
   },
   [SupportedChainId.BNB]: {
@@ -101,8 +106,9 @@ export const CHAIN_INFO = {
     docs: "https://docs.bnbchain.org/",
     explorer: "https://bscscan.com/tx/",
     explorerName: "BNB Explorer",
-    label: "BNB Chain",
+    label: "BNB Smart Chain",
     logoUrl: "/img/svg/bnb.svg",
+    color: "#0077be",
     nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
   },
   [SupportedChainId.BNB_TESTNET]: {
@@ -112,6 +118,7 @@ export const CHAIN_INFO = {
     explorerName: "BNB Testnet Explorer",
     label: "BNB Testnet",
     logoUrl: "/img/svg/bnb.svg",
+    color: "#0077be",
     nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
   },
 };
