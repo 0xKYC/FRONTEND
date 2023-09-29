@@ -1,5 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
+import ReactPlayer from "react-player/youtube";
 
 import { useAccount } from "wagmi";
 
@@ -24,6 +25,18 @@ const HomePage = () => {
         {isConnected ? <FlowSelection /> : <ConnectionOptions />}
       </Fade>
 
+      <div
+        style={{
+          display: "flex",
+          marginTop: "6rem",
+          justifyContent: "center",
+        }}
+      >
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=QHm8tHxXlN4"
+          controls={true}
+        />
+      </div>
       {!isConnected && <Services />}
     </SectionWrapper>
   );
