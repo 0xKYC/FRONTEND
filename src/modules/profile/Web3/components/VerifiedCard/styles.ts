@@ -1,20 +1,13 @@
 import { Card } from "antd";
 
-import { ChainId, SupportedChainId } from "core/constans/chains";
 import styled from "styled-components";
 
-export const StyledLink = styled("a")<{ chainId: ChainId }>`
+export const StyledLink = styled("a")<{
+  properColor: string;
+}>`
   display: block;
   text-align: center;
-  background: ${(props) =>
-    props.chainId === SupportedChainId.SEPOLIA ||
-    SupportedChainId.BNB ||
-    SupportedChainId.BNB_TESTNET
-      ? "#0077be"
-      : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
-        SupportedChainId.POLYGON
-      ? "#8247e5"
-      : "#3B226A"};
+  background: ${(props) => props.properColor};
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -31,15 +24,7 @@ export const StyledLink = styled("a")<{ chainId: ChainId }>`
   &:active {
     color: #fff;
     border: 1px solid #0077be;
-    background: ${(props) =>
-      props.chainId === SupportedChainId.SEPOLIA ||
-      SupportedChainId.BNB ||
-      SupportedChainId.BNB_TESTNET
-        ? "#0077be"
-        : props.chainId === SupportedChainId.POLYGON_MUMBAI ||
-          SupportedChainId.POLYGON
-        ? "#8247e5"
-        : "#3B226A"};
+    background: ${(props) => props.properColor};
   }
 `;
 

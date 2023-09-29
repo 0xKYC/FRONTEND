@@ -32,7 +32,7 @@ export const web3Factory = (
     //   soulboundContract: ENV.REACT_APP_SCROLL_SOULBOUND_CONTRACT,
     // },
     [SupportedChainId.SCROLL_SEPOLIA]: {
-      provider: "https://alpha-rpc.scroll.io/l2",
+      provider: "https://sepolia-rpc.scroll.io",
       soulboundContract: ENV.REACT_APP_SCROLL_SEPOLIA_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.BNB]: {
