@@ -20,7 +20,8 @@ export const VerifiedCard = ({
   txHash,
   flow,
 }: Props) => {
-  const { logoUrl, label, explorer, explorerName } = getChainInfo(chainId);
+  const { logoUrl, label, explorer, explorerName, color } =
+    getChainInfo(chainId);
   return (
     <StyledCard>
       <Box>
@@ -51,7 +52,7 @@ export const VerifiedCard = ({
         </StyledRedirectLink>
       ) : (
         <StyledLink
-          chainId={chainId}
+          properColor={color}
           href={explorer + txHash}
           target="_blank"
           rel="noreferrer"
