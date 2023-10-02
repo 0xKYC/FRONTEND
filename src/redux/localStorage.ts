@@ -44,3 +44,17 @@ export const loadLocalStorageTos = () => {
     return undefined;
   }
 };
+export const loadLocalStorageTosForRedux = (): boolean => {
+  try {
+    const serializedState = localStorage.getItem("tos");
+
+    if (serializedState === null) {
+      return false;
+    }
+    console.log(JSON.parse(serializedState));
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
