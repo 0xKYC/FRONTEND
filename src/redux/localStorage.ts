@@ -51,7 +51,6 @@ export const loadLocalStorageTosForRedux = (): boolean => {
     if (serializedState === null) {
       return false;
     }
-    console.log(JSON.parse(serializedState));
     return JSON.parse(serializedState);
   } catch (err) {
     console.error(err);
