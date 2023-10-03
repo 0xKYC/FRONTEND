@@ -146,11 +146,43 @@ export const useMint = () => {
           if (!userWallet) {
             return refetch();
           }
-          const isVerified = await checkIfVerified({
-            flow: userWallet.flow,
-            chainId,
-            walletAddress,
-          });
+
+          const userSbt = getUserSbt(userWallet);
+
+          if (userSbt && userSbt.flow) {
+            const isVerified = await checkIfVerified({
+              flow: userSbt.flow,
+              chainId,
+              walletAddress,
+            });
+            if (isVerified) {
+              refetch();
+              if (userWallet && userWallet?.sbts?.length > 0) {
+                handleCompleteLoading();
+
+                if (userSbt.txHash) {
+                  dispatch(addTxHash(userSbt.txHash));
+                  dispatch(
+                    setMinting({
+                      minting: false,
+                      chainId: null,
+                      walletAddress: walletAddress,
+                      error: false,
+                    }),
+                  );
+
+                  setSuccess(true);
+
+                  dispatch(setFlow(userSbt.flow));
+                  dispatch(setVerified(isVerified));
+
+                  navigate("/profile");
+                }
+              } else {
+                refetch();
+              }
+            }
+          }
 
           if (apiCalls === apiRequestsToCall - 1) {
             clearInterval(interval);
@@ -164,32 +196,6 @@ export const useMint = () => {
             );
             setError(true);
             setSuccess(false);
-          }
-
-          if (isVerified) {
-            refetch();
-            if (userWallet && userWallet?.sbts?.length > 0) {
-              handleCompleteLoading();
-              const sbt = getUserSbt(userWallet);
-              if (sbt && sbt.txHash) dispatch(addTxHash(sbt.txHash));
-              dispatch(
-                setMinting({
-                  minting: false,
-                  chainId: null,
-                  walletAddress: walletAddress,
-                  error: false,
-                }),
-              );
-
-              setSuccess(true);
-
-              dispatch(setFlow(userWallet.flow || "sanctionsCheck"));
-              dispatch(setVerified(isVerified));
-
-              navigate("/profile");
-            } else {
-              refetch();
-            }
           }
         } catch (err) {
           console.error(err);

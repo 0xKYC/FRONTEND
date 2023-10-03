@@ -31,10 +31,10 @@ export const servicesData = [
     biggerImg: true,
   },
   {
-    title: "Aragon",
+    title: "Aragon OSX",
     description:
       "DAO creation and management platform with no coding required.",
-    tags: ["0xKYC"],
+    tags: ["0xKYC", "Sunscreen"],
     href: "https://github.com/0xKYC/0xkyc-1vote-aragon-plugin",
     img: "/img/aragon-bg.png",
     redirect: true,
@@ -73,6 +73,6 @@ export const servicesData = [
   // },
 ];
 
-const tags = ["0xKYC", "API"];
+const tags = ["Sunscreen", "0xKYC", "API"];
 const uniqueTags = [...new Set(tags)];
 export const TagsOptions = ["All", ...uniqueTags];
