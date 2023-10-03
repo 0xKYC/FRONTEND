@@ -25,10 +25,15 @@ const HomePage = () => {
         {isConnected ? <FlowSelection /> : <ConnectionOptions />}
       </Fade>
 
+      {!isConnected && <Services />}
+
+      <p style={{ fontSize: "1.5rem", textAlign: "center", marginTop: "5rem" }}>
+        Watch quick video about 0xKYC!
+      </p>
       <div
         style={{
           display: "flex",
-          marginTop: "6rem",
+          marginTop: "3rem",
           justifyContent: "center",
         }}
       >
@@ -37,7 +42,6 @@ const HomePage = () => {
           controls={true}
         />
       </div>
-      {!isConnected && <Services />}
     </SectionWrapper>
   );
 };
