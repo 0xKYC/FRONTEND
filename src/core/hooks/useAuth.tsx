@@ -118,6 +118,7 @@ export const useAuth = () => {
           chainId,
           walletAddress,
         });
+
         dispatch(setVerified(isUserVerified));
 
         if (!userWallet.flow) {

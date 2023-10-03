@@ -58,7 +58,7 @@ export const Router = () => {
                   // flow={flow}
                   // discordConnected={Boolean(data)}
                 >
-                  <Home />
+                  <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
               path="/"
@@ -120,7 +120,7 @@ export const Router = () => {
                   connected={isConnected}
                   flow={flow}
                 >
-                  <Home />
+                  <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
               path="*"
