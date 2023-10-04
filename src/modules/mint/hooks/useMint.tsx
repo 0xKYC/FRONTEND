@@ -149,7 +149,7 @@ export const useMint = () => {
 
           const userSbt = getUserSbt(userWallet);
 
-          if (userSbt && userSbt.flow) {
+          if (userSbt && userSbt.flow && userSbt.txHash) {
             const isVerified = await checkIfVerified({
               flow: userSbt.flow,
               chainId,
@@ -160,24 +160,22 @@ export const useMint = () => {
               if (userWallet && userWallet?.sbts?.length > 0) {
                 handleCompleteLoading();
 
-                if (userSbt.txHash) {
-                  dispatch(addTxHash(userSbt.txHash));
-                  dispatch(
-                    setMinting({
-                      minting: false,
-                      chainId: null,
-                      walletAddress: walletAddress,
-                      error: false,
-                    }),
-                  );
+                dispatch(addTxHash(userSbt.txHash));
+                dispatch(
+                  setMinting({
+                    minting: false,
+                    chainId: null,
+                    walletAddress: walletAddress,
+                    error: false,
+                  }),
+                );
 
-                  setSuccess(true);
+                setSuccess(true);
 
-                  dispatch(setFlow(userSbt.flow));
-                  dispatch(setVerified(isVerified));
+                dispatch(setFlow(userSbt.flow));
+                dispatch(setVerified(isVerified));
 
-                  navigate("/profile");
-                }
+                navigate("/profile");
               } else {
                 refetch();
               }
