@@ -40,7 +40,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
               handleFlowSelect("sunscreen", "uniqueness");
             }}
           >
-            Start Sunscreen flow
+            Start Sunscreen
           </Button>
         </Card>
       </Col>
@@ -57,7 +57,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
               handleFlowSelect("sanctionsCheck", "0xkyc");
             }}
           >
-            Start 0xKYC flow
+            Start 0xKYC
           </Button>
         </Card>
       </Col>

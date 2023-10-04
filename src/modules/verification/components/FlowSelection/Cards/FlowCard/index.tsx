@@ -57,7 +57,7 @@ export const FlowCard = ({
       </PriceContainer> */}
 
       <StyledBtn onClick={() => handleFlowSelect(name, redirectUrl)}>
-        Start {title} flow
+        Start {title}
       </StyledBtn>
     </Wrapper>
   );
