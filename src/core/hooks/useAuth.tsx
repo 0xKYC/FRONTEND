@@ -114,7 +114,7 @@ export const useAuth = () => {
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
         const userSbt = getUserSbt(userWallet);
-        console.log(userSbt);
+
         if (userSbt?.flow) {
           const isUserVerified = await checkIfVerified({
             flow: userSbt.flow,

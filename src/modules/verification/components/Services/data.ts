@@ -24,14 +24,14 @@ export const servicesData = [
   // },
   {
     title: "Insert Stonks",
-    description: "Web3 gaming platform",
+    description: "Web3 Gaming Platform",
     tags: ["API"],
     href: "insert-stonks",
     img: "/img/IS-logo-nobg.png",
     biggerImg: true,
   },
   {
-    title: "Aragon OSX",
+    title: "Aragon OSx",
     description:
       "DAO creation and management platform with no coding required.",
     tags: ["0xKYC", "Sunscreen"],

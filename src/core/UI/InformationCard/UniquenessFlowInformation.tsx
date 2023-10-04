@@ -12,10 +12,7 @@ export const UniquenessFlowInformation = () => {
   const isVerified = pathname === "/profile" || isAuth;
   return (
     <>
-      <StyledText>
-        Only the result of the check and your unique identifier (UUID) is
-        shared.
-      </StyledText>
+      <StyledText>Only your unique identifier (UUID) is shared.</StyledText>
       {!isVerified && (
         <StyledText style={{ fontWeight: "500" }}>
           <InfoCircleOutlined style={{ fontSize: "1.1rem" }} /> Troubles getting
