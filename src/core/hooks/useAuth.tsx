@@ -11,6 +11,7 @@ import {
 } from "core/constans/chains";
 import { checkIfVerified } from "core/utils/checkIfVerified";
 import { isWalletSanctioned } from "core/web3/methods/isSanctioned";
+import { getUserSbt } from "modules/profile/Web3/utils";
 import { UserNotFoundError } from "redux/api/user/types";
 import { userApi } from "redux/api/user/userApi";
 import { signTosAction } from "redux/features/modal/tosSlice";
@@ -112,19 +113,19 @@ export const useAuth = () => {
         }
 
         dispatch(addApplicantId(userWallet.onfidoApplicantId));
+        const userSbt = getUserSbt(userWallet);
 
-        const isUserVerified = await checkIfVerified({
-          flow: userWallet.flow,
-          chainId,
-          walletAddress,
-        });
-        dispatch(setVerified(isUserVerified));
-
-        if (!userWallet.flow) {
+        if (userSbt?.flow) {
+          const isUserVerified = await checkIfVerified({
+            flow: userSbt.flow,
+            chainId,
+            walletAddress,
+          });
+          dispatch(setVerified(isUserVerified));
+          dispatch(setFlow(userSbt.flow));
+        } else {
           // set default flow to 0xkyc for old users
           dispatch(setFlow("sanctionsCheck"));
-        } else {
-          dispatch(setFlow(userWallet.flow));
         }
 
         const hasUuid = userWallet.user?.uuid;

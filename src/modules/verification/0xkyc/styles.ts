@@ -5,7 +5,7 @@ import { SectionWrapper } from "../styles";
 export const CustomSectionWrapper = styled(SectionWrapper)`
   margin: 0;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 800px) {
     margin-top: 4rem;
   }
 `;

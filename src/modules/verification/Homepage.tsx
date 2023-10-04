@@ -17,7 +17,7 @@ const HomePage = () => {
       <Title>
         {" "}
         {isConnected
-          ? "Choose the verification flow"
+          ? "Choose the Verification Flow:"
           : "Connect Wallet or Discord"}{" "}
       </Title>
 
