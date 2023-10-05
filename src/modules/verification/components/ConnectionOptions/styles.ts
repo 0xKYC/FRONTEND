@@ -13,7 +13,7 @@ import styled from "styled-components";
 export const CardsWrapper = styled(Row)`
   margin: 2rem auto;
   background-color: rgb(251, 251, 253);
-
+  border-radius: 0.5rem;
   -webkit-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
   -moz-box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);
   box-shadow: 2px -1px 25px 1px rgba(251, 115, 36, 1);

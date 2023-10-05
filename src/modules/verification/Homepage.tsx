@@ -1,13 +1,14 @@
 import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
-import ReactPlayer from "react-player/youtube";
 
+import { Divider } from "antd";
 import { useAccount } from "wagmi";
 
 import { Services } from "modules/verification/components/Services";
 
 import { ConnectionOptions } from "./components/ConnectionOptions";
 import { FlowSelection } from "./components/FlowSelection";
+import { VideoSection } from "./components/VideoSection";
 import { SectionWrapper, Title } from "./styles";
 
 const HomePage = () => {
@@ -27,21 +28,7 @@ const HomePage = () => {
 
       {!isConnected && <Services />}
 
-      <p style={{ fontSize: "1.5rem", textAlign: "center", marginTop: "5rem" }}>
-        Watch quick video about 0xKYC!
-      </p>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "3rem",
-          justifyContent: "center",
-        }}
-      >
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=QHm8tHxXlN4"
-          controls={true}
-        />
-      </div>
+      <VideoSection />
     </SectionWrapper>
   );
 };
