@@ -1,7 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { withTranslation } from "react-i18next";
 
-import { Divider } from "antd";
 import { useAccount } from "wagmi";
 
 import { Services } from "modules/verification/components/Services";

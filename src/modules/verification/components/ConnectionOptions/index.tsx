@@ -1,9 +1,9 @@
 import { Col } from "antd";
 
 // import { ENV } from "env";
-import { Button } from "core/UI/Button";
-import { DiscordButton } from "core/UI/Button/styles";
+import { DiscordButton, StyledButton } from "core/UI/Button/styles";
 import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
+import { SvgIcon } from "core/UI/SvgIcon";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import {
   selectIsTosSigned,
@@ -39,20 +39,26 @@ export const ConnectionOptions = () => {
       <Col lg={11} md={11} sm={24} xs={24}>
         <Card>
           <LogosWrapper>
-            <img src="/img/svg/metamask-icon.svg" alt="0xKYC logo" />
-            {/* <SvgIcon src="metamask-icon.svg" width="80" height="40" /> */}
-            <img src="/img/svg/walletconnect.svg" alt="0xKYC logo" />
+            <img
+              src="/img/new-metamask.png"
+              alt="Metamask logo"
+              width="160"
+              height="50"
+            />
+            <SvgIcon src="walletconnect-logo.svg" width="150" height="40" />
           </LogosWrapper>
 
           {/* <Description style={{ padding: "1.45rem 0" }}>
             Sanctions Check
           </Description> */}
 
-          <Button onClick={handleWalletConnect}>Connect Wallet</Button>
+          <StyledButton onClick={handleWalletConnect}>
+            Connect Wallet
+          </StyledButton>
         </Card>
       </Col>
       <Col lg={11} md={11} sm={24} xs={24}>
-        <Card isDiscord={true}>
+        <Card isDiscord={true} style={{ paddingTop: "2.3rem" }}>
           <ImgWrapper>
             <img src={discordLogo} alt="Discord logo" />
           </ImgWrapper>

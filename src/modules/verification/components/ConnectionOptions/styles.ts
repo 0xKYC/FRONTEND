@@ -36,6 +36,7 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
   margin: 2rem 1rem;
   transition: 0.2s all ease-in;
   /* height: 310px; */
+  /* padding-bottom: 5rem; */
   &:hover {
     border: ${(p) => (p.isDiscord ? "1px solid #5865f2" : "1px solid #fb7324")};
   }
@@ -48,20 +49,22 @@ export const Card = styled.div<{ isDiscord?: boolean }>`
 
 export const LogosWrapper = styled.div`
   width: 100%;
-  height: 90px;
+  height: 120px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
   img {
-    /* width: 60%; */
-    height: 40px;
     object-fit: contain;
+    width: 100%;
+    /* height: 100%; */
   }
 `;
 export const ImgWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 120px;
   img {
     width: 65%;
     height: 95px;
