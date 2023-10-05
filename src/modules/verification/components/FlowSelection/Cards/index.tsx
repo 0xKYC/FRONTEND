@@ -24,7 +24,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
     <CardsWrapper
       justify="space-around"
       align="middle"
-      style={{ borderRadius: ".5rem" }}
+      style={{ borderRadius: ".5rem", marginBottom: "5rem" }}
     >
       {" "}
       <Col lg={11} md={24} sm={24} xs={24}>
@@ -88,7 +88,7 @@ export const CardsMobile = ({ handleFlowSelect }: Props) => {
       <CardsWrapper
         justify="space-around"
         align="middle"
-        style={{ borderRadius: ".5rem", maxWidth: "440px" }}
+        style={{ maxWidth: "440px", marginBottom: "2rem" }}
       >
         {FLOWS.map((flow) => {
           return (
