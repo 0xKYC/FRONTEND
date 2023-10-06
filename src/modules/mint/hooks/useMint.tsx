@@ -157,29 +157,28 @@ export const useMint = () => {
             });
             if (isVerified) {
               refetch();
-              if (userWallet && userWallet?.sbts?.length > 0) {
-                handleCompleteLoading();
 
-                dispatch(addTxHash(userSbt.txHash));
-                dispatch(
-                  setMinting({
-                    minting: false,
-                    chainId: null,
-                    walletAddress: walletAddress,
-                    error: false,
-                  }),
-                );
+              handleCompleteLoading();
 
-                setSuccess(true);
+              dispatch(addTxHash(userSbt.txHash));
+              dispatch(
+                setMinting({
+                  minting: false,
+                  chainId: null,
+                  walletAddress: walletAddress,
+                  error: false,
+                }),
+              );
 
-                dispatch(setFlow(userSbt.flow));
-                dispatch(setVerified(isVerified));
+              setSuccess(true);
 
-                navigate("/profile");
-              } else {
-                refetch();
-              }
+              dispatch(setFlow(userSbt.flow));
+              dispatch(setVerified(isVerified));
+
+              navigate("/profile");
             }
+          } else {
+            refetch();
           }
 
           if (apiCalls === apiRequestsToCall - 1) {
