@@ -104,10 +104,11 @@ export const useMint = () => {
       return navigate("/");
     }
 
-    if (userWallet && !isLoading && userWallet?.sbts?.length > 0) {
+    if (userWallet && !isLoading) {
       const sbt = getUserSbt(userWallet);
+      if (!sbt) return;
 
-      if (sbt && (sbt.onfidoStatus === "error" || "declined")) {
+      if (sbt.onfidoStatus === "error" || sbt.onfidoStatus === "declined") {
         setError(true);
         dispatch(
           setMinting({
