@@ -7,37 +7,25 @@ import { Heading } from "../Services/styles";
 export const VideoSection = () => {
   return (
     <Wrapper>
-      {/* <div
-        style={{
-          border: "1px solid #fb7324",
-          padding: "1rem 2rem",
-          borderRadius: ".5rem",
-          width: "75%",
-        }}
-      > */}
       <Box>
         <Content>
-          <Heading style={{ textAlign: "center" }}>
-            Watch quick video about 0xKYC!
-          </Heading>
-          <div
-            style={{
-              display: "flex",
-              marginTop: "3rem",
-              justifyContent: "center",
-            }}
-          >
+          <Heading style={{ textAlign: "center" }}>Watch our video!</Heading>
+          <Flex>
             <ReactPlayer
               url="https://www.youtube.com/watch?v=QHm8tHxXlN4"
               controls={true}
             />
-          </div>
+          </Flex>
         </Content>
       </Box>
     </Wrapper>
   );
 };
 
+const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
