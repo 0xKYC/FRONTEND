@@ -107,7 +107,7 @@ export const useMint = () => {
     if (userWallet && !isLoading && userWallet?.sbts?.length > 0) {
       const sbt = getUserSbt(userWallet);
 
-      if (sbt && sbt.onfidoStatus !== "approved") {
+      if (sbt && (sbt.onfidoStatus === "error" || "declined")) {
         setError(true);
         dispatch(
           setMinting({
