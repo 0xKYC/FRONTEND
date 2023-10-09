@@ -7,6 +7,7 @@ import { Services } from "modules/verification/components/Services";
 
 import { ConnectionOptions } from "./components/ConnectionOptions";
 import { FlowSelection } from "./components/FlowSelection";
+import { VideoSection } from "./components/VideoSection";
 import { SectionWrapper, Title } from "./styles";
 
 const HomePage = () => {
@@ -16,7 +17,7 @@ const HomePage = () => {
       <Title>
         {" "}
         {isConnected
-          ? "Choose the verification flow"
+          ? "Choose the Verification Flow:"
           : "Connect Wallet or Discord"}{" "}
       </Title>
 
@@ -25,6 +26,8 @@ const HomePage = () => {
       </Fade>
 
       {!isConnected && <Services />}
+
+      <VideoSection />
     </SectionWrapper>
   );
 };

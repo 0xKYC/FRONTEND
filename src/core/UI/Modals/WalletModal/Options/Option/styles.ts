@@ -27,10 +27,9 @@ const StyledOption = css`
 export const StyledOptionBtn = styled.button<{ isMetamask: boolean }>`
   ${StyledOption};
   font-weight: normal;
-
+  align-items: center;
   @media screen and (max-width: 1024px) {
     display: ${(props) => (props.isMetamask ? "none" : "flex")};
-    align-items: center;
   }
 `;
 
@@ -45,7 +44,6 @@ export const StyledOptionLink = styled.a<{ isMetamask: boolean }>`
 export const ImageBox = styled.div`
   width: 20%;
   margin-right: 2rem;
-
   @media screen and (max-width: 540px) {
     margin-right: 1rem;
   }
