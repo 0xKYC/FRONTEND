@@ -27,7 +27,7 @@ export const Services = () => {
 
   return (
     <Wrapper>
-      <Heading>Choose an app you want connect to:</Heading>
+      <Heading>Select your flow:</Heading>
 
       <Radio.Group
         size={isMobile ? "middle" : "large"}

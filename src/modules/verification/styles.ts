@@ -46,9 +46,6 @@ export const Description = styled.p`
 export const SectionWrapper = styled("section")`
   margin: 0 auto;
   padding-bottom: 15rem;
-  @media only screen and (max-width: 1024px) {
-    padding: 4rem 0 10rem;
-  }
 
   @media only screen and (max-width: 768px) {
     padding: 2rem 0 10rem;
