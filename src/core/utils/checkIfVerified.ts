@@ -17,6 +17,8 @@ export const checkIfVerified = async ({
     return await hasSoul(chainId, walletAddress);
   } else if (flow === "sunscreen") {
     return await confirmUniqueness(chainId, walletAddress);
+  } else if (flow === "insertStonks") {
+    return await confirmUniqueness(chainId, walletAddress);
   } else {
     throw Error("Wrong flow choosen!");
   }

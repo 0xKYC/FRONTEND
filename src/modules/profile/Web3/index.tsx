@@ -45,7 +45,7 @@ const Web3ProfilePage = () => {
           <Col lg={13} md={12} sm={24} xs={24}>
             <ContentWrapper>
               <VerifiedCard
-                flow={user.flow || "sanctionsCheck"}
+                flow={sbt?.flow || "sanctionsCheck"}
                 txHash={txHash}
                 chainId={chainId}
                 redirectUrlFromPartner={redirectUrlFromPartner}
@@ -56,7 +56,7 @@ const Web3ProfilePage = () => {
             <ContentWrapper>
               <InformationCard
                 isUniquenessFlow={
-                  Boolean(mockedWalletAddress) || user.flow === "sunscreen"
+                  Boolean(mockedWalletAddress) || sbt?.flow === "sunscreen"
                 }
               />
             </ContentWrapper>

@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { loadLocalStorageTosForRedux } from "redux/localStorage";
 
 import { RootState } from "../../store";
 
@@ -8,7 +9,7 @@ type State = {
 };
 const initialState: State = {
   isTosModalOpen: false,
-  tosSigned: false,
+  tosSigned: loadLocalStorageTosForRedux(),
 };
 export const modalSlice = createSlice({
   name: "modal",

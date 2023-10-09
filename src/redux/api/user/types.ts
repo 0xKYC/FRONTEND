@@ -14,7 +14,6 @@ export type Wallet = {
   sbts: Sbt[];
   user: UserObject | null;
   tosVersion: string | null;
-  flow: Flow | null;
 };
 
 export type Sbt = {
@@ -29,6 +28,7 @@ export type Sbt = {
   onfidoWorkflowRunWebhook: any | null;
   onfidoWorkflowRunId: string | null;
   onfidoStatus: OnfidoStatus | null;
+  flow: Flow | null;
 };
 
 const mintStatus = {

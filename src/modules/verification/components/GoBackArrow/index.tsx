@@ -9,16 +9,17 @@ const StyledArrowLeft = styled(ArrowLeftOutlined)`
   top: -10%;
   left: 0;
   @media (min-width: 1224px) {
-    top: 0%;
+    top: -5%;
   }
 `;
 
 type Props = {
   handleStepBack: () => void;
+  text: string;
 };
-export const GoBackArrow = ({ handleStepBack }: Props) => {
+export const GoBackArrow = ({ handleStepBack, text }: Props) => {
   return (
-    <Tooltip title="Go back to email form">
+    <Tooltip title={text}>
       <StyledArrowLeft title="Go back" onClick={handleStepBack} />
     </Tooltip>
   );

@@ -24,7 +24,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
     <CardsWrapper
       justify="space-around"
       align="middle"
-      style={{ borderRadius: ".5rem" }}
+      style={{ borderRadius: ".5rem", marginBottom: "5rem" }}
     >
       {" "}
       <Col lg={11} md={24} sm={24} xs={24}>
@@ -40,7 +40,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
               handleFlowSelect("sunscreen", "uniqueness");
             }}
           >
-            Start Sunscreen flow
+            Start Sunscreen
           </Button>
         </Card>
       </Col>
@@ -57,7 +57,7 @@ export const CardsDesktop = ({ handleFlowSelect }: Props) => {
               handleFlowSelect("sanctionsCheck", "0xkyc");
             }}
           >
-            Start 0xKYC flow
+            Start 0xKYC
           </Button>
         </Card>
       </Col>
@@ -88,7 +88,7 @@ export const CardsMobile = ({ handleFlowSelect }: Props) => {
       <CardsWrapper
         justify="space-around"
         align="middle"
-        style={{ borderRadius: ".5rem", maxWidth: "440px" }}
+        style={{ maxWidth: "440px", marginBottom: "2rem" }}
       >
         {FLOWS.map((flow) => {
           return (
