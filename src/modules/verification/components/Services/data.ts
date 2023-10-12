@@ -1,12 +1,12 @@
 export const servicesData = [
-  // {
-  //   title: "Hinkal",
-  //   description:
-  //     "Blockchain protocol designed for private transactions and enhanced user privacy and security",
-  //   tag: "0xKYC",
-  //   href: "/0xkyc",
-  //   img: "/img/hinkal-log.png",
-  // },
+  {
+    title: "Hinkal",
+    description:
+      "Use 0xKYC to access private swaps on Curve and Beefy to privately swap and yield farm without the risk of mixing your funds with sanctioned individuals",
+    tags: ["0xKYC"],
+    href: "/0xkyc",
+    img: "/img/logo-hinkal1.png",
+  },
   // {
   //   title: "Soil",
   //   description: "Debt marketplace",
@@ -32,8 +32,7 @@ export const servicesData = [
   },
   {
     title: "Aragon OSx",
-    description:
-      "DAO creation and management platform with no coding required.",
+    description: "DAO creation and management platform with no coding required",
     tags: ["0xKYC", "Sunscreen"],
     href: "https://github.com/0xKYC/0xkyc-1vote-aragon-plugin",
     img: "/img/aragon-bg.png",

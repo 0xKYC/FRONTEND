@@ -5,6 +5,7 @@ import styled from "styled-components";
 export const Heading = styled("div")`
   display: flex;
   justify-content: space-between;
+  height: 30px;
 `;
 export const TagContainer = styled("div")`
   display: flex;
@@ -47,7 +48,7 @@ export const StyledLink = styled("a")`
   }
 `;
 export const Box = styled("div")`
-  height: 120px;
+  height: 140px;
   display: flex;
 
   justify-content: center;
@@ -57,7 +58,7 @@ export const Box = styled("div")`
     height: 170px;
   }
   @media screen and (min-width: 1024px) {
-    height: 100px;
+    height: 120px;
   }
 `;
 export const StyledCard = styled(Card)`
@@ -73,8 +74,12 @@ export const StyledCard = styled(Card)`
 
 export const ImageWrapper = styled.div<{ biggerImg?: boolean }>`
   width: ${(props) => (props.biggerImg ? "120px" : "90px")};
+  /* background-color: red; */
 `;
 
 export const StyledImg = styled.img`
   width: 100%;
+  height: 100%;
+
+  object-fit: contain;
 `;
