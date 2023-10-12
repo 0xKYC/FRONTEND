@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 
 import { Button } from "core/UI/Button";
 import { InformationCard } from "core/UI/InformationCard/InformationCard";
-import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
+import { TosModal } from "core/UI/Modals/TosModal/TosModal";
 import { LoadingCircle } from "core/UI/Spinner";
 import { useHandleOnfidoRedirect } from "modules/verification/hooks/useHandleOnfidoRedirect";
 
@@ -39,7 +39,7 @@ const CustomVerificationPage = ({
   const contentText = mockedWalletAddress ? verifyText : content;
   return (
     <CustomVerificationWrapper>
-      {mockedWalletAddress && !tosAccepted && <TosModalWeb2 />}
+      {mockedWalletAddress && !tosAccepted && <TosModal />}
 
       <Fade direction="right">
         <Row justify="space-between" align="middle">

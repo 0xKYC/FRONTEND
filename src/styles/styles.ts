@@ -137,8 +137,16 @@ export const Styles = createGlobalStyle`
         color:black;
     }
 
+    .discord-modal .ant-modal-footer .ant-btn-primary {
+            background-color: #5865f2;
+    }
+    .discord-modal .ant-modal-footer .ant-btn-primary:hover {
+            background-color: #5865f2;
+             opacity: 0.93;
+    }
+  
 
-    .ant-modal-confirm-btns{
+    .ant-modal-confirm-btns {
         display:flex;
         width: 90%;
         margin: 0 auto;

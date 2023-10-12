@@ -17,6 +17,7 @@ export const onfidoApi = createApi({
     onfidoRedirect: builder.mutation<string, OnfidoRedirectData>({
       query: ({
         applicantId,
+        discordId,
         walletAddress,
         chainId,
         redirectUrl,
@@ -31,6 +32,7 @@ export const onfidoApi = createApi({
           applicantId,
           walletAddress,
           chainId,
+          discordId,
           redirectUrl: redirectUrl || window.location.href,
           flow,
           environment,

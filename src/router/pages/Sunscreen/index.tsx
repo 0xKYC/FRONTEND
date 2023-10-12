@@ -2,7 +2,7 @@ import { lazy } from "react";
 
 import Container from "core/UI/Container";
 import { LoadingSpinner } from "core/UI/LoadingSpinner";
-import { TosModalWeb2 } from "core/UI/Modals/TosModal/PartnerSign";
+import { TosModalDiscord } from "core/UI/Modals/TosModal/DiscordSign";
 import { DiscordProfilePage } from "modules/profile/Discord";
 import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
@@ -10,7 +10,7 @@ const SunscreenPage = lazy(
   () => import("../../../modules/verification/sunscreen"),
 );
 const Sunscreen = () => {
-  const { isLoading, data } = useGetDiscordUserQuery();
+  const { data, isLoading } = useGetDiscordUserQuery();
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
 
@@ -22,7 +22,9 @@ const Sunscreen = () => {
         <SunscreenPage userData={data} />
       )}
 
-      <TosModalWeb2 redirect={true} />
+      {data && (
+        <TosModalDiscord signed={Boolean(data?.discordAccount.tosVersion)} />
+      )}
     </Container>
   );
 };

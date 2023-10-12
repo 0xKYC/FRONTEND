@@ -30,6 +30,21 @@ export const userApi = createApi({
         body: data,
       }),
     }),
+
+    // discord flow
+
+    getDiscordUser: builder.query<DiscordUserObject, void>({
+      query: () => `discord/auth/me`,
+      providesTags: ["user"],
+    }),
+    acceptTos: builder.mutation<any, TosPayload>({
+      query: (data) => ({
+        method: "PATCH",
+        url: `discord/signature`,
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
     logout: builder.mutation<any, void>({
       query: () => ({
         method: "POST",
@@ -37,18 +52,18 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["user"],
     }),
-
-    getDiscordUser: builder.query<DiscordUserObject, void>({
-      query: () => `discord/auth/me`,
-      providesTags: ["user"],
-    }),
   }),
 });
 
+type TosPayload = {
+  signature: string;
+  tosVersion: string;
+};
 export const {
   useGetUserWalletQuery,
   useSubscribeNewsletterMutation,
   useGetDiscordUserQuery,
   useLogoutMutation,
   useCheckWalletOnBlackListQuery,
+  useAcceptTosMutation,
 } = userApi;
