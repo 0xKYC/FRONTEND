@@ -1,6 +1,6 @@
 {
-  "title": "0xKYC Sanctions Check",
-  "text": "Verify yourself without sacrificing your privacy",
+  "title": "Prove you're not OFAC sanctioned without showing your name on-chain",
+  "text": "We scan your ID to create a proof on-chain that you are not sanctioned which allows you to access multiple protocols",
   "button": {
     "disabled": {
       "title": "Connect Wallet"
