@@ -2,7 +2,7 @@ export const servicesData = [
   {
     title: "Hinkal",
     description:
-      "Use 0xKYC to access private swaps on Curve and Beefy to privately swap and yield farm without the risk of mixing your funds with sanctioned individuals",
+      "Get verified to access private yield farming and swaps on Hinkal Protocol, access Curve and Beefy finance with 0xKYC",
     tags: ["0xKYC"],
     href: "/0xkyc",
     img: "/img/logo-hinkal1.png",
