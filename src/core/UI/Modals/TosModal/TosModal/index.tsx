@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react";
 
-// import { ENV } from "env";
 import {
   selectIsTosModalOpen,
   signTosAction,
@@ -13,7 +12,7 @@ import { loadLocalStorageTos, saveTosToLocalStorage } from "redux/localStorage";
 import { ModalContent } from "../ModalContent";
 import { StyledModal } from "../styles";
 
-export const TosModalWeb2 = ({ redirect }: { redirect?: boolean }) => {
+export const TosModal = () => {
   const mockedWalletAddress = useAppSelector(selectMockedWalletAddress);
   const dispatch = useAppDispatch();
 
@@ -41,19 +40,16 @@ export const TosModalWeb2 = ({ redirect }: { redirect?: boolean }) => {
     }
   }, [mockedWalletAddress, tosSigned, dispatch, showModal]);
 
-  const handleSignTos = () => {
+  const handleSignTos = async () => {
     dispatch(toggleTosModal(false));
     dispatch(signTosAction(true));
     saveTosToLocalStorage(true);
-
-    // if (redirect) {
-    //   window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
-    // }
   };
 
   return (
     <StyledModal
-      width={600}
+      className="beng"
+      width={500}
       open={isTosModalOpen}
       onCancel={closeModal}
       onOk={handleSignTos}
