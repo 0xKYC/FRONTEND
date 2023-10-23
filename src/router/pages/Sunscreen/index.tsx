@@ -1,5 +1,6 @@
 import { lazy } from "react";
 
+import tosContent from "content/TermsOfService.json";
 import Container from "core/UI/Container";
 import { LoadingSpinner } from "core/UI/LoadingSpinner";
 import { TosModalDiscord } from "core/UI/Modals/TosModal/DiscordSign";
@@ -23,7 +24,11 @@ const Sunscreen = () => {
       )}
 
       {data && (
-        <TosModalDiscord signed={Boolean(data?.discordAccount.tosVersion)} />
+        <TosModalDiscord
+          signed={Boolean(
+            data?.discordAccount.tosVersion === tosContent.version,
+          )}
+        />
       )}
     </Container>
   );

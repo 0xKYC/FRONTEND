@@ -83,6 +83,7 @@ export const useHandleOnfidoRedirect = () => {
     await onfidoRedirect({
       applicantId,
       discordId,
+      redirectUrl,
       flow: "discord",
       environment: ENV.REACT_APP_ENVIRONMENT,
     })
