@@ -165,6 +165,9 @@ export const Styles = createGlobalStyle`
         background-color: #fb7324
     }
 
+    .discord  .ant-spin-dot-item {
+        background-color: #232960
+    }
     .ant-dropdown {
     z-index: 9999;
     }

@@ -15,6 +15,9 @@ export const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 export const ThirdParties = lazy(() => import("./pages/ThirdParties"));
 export const About = lazy(() => import("./pages/About"));
 export const Mint = lazy(() => import("./pages/Mint"));
+export const DiscordVerification = lazy(
+  () => import("./pages/DiscordVerification"),
+);
 export const Error = lazy(() => import("./pages/Error"));
 export const BlackListError = lazy(() => import("./pages/BlackListError"));
 export const Wave = lazy(() => import("../core/UI/Layout/Footer/FooterWave"));

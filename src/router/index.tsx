@@ -15,6 +15,7 @@ import RedirectRoute from "./RedirectRoute";
 import {
   About,
   BlackListError,
+  DiscordVerification,
   Error,
   Home,
   HomeWithoutWalletConnection,
@@ -41,7 +42,7 @@ export const Router = () => {
   } = useAuth();
   useScrollToTop();
   const { data } = useGetDiscordUserQuery();
-
+  console.log(Boolean(data));
   return (
     <>
       <Styles />
@@ -141,6 +142,10 @@ export const Router = () => {
                 </RedirectRoute>
               }
               path="/mint"
+            />
+            <Route
+              element={<DiscordVerification />}
+              path="/discord-verification"
             />
             {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
 

@@ -23,7 +23,9 @@ export const Text = styled("p")`
   font-weight: 400;
   margin: 0 3rem 0 2rem;
 `;
-
+export const DiscordText = styled(Text)`
+  color: #232960;
+`;
 export const P = styled("p")`
   color: #fb7324;
   font-size: 1.3rem;
