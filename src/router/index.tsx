@@ -42,7 +42,7 @@ export const Router = () => {
   } = useAuth();
   useScrollToTop();
   const { data } = useGetDiscordUserQuery();
-  console.log(Boolean(data));
+
   return (
     <>
       <Styles />

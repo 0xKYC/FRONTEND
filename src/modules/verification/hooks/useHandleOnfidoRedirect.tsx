@@ -79,7 +79,6 @@ export const useHandleOnfidoRedirect = () => {
     applicantId: string,
     discordId: string,
   ) => {
-    console.log(discordId);
     setIsLoading(true);
     await onfidoRedirect({
       applicantId,
