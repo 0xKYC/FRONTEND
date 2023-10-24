@@ -19,6 +19,7 @@ import {
   Error,
   Home,
   HomeWithoutWalletConnection,
+  HowToVideos,
   InsertStonks,
   Mint,
   PrivacyPolicy,
@@ -151,6 +152,7 @@ export const Router = () => {
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<HowToVideos />} path="/tutorials" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<Error />} path="/error" />
             <Route element={<BlackListError />} path="/verification-error" />

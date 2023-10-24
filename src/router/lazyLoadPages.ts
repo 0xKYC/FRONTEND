@@ -12,6 +12,7 @@ export const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 export const DiscordServers = lazy(() => import("./pages/DiscordServers"));
 export const InsertStonks = lazy(() => import("./pages/InsertStonks"));
 export const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+export const HowToVideos = lazy(() => import("./pages/HowToVideos"));
 
 export const About = lazy(() => import("./pages/About"));
 export const Mint = lazy(() => import("./pages/Mint"));
