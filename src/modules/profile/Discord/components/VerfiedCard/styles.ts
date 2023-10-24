@@ -4,6 +4,13 @@ import styled from "styled-components";
 export const Box = styled("div")`
   display: flex;
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+`;
 export const Heading = styled.h2`
   font-size: 1.8rem;
 

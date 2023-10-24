@@ -23,13 +23,6 @@ const { biometrics, title } = verifyContent;
 const { version } = tosContent;
 
 const SuncreenVerification = ({ userData }: Props) => {
-  // const params = useParams();
-  // const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // const accessToken = searchParams.get("accessToken");
-  // const discordId = searchParams.get("discordId");
-  // console.log(accessToken);
-  // console.log(discordId);
   const { handleOnfidoRedirectForDiscord, isLoading } =
     useHandleOnfidoRedirect();
   const dispatch = useAppDispatch();
@@ -75,7 +68,11 @@ const SuncreenVerification = ({ userData }: Props) => {
             )}
           </Col>
           <Col lg={24} md={24} sm={24} xs={24}>
-            <InformationCard margin="5rem 0 0 0" isUniquenessFlow={true} />
+            <InformationCard
+              margin="5rem 0 0 0"
+              isUniquenessFlow={true}
+              isDiscordFlow
+            />
           </Col>
         </Row>
       </Fade>

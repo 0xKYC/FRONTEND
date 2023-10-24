@@ -1,16 +1,14 @@
 import vContent from "content/VerifiedContent.json";
 import { SvgIcon } from "core/UI/SvgIcon";
+import { useMediaQuery } from "core/hooks/useMediaQuery";
 import { StyledCard } from "modules/profile/Web3/components/VerifiedCard/styles";
 import { Checkmark } from "modules/profile/components/Checkmark";
-import { Content, Flex } from "modules/profile/styles";
-import { useGetDiscordUserQuery } from "redux/api/user/userApi";
+import { Flex } from "modules/profile/styles";
 
-import { Box, Heading, RedirectDiscordLink, StyledList } from "./styles";
+import { Box, Heading, RedirectDiscordLink, Wrapper } from "./styles";
 
 export const VerifiedCard = () => {
-  const { data: user, isLoading } = useGetDiscordUserQuery();
-  if (isLoading) return <p>Loading</p>;
-  if (!user) return <p>Error while fetching user!</p>;
+  const isMobile = useMediaQuery("(max-width: 800px)");
   return (
     <StyledCard style={{ margin: "0 auto" }}>
       <Box>
@@ -20,8 +18,13 @@ export const VerifiedCard = () => {
           <SvgIcon src="discord-logo-blue.svg" width="120" height="52" />
         </Flex>
       </Box>
-
-      {user.discordAccount.discordGuilds.length > 0 ? (
+      <Wrapper>
+        <SvgIcon
+          src="developer.svg"
+          width={isMobile ? "250" : "300"}
+          height="150"
+        />
+        {/* {user.discordAccount.discordGuilds.length > 0 ? (
         <>
           <Content>Discord servers you are verified on:</Content>
 
@@ -31,7 +34,7 @@ export const VerifiedCard = () => {
             <li>Discord Server 2 ✅</li>
           </StyledList>
         </>
-      ) : (
+      ) : ( */}
         <RedirectDiscordLink
           href="https://discord.com/invite/p58hBne2Ue"
           target="_blank"
@@ -39,7 +42,7 @@ export const VerifiedCard = () => {
         >
           Join our Discord Server!
         </RedirectDiscordLink>
-      )}
+      </Wrapper>
     </StyledCard>
   );
 };
