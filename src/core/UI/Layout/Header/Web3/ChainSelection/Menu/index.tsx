@@ -100,10 +100,10 @@ export const ChainSelectionMenu = () => {
         <>
           <ChainSelectorItem
             onSelectChain={onSelectChain}
-            targetChain={SupportedChainId.POLYGON}
-            key={SupportedChainId.POLYGON}
+            targetChain={SupportedChainId.BNB}
+            key={SupportedChainId.BNB}
             isPending={
-              SupportedChainId.POLYGON === pendingChainId &&
+              SupportedChainId.BNB === pendingChainId &&
               Boolean(!error) &&
               isLoading
             }
@@ -117,10 +117,10 @@ export const ChainSelectionMenu = () => {
         <>
           <ChainSelectorItem
             onSelectChain={onSelectChain}
-            targetChain={SupportedChainId.BNB}
-            key={SupportedChainId.BNB}
+            targetChain={SupportedChainId.POLYGON}
+            key={SupportedChainId.POLYGON}
             isPending={
-              SupportedChainId.BNB === pendingChainId &&
+              SupportedChainId.POLYGON === pendingChainId &&
               Boolean(!error) &&
               isLoading
             }
