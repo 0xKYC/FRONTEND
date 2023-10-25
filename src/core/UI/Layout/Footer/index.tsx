@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
 import Container from "core/UI/Container";
+import { useGetCurrentFlow } from "core/hooks/useGetCurrentFlow";
 
 import { SocialLink } from "./SocialLink";
 import {
@@ -19,6 +20,7 @@ import {
 } from "./styles";
 
 const Footer = ({ t }: any) => {
+  const { isSunscreenFlow } = useGetCurrentFlow();
   return (
     <>
       <FooterSection>
