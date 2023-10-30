@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import Confetti from "react-confetti";
+import { useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import ReactPlayer from "react-player/youtube";
 
-import { Collapse, Divider, Space } from "antd";
+import { Divider } from "antd";
 
 import { Heading } from "modules/verification/styles";
 import styled from "styled-components";
+
+import { InfoText } from "../InsertStonks";
 
 const text = "Description of the video";
 const videos = [
@@ -27,12 +28,11 @@ const videos = [
   },
 ];
 
-const HowToVideos = () => {
+const Tutorials = () => {
   const handleClickScroll = (id: string) => {
     const element = document.getElementById(id);
 
     if (element) {
-      // 👇 Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
       setIsExploding(true);
     }
@@ -40,16 +40,12 @@ const HowToVideos = () => {
 
   const [isExploding, setIsExploding] = useState(false);
 
-  const onChange = () => {
-    setIsExploding(true);
-  };
-
   return (
     <div
       style={{ marginTop: "3rem", paddingBottom: "10rem", textAlign: "center" }}
     >
       <Heading>Welcome on Tutorial Page!</Heading>
-      {/* <p style={{ marginTop: "1rem", fontSize: "1.4rem" }}>Sections:</p> */}
+
       {isExploding && (
         <ConfettiExplosion
           onComplete={() => setIsExploding(false)}
@@ -92,49 +88,16 @@ const HowToVideos = () => {
           </div>
         );
       })}
-    </div>
-    // <div
-    //   style={{ minHeight: "80vh", padding: "5rem 0", paddingBottom: "15rem" }}
-    // >
-    // {isExploding && (
-    //   <ConfettiExplosion
-    //     onComplete={() => setIsExploding(false)}
-    //     duration={1800}
-    //     height="100vh"
-    //   />
-    // )}
-    //   <Space direction="vertical" style={{ width: "100%" }}>
-    //     {videos.map((elm, index) => (
-    //       <Collapse
-    //         key={index}
-    //         onChange={onChange}
-    //         defaultActiveKey={["0"]}
-    //         style={{ margin: "0 10rem", textAlign: "center" }}
-    //       >
-    //         <Collapse.Panel key={index} header={elm.title}>
-    //           <div
-    //             style={{
-    // display: "flex",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flexDirection: "column",
-    // gap: "1rem",
-    // padding: "1rem 0",
-    //             }}
-    //           >
-    //             <p> {elm.text}</p>
 
-    //             <ReactPlayer url={elm.videoSrc} controls={true} />
-    //           </div>
-    //         </Collapse.Panel>
-    //       </Collapse>
-    //     ))}
-    //   </Space>
-    // </div>
+      <InfoText>
+        If you encounter any difficulties, don't hesitate to reach out to{" "}
+        <a href="mailto:support@0xkyc.id">our support team</a>.
+      </InfoText>
+    </div>
   );
 };
 
-export default HowToVideos;
+export default Tutorials;
 
 const Title = styled.h3`
   font-size: 1.7rem;

@@ -69,8 +69,8 @@ const Footer = ({ t }: any) => {
               {/* <Large> */}
               <StyledLink
                 href="http://localhost:3000/tutorials"
-                target="_blank"
-                rel="noreferrer"
+                // target="_blank"
+                // rel="noreferrer"
               >
                 {t("Tutorials")}
               </StyledLink>
