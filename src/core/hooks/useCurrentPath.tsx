@@ -4,6 +4,7 @@ const routes = [
   { path: "/sunscreen/*" },
   { path: "/discord-servers" },
   { path: "/discord-verification" },
+  { path: "/discord-bot" },
 ];
 
 export const useCurrentPath = () => {

@@ -15,6 +15,7 @@ import RedirectRoute from "./RedirectRoute";
 import {
   About,
   BlackListError,
+  DiscordBot,
   DiscordVerification,
   Error,
   Home,
@@ -147,6 +148,7 @@ export const Router = () => {
               path="/discord-verification"
             />
             {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
+            <Route element={<DiscordBot />} path="/discord-bot" />
 
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />

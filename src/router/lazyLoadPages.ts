@@ -10,6 +10,7 @@ export const SanctionsCheck = lazy(() => import("./pages/0xKYC"));
 export const Profile = lazy(() => import("./pages/Profile"));
 export const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 export const DiscordServers = lazy(() => import("./pages/DiscordServers"));
+export const DiscordBot = lazy(() => import("./pages/DiscordBot"));
 export const InsertStonks = lazy(() => import("./pages/InsertStonks"));
 export const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 

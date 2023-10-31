@@ -4,12 +4,16 @@ import styled from "styled-components";
 
 import { Heading } from "../Services/styles";
 
-export const VideoSection = () => {
+export const VideoSection = ({
+  title = "Watch our video!",
+}: {
+  title?: string;
+}) => {
   return (
     <Wrapper>
       <Box>
         <Content>
-          <Heading style={{ textAlign: "center" }}>Watch our video!</Heading>
+          <Heading style={{ textAlign: "center" }}>{title}</Heading>
           <Flex>
             <ReactPlayer
               url="https://www.youtube.com/watch?v=QHm8tHxXlN4"
@@ -46,7 +50,6 @@ const Box = styled.div`
   border: 0.25em solid #18216d;
   position: relative;
   width: 100%;
-
   @media screen and (max-width: 400px) {
     padding: 1em 0.5em;
   }
