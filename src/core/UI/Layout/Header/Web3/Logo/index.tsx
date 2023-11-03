@@ -18,7 +18,7 @@ export const Logo = () => {
         <Image
           src="/img/sunscreen-black.png"
           alt="logo"
-          height="54px"
+          height="60px"
         />
       )}
     </>
