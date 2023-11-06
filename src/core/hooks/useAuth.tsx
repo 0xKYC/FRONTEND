@@ -91,6 +91,8 @@ export const useAuth = () => {
           .unwrap()
           .catch(async (error: UserNotFoundError) => {
             if (error.status === 404) {
+              saveTosToLocalStorage(false);
+              dispatch(signTosAction(false));
               dispatch(addApplicantId(null));
             }
           });
@@ -106,8 +108,7 @@ export const useAuth = () => {
         if (userWallet.tosVersion !== tos.version) {
           saveTosToLocalStorage(false);
           dispatch(signTosAction(false));
-        }
-        if (userWallet.signature) {
+        } else {
           saveTosToLocalStorage(true);
           dispatch(signTosAction(true));
         }
