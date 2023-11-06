@@ -13,14 +13,12 @@ export const Logo = () => {
           alt="logo"
           width="60px"
           height="60px"
-          style={{ display: isMobile ? "block" : "none" }}
         />
       ) : (
         <Image
-          src="/img/sunscreen-logo-crop.png"
+          src="/img/sunscreen-black.png"
           alt="logo"
-          height="54px"
-          style={{ display: isMobile ? "none" : "block" }}
+          height="60px"
         />
       )}
     </>
