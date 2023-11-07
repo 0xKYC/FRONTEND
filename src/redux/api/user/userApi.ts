@@ -43,6 +43,7 @@ export const userApi = createApi({
         url: `discord/auth/redirect`,
         body: code,
       }),
+      invalidatesTags: ["user"],
     }),
     acceptTos: builder.mutation<any, TosPayload>({
       query: (data) => ({
