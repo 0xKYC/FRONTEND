@@ -16,10 +16,6 @@ export const LogoText = styled.p`
 
 export const Image = styled.img`
   object-fit: contain;
-  display: none;
-  @media screen and (min-width: 520px) {
-    display: block;
-  }
 `;
 export const LogoWithoutWalletConnection = styled.img`
   display: block;

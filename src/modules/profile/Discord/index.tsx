@@ -3,11 +3,14 @@ import { Fade } from "react-awesome-reveal";
 import { Col, Row } from "antd";
 
 import { InformationCard } from "core/UI/InformationCard/InformationCard";
+import { useMediaQuery } from "core/hooks/useMediaQuery";
 
 import { BlockWrapper, ContentWrapper } from "../styles";
+import { Instructions } from "./components/Instructions";
 import { VerifiedCard } from "./components/VerfiedCard";
 
 export const DiscordProfilePage = () => {
+  const isMobile = useMediaQuery("(max-width: 800px)");
   return (
     <BlockWrapper>
       <Fade triggerOnce direction="right">
@@ -18,10 +21,31 @@ export const DiscordProfilePage = () => {
             </ContentWrapper>
           </Col>
           <Col lg={10} md={24} sm={24} xs={24}>
-            <ContentWrapper>
-              <InformationCard isUniquenessFlow={true} />
-            </ContentWrapper>
+            {isMobile ? (
+              <Instructions />
+            ) : (
+              <ContentWrapper>
+                <InformationCard
+                  isUniquenessFlow={true}
+                  isDiscordFlow
+                  verified={true}
+                />
+              </ContentWrapper>
+            )}
           </Col>
+          {isMobile ? (
+            <Col lg={10} md={24} sm={24} xs={24}>
+              <ContentWrapper>
+                <InformationCard
+                  isUniquenessFlow={true}
+                  isDiscordFlow
+                  verified={true}
+                />
+              </ContentWrapper>
+            </Col>
+          ) : (
+            <Instructions />
+          )}
         </Row>
       </Fade>
     </BlockWrapper>

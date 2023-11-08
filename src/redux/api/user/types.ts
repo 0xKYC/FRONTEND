@@ -100,6 +100,8 @@ type DiscordAccount = {
   onfidoApplicantId: string;
   onfidoStatus: OnfidoStatus | null;
   discordGuilds: DiscordGuild[];
+  tosVersion?: string;
+  signature?: string;
 };
 
 export type DiscordUserObject = {

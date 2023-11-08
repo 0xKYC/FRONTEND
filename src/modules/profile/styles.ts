@@ -81,3 +81,7 @@ export const StyledList = styled.ul`
     margin: 0.5rem 0;
   }
 `;
+
+export const Text = styled.p`
+  font-size: 1.2rem;
+`;
