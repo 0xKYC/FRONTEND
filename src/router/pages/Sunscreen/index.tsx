@@ -25,7 +25,8 @@ const Sunscreen = () => {
   const [called, setCalled] = useState(false);
   useEffect(() => {
     if (code && !called && !isLoading && !data) {
-      auth({ code });
+      const result = auth({ code }).unwrap();
+      console.log(result);
       setCalled(true);
     }
   }, [auth, called, code, data, isLoading]);
