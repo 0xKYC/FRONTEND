@@ -37,6 +37,14 @@ export const userApi = createApi({
       query: () => `discord/auth/me`,
       providesTags: ["user"],
     }),
+    authDiscord: builder.mutation<string, { code: string }>({
+      query: (code) => ({
+        method: "POST",
+        url: `discord/auth/redirect`,
+        body: code,
+      }),
+      invalidatesTags: ["user"],
+    }),
     acceptTos: builder.mutation<any, TosPayload>({
       query: (data) => ({
         method: "PATCH",
@@ -66,4 +74,5 @@ export const {
   useLogoutMutation,
   useCheckWalletOnBlackListQuery,
   useAcceptTosMutation,
+  useAuthDiscordMutation,
 } = userApi;
