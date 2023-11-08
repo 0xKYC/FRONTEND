@@ -171,8 +171,8 @@ export const ONLY_TESTNET_CHAINS = [
 ];
 
 export const DEFAULT_CHAIN = IS_MAINNET
-  ? SupportedChainId.POLYGON
-  : SupportedChainId.POLYGON_MUMBAI;
+  ? SupportedChainId.BNB
+  : SupportedChainId.BNB_TESTNET;
 
 export const scrollSepolia = {
   id: 534351,

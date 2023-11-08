@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Box = styled.div`
   text-align: center;
 `;
+export const TextBox = styled.div`
+  text-align: center;
+  font-size: 1.3rem;
+`;
 export const H3 = styled.h3`
   font-size: 1.7rem;
   margin-top: 3rem;

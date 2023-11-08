@@ -3,9 +3,16 @@ import { StyledCard, StyledLink, StyledList, StyledText } from "./styles";
 
 type Props = {
   isUniquenessFlow?: boolean;
+  isDiscordFlow?: boolean;
   margin?: string;
+  verified?: boolean;
 };
-export const InformationCard = ({ isUniquenessFlow, margin }: Props) => {
+export const InformationCard = ({
+  isUniquenessFlow,
+  margin,
+  isDiscordFlow,
+  verified,
+}: Props) => {
   return (
     <StyledCard
       bordered={false}
@@ -17,11 +24,12 @@ export const InformationCard = ({ isUniquenessFlow, margin }: Props) => {
       }}
     >
       <StyledText style={{ fontWeight: "500" }}>
-        Your data is not being shared with our clients!
+        Your data is not being shared with{" "}
+        {isDiscordFlow ? "discord guilds" : "our clients"}!
       </StyledText>
 
       {isUniquenessFlow ? (
-        <UniquenessFlowInformation />
+        <UniquenessFlowInformation verified={verified} />
       ) : (
         <>
           {" "}

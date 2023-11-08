@@ -1,10 +1,14 @@
 import { Fade } from "react-awesome-reveal";
 
 import { Col, Row } from "antd";
+import { ENV } from "env";
 
+import tosContent from "content/TermsOfService.json";
 import verifyContent from "content/VerifyContent.json";
 import { DiscordButton } from "core/UI/Button/styles";
 import { InformationCard } from "core/UI/InformationCard/InformationCard";
+import { LoadingCircle } from "core/UI/Spinner";
+import { DiscordUserObject } from "redux/api/user/types";
 import { toggleTosModal } from "redux/features/modal/tosSlice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -12,27 +16,30 @@ import { CommonSection } from "../components/CommonSection";
 import { useHandleOnfidoRedirect } from "../hooks/useHandleOnfidoRedirect";
 import { StyledSection } from "./styles";
 
+type Props = {
+  userData: DiscordUserObject | undefined;
+};
 const { biometrics, title } = verifyContent;
-const SuncreenVerification = ({ userData }: { userData: any }) => {
-  // const params = useParams();
-  // const location = useLocation();
-  // const searchParams = new URLSearchParams(location.search);
-  // const accessToken = searchParams.get("accessToken");
-  // const discordId = searchParams.get("discordId");
-  // console.log(accessToken);
-  // console.log(discordId);
-  const { handleOnfidoRedirect, tosAccepted } = useHandleOnfidoRedirect();
+const { version } = tosContent;
+
+const SuncreenVerification = ({ userData }: Props) => {
+  const { handleOnfidoRedirectForDiscord, isLoading } =
+    useHandleOnfidoRedirect();
   const dispatch = useAppDispatch();
 
   const handleDiscordConnect = () => {
-    if (!tosAccepted) {
+    window.location.href = ENV.REACT_APP_DISCORD_OAUTH_URL;
+  };
+
+  const onfidoRedirect = async () => {
+    if (userData?.discordAccount.tosVersion !== version) {
       dispatch(toggleTosModal(true));
     } else {
-      // window.location.href = ENV.REACT_APP_DISCORD_REDIRECT_URL;
+      await handleOnfidoRedirectForDiscord(
+        userData.discordAccount.onfidoApplicantId,
+        userData.discordAccount.accountId,
+      );
     }
-  };
-  const onfidoRedirect = async () => {
-    await handleOnfidoRedirect("discord");
   };
   return (
     <StyledSection>
@@ -43,7 +50,7 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
               <>
                 <CommonSection header={title} contentText={biometrics}>
                   <DiscordButton onClick={onfidoRedirect}>
-                    Verify yourself
+                    {isLoading ? <LoadingCircle /> : "Verify yourself"}
                   </DiscordButton>
                 </CommonSection>
               </>
@@ -61,7 +68,11 @@ const SuncreenVerification = ({ userData }: { userData: any }) => {
             )}
           </Col>
           <Col lg={24} md={24} sm={24} xs={24}>
-            <InformationCard margin="5rem 0 0 0" isUniquenessFlow={true} />
+            <InformationCard
+              margin="5rem 0 0 0"
+              isUniquenessFlow={true}
+              isDiscordFlow
+            />
           </Col>
         </Row>
       </Fade>

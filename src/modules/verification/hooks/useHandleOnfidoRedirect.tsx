@@ -75,10 +75,28 @@ export const useHandleOnfidoRedirect = () => {
 
     await handleOnfidoRedirect("insertStonks");
   };
+  const handleOnfidoRedirectForDiscord = async (
+    applicantId: string,
+    discordId: string,
+  ) => {
+    setIsLoading(true);
+    await onfidoRedirect({
+      applicantId,
+      discordId,
+      redirectUrl,
+      flow: "discord",
+      environment: ENV.REACT_APP_ENVIRONMENT,
+    })
+      .unwrap()
+      .then((responseUrl) => window.location.replace(responseUrl))
+      .catch((error) => console.error(error))
+      .finally(() => setIsLoading(false));
+  };
 
   return {
     handleOnfidoRedirect,
     handleOnfidoRedirectForInsertStonks,
+    handleOnfidoRedirectForDiscord,
     isLoading,
     mockedWalletAddress,
     walletAddress,
