@@ -12,7 +12,7 @@ import { InfoText } from "../InsertStonks";
 const text = "Description of the video";
 const videos = [
   {
-    title: "How to do Sunscreen",
+    title: "How to use Sunscreen",
     text,
     videoSrc: "https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf4184",
   },
@@ -48,11 +48,10 @@ const Tutorials = () => {
         alignItems: "center",
         marginTop: "3rem",
         padding: "0 0.5rem 10rem 0.5rem", 
-        textAlign: "center"
       }}
     >
       <TutorialVideoSection>
-        <Heading>Welcome on Tutorial Page!</Heading>
+        <Heading>Welcome to the Tutorial Page!</Heading>
         {isExploding && (
           <ConfettiExplosion
             onComplete={() => setIsExploding(false)}
@@ -107,7 +106,7 @@ const Tutorials = () => {
         })}
 
         <InfoText>
-          If you encounter any difficulties, don't hesitate to reach out to{" "}
+          If you encounter any difficulties, please contact{" "}
           <a href="mailto:support@0xkyc.id">our support team</a>.
         </InfoText>
       </TutorialVideoSection>
@@ -118,11 +117,12 @@ const Tutorials = () => {
 export default Tutorials;
 
 const TutorialVideoSection = styled.div`
+  text-align: center;
   width: 100%;
   padding: 0px 18px;
 
   @media screen and (min-width: 768px){
-    max-width: calc(100% - 38px)
+    max-width: 730px;
   }
 `;
 
