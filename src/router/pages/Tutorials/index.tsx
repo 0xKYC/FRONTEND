@@ -41,15 +41,7 @@ const Tutorials = () => {
   const [isExploding, setIsExploding] = useState(false);
 
   return (
-    <div
-      style={{ 
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "3rem",
-        padding: "0 0.5rem 10rem 0.5rem", 
-      }}
-    >
+    <TutorialVideoContainer>
       <TutorialVideoSection>
         <Heading>Welcome to the Tutorial Page!</Heading>
         {isExploding && (
@@ -110,11 +102,19 @@ const Tutorials = () => {
           <a href="mailto:support@0xkyc.id">our support team</a>.
         </InfoText>
       </TutorialVideoSection>
-    </div>
+    </TutorialVideoContainer>
   );
 };
 
 export default Tutorials;
+
+const TutorialVideoContainer = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        marginTop: 3rem;
+        padding: 0 0.5rem 10rem 0.5rem;
+`
 
 const TutorialVideoSection = styled.div`
   text-align: center;
