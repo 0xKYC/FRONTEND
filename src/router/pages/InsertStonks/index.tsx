@@ -78,7 +78,7 @@ const Text = styled.p`
   font-size: 1.5rem;
 `;
 
-const InfoText = styled.p`
+export const InfoText = styled.p`
   margin-top: 3rem;
   font-size: 1.3rem;
 
