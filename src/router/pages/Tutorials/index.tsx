@@ -1,12 +1,16 @@
 import { useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
-import ReactPlayer from "react-player/youtube";
-
 import { Divider } from "antd";
-
 import { Heading } from "modules/verification/styles";
-import styled from "styled-components";
-
+import { 
+  TutorialLayoutContainer,
+  TutorialVideoSection,
+  TutorialVideoNav,
+  TutorialVideoContainer,
+  VideoLayout,
+  Title,
+  VideoFrame
+} from "./style";
 import { InfoText } from "../InsertStonks";
 
 const text = "Description of the video";
@@ -41,7 +45,7 @@ const Tutorials = () => {
   const [isExploding, setIsExploding] = useState(false);
 
   return (
-    <TutorialVideoContainer>
+    <TutorialLayoutContainer>
       <TutorialVideoSection>
         <Heading>Welcome to the Tutorial Page!</Heading>
         {isExploding && (
@@ -51,12 +55,11 @@ const Tutorials = () => {
             height="100vh"
           />
         )}
-        <div
-          style={{ display: "flex", flexDirection: "column", marginTop: "1rem" }}
-        >
+        <TutorialVideoNav>
           {videos.map((video, idx) => {
             return (
               <p
+                key={idx}
                 onClick={() => handleClickScroll(`section-${idx}`)}
                 style={{ cursor: "pointer", fontWeight: 400, fontSize: "1.1rem" }}
               >
@@ -64,36 +67,23 @@ const Tutorials = () => {
               </p>
             );
           })}
-        </div>
+        </TutorialVideoNav>
         <Divider />
         {videos.map((video, idx) => {
           return (
-            <div
+            <TutorialVideoContainer
+              key={idx}
               id={`section-${idx.toString()}`}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                gap: "1rem"
-              }}
             >
               <Title>{video.title}</Title>
               <p style={{ fontSize: "1.2rem" }}>{video.text}</p>
-              <div
-              style={{
-                position: "relative",
-                width: "100%",
-                //maintain aspect ratio of 16:9
-                paddingBottom: "56.25%" 
-              }}
-              >
+              <VideoLayout>
                 <VideoFrame 
                 src={video.videoSrc}
                 />
-              </div>
+              </VideoLayout>
               <Divider />
-            </div>
+            </TutorialVideoContainer>
           );
         })}
 
@@ -102,47 +92,8 @@ const Tutorials = () => {
           <a href="mailto:support@0xkyc.id">our support team</a>.
         </InfoText>
       </TutorialVideoSection>
-    </TutorialVideoContainer>
+    </TutorialLayoutContainer>
   );
 };
 
 export default Tutorials;
-
-const TutorialVideoContainer = styled.div`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        marginTop: 3rem;
-        padding: 0 0.5rem 10rem 0.5rem;
-`
-
-const TutorialVideoSection = styled.div`
-  text-align: center;
-  width: 100%;
-  padding: 0px 18px;
-
-  @media screen and (min-width: 768px){
-    max-width: 730px;
-  }
-`;
-
-const Title = styled.h3`
-  font-size: 1.7rem;
-  margin-bottom: 0;
-
-  @media screen and (min-width: 1200px) {
-    font-size: 1.9rem;
-    margin-top: 1.5rem;
-  }
-`;
-
-const VideoFrame = styled.iframe`
-  position: absolute;
-  top: 0;
-  right: 50%;
-  bottom: 50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-`;
