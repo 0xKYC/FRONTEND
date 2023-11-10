@@ -1,5 +1,3 @@
-import ReactPlayer from "react-player/youtube";
-
 import styled from "styled-components";
 
 import { Heading } from "../Services/styles";
@@ -11,13 +9,15 @@ export const VideoSection = ({
 }) => {
   return (
     <Wrapper>
+      <Heading style={{ textAlign: "center" }}>Watch our video!</Heading>
+
       <Box>
         <Content>
-          <Heading style={{ textAlign: "center" }}>{title}</Heading>
           <Flex>
-            <ReactPlayer
-              url="https://www.youtube.com/watch?v=QHm8tHxXlN4"
-              controls={true}
+            <VideoFrame
+              src="https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf418"
+              title="Sunscreen video"
+              allowFullScreen
             />
           </Flex>
         </Content>
@@ -25,11 +25,27 @@ export const VideoSection = ({
     </Wrapper>
   );
 };
+const VideoFrame = styled.iframe`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+`;
 
 const Flex = styled.div`
   display: flex;
   justify-content: center;
+  min-height: 30vh;
+
+  @media screen and (min-width: 600px) {
+    min-height: 50vh;
+  }
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
