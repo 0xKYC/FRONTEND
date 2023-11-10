@@ -1,24 +1,27 @@
 import { useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
-import { Divider } from "antd";
-import { Heading } from "modules/verification/styles";
-import { 
-  TutorialLayoutContainer,
-  TutorialVideoSection,
-  TutorialVideoNav,
-  TutorialVideoContainer,
-  VideoLayout,
-  Title,
-  VideoFrame
-} from "./style";
-import { InfoText } from "../InsertStonks";
 
-const text = "Description of the video";
+import { Divider } from "antd";
+
+import { Heading } from "modules/verification/styles";
+
+import { InfoText } from "../InsertStonks";
+import {
+  Title,
+  TutorialLayoutContainer,
+  TutorialVideoContainer,
+  TutorialVideoNav,
+  TutorialVideoSection,
+  VideoFrame,
+  VideoLayout,
+} from "./style";
+
 const videos = [
   {
     title: "How to use Sunscreen",
-    text,
-    videoSrc: "https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf4184",
+    text: "How to Get Verified Onchain with Sunscreen Flow",
+    videoSrc:
+      "https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf4184",
   },
   // {
   //   title: "How to do 0xKYC",
@@ -61,7 +64,11 @@ const Tutorials = () => {
               <p
                 key={idx}
                 onClick={() => handleClickScroll(`section-${idx}`)}
-                style={{ cursor: "pointer", fontWeight: 400, fontSize: "1.1rem" }}
+                style={{
+                  cursor: "pointer",
+                  fontWeight: 400,
+                  fontSize: "1.1rem",
+                }}
               >
                 {idx + 1}. {video.title}
               </p>
@@ -71,16 +78,11 @@ const Tutorials = () => {
         <Divider />
         {videos.map((video, idx) => {
           return (
-            <TutorialVideoContainer
-              key={idx}
-              id={`section-${idx.toString()}`}
-            >
+            <TutorialVideoContainer key={idx} id={`section-${idx.toString()}`}>
               <Title>{video.title}</Title>
               <p style={{ fontSize: "1.2rem" }}>{video.text}</p>
               <VideoLayout>
-                <VideoFrame 
-                src={video.videoSrc}
-                />
+                <VideoFrame src={video.videoSrc} />
               </VideoLayout>
               <Divider />
             </TutorialVideoContainer>

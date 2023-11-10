@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const TutorialLayoutContainer = styled("div")`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    marginTop: 3rem;
-    padding: 0 0.5rem 10rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 0.5rem 10rem 0.5rem;
 `;
 
 export const TutorialVideoSection = styled("div")`
@@ -13,14 +13,14 @@ export const TutorialVideoSection = styled("div")`
   width: 100%;
   padding: 0px 18px;
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     max-width: 730px;
   }
 `;
 
 export const TutorialVideoNav = styled("div")`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   margin-top: 1rem;
 `;
 
@@ -36,7 +36,7 @@ export const VideoLayout = styled("div")`
   position: relative;
   width: 100%;
   //maintain aspect ratio of 16:9
-  padding-bottom: 56.25%; 
+  padding-bottom: 56.25%;
 `;
 
 export const Title = styled("h3")`

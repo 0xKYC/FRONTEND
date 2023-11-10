@@ -62,19 +62,9 @@ const Footer = ({ t }: any) => {
               <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
               </Large>
-              {/* <Large left="true" to="/tutorials">
+              <Large left="true" to="/tutorials">
                 {t("Tutorials")}
-                
-              </Large> */}
-              {/* <Large> */}
-              <StyledLink
-                href="http://localhost:3000/tutorials"
-                // target="_blank"
-                // rel="noreferrer"
-              >
-                {t("Tutorials")}
-              </StyledLink>
-              {/* </Large> */}
+              </Large>
             </Col>
           </Row>
         </Container>
