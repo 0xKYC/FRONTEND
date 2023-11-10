@@ -21,7 +21,7 @@ const DiscordBot = () => {
           <RedirectDiscordLink
             target="_blank"
             rel="noopener noreferrer"
-            href={ENV.REACT_APP_DISCORD_BOT_URL}
+            href={ENV.REACT_APP_DISCORD_BOT_INVITATION_URL}
           >
             Invite Sunscreen Bot
           </RedirectDiscordLink>

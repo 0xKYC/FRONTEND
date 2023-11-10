@@ -5,6 +5,7 @@ import { useAccount } from "wagmi";
 
 import { Services } from "modules/verification/components/Services";
 
+import { BotInvitationSection } from "./components/BotInvitationSection";
 import { ConnectionOptions } from "./components/ConnectionOptions";
 import { FlowSelection } from "./components/FlowSelection";
 import { VideoSection } from "./components/VideoSection";
@@ -24,9 +25,9 @@ const HomePage = () => {
       <Fade direction="right">
         {isConnected ? <FlowSelection /> : <ConnectionOptions />}
       </Fade>
+      <BotInvitationSection />
 
       {!isConnected && <Services />}
-
       <VideoSection />
     </SectionWrapper>
   );
