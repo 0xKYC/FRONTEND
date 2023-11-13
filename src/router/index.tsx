@@ -15,6 +15,7 @@ import RedirectRoute from "./RedirectRoute";
 import {
   About,
   BlackListError,
+  DiscordBot,
   DiscordVerification,
   Error,
   Home,
@@ -27,6 +28,7 @@ import {
   Sunscreen,
   SunscreenWeb3,
   TermsOfService,
+  Tutorials,
   Wave,
 } from "./lazyLoadPages";
 
@@ -147,10 +149,12 @@ export const Router = () => {
               path="/discord-verification"
             />
             {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
+            <Route element={<DiscordBot />} path="/discord-bot" />
 
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<Tutorials />} path="/tutorials" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
             <Route element={<Error />} path="/error" />
             <Route element={<BlackListError />} path="/verification-error" />

@@ -16,6 +16,7 @@ const envVariables = z.object({
   REACT_APP_POLYGON_ALCHEMY_URL: z.string().min(1),
   REACT_APP_WALLET_CONNECT_ID: z.string().min(1),
   REACT_APP_DISCORD_OAUTH_URL: z.string().min(1),
+  REACT_APP_DISCORD_BOT_INVITATION_URL: z.string().min(1),
 });
 
 export const ENV = envVariables.parse(process.env);
