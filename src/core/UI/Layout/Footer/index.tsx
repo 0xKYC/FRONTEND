@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
 import Container from "core/UI/Container";
+import { useGetCurrentFlow } from "core/hooks/useGetCurrentFlow";
 
 import { SocialLink } from "./SocialLink";
 import {
@@ -19,6 +20,7 @@ import {
 } from "./styles";
 
 const Footer = ({ t }: any) => {
+  const { isSunscreenFlow } = useGetCurrentFlow();
   return (
     <>
       <FooterSection>
@@ -79,7 +81,15 @@ const Footer = ({ t }: any) => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <img src="/img/sunscreen-logo.png" alt="logo" height="85px" />
+                <img
+                  src={
+                    isSunscreenFlow
+                      ? "/img/sunscreen-logo-crop.png"
+                      : "/img/icons/new-logo.png"
+                  }
+                  alt="logo"
+                  height="44px"
+                />
               </LogoContainer>
             </NavLink>
             <FooterContainer>
