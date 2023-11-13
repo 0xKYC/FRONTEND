@@ -35,6 +35,11 @@ export const useDiscordVerification = () => {
       return navigate("/sunscreen");
     }
 
+    if (user?.discordAccount.isVerified) {
+      setSuccess(true);
+      navigate("/sunscreen");
+    }
+
     if (apiCalls < apiRequestsToCall) {
       const interval = setInterval(async () => {
         try {
