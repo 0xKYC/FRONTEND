@@ -64,6 +64,9 @@ const Footer = ({ t }: any) => {
               <Large left="true" to="/terms-of-service">
                 {t("Terms of Service")}
               </Large>
+              <Large left="true" to="/tutorials">
+                {t("Tutorials")}
+              </Large>
             </Col>
           </Row>
         </Container>

@@ -1,6 +1,11 @@
 import { matchRoutes, useLocation } from "react-router-dom";
 
-const routes = [{ path: "/sunscreen/*" }, { path: "/discord-servers" }];
+const routes = [
+  { path: "/sunscreen/*" },
+  { path: "/discord-servers" },
+  { path: "/discord-verification" },
+  { path: "/discord-bot" },
+];
 
 export const useCurrentPath = () => {
   const location = useLocation();

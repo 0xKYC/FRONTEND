@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom";
+
 import { StyledRedirectLink } from "modules/profile/Web3/components/VerifiedCard/styles";
 import styled from "styled-components";
 
 export const Box = styled("div")`
   display: flex;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
 `;
 export const Heading = styled.h2`
   font-size: 1.8rem;
@@ -60,5 +69,47 @@ export const RedirectDiscordLink = styled(StyledRedirectLink)`
     border: 1px solid rgb(88, 101, 290);
     border: 1px solid #5865f2;
     background-color: #5865f2;
+  }
+`;
+
+export const RedirectDiscordLinkSecondary = styled(StyledRedirectLink)`
+  background-color: white;
+
+  border: 1px solid #5865f2;
+  box-shadow: 0 16px 30px rgb(23 31 114 / 20%);
+  color: #232960;
+  &:hover,
+  &:active,
+  &:focus {
+    color: #232960;
+    border: 1px solid #4352f0;
+    background-color: white;
+  }
+`;
+
+export const RedirectDiscordLinkReact = styled(Link)`
+  background-color: white;
+
+  border: 1px solid #5865f2;
+  box-shadow: 0 16px 30px rgb(23 31 114 / 20%);
+  color: #232960;
+
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+  border-radius: 4px;
+  padding: 13px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #232960;
+    border: 1px solid #4352f0;
+    background-color: white;
   }
 `;

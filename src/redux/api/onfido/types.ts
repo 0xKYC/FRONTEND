@@ -26,8 +26,9 @@ type Address = {
 
 export type OnfidoRedirectData = {
   applicantId: string;
-  walletAddress: string;
-  chainId: ChainId;
+  discordId?: string;
+  walletAddress?: string;
+  chainId?: ChainId;
   redirectUrl?: string | null;
   callbackUrl?: string | null;
   email?: string;

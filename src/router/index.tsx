@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
+import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
-// import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
@@ -15,6 +15,8 @@ import RedirectRoute from "./RedirectRoute";
 import {
   About,
   BlackListError,
+  DiscordBot,
+  DiscordVerification,
   Error,
   Home,
   HomeWithoutWalletConnection,
@@ -23,9 +25,10 @@ import {
   PrivacyPolicy,
   Profile,
   SanctionsCheck,
+  Sunscreen,
   SunscreenWeb3,
   TermsOfService,
-  ThirdParties,
+  Tutorials,
   Wave,
 } from "./lazyLoadPages";
 
@@ -39,7 +42,7 @@ export const Router = () => {
     flow,
   } = useAuth();
   useScrollToTop();
-  // const { data } = useGetDiscordUserQuery();
+  const { data } = useGetDiscordUserQuery();
 
   return (
     <>
@@ -56,14 +59,14 @@ export const Router = () => {
                   connected={isConnected}
                   minting={isMintingActive}
                   // flow={flow}
-                  // discordConnected={Boolean(data)}
+                  discordConnected={Boolean(data)}
                 >
                   <Home isLoading={isLoading} />
                 </RedirectRoute>
               }
               path="/"
             />
-            {/* <Route
+            <Route
               element={
                 <RedirectRoute
                   verified={verified}
@@ -74,7 +77,7 @@ export const Router = () => {
                 </RedirectRoute>
               }
               path="/sunscreen/*"
-            /> */}
+            />
             <Route
               element={
                 <RedirectRoute
@@ -141,13 +144,18 @@ export const Router = () => {
               }
               path="/mint"
             />
+            <Route
+              element={<DiscordVerification />}
+              path="/discord-verification"
+            />
             {/* <Route element={<DiscordServers />} path="/discord-servers" /> */}
+            <Route element={<DiscordBot />} path="/discord-bot" />
 
             <Route element={<About />} path="/about" />
             <Route element={<InsertStonks />} path="/insert-stonks" />
             <Route element={<TermsOfService />} path="/terms-of-service" />
+            <Route element={<Tutorials />} path="/tutorials" />
             <Route element={<PrivacyPolicy />} path="/privacy-policy" />
-            <Route element={<ThirdParties />} path="/third-parties" />
             <Route element={<Error />} path="/error" />
             <Route element={<BlackListError />} path="/verification-error" />
           </Routes>
