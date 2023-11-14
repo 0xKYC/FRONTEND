@@ -31,6 +31,14 @@ export const servicesData = [
     biggerImg: true,
   },
   {
+    title: "Sunscreen Bot",
+    description:
+      "Get rid of bots and duplicate accounts with Sunscreen Discord Bot",
+    tags: ["Sunscreen"],
+    href: "/discord-bot",
+    img: "/img/sunscreen-black.png",
+  },
+  {
     title: "Aragon OSx",
     description: "DAO creation and management platform with no coding required",
     tags: ["0xKYC", "Sunscreen"],
@@ -38,6 +46,7 @@ export const servicesData = [
     img: "/img/aragon-bg.png",
     redirect: true,
   },
+
   // {
   //   title: "0xKYC Discord",
   //   description:
