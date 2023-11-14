@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
+import { Main } from "../styles/styles";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
 import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
@@ -49,7 +50,7 @@ export const Router = () => {
       <Styles />
       <Header />
       <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
-        <div className="wave_container">
+        <Main>
           <Routes>
             <Route
               element={
@@ -159,8 +160,7 @@ export const Router = () => {
             <Route element={<Error />} path="/error" />
             <Route element={<BlackListError />} path="/verification-error" />
           </Routes>
-          <Wave />
-        </div>
+        </Main>
         <CookieBanner />
         <Footer />
       </Suspense>

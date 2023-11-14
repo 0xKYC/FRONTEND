@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
+export const FooterMainContainer = styled("div")`
+  bottom: 0;
+  width: 100%;
+`;
+
 export const FooterSection = styled("footer")`
   background: rgb(241, 242, 243);
   padding: 2.5rem 0;
