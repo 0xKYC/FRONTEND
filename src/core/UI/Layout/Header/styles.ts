@@ -36,12 +36,14 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-grow: 1;
   @media screen and (max-width: 890px) {
     flex-direction: column;
   }
 `;
 export const HeaderSection = styled("header")`
   padding: 1rem 0.5rem;
+  flex-grow: 1;
 
   .ant-row-space-between {
     align-items: center;

@@ -23,6 +23,13 @@ export const Styles = createGlobalStyle`
         font-family: 'Motiva Sans Light', sans-serif;
     }
 
+    #root > div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+    }
+
 
     body {
         margin:0;
@@ -260,5 +267,5 @@ export const Styles = createGlobalStyle`
 `;
 
 export const Main = styled("div")`
-    min-height: 100vh;
+    flex-grow: 2;
 `;
