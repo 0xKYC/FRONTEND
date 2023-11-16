@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const FooterMainContainer = styled("div")`
-  bottom: 0;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  flex-grow: 1;
+  justify-content: flex-end;
 `;
 
 export const FooterSection = styled("footer")`
