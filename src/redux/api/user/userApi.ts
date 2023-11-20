@@ -37,11 +37,11 @@ export const userApi = createApi({
       query: () => `discord/auth/me`,
       providesTags: ["user"],
     }),
-    authDiscord: builder.mutation<string, { code: string }>({
-      query: (code) => ({
+    authDiscord: builder.mutation<string, DiscordPayload>({
+      query: (body) => ({
         method: "POST",
         url: `discord/auth/redirect`,
-        body: code,
+        body: body,
       }),
       invalidatesTags: ["user"],
     }),
@@ -66,6 +66,11 @@ export const userApi = createApi({
 type TosPayload = {
   signature: string;
   tosVersion: string;
+};
+
+type DiscordPayload = {
+  code: string;
+  guildId: string | null;
 };
 export const {
   useGetUserWalletQuery,
