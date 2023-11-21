@@ -3,13 +3,13 @@ import { Route, Routes } from "react-router-dom";
 
 import { CookieBanner } from "core/UI/CookieBanner";
 import { Header } from "core/UI/Layout/Header";
-import { Main } from "../styles/styles";
 import { useScrollToTop } from "core/hooks/useScrollToTop";
 import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
+import { Main } from "../styles/styles";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
@@ -30,7 +30,6 @@ import {
   SunscreenWeb3,
   TermsOfService,
   Tutorials,
-  Wave,
 } from "./lazyLoadPages";
 
 export const Router = () => {
