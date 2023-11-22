@@ -9,6 +9,7 @@ import { Button } from "core/UI/Button";
 import { InformationCard } from "core/UI/InformationCard/InformationCard";
 import { TosModalNormal } from "core/UI/Modals/TosModal/NormalSign";
 import { LoadingCircle } from "core/UI/Spinner";
+import { SUNSCREEN_CHECK_TUTORIAL } from "core/constans/links";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { useAppDispatch } from "redux/hooks";
 
@@ -122,6 +123,7 @@ const VerificationProcess = ({
           }
           title="Watch quick tutorial!"
         />
+
       </Fade>
     </CustomSectionWrapper>
   );
