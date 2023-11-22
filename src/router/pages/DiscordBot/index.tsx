@@ -1,7 +1,7 @@
 import { ENV } from "env";
 
 import Container from "core/UI/Container";
-import { PROMOTION_VIDEO } from "core/constans/links";
+import { ADD_DISCORD_BOT_VIDEO } from "core/constans/links";
 import {
   RedirectDiscordLink,
   RedirectDiscordLinkSecondary,
@@ -35,7 +35,7 @@ const DiscordBot = () => {
           </RedirectDiscordLinkSecondary>
         </LinksWrapper>
 
-        <VideoSection title="How to implement" src={PROMOTION_VIDEO} />
+        <VideoSection title="How to implement" src={ADD_DISCORD_BOT_VIDEO} />
       </SectionWrapper>
     </Container>
   );
