@@ -27,6 +27,9 @@ export type User = {
   mockedWalletAddress: string | null;
   callbackUrl: string | null;
   apiKey: string | null;
+
+  // discord
+  guildId: string | null;
 };
 
 const initialState: User = {
@@ -44,6 +47,7 @@ const initialState: User = {
   redirectUrl: null,
   callbackUrl: null,
   apiKey: null,
+  guildId: null,
 };
 
 export const userSlice = createSlice({
@@ -98,6 +102,9 @@ export const userSlice = createSlice({
     setFlow: (state, action: PayloadAction<Flow>) => {
       state.flow = action.payload;
     },
+    setGuildId: (state, action: PayloadAction<string>) => {
+      state.guildId = action.payload;
+    },
   },
 });
 
@@ -112,6 +119,7 @@ export const {
   setApiKey,
   setEmail,
   setFlow,
+  setGuildId,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -136,3 +144,4 @@ export const selectMintingWallet = (state: RootState) =>
 export const selectApiKey = (state: RootState) => state.user.apiKey;
 export const selectEmail = (state: RootState) => state.user.email;
 export const selectUserFlow = (state: RootState) => state.user.flow;
+export const selectGuildId = (state: RootState) => state.user.guildId;

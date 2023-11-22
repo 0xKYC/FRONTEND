@@ -9,6 +9,7 @@ import { useGetDiscordUserQuery } from "redux/api/user/userApi";
 import Footer from "../core/UI/Layout/Footer";
 import { LoadingSpinner } from "../core/UI/LoadingSpinner";
 import { useAuth } from "../core/hooks/useAuth";
+import { Main } from "../styles/styles";
 import { Styles } from "../styles/styles";
 import ProtectedRoute from "./ProtectedRoute";
 import RedirectRoute from "./RedirectRoute";
@@ -29,7 +30,6 @@ import {
   SunscreenWeb3,
   TermsOfService,
   Tutorials,
-  Wave,
 } from "./lazyLoadPages";
 
 export const Router = () => {
@@ -49,7 +49,7 @@ export const Router = () => {
       <Styles />
       <Header />
       <Suspense fallback={<LoadingSpinner tip="Loading..." height="90vh" />}>
-        <div className="wave_container">
+        <Main>
           <Routes>
             <Route
               element={
@@ -159,8 +159,7 @@ export const Router = () => {
             <Route element={<Error />} path="/error" />
             <Route element={<BlackListError />} path="/verification-error" />
           </Routes>
-          <Wave />
-        </div>
+        </Main>
         <CookieBanner />
         <Footer />
       </Suspense>
