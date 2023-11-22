@@ -34,6 +34,7 @@ const HomePage = () => {
       )}
       <VideoSection
         src={isConnected ? SUNSCREEN_CHECK_TUTORIAL : PROMOTION_VIDEO}
+        title={isConnected ? "Watch quick tutorial!" : "Watch our video!"}
       />
     </SectionWrapper>
   );
