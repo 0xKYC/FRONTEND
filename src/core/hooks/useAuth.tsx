@@ -91,6 +91,7 @@ export const useAuth = () => {
           .unwrap()
           .catch(async (error: UserNotFoundError) => {
             if (error.status === 404) {
+              saveTosToLocalStorage(false);
               dispatch(signTosAction(false));
               dispatch(addApplicantId(null));
             }

@@ -15,6 +15,7 @@ import { useAppDispatch } from "redux/hooks";
 import { CommonSection } from "../components/CommonSection";
 import { EmailForm } from "../components/EmailForm";
 import { GoBackArrow } from "../components/GoBackArrow";
+import { VideoSection } from "../components/VideoSection";
 import { useHandleOnfidoRedirect } from "../hooks/useHandleOnfidoRedirect";
 import { HomePageProps } from "../types";
 import { CustomSectionWrapper } from "./styles";
@@ -60,7 +61,11 @@ const VerificationProcess = ({
     <CustomSectionWrapper>
       {!tosAccepted && <TosModalNormal />}
       <Fade>
-        <Row justify="space-around" align="middle">
+        <Row
+          justify="space-around"
+          align="middle"
+          style={{ marginBottom: "8rem" }}
+        >
           <Col lg={11} md={11} sm={24} xs={24}>
             {!isConnected && (
               <CommonSection header={title} contentText={content}>
@@ -104,6 +109,8 @@ const VerificationProcess = ({
             <InformationCard isUniquenessFlow={uniqueness} />
           </Col>
         </Row>
+
+        <VideoSection />
       </Fade>
     </CustomSectionWrapper>
   );
