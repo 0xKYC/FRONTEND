@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 
 import { useAccount } from "wagmi";
 
+import { PROMOTION_VIDEO, SUNSCREEN_CHECK_TUTORIAL } from "core/constans/links";
 import { Services } from "modules/verification/components/Services";
 
 import { BotInvitationSection } from "./components/BotInvitationSection";
@@ -25,10 +26,15 @@ const HomePage = () => {
       <Fade direction="right">
         {isConnected ? <FlowSelection /> : <ConnectionOptions />}
       </Fade>
-      <BotInvitationSection />
-
-      {!isConnected && <Services />}
-      <VideoSection />
+      {!isConnected && (
+        <>
+          <BotInvitationSection />
+          <Services />
+        </>
+      )}
+      <VideoSection
+        src={isConnected ? SUNSCREEN_CHECK_TUTORIAL : PROMOTION_VIDEO}
+      />
     </SectionWrapper>
   );
 };

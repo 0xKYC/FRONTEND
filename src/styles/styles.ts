@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 export const Styles = createGlobalStyle`
 
@@ -16,11 +17,17 @@ export const Styles = createGlobalStyle`
         font-display: block
     }
 
-
     body,
     html,
     a {
         font-family: 'Motiva Sans Light', sans-serif;
+    }
+
+    #root > div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
     }
 
 
@@ -227,8 +234,6 @@ export const Styles = createGlobalStyle`
     margin-bottom: .7rem;
 }
 .wave {
-    margin-top: 10rem;
-    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -238,7 +243,6 @@ export const Styles = createGlobalStyle`
 }
 
 .wave svg {
-    position: relative;
     display: block;
     width: calc(100% + 1.3px);
     height: 108px;
@@ -249,8 +253,7 @@ export const Styles = createGlobalStyle`
 }
 
 .wave_container{
-    position:relative;
-    
+    min-height: 100vh;
 }
 
 .ant-modal-footer .ant-btn {
@@ -261,5 +264,8 @@ export const Styles = createGlobalStyle`
     height: 100%;
 }
 
+`;
 
+export const Main = styled("div")`
+    flex-grow: 2;
 `;
