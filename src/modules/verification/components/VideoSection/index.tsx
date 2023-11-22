@@ -14,7 +14,7 @@ export const VideoSection = ({ title = "Watch our video!", src }: Props) => {
       <Box>
         <Content>
           <Flex>
-            <VideoFrame src={src} title="Sunscreen video" allowFullScreen />
+            <VideoFrame src={src} title={title} allowFullScreen />
           </Flex>
         </Content>
       </Box>

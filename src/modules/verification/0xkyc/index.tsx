@@ -13,6 +13,10 @@ import { SUNSCREEN_CHECK_TUTORIAL } from "core/constans/links";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { useAppDispatch } from "redux/hooks";
 
+import {
+  SANCTIONS_CHECK_TUTORIAL,
+  SUNSCREEN_CHECK_TUTORIAL,
+} from "../../../core/constans/links";
 import { CommonSection } from "../components/CommonSection";
 import { EmailForm } from "../components/EmailForm";
 import { GoBackArrow } from "../components/GoBackArrow";
@@ -111,7 +115,15 @@ const VerificationProcess = ({
           </Col>
         </Row>
 
-        <VideoSection src={SUNSCREEN_CHECK_TUTORIAL} />
+        <VideoSection
+          src={
+            flow === "sanctionsCheck"
+              ? SANCTIONS_CHECK_TUTORIAL
+              : SUNSCREEN_CHECK_TUTORIAL
+          }
+          title="Watch quick tutorial!"
+        />
+
       </Fade>
     </CustomSectionWrapper>
   );
