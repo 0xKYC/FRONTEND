@@ -12,6 +12,7 @@ import { LoadingCircle } from "core/UI/Spinner";
 import { toggleConnectorsModal } from "redux/features/connection/connectionSlice";
 import { useAppDispatch } from "redux/hooks";
 
+import { SUNSCREEN_CHECK_TUTORIAL } from "../../../core/constans/links";
 import { CommonSection } from "../components/CommonSection";
 import { EmailForm } from "../components/EmailForm";
 import { GoBackArrow } from "../components/GoBackArrow";
@@ -110,7 +111,7 @@ const VerificationProcess = ({
           </Col>
         </Row>
 
-        <VideoSection />
+        <VideoSection src={SUNSCREEN_CHECK_TUTORIAL} />
       </Fade>
     </CustomSectionWrapper>
   );
