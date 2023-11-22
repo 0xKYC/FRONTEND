@@ -3,6 +3,11 @@ import ConfettiExplosion from "react-confetti-explosion";
 
 import { Divider } from "antd";
 
+import {
+  ADD_DISCORD_BOT_VIDEO,
+  SANCTIONS_CHECK_TUTORIAL,
+  SUNSCREEN_CHECK_TUTORIAL,
+} from "core/constans/links";
 import { Heading } from "modules/verification/styles";
 
 import { InfoText } from "../InsertStonks";
@@ -18,10 +23,19 @@ import {
 
 const videos = [
   {
-    title: "How to use Sunscreen",
+    title: "How to add Sunscreen Discord Bot",
+    text: "How to add our Discord Bot to your server",
+    videoSrc: ADD_DISCORD_BOT_VIDEO,
+  },
+  {
+    title: "How to use Sunscreen Verification",
     text: "How to Get Verified Onchain with Sunscreen Flow",
-    videoSrc:
-      "https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf4184",
+    videoSrc: SUNSCREEN_CHECK_TUTORIAL,
+  },
+  {
+    title: "How to use 0xKYC Verification",
+    text: "How to Get Verified Onchain with 0xKYC Flow",
+    videoSrc: SANCTIONS_CHECK_TUTORIAL,
   },
   // {
   //   title: "How to do 0xKYC",
