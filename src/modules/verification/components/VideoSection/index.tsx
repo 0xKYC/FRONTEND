@@ -2,23 +2,19 @@ import styled from "styled-components";
 
 import { Heading } from "../Services/styles";
 
-export const VideoSection = ({
-  title = "Watch our video!",
-}: {
+type Props = {
+  src: string;
   title?: string;
-}) => {
+};
+export const VideoSection = ({ title = "Watch our video!", src }: Props) => {
   return (
     <Wrapper>
-      <Heading style={{ textAlign: "center" }}>Watch our video!</Heading>
+      <Heading style={{ textAlign: "center" }}>{title}</Heading>
 
       <Box>
         <Content>
           <Flex>
-            <VideoFrame
-              src="https://www.loom.com/embed/5f260f8fcdd44461a1f61117f7ea1e8e?sid=0a148de9-78e3-4a5d-957d-73e3289cf418"
-              title="Sunscreen video"
-              allowFullScreen
-            />
+            <VideoFrame src={src} title="Sunscreen video" allowFullScreen />
           </Flex>
         </Content>
       </Box>

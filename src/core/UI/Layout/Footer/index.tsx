@@ -1,14 +1,13 @@
 import { withTranslation } from "react-i18next";
-
 import { Col, Row } from "antd";
-
 import Container from "core/UI/Container";
 import { useGetCurrentFlow } from "core/hooks/useGetCurrentFlow";
-
 import { SocialLink } from "./SocialLink";
+import FooterWave from "./FooterWave";
 import {
   Chat,
   Extra,
+  FooterMainContainer,
   FooterContainer,
   FooterSection,
   Large,
@@ -22,7 +21,8 @@ import {
 const Footer = ({ t }: any) => {
   const { isSunscreenFlow } = useGetCurrentFlow();
   return (
-    <>
+    <FooterMainContainer>
+      <FooterWave />
       <FooterSection>
         <Container padding={true}>
           <Row justify="end">
@@ -114,7 +114,7 @@ const Footer = ({ t }: any) => {
           </Row>
         </Container>
       </Extra>
-    </>
+    </FooterMainContainer>
   );
 };
 

@@ -10,26 +10,38 @@ import {
   useAuthDiscordMutation,
   useGetDiscordUserQuery,
 } from "redux/api/user/userApi";
+import { selectGuildId, setGuildId } from "redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 const SunscreenPage = lazy(
   () => import("../../../modules/verification/sunscreen"),
 );
 const Sunscreen = () => {
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+
   const code = searchParams.get("code");
+  const guildIdFromUrl = searchParams.get("guildId");
+
+  const guildId = useAppSelector(selectGuildId);
 
   const { data, isLoading } = useGetDiscordUserQuery();
   const [auth] = useAuthDiscordMutation();
-
   const [called, setCalled] = useState(false);
+
+  useEffect(() => {
+    if (guildIdFromUrl) {
+      dispatch(setGuildId(guildIdFromUrl));
+    }
+  }, [guildIdFromUrl, dispatch]);
+
   useEffect(() => {
     if (code && !called && !isLoading && !data) {
-      const result = auth({ code }).unwrap();
-      console.log(result);
+      auth({ code, guildId }).unwrap();
       setCalled(true);
     }
-  }, [auth, called, code, data, isLoading]);
+  }, [auth, called, code, data, isLoading, guildId]);
 
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
   return (
