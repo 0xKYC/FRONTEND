@@ -34,6 +34,7 @@ export const Logo = () => {
             alt="logo"
             width="180px"
             height="54px"
+            style={{ display: isMobile ? "none" : "block" }}
           />
           <MobileImage
             src="/img/icons/0xkyc-icon.png"
