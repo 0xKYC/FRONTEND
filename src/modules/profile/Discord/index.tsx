@@ -31,8 +31,8 @@ export const DiscordProfilePage = () => {
           order={isMobile ? 2 : 3}
           flex="auto"
           >
-            <Instructions />
             <BotInvitationSection />
+            <Instructions />
           </Col>
           <Col 
           order={isMobile ? 3 : 2}
