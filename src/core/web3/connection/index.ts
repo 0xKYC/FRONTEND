@@ -1,6 +1,5 @@
-import { configureChains, createClient } from "wagmi";
+import { configureChains, createConfig } from "wagmi";
 
-import { EthereumClient } from "@web3modal/ethereum";
 import { bsc, bscTestnet, polygon, polygonMumbai, sepolia } from "wagmi/chains";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
@@ -9,9 +8,9 @@ import { publicProvider } from "wagmi/providers/public";
 import { ENV } from "../../../env";
 import { IS_MAINNET, scrollSepolia } from "../../constans/chains";
 
-export const projectId = ENV.REACT_APP_WALLET_CONNECT_ID;
+export const projectId = ENV.VITE_APP_WALLET_CONNECT_ID;
 
-const chains = [
+const chainsArray = [
   polygon,
   sepolia,
   polygonMumbai,
@@ -22,11 +21,13 @@ const chains = [
 
 const testnetChains = [polygonMumbai, sepolia, scrollSepolia, bscTestnet];
 
-export const properChains = IS_MAINNET ? chains : testnetChains;
+export const properChains = IS_MAINNET ? chainsArray : testnetChains;
 
-const { provider } = configureChains(properChains, [publicProvider()]);
+const { chains, publicClient } = configureChains(properChains, [
+  publicProvider(),
+]);
 
-export const wagmiClient = createClient({
+export const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains: properChains }),
@@ -39,7 +40,7 @@ export const wagmiClient = createClient({
     }),
   ],
 
-  provider,
+  publicClient,
 });
 
-export const ethereumClient = new EthereumClient(wagmiClient, chains);
+

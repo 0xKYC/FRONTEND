@@ -9,7 +9,7 @@ export const getRedirectUrl = (): string => {
     prod: "https://app.0xkyc.id/",
   };
   const redirectUrl: string =
-    redirectUrls[ENV.REACT_APP_ENVIRONMENT] || redirectUrls.dev;
+    redirectUrls[ENV.VITE_APP_ENVIRONMENT] || redirectUrls.dev;
 
   return redirectUrl;
 };

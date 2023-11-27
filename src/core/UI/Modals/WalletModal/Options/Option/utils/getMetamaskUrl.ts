@@ -10,7 +10,7 @@ export const getMetamaskUrl = () => {
     prod: "app.0xkyc.id",
   };
 
-  const dappUrl = environments[ENV.REACT_APP_ENVIRONMENT] || environments.prod;
+  const dappUrl = environments[ENV.VITE_APP_ENVIRONMENT] || environments.prod;
   const metamaskAppLink = metamaskUrl + dappUrl;
 
   return metamaskAppLink;

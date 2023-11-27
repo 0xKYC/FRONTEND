@@ -1,14 +1,15 @@
-import { withTranslation } from "react-i18next";
 import { Col, Row } from "antd";
+
 import Container from "core/UI/Container";
 import { useGetCurrentFlow } from "core/hooks/useGetCurrentFlow";
-import { SocialLink } from "./SocialLink";
+
 import FooterWave from "./FooterWave";
+import { SocialLink } from "./SocialLink";
 import {
   Chat,
   Extra,
-  FooterMainContainer,
   FooterContainer,
+  FooterMainContainer,
   FooterSection,
   Large,
   LogoContainer,
@@ -18,7 +19,7 @@ import {
   Title,
 } from "./styles";
 
-const Footer = ({ t }: any) => {
+const Footer = () => {
   const { isSunscreenFlow } = useGetCurrentFlow();
   return (
     <FooterMainContainer>
@@ -27,17 +28,17 @@ const Footer = ({ t }: any) => {
         <Container padding={true}>
           <Row justify="end">
             <Col lg={7} md={7} sm={24} xs={24}>
-              <Title>{t("Contact")}</Title>
-              <Para>{t(`Do you have any questions?`)}</Para>
+              <Title>Contact</Title>
+              <Para>{`Do you have any questions?`}</Para>
 
               <a href="mailto:support@0xkyc.id">
-                <Chat>{t(`Send Us an Email`)}</Chat>
+                <Chat> {`Send Us an Email`}</Chat>
               </a>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
-              <Title>{t("Company")}</Title>
+              <Title>Company</Title>
               <Large left="true" to="/about">
-                {t("About Us")}
+                About Us
               </Large>
 
               <StyledLink
@@ -45,7 +46,7 @@ const Footer = ({ t }: any) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                {t("Pricing")} &#8618;
+                Pricing &#8618;
               </StyledLink>
 
               <StyledLink
@@ -53,19 +54,19 @@ const Footer = ({ t }: any) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                {t("Documentation")} &#8618;
+                Documentation &#8618;
               </StyledLink>
             </Col>
             <Col lg={7} md={7} sm={24} xs={24}>
-              <Title>{t("Legal")}</Title>
+              <Title>Legal</Title>
               <Large left="true" to="/privacy-policy">
-                {t("Privacy Policy")}
+                Privacy Policy
               </Large>
               <Large left="true" to="/terms-of-service">
-                {t("Terms of Service")}
+                Terms of Service
               </Large>
               <Large left="true" to="/tutorials">
-                {t("Tutorials")}
+                Tutorials
               </Large>
             </Col>
           </Row>
@@ -118,4 +119,4 @@ const Footer = ({ t }: any) => {
   );
 };
 
-export default withTranslation()(Footer);
+export default Footer;

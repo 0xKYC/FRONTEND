@@ -204,7 +204,7 @@ export const ChainSelectionMenu = () => {
           open={isDropdownOpen}
         >
           <StyledButton
-            isOpen={isDropdownOpen}
+            isopen={isDropdownOpen ? isDropdownOpen : undefined}
             icon={<img width={20} height={20} src={logoUrl} alt={label} />}
           >
             <StyledLabel>{label}</StyledLabel>

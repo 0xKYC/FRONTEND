@@ -17,7 +17,7 @@ export const ConnectionOptions = () => {
   };
 
   const handleDiscordConnect = () => {
-    window.location.href = ENV.REACT_APP_DISCORD_OAUTH_URL;
+    window.location.href = ENV.VITE_APP_DISCORD_OAUTH_URL;
   };
   return (
     <CardsWrapper

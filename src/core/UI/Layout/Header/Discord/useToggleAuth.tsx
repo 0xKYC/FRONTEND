@@ -19,7 +19,7 @@ export const useToggleAuth = (data: DiscordUserObject | undefined) => {
         console.error(error);
       }
     } else {
-      window.location.href = ENV.REACT_APP_DISCORD_OAUTH_URL;
+      window.location.href = ENV.VITE_APP_DISCORD_OAUTH_URL;
     }
   };
   return { toggleAuth };
