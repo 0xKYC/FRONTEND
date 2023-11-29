@@ -129,6 +129,23 @@ export const ChainSelectionMenu = () => {
       ),
     },
     {
+      key: 2,
+      label: (
+        <>
+          <ChainSelectorItem
+            onSelectChain={onSelectChain}
+            targetChain={SupportedChainId.SCROLL_MAINNET}
+            key={SupportedChainId.SCROLL_MAINNET}
+            isPending={
+              SupportedChainId.SCROLL_MAINNET === pendingChainId &&
+              Boolean(!error) &&
+              isLoading
+            }
+          />
+        </>
+      ),
+    },
+    {
       key: "Testnets",
       label: "Testnets",
       disabled: true,

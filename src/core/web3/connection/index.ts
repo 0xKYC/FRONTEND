@@ -35,20 +35,20 @@ const testnetChains = [
   scrollSepolia, 
   bscTestnet,
   skaleNebulaTestnet,
-  scrollMainnet
+  // scrollMainnet
 ];
 
 export const properChains = IS_MAINNET ? chains : testnetChains || [];
 
-const { provider } = configureChains(properChains, [publicProvider()]);
+const { provider } = configureChains(chains, [publicProvider()]);
 
 export const wagmiClient = createClient({
   autoConnect: true,
   connectors: [
-    new MetaMaskConnector({ chains: properChains }),
+    new MetaMaskConnector({ chains: chains }),
 
     new WalletConnectConnector({
-      chains: properChains,
+      chains: chains,
       options: {
         projectId: projectId,
       },
