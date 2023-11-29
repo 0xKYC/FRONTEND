@@ -8,9 +8,10 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   resolve: {
-    alias: {
-      "./runtimeConfig": "./runtimeConfig.browser", //fix production build
-    },
+    alias: [
+      { find: "./runtimeConfig", replacement: "./runtimeConfig.browser" },
+      { find: "@", replacement: "/src" },
+    ],
   },
   // depending on your application, base can also be "/"
   base: "",
@@ -22,7 +23,7 @@ export default defineConfig({
           browser: true,
           preferBuiltins: false,
         }),
-        json(),
+        // json(),
       ],
     },
   },
