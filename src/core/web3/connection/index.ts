@@ -40,17 +40,17 @@ const testnetChains = [
   scrollMainnet
 ];
 
-export const properChains = IS_MAINNET ? chains : testnetChains || [];
+export const properChains = IS_MAINNET ? chains : testnetChains;
 
-const { provider } = configureChains(chains, [publicProvider()]);
+const { provider } = configureChains(properChains, [publicProvider()]);
 
 export const wagmiClient = createClient({
   autoConnect: true,
   connectors: [
-    new MetaMaskConnector({ chains: chains }),
+    new MetaMaskConnector({ chains: properChains }),
 
     new WalletConnectConnector({
-      chains: chains,
+      chains: properChains,
       options: {
         projectId: projectId,
       },

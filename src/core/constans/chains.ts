@@ -162,7 +162,6 @@ export const TESTNET_CHAINS_IDS = [
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
   SupportedChainId.SKALE_NEBULA_TESTNET,
-  // SupportedChainId.SCROLL_MAINNET
 ] as const;
 
 export type ChainId = (typeof CHAIN_IDS)[number];
@@ -184,7 +183,6 @@ export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_SEPOLIA,
-  // SupportedChainId.SCROLL_MAINNET,
   SupportedChainId.BNB_TESTNET,
   SupportedChainId.SKALE_NEBULA_TESTNET
 ];
@@ -195,7 +193,6 @@ export const ONLY_TESTNET_CHAINS = [
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
   SupportedChainId.SKALE_NEBULA_TESTNET,
-  // SupportedChainId.SCROLL_MAINNET
 ];
 
 export const DEFAULT_CHAIN = IS_MAINNET
