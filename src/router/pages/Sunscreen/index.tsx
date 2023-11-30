@@ -46,11 +46,11 @@ const Sunscreen = () => {
   if (isLoading) return <LoadingSpinner tip="Loading..." height="90vh" />;
   return (
     <Container>
-      {data?.discordAccount.isVerified ? (
+      {/* {data?.discordAccount.isVerified ? ( */}
         <DiscordProfilePage />
-      ) : (
+      {/* ) : (
         <SunscreenPage userData={data} />
-      )}
+      )} */}
 
       {data && (
         <TosModalDiscord
