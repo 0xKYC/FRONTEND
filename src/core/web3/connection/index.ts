@@ -7,6 +7,7 @@ import {
   polygon, 
   polygonMumbai, 
   sepolia, 
+  // WAGMI version update needed to import scollSepolia
   // scrollSepola,
   skaleNebulaTestnet 
 } from "wagmi/chains";
@@ -26,7 +27,8 @@ const chains = [
   scrollSepolia,
   bscTestnet,
   bsc,
-  scrollMainnet
+  scrollMainnet,
+  skaleNebulaTestnet
 ];
 
 const testnetChains = [
@@ -35,7 +37,7 @@ const testnetChains = [
   scrollSepolia, 
   bscTestnet,
   skaleNebulaTestnet,
-  // scrollMainnet
+  scrollMainnet
 ];
 
 export const properChains = IS_MAINNET ? chains : testnetChains || [];
