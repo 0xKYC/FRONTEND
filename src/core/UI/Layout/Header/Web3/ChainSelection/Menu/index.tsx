@@ -152,7 +152,7 @@ export const ChainSelectionMenu = () => {
     },
     ...NETWORK_SELECTOR_CHAINS.slice(2).map(
       (chainId: SupportedChainId, index) => ({
-        key: index + 2,
+        key: index + 3,
         label: (
           <>
             <ChainSelectorItem
