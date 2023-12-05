@@ -4,11 +4,13 @@ import styled from "styled-components";
 
 export const StyledLink = styled("a")<{
   properColor: string;
+  whiteText: boolean;
 }>`
   display: block;
   text-align: center;
   background: ${(props) => props.properColor};
-  color: #fff;
+  color: ${(props) => (props.whiteText ? "#fff" : "black")};
+
   font-size: 1rem;
   font-weight: 700;
   width: 100%;

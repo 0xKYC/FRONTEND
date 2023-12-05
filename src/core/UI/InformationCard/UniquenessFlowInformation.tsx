@@ -1,7 +1,10 @@
 import { useLocation } from "react-router-dom";
 
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { selectIsVerified } from "redux/features/user/userSlice";
+import {
+  selectIsVerified,
+  selectUserFlow,
+} from "redux/features/user/userSlice";
 import { useAppSelector } from "redux/hooks";
 
 import { StyledText } from "./styles";
@@ -14,14 +17,14 @@ export const UniquenessFlowInformation = ({
   const { pathname } = useLocation();
   const isAuth = useAppSelector(selectIsVerified);
   const isVerified = pathname === "/profile" || isAuth || verified;
-  const isDiscordFlow = pathname === "/sunscreen";
+  const flow = useAppSelector(selectUserFlow);
   return (
     <>
       <StyledText>
-        {isDiscordFlow
-          ? "No personal information is shared."
-          : `Only your
-        unique identifier (UUID) is shared.`}
+        {flow === "insertStonks"
+          ? `Only your
+        unique identifier (UUID) is shared.`
+          : "No personal information is shared."}
       </StyledText>
       {!isVerified && (
         <StyledText style={{ fontWeight: "500" }}>
