@@ -136,7 +136,7 @@ export const CHAIN_INFO = {
     bridge: "",
     docs: "https://docs.skale.network/",
     explorer:
-      "https://staging-fast-active-bellatrix.explorer.staging-v3.skalenodes.com/",
+      "https://staging-faint-slimy-achird.explorer.staging-v3.skalenodes.com/",
     explorerName: "SKALE Explorer",
     label: "Skale Nebula Testnet",
     logoUrl: "/img/svg/skale.svg",
