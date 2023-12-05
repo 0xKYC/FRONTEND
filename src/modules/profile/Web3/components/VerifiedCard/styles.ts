@@ -24,7 +24,7 @@ export const StyledLink = styled("a")<{
 
   &:hover,
   &:active {
-    color: #fff;
+    color: ${(props) => (props.whiteText ? "#fff" : "black")};
     border: 1px solid #0077be;
     background: ${(props) => props.properColor};
   }
