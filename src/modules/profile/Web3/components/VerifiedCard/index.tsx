@@ -56,7 +56,7 @@ export const VerifiedCard = ({
           href={explorer + txHash}
           target="_blank"
           rel="noreferrer"
-          whiteText={chainId === SupportedChainId.SKALE_NEBULA_TESTNET}
+          whiteText={chainId !== SupportedChainId.SKALE_NEBULA_TESTNET}
         >
           Link to {explorerName}
         </StyledLink>
