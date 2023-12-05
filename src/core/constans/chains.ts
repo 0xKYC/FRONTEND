@@ -103,14 +103,14 @@ export const CHAIN_INFO = {
     color: "#3B226A",
     bridge: "https://scroll.io/alpha/bridge/",
   },
-  [SupportedChainId.SCROLL_MAINNET]:{
+  [SupportedChainId.SCROLL_MAINNET]: {
     explorer: "https://sepolia-blockscout.scroll.io/tx/",
     explorerName: "Blockscout",
     label: "Scroll Mainnet",
     logoUrl: "/img/svg/scroll.svg",
     nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
     color: "#3B226A",
-    bridge: "https://scroll.io/alpha/bridge/", 
+    bridge: "https://scroll.io/alpha/bridge/",
   },
   [SupportedChainId.BNB]: {
     bridge: "https://cbridge.celer.network/1/56",
@@ -135,7 +135,8 @@ export const CHAIN_INFO = {
   [SupportedChainId.SKALE_NEBULA_TESTNET]: {
     bridge: "",
     docs: "https://docs.skale.network/",
-    explorer: "https://staging-fast-active-bellatrix.explorer.staging-v3.skalenodes.com",
+    explorer:
+      "https://staging-fast-active-bellatrix.explorer.staging-v3.skalenodes.com/",
     explorerName: "SKALE Explorer",
     label: "Skale Nebula Testnet",
     logoUrl: "/img/svg/skale.svg",
@@ -184,7 +185,7 @@ export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
-  SupportedChainId.SKALE_NEBULA_TESTNET
+  SupportedChainId.SKALE_NEBULA_TESTNET,
 ];
 
 export const ONLY_TESTNET_CHAINS = [
