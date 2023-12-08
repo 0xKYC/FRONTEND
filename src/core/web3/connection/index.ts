@@ -1,15 +1,13 @@
 import { configureChains, createConfig } from "wagmi";
 
-import { bsc, bscTestnet, polygon, polygonMumbai, sepolia } from "wagmi/chains";
-import { EthereumClient } from "@web3modal/ethereum";
-import { 
-  bsc, 
-  bscTestnet, 
-  polygon, 
-  polygonMumbai, 
-  sepolia, 
-  scrollSepola,
-  skaleNebulaTestnet 
+import {
+  bsc,
+  bscTestnet,
+  polygon,
+  polygonMumbai,
+  scrollSepolia,
+  sepolia,
+  skaleNebulaTestnet,
 } from "wagmi/chains";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
@@ -28,16 +26,16 @@ const chainsArray = [
   bscTestnet,
   bsc,
   scrollMainnet,
-  skaleNebulaTestnet
+  skaleNebulaTestnet,
 ];
 
 const testnetChains = [
-  polygonMumbai, 
-  sepolia, 
-  scrollSepolia, 
+  polygonMumbai,
+  sepolia,
+  scrollSepolia,
   bscTestnet,
   skaleNebulaTestnet,
-  scrollMainnet
+  scrollMainnet,
 ];
 
 export const properChains = IS_MAINNET ? chainsArray : testnetChains;
@@ -49,10 +47,10 @@ const { chains, publicClient } = configureChains(properChains, [
 export const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: [
-    new MetaMaskConnector({ chains: properChains }),
+    new MetaMaskConnector({ chains }),
 
     new WalletConnectConnector({
-      chains: properChains,
+      chains,
       options: {
         projectId: projectId,
       },
@@ -61,5 +59,3 @@ export const wagmiConfig = createConfig({
 
   publicClient,
 });
-
-

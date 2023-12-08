@@ -46,11 +46,11 @@ export const web3Factory = (
     [SupportedChainId.SKALE_NEBULA_TESTNET]: {
       provider:
         "https://staging-v3.skalenodes.com/v1/staging-faint-slimy-achird",
-      soulboundContract: ENV.REACT_APP_SKALE_NEBULA_TESTNET_SOULBOUND_CONTRACT,
+      soulboundContract: ENV.VITE_APP_SKALE_NEBULA_TESTNET_SOULBOUND_CONTRACT,
     },
     [SupportedChainId.SCROLL_MAINNET]: {
       provider: "https://rpc.scroll.io/",
-      soulboundContract: ENV.REACT_APP_SCROLL_MAINNET_SOULBOUND_CONTRACT,
+      soulboundContract: ENV.VITE_APP_SCROLL_MAINNET_SOULBOUND_CONTRACT,
     },
   };
 

@@ -12,6 +12,7 @@ const envVariables = z.object({
   VITE_APP_BNB_SOULBOUND_CONTRACT: z.string().min(1),
   VITE_APP_BNB_TESTNET_SOULBOUND_CONTRACT: z.string().min(1),
   VITE_APP_SKALE_NEBULA_TESTNET_SOULBOUND_CONTRACT: z.string().min(1),
+  VITE_APP_SCROLL_MAINNET_SOULBOUND_CONTRACT: z.string().min(1),
   VITE_APP_SEPOLIA_ALCHEMY_URL: z.string().min(1),
   VITE_APP_MUMBAI_INFURA_URL: z.string().min(1),
   VITE_APP_POLYGON_ALCHEMY_URL: z.string().min(1),
