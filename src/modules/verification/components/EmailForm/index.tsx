@@ -116,7 +116,7 @@ export const EmailForm = ({ handleNextStep }: Props) => {
         <Button
           size="large"
           style={{ width: "50%" }}
-          type="ghost"
+          type="text"
           onClick={showModal}
         >
           Skip

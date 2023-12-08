@@ -17,7 +17,7 @@ import { getIcon } from "./utils/getIcon";
 import { getMetamaskUrl } from "./utils/getMetamaskUrl";
 
 type Props = {
-  connector: Connector<any, any, any>;
+  connector: Connector<any, any>;
 };
 
 export const Option = ({ connector }: Props) => {

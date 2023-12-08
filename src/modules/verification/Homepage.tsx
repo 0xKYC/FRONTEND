@@ -1,5 +1,4 @@
 import { Fade } from "react-awesome-reveal";
-import { withTranslation } from "react-i18next";
 
 import { useAccount } from "wagmi";
 
@@ -40,4 +39,4 @@ const HomePage = () => {
   );
 };
 
-export default withTranslation()(HomePage);
+export default HomePage;

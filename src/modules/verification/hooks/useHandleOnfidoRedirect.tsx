@@ -58,7 +58,7 @@ export const useHandleOnfidoRedirect = () => {
         redirectUrl,
         email,
         flow,
-        environment: ENV.REACT_APP_ENVIRONMENT,
+        environment: ENV.VITE_APP_ENVIRONMENT,
       })
         .unwrap()
         .then((responseUrl) => window.location.replace(responseUrl))
@@ -85,7 +85,7 @@ export const useHandleOnfidoRedirect = () => {
       discordId,
       redirectUrl,
       flow: "discord",
-      environment: ENV.REACT_APP_ENVIRONMENT,
+      environment: ENV.VITE_APP_ENVIRONMENT,
     })
       .unwrap()
       .then((responseUrl) => window.location.replace(responseUrl))

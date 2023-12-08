@@ -1,26 +1,24 @@
-import { configureChains, createClient } from "wagmi";
+import { configureChains, createConfig } from "wagmi";
 
-import { EthereumClient } from "@web3modal/ethereum";
-import { 
-  bsc, 
-  bscTestnet, 
-  polygon, 
-  polygonMumbai, 
-  sepolia, 
-  // WAGMI version update needed to import scollSepolia
-  // scrollSepola,
-  skaleNebulaTestnet 
+import {
+  bsc,
+  bscTestnet,
+  polygon,
+  polygonMumbai,
+  scrollSepolia,
+  sepolia,
+  skaleNebulaTestnet,
 } from "wagmi/chains";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { publicProvider } from "wagmi/providers/public";
 
 import { ENV } from "../../../env";
-import { IS_MAINNET, scrollMainnet, scrollSepolia } from "../../constans/chains";
+import { IS_MAINNET, scrollMainnet } from "../../constans/chains";
 
-export const projectId = ENV.REACT_APP_WALLET_CONNECT_ID;
+export const projectId = ENV.VITE_APP_WALLET_CONNECT_ID;
 
-const chains = [
+const chainsArray = [
   polygon,
   sepolia,
   polygonMumbai,
@@ -28,36 +26,36 @@ const chains = [
   bscTestnet,
   bsc,
   scrollMainnet,
-  skaleNebulaTestnet
+  skaleNebulaTestnet,
 ];
 
 const testnetChains = [
-  polygonMumbai, 
-  sepolia, 
-  scrollSepolia, 
+  polygonMumbai,
+  sepolia,
+  scrollSepolia,
   bscTestnet,
   skaleNebulaTestnet,
-  scrollMainnet
+  scrollMainnet,
 ];
 
-export const properChains = IS_MAINNET ? chains : testnetChains;
+export const properChains = IS_MAINNET ? chainsArray : testnetChains;
 
-const { provider } = configureChains(properChains, [publicProvider()]);
+const { chains, publicClient } = configureChains(properChains, [
+  publicProvider(),
+]);
 
-export const wagmiClient = createClient({
+export const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: [
-    new MetaMaskConnector({ chains: properChains }),
+    new MetaMaskConnector({ chains }),
 
     new WalletConnectConnector({
-      chains: properChains,
+      chains,
       options: {
         projectId: projectId,
       },
     }),
   ],
 
-  provider,
+  publicClient,
 });
-
-export const ethereumClient = new EthereumClient(wagmiClient, chains);
