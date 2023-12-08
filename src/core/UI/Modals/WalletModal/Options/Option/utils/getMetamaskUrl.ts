@@ -6,7 +6,6 @@ export const getMetamaskUrl = () => {
     local: "",
     dev: "dev.0xkyc.id",
     sandbox: "sandbox.0xkyc.id",
-    stage: "stage.0xkyc.id",
     prod: "app.0xkyc.id",
   };
 

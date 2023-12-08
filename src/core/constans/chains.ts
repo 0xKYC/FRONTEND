@@ -19,7 +19,7 @@ type BaseChainInfo = {
 };
 
 export const IS_MAINNET =
-  ENV.VITE_APP_ENVIRONMENT === "prod" || ENV.VITE_APP_ENVIRONMENT === "stage";
+  ENV.VITE_APP_ENVIRONMENT === "prod" || ENV.VITE_APP_ENVIRONMENT === "sandbox";
 
 export enum SupportedChainId {
   // MAINNET = 1,

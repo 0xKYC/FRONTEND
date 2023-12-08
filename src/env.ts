@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const envVariables = z.object({
-  VITE_APP_ENVIRONMENT: z.enum(["local", "dev", "sandbox", "stage", "prod"]),
+  VITE_APP_ENVIRONMENT: z.enum(["local", "dev", "sandbox", "prod"]),
   VITE_APP_BASE_URL: z.string().min(1),
   VITE_APP_MAINNET_INFURA_URL: z.string().min(1),
   VITE_APP_SEPOLIA_SOULBOUND_CONTRACT: z.string().min(1),

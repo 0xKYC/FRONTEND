@@ -32,7 +32,7 @@ export type OnfidoRedirectData = {
   redirectUrl?: string | null;
   callbackUrl?: string | null;
   email?: string;
-  environment: "local" | "dev" | "sandbox" | "stage" | "prod";
+  environment: "local" | "dev" | "sandbox" | "prod";
   flow: Flow;
 };
 
