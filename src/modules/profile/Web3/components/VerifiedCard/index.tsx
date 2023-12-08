@@ -1,6 +1,6 @@
 import UniquenessContent from "content/UniquenessVerified.json";
 import vContent from "content/VerifiedContent.json";
-import { ChainId, getChainInfo } from "core/constans/chains";
+import { ChainId, SupportedChainId, getChainInfo } from "core/constans/chains";
 import { Heading } from "modules/verification/styles";
 import { Flow } from "redux/api/onfido/types";
 
@@ -56,6 +56,7 @@ export const VerifiedCard = ({
           href={explorer + txHash}
           target="_blank"
           rel="noreferrer"
+          whiteText={chainId !== SupportedChainId.SKALE_NEBULA_TESTNET}
         >
           Link to {explorerName}
         </StyledLink>

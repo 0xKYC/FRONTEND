@@ -29,9 +29,11 @@ export enum SupportedChainId {
   POLYGON_MUMBAI = 80001,
 
   SCROLL_SEPOLIA = 534351,
+  SCROLL_MAINNET = 534352,
 
   BNB = 56,
   BNB_TESTNET = 97,
+  SKALE_NEBULA_TESTNET = 503129905,
 }
 
 export const CHAIN_INFO = {
@@ -101,6 +103,15 @@ export const CHAIN_INFO = {
     color: "#3B226A",
     bridge: "https://scroll.io/alpha/bridge/",
   },
+  [SupportedChainId.SCROLL_MAINNET]: {
+    explorer: "https://sepolia-blockscout.scroll.io/tx/",
+    explorerName: "Blockscout",
+    label: "Scroll Mainnet",
+    logoUrl: "/img/svg/scroll.svg",
+    nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+    color: "#3B226A",
+    bridge: "https://scroll.io/alpha/bridge/",
+  },
   [SupportedChainId.BNB]: {
     bridge: "https://cbridge.celer.network/1/56",
     docs: "https://docs.bnbchain.org/",
@@ -121,6 +132,17 @@ export const CHAIN_INFO = {
     color: "#0077be",
     nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
   },
+  [SupportedChainId.SKALE_NEBULA_TESTNET]: {
+    bridge: "",
+    docs: "https://docs.skale.network/",
+    explorer:
+      "https://staging-faint-slimy-achird.explorer.staging-v3.skalenodes.com/tx/",
+    explorerName: "SKALE Explorer",
+    label: "Skale Nebula Testnet",
+    logoUrl: "/img/svg/skale.svg",
+    color: "#FFFFFF",
+    nativeCurrency: { name: "sFUEL", symbol: "sFUEL", decimals: 18 },
+  },
 };
 export const CHAIN_IDS = [
   SupportedChainId.POLYGON,
@@ -128,6 +150,8 @@ export const CHAIN_IDS = [
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_SEPOLIA,
+  SupportedChainId.SCROLL_MAINNET,
+  SupportedChainId.SKALE_NEBULA_TESTNET,
 
   SupportedChainId.BNB_TESTNET,
   SupportedChainId.BNB,
@@ -138,6 +162,7 @@ export const TESTNET_CHAINS_IDS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
+  SupportedChainId.SKALE_NEBULA_TESTNET,
 ] as const;
 
 export type ChainId = (typeof CHAIN_IDS)[number];
@@ -156,11 +181,11 @@ export function getChainInfo(chainId: ChainId | undefined): BaseChainInfo {
 export const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON,
   SupportedChainId.BNB,
-
   SupportedChainId.SEPOLIA,
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
+  SupportedChainId.SKALE_NEBULA_TESTNET,
 ];
 
 export const ONLY_TESTNET_CHAINS = [
@@ -168,6 +193,7 @@ export const ONLY_TESTNET_CHAINS = [
   SupportedChainId.SEPOLIA,
   SupportedChainId.SCROLL_SEPOLIA,
   SupportedChainId.BNB_TESTNET,
+  SupportedChainId.SKALE_NEBULA_TESTNET,
 ];
 
 export const DEFAULT_CHAIN = IS_MAINNET
@@ -197,6 +223,33 @@ export const scrollSepolia = {
     multicall3: {
       address: "0xca11bde05977b3631167028862be2a173976ca11",
       blockCreated: 9473,
+    },
+  },
+} as const satisfies Chain;
+
+export const scrollMainnet = {
+  id: 534352,
+  name: "Scroll Mainnet",
+  network: "scroll-mainnet",
+  nativeCurrency: { name: "Scroll Alpha Ether", symbol: "ETH", decimals: 18 },
+  rpcUrls: {
+    public: { http: ["https://rpc.scroll.io/"] },
+    default: { http: ["https://rpc.scroll.io/"] },
+  },
+  blockExplorers: {
+    etherscan: {
+      name: "ScrollScan",
+      url: "https://scrollscan.com/",
+    },
+    default: {
+      name: "ScrollScan",
+      url: "https://scrollscan.com/",
+    },
+  },
+  contracts: {
+    multicall3: {
+      address: "0xcA11bde05977b3631167028862bE2a173976CA11",
+      blockCreated: 14,
     },
   },
 } as const satisfies Chain;

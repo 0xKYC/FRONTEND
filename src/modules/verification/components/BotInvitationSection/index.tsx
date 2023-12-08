@@ -51,7 +51,4 @@ const H2 = styled.h2`
   @media screen and (max-width: 1024px) {
     font-size: 1.8rem;
   }
-  @media screen and (min-width: 1025px) {
-    margin-top: 3rem;
-  }
 `;
